@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import Markdown from 'react-markdown';
-import { MdStar } from 'react-icons/md';
+import { MdStar, MdVideocam } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import './App.css';
+import { DemoModal } from './components/DemoModal';
 
 interface CfopAlgorithm {
   id: string;
@@ -21,6 +22,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [hoveredAlg, setHoveredAlg] = useState<string | null>(null);
   const [tooltipLeft, setTooltipLeft] = useState<boolean>(false);
+  const [showDemo, setShowDemo] = useState(false);
+  const [demoAlgorithm, setDemoAlgorithm] = useState<CfopAlgorithm | null>(null);
 
   useEffect(() => {
     const loadAlgorithms = async () => {
@@ -60,6 +63,19 @@ function App() {
     const spaceOnRight = viewportWidth - rect.right;
     setTooltipLeft(spaceOnRight < 350);
     setHoveredAlg(algId);
+  };
+
+  const handleOpenDemo = () => {
+    if (algorithms.length > 0) {
+      const randomAlg = algorithms[Math.floor(Math.random() * algorithms.length)];
+      setDemoAlgorithm(randomAlg);
+      setShowDemo(true);
+    }
+  };
+
+  const handleCloseDemo = () => {
+    setShowDemo(false);
+    setDemoAlgorithm(null);
   };
 
   const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
@@ -114,6 +130,16 @@ function App() {
         <p className="subtitle is-5">Essential OLL and PLL algorithms for solving the last layer for a 3x3x3 Rubik's cube. Assumes you've learnt intuitive Cross and F2L.</p>
         <p className="essentials-summary"><strong>Essentials:</strong> {essentialsSummary}</p>
       </section>
+      
+      <div className="has-text-centered mb-5">
+        <button 
+          className="button is-primary demo-button"
+          onClick={handleOpenDemo}
+        >
+          <MdVideocam size={18} />
+          <span>Demo Random Algorithm</span>
+        </button>
+      </div>
 
       <main>
         {renderAlgorithmSection("OLL edge cases", ollEdges)}
@@ -121,6 +147,10 @@ function App() {
         {renderAlgorithmSection("PLL corner cases", pllCorners)}
         {renderAlgorithmSection("PLL edge cases", pllEdges)}
       </main>
+
+      {showDemo && demoAlgorithm && (
+        <DemoModal algorithm={demoAlgorithm} onClose={handleCloseDemo} />
+      )}
     </div>
   );
 }

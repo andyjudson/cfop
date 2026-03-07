@@ -3,7 +3,67 @@
 ## Overview
 A cross-platform mobile/web application for learning Rubik's cube solving methods, specifically CFOP (Cross, F2L, OLL, PLL) algorithms.
 
-## Current Iteration: Algorithm Notes on Hover
+## Feature 001: Beginner 2-look Algorithm Cases Grid
+
+### Status: Complete ✅
+
+### Scope
+Create a clean, single-page grid display of 2-look beginner cubing cases (OLL and PLL algorithms) organized by groups. Focus on:
+- Static grids organized by case type (no interactive filtering)
+- OLL cases grouped by edge/corner orientation
+- PLL cases grouped by corner/edge permutation
+- Clean, readable layout with images and notation
+- All sections use consistent styling (no special highlighting)
+
+### Algorithms
+Assumes understanding and use of Intuitive Cross and F2L methods for solving the first two layers. With the guide focusing on the minimalist OLL and PLL algorithms required to solve any cube scramble. 
+
+Focus initially on learning the 5 essential algorithms, then progress to rest of the 2-look cases, and then eventually to the full 1-look F2L (41 cases), OLL (57 cases), and PLL (21 cases) ... good luck, if you're brain will remember them all - not mine!!
+
+- **2-Look Methods (bgr/2lk)**: Complete set of OLL and PLL cases for solving the last layer
+  - **OLL (Orientation of Last Layer)**: 10 cases
+    - Edge orientation: Line, Hook, Dot cases (3 cases)
+    - Corner orientation: Sune, AntiSune, H, Pi, T, L, U shapes (7 cases)
+  - **PLL (Permutation of Last Layer)**: 6 cases  
+    - Corner permutation: T-Perm, Y-Perm (2 cases)
+    - Edge permutation: Ua-Perm, Ub-Perm, H-Perm, Z-Perm (4 cases)
+
+- **3-Look Subset (recommended starting point)**: 5 essential cases for basic solving with repetition.
+  - **OLL**: Sune, AntiSune (2 cases)
+  - **PLL**: T-Perm, Ua-Perm, H-Perm (3 cases)
+
+### User Interface
+- Single page with no navigation
+- Page title: "Cubing - Learning CFOP 2LK Methodology"
+- Essentials summary line near top: Sune, AntiSune, T-Perm, Ua-Perm, H-Perm
+- Static sectioned grids (no duplicated essentials section):
+  - "OLL edge cases" (3 algorithms)
+  - "OLL corner cases" (7 algorithms)
+  - "PLL corner cases" (2 algorithms)
+  - "PLL edge cases" (4 algorithms)
+- Consistent card layout with images, names, notation, and essential star marker on relevant cards
+- Uniform section styling across all groups
+- Mobile-responsive grid layout
+
+### Data Structure
+Each algorithm contains:
+- id: unique identifier
+- name: human-readable case name
+- notation: algorithm moves in standard notation
+- method: "bgr" for beginner cases
+- group: "edge" or "corner" for OLL, permutation type for PLL
+- image: path to case visualization image
+- notes: basic information
+
+### Technical Requirements
+- React with TypeScript
+- Vite for build tooling
+- Bulma for base page/card/grid structure + custom CSS for tooltips and visual tuning
+- Shared resources via symlinks
+
+## Feature 002: Algorithm Notes on Hover
+
+### Status: Complete ✅
 
 ### Scope
 Add interactive tooltips to display algorithm notes when hovering over case images. Focus on:
@@ -43,61 +103,54 @@ Add interactive tooltips to display algorithm notes when hovering over case imag
 - User hovers over T-Perm → sees note about headlight positioning
 - Mobile user taps image → sees same tooltip with tap-to-dismiss behavior
 
-## Previous Iteration: 2-Look Beginner Cases Grid
+## Feature 003: Algorithm Demo with Cubing.js
+
+### Status: Complete ✅
 
 ### Scope
-Create a clean, single-page grid display of 2-look beginner cubing cases (OLL and PLL algorithms) organized by groups. Focus on:
-- Static grids organized by case type (no interactive filtering)
-- OLL cases grouped by edge/corner orientation
-- PLL cases grouped by corner/edge permutation
-- Clean, readable layout with images and notation
-- All sections use consistent styling (no special highlighting)
+Add interactive 3D cube visualization using cubing.js library. Focus on:
+- Demo button below essentials summary
+- Modal dialog with TwistyPlayer showing random algorithm
+- Custom control panel using Material Design icons (play, pause, rewind, speed controls)
+- Algorithm display with move-by-move highlighting during playback
+- Clean modal overlay with proper animation and keyboard controls
 
-### Algorithm Sets (Current Focus)
-- **2-Look Methods (bgr/2lk)**: Complete set of OLL and PLL cases for solving the last layer
-  - **OLL (Orientation of Last Layer)**: 10 cases
-    - Edge orientation: Line, Hook, Dot cases (3 cases)
-    - Corner orientation: Sune, AntiSune, H, Pi, T, L, U shapes (7 cases)
-  - **PLL (Permutation of Last Layer)**: 6 cases  
-    - Corner permutation: T-Perm, Y-Perm (2 cases)
-    - Edge permutation: Ua-Perm, Ub-Perm, H-Perm, Z-Perm (4 cases)
-
-- **3-Look Subset (recommended starting point)**: 5 essential cases for basic solving with repetition
-  - **OLL Corners**: Sune, AntiSune (2 cases)
-  - **PLL**: T-Perm, Ua-Perm, H-Perm (3 cases)
-  
-  These 5 algorithms provide a foundation that works (with repetition) and can be expanded to full 2-look solving, and then eventually to the full 1-look F2L (41 cases), OLL (57 cases), and PLL (21 cases) set of algorithms if you're brain will remember them all - not mine!!
-
-### User Interface
-- Single page with no navigation
-- Page title: "Cubing - Learning CFOP 2LK Methodology"
-- Essentials summary line near top: Sune, AntiSune, T-Perm, Ua-Perm, H-Perm
-- Static sectioned grids (no duplicated essentials section):
-  - "OLL edge cases" (3 algorithms)
-  - "OLL corner cases"  (7 algorithms)
-  - "PLL corner cases" (2 algorithms)
-  - "PLL edge cases" (4 algorithms)
-- Consistent card layout with images, names, notation, and essential star marker on relevant cards
-- Uniform section styling across all groups
-- Mobile-responsive grid layout
-
-### Data Structure
-Each algorithm contains:
-- id: unique identifier
-- name: human-readable case name
-- notation: algorithm moves in standard notation
-- method: "bgr" for beginner cases
-- group: "edge" or "corner" for OLL, permutation type for PLL
-- image: path to case visualization image
-- notes: basic information
+### Features
+- Compact "Demo Random Algorithm" button below essentials summary
+- Click opens modal with random algorithm from current set
+- TwistyPlayer displays 3D cube executing the algorithm using PG3D with no default control panel
+- Custom controls: play/pause, rewind to start, speed up/down (using + and - icons)
+- Algorithm notation displayed in consistent fixed-width tokens with active/completed highlighting
+- Modal dismissible via close button, escape key, or backdrop click
+- Compact modal/cube/control layout to preserve space for notation display
 
 ### Technical Requirements
-- React with TypeScript
-- Vite for build tooling
-- Bulma for base page/card/grid structure + custom CSS for tooltips and visual tuning
-- Shared resources via symlinks
+- cubing.js library for TwistyPlayer component
+- Material Design icons (react-icons/md) for custom controls
+- Modal component with backdrop overlay
+- Algorithm parsing via `cubing/alg` (`Alg` + `Move`) with safe fallback tokenizer
+- State management for playback position and speed
+- Responsive modal sizing for mobile/desktop
+- Player timeline sync via `experimentalModel.currentMoveInfo` and `coarseTimelineInfo` listeners (no timer-based drift)
+- TwistyPlayer config uses legacy-proven settings: `visualization: PG3D`, `background: none`, `hintFacelets: none`, `controlPanel: none`, `experimentalSetupAlg: z2`, `experimentalSetupAnchor: end`, `experimentalDragInput: none`
+- Stickering masks applied by method/group using `experimentalStickeringMaskOrbits`:
+  - f2l → `EDGES:----IIII----,CORNERS:----IIII,CENTERS:------`
+  - oll/edge → `EDGES:----OOOO----,CORNERS:----IIII,CENTERS:------`
+  - oll/corner → `EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------`
+  - pll/corner → `EDGES:----OOOO----,CORNERS:--------,CENTERS:------`
+  - default → `EDGES:------------,CORNERS:--------,CENTERS:------`
 
-## Future Iterations (Not in Scope)
+### User Stories
+- User clicks "Demo" button → modal opens with random algorithm
+- User sees 3D cube performing algorithm moves
+- User clicks play → algorithm executes with synchronized move highlighting (locked to actual player timeline)
+- User adjusts speed → playback rate changes smoothly
+- User clicks rewind → cube returns to solved state
+- User presses Escape or clicks backdrop → modal closes
+
+## Feature Backlog (Not in Scope)
+All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
+**Roadmaps**
 - About page
 - Cubing notation primer
 - Intuitive Cross and F2L primer
@@ -112,8 +165,8 @@ Each algorithm contains:
 
 ## Implementation Plan
 
-### Current State ✅
-**Previous Iteration - Static Grid (Completed)**:
+### Completed Features ✅
+**Feature 001 - Beginner 2-lookses Grid (Completed)**:
 - Single-page grid of 16 2-look algorithms
 - Static sections organized by case groups:
   - Essential cases to learn first (5 algorithms)
@@ -128,7 +181,7 @@ Each algorithm contains:
 - Responsive design
 - Production build verified
 
-**Current Iteration - Hover Tooltips (Completed)**:
+**Feature 002 - Algorithm Notes on Hover (Completed)**:
 - Tooltip component for algorithm notes ✅
 - Hover interaction directly on cube images (not whole card) ✅
 - Markdown rendering in tooltips ✅
@@ -146,21 +199,17 @@ Each algorithm contains:
 - Algorithm notation row set to full-width shaded block in each card ✅
 - Production build verified ✅
 
-### Future Iterations (Out of Scope)
-All of below ideas are out of scope until explicitly requested through speckit.specify. We are just capturing them here as a roadmap. We'll promote them up when ready as new feature specs.
-
-**Roadmap**
-- Expandable/collapsible sections for groups of cases
-- Full algorithm detail modal/page view
-- 3D cube visualizations
-- Progress tracking
-- Practice tools
-- Full CFOP coverage
-- Enhanced learning features
-- Mobile app deployment
-
-## Implementation Notes
-- Use shared resources via symlinks
-- Start with static grid, add interactivity iteratively
-- Focus on clean code and maintainable structure
-- Test on mobile devices early
+**Feature 003 - Cubing.js Demo Modal (Completed)**:
+- Demo button placed below essentials summary and visually compact ✅
+- Random algorithm selection from the current 2-look dataset ✅
+- Modal-based TwistyPlayer integration with custom controls ✅
+- Custom icon controls implemented (play, pause, rewind, speed -, speed +) ✅
+- Speed indicator and bounded speed adjustments (0.5x → 3.0x) ✅
+- Notation tokens styled with consistent width and monospace font ✅
+- Active/completed move highlighting synchronized to player timeline ✅
+- Rewind behavior uses `jumpToStart()` for clean reset ✅
+- Legacy player visual settings and setup behavior carried over/refined ✅
+- Method/group stickering masks applied to the cube visualization ✅
+- Compact modal/cube/control sizing tuned to avoid notation crowding ✅
+- Control strip reverted to transparent (no full-width background fill) ✅
+- Escape key + backdrop click + close button dismissal verified ✅

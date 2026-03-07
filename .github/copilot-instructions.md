@@ -5,11 +5,12 @@
 - Current implementation target: `cubing.spec/new-cubing-site`
 - Ignore `cubing.react` and `cubing.static` unless explicitly requested.
 
-## Current build goal
-- Build only the current spec iteration in `spec.md`:
-  - single-page 2-look beginner cases grid
-  - include 3-look essentials section
-  - no advanced features unless explicitly requested via new spec command
+## Current Status
+- Features 001, 002, and 003 completed in `spec.md`:
+  - Feature 001: 2-look beginner cases grid with essentials section ✅
+  - Feature 002: Algorithm notes on hover with tooltips ✅
+  - Feature 003: Cubing.js demo modal with TwistyPlayer ✅
+- Ready for Feature 004 specification via speckit.specify workflow
 
 ## Resource usage
 - Reuse shared resources from `cubing.spec/shared-data` and `cubing.spec/shared-assets`
@@ -19,3 +20,9 @@
 - Iterate in small steps
 - Keep implementation details out of high-level spec unless promoted intentionally
 - Treat `legacy.md` as historical project context only
+
+## Implementation Notes
+- Use shared resources via symlinks
+- Start with static grid, add interactivity iteratively
+- Focus on clean code and maintainable structure
+- Test on mobile devices early

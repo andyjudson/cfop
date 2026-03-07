@@ -25,12 +25,13 @@ This application exists to help users (namely me) learn Rubik's cube solving met
 - Keep implementation private to avoid commercial conflicts
 
 ### Technology Choices
-- Web-first approach with React ecosystem
+- Web-first approach with React ecosystem (React 19+, TypeScript, Vite)
 - Mobile deployment via Capacitor or PWA (no native iOS licensing)
 - Cubing.js for cube visualizations (maintained library on github)
-- Algorithm sets should be maintained in json
-- Prefer lite or minimalist css, js, html frameworks
+- Algorithm sets should be maintained in JSON (shared via symlinks)
+- Prefer lite or minimalist frameworks (Bulma CSS for base layout)
 - Minimal dependencies to ensure long-term maintainability
+- Shared resources pattern: symlink from `shared-data/` and `shared-assets/`
 
 ### Scope Limitations
 - Focus exclusively on CFOP method learning (intuitive + 3-look, 2-look, 1-look levels)
@@ -75,8 +76,9 @@ This application exists to help users (namely me) learn Rubik's cube solving met
 ### Maintenance Approach
 - Regular framework and dependency updates
 - Backward compatibility for user data
-- Documentation of architectural decisions
+- Documentation of architectural decisions via spec.md (feature-based numbering)
 - Clear separation of concerns in codebase
+- Iterative development: spec → implement → refine → document
 
 ## Success Criteria
 

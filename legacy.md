@@ -5,7 +5,7 @@
 Legacy static HTML app, built manually with Bootstrap and Cubing.js. Treat as retired, do not make changes, and should be ignored unless a specific historical comparison is requested. 
 
 **Architecture**: 
-Static HTML pages with embedded Cubing.js for interactive cube display and image creation from algorithm / setup params. No build process, direct file serving, hard coded content. Algorithm definitions are embedded directly in HTML
+Static HTML pages with embedded Cubing.js for interactive cube display and image creation from algorithm / setup params. No build process, direct file serving, hard coded content. Algorithm definitions are embedded directly in HTML. This app hosts other useful capabilities from Cubing.js - random scramble player, and particular the case image creator which i used to create all the assets for these projects.
 
 ## Project 2 - cubing.react
 **Overview**: 
@@ -32,7 +32,8 @@ Personal learning tool for CFOP methods while serving as an AI coding sandbox. O
 - JSON structure: each algorithm entry follows `CfopAlgorithm` interface with keys `id`, `name`, `notation`, `method`, `group`, `image`, `notes`. The `group` value controls grouping in UI grids, `image` points to a local asset matching the case (e.g. `oll_sune.png`), and `notation` is parsed by Cubing.js’s `Alg` class. Notes may contain markdown and footnotes.
 - Icons: Cubing.js icons via CDN, Material Symbols, IonIcons
 - Styling: Custom CSS in `theme/` for React, `default.css`/`cfop.css` for static
-- State:User progress in localStorage as JSON, preset learning sets available
+- State: User progress in localStorage as JSON, preset learning sets available
+- Mask: Masking effect used to hide irrelevant positions vs highlight the algorithm case
 
 **Frameworks**:
 - Cubing.js: Core dependency for all cube logic - scrambles, algorithms, visualizations
@@ -40,4 +41,3 @@ Personal learning tool for CFOP methods while serving as an AI coding sandbox. O
 - Ionic: UI components and routing, CLI for generation (`ionic generate`)
 - Bulma: Used to create clean printable offline alg grid pages
 - Bootstrap: Layout framework for static sites only
-

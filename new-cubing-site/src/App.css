@@ -29,6 +29,23 @@
   color: #0f172a;
 }
 
+.demo-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.15);
+}
+
+.demo-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(59, 130, 246, 0.25);
+}
+
 .essential-pill {
   position: absolute;
   top: 0.8rem;

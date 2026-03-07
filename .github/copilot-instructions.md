@@ -20,6 +20,7 @@
 - Iterate in small steps
 - Keep implementation details out of high-level spec unless promoted intentionally
 - Treat `legacy.md` as historical project context only
+- Keep `specs/` feature numbering aligned with the feature sequence tracked in `spec.md` (current next feature is 004)
 
 ## Implementation Notes
 - Use shared resources via symlinks

@@ -166,7 +166,7 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 ## Implementation Plan
 
 ### Completed Features ✅
-**Feature 001 - Beginner 2-lookses Grid (Completed)**:
+**Feature 001 - Beginner 2-look Algorithm Case Grid (Completed)**:
 - Single-page grid of 16 2-look algorithms
 - Static sections organized by case groups:
   - Essential cases to learn first (5 algorithms)

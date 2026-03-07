@@ -18,10 +18,10 @@ Add interactive tooltips to display algorithm notes when hovering over case imag
 - Renders markdown from algorithm notes field
 - Positioned near cursor/image without blocking other content
 - Dismisses on mouse leave or tap outside
-- Accessible keyboard navigation support
 
 ### Technical Requirements
 - react-markdown for rendering notes (already installed)
+- react-icons for essential marker icon
 - CSS-based tooltip positioning
 - Touch event handling for mobile
 - Maintain existing card layout and styling
@@ -35,6 +35,8 @@ Add interactive tooltips to display algorithm notes when hovering over case imag
 - Keep notation text in monospace style for algorithm readability
 - Make notation text block + shaded background span full card content width
 - Use a soft indigo-tint section header background (instead of cyan)
+- Keep a fresh/sleek light aesthetic (subtle gradients, gentle shadows, clean spacing)
+- Keep tooltip layering above adjacent cards, including with image zoom hover effects
 
 ### User Stories
 - User hovers over Sune case image → sees note about cube orientation (oriented corner front-left, unoriented front-right facing forward)
@@ -69,13 +71,13 @@ Create a clean, single-page grid display of 2-look beginner cubing cases (OLL an
 ### User Interface
 - Single page with no navigation
 - Page title: "Cubing - Learning CFOP 2LK Methodology"
-- Static sectioned grids:
-  - "Essential cases to learn first" (5 algorithms that can be used to solve cube at the costs of repetition)
+- Essentials summary line near top: Sune, AntiSune, T-Perm, Ua-Perm, H-Perm
+- Static sectioned grids (no duplicated essentials section):
   - "OLL edge cases" (3 algorithms)
   - "OLL corner cases"  (7 algorithms)
   - "PLL corner cases" (2 algorithms)
   - "PLL edge cases" (4 algorithms)
-- Consistent card layout with images, names, and notation (no badges or pills)
+- Consistent card layout with images, names, notation, and essential star marker on relevant cards
 - Uniform section styling across all groups
 - Mobile-responsive grid layout
 
@@ -137,6 +139,10 @@ Each algorithm contains:
 - Centered cube images within cards ✅
 - Bulma adopted for layout/components (container, grid, cards, typography) ✅
 - Light theme styling tuned for readability (darker text, neutral header, soft section backgrounds) ✅
+- Fresh/sleek style polish (refined cards, spacing, subtle hover effects) ✅
+- Essentials deduped (summary line + in-section markers instead of repeated cards) ✅
+- Essential marker converted to icon-based star badge ✅
+- Tooltip z-order refined to prevent overlap clipping with adjacent cards ✅
 - Algorithm notation row set to full-width shaded block in each card ✅
 - Production build verified ✅
 

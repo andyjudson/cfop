@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Markdown from 'react-markdown';
+import { MdStar } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import './App.css';
 
@@ -12,6 +13,8 @@ interface CfopAlgorithm {
   image: string;
   notes: string;
 }
+
+const essentialIds = ['oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
 
 function App() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
@@ -35,11 +38,14 @@ function App() {
     loadAlgorithms();
   }, []);
 
-  const essentials = algorithms.filter(alg => ['oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'].includes(alg.id));
   const ollEdges = algorithms.filter(alg => alg.method === 'oll' && alg.group === 'edge');
   const ollCorners = algorithms.filter(alg => alg.method === 'oll' && alg.group === 'corner');
   const pllCorners = algorithms.filter(alg => alg.method === 'pll' && alg.group === 'corner');
   const pllEdges = algorithms.filter(alg => alg.method === 'pll' && alg.group === 'edge');
+  const essentialsSummary = essentialIds
+    .map(id => algorithms.find(alg => alg.id === id)?.name)
+    .filter((name): name is string => Boolean(name))
+    .join(', ');
 
   if (loading) {
     return <div className="loading">Loading 2-look algorithms...</div>;
@@ -85,6 +91,11 @@ function App() {
                   )}
                 </div>
                 <h3 className="title is-5 mt-3">{alg.name}</h3>
+                {essentialIds.includes(alg.id) && (
+                  <span className="essential-pill">
+                    <MdStar size={14} />
+                  </span>
+                )}
                 <div className="content">
                   <code className="notation">{alg.notation}</code>
                 </div>
@@ -101,10 +112,10 @@ function App() {
       <section className="section pt-0 has-text-centered">
         <h1 className="title is-2">Cubing - Learning CFOP 2LK Methodology</h1>
         <p className="subtitle is-5">Essential OLL and PLL algorithms for solving the last layer for a 3x3x3 Rubik's cube. Assumes you've learnt intuitive Cross and F2L.</p>
+        <p className="essentials-summary"><strong>Essentials:</strong> {essentialsSummary}</p>
       </section>
 
       <main>
-        {renderAlgorithmSection("Essential cases to learn first", essentials)}
         {renderAlgorithmSection("OLL edge cases", ollEdges)}
         {renderAlgorithmSection("OLL corner cases", ollCorners)}
         {renderAlgorithmSection("PLL corner cases", pllCorners)}

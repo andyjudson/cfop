@@ -26,18 +26,20 @@ This directory contains shared resources that can be used across different cubin
 
 ## Usage
 
-When creating a new cubing app, you can copy or symlink (preferred) these resources:
+When creating a new cubing app, use symlinks to reference these shared resources (avoid copying to prevent duplication):
 
 ```bash
-# Copy assets to your app public directory
-cp -r ../shared-assets/* ./public/assets/
+# Create symlinks to shared assets in your app public directory
+ln -s ../../../shared-assets ./public/assets
 
-# Copy data to your app src directory
-cp -r ../shared-data/* ./src/data/
+# Create symlinks to shared data in your app src directory  
+ln -s ../../../shared-data ./src/data
 
-# Copy theme css files to your app src directory (optional)
-cp -r ../shared-theme/* ./src/theme/
+# Create symlinks to shared theme css files in your app src directory (optional)
+ln -s ../../../shared-theme ./src/theme
 ```
+
+**Important**: Always use symlinks instead of copying files. This ensures changes to shared resources are automatically reflected across all apps and prevents version drift.
 
 ## Data Structure
 

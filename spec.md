@@ -3,109 +3,69 @@
 ## Overview
 A cross-platform mobile/web application for learning Rubik's cube solving methods, specifically CFOP (Cross, F2L, OLL, PLL) algorithms.
 
-## Core Features
+## Current Iteration: Starting to learn CFOP using 2-Look cases
 
-### Algorithm Learning
-- Display CFOP algorithms organized by method (Cross, F2L, OLL, PLL)
-- Stagger learning from beginner with intuitive with Cross and F2L techniques and 3-look cases from OLL and PLL, then 2-look cases, and then 1-look full alg sets from F2L, OLL, and PLL 
-- User should be flow from grid of algs, to a single case with image and alg, to an animation if needed
-- Interactive 3D cube visualizations using Cubing.js TwistyPlayer
-- Algorithm notation display with proper formatting
-- Markdown support for algorithm notes and footnotes
-- Progress tracking with localStorage persistence
-- Should be an about page with some introduction to the history and overview of the CFOP method and the incredible times the world is seeing these days in competitions
-- Should be an notation page to explain the syntax vs moves
+### Scope
+Build a skeleton site displaying a grid of 2-look beginner cubing cases (OLL and PLL algorithms). Focus on:
+- Clean, responsive grid layout
+- Algorithm images and notation
+- Basic filtering by case type
+- Mobile-friendly design
 
-### Algorithm Sets
-- Intuitive (cross + f2l): techniques rather than algorithms
-- Beginner 2-look methods (bgr/2lk): minimal set of OLL and PLL cases to enable solves of the last layer, but likely requires repetition.
-- First 2 Layers (f2l): 41 case patterns
-- Orientation of Last Layer (oll): 57 case patterns
-- Permutation of Last Layer (pll): 21 case patterns
+### Algorithm Sets (Current Focus)
+- **Beginner 2-look methods (bgr/2lk)**: Complete set of OLL and PLL cases for solving the last layer
+  - **OLL (Orientation of Last Layer)**: 10 cases
+    - Edge orientation: Line, Hook, Dot cases (3 cases)
+    - Corner orientation: Sune, AntiSune, H, Pi, T, L, U shapes (7 cases)
+  - **PLL (Permutation of Last Layer)**: 6 cases  
+    - Corner permutation: T-Perm, Y-Perm (2 cases)
+    - Edge permutation: Ua-Perm, Ub-Perm, H-Perm, Z-Perm (4 cases)
+
+- **3-Look Subset (Recommended Starting Point)**: 5 essential cases for basic solving with repetition
+  - **OLL Corners**: Sune, AntiSune (2 cases)
+  - **PLL**: T-Perm, Ua-Perm, H-Perm (3 cases)
+  
+  These 5 algorithms provide a foundation that works (with repetition) and can be expanded to full 2-look solving.
+
+These 16 algorithms, combined with intuitive methods for Cross and F2L, enable complete cube solving.
 
 ### User Interface
-- Mobile-first design using Ionic components
-- Dark/light mode support
-- Responsive grid layouts for algorithm display
-- Navigation between different algorithm sets
-- Modal panels for detailed algorithm information
+- Mobile-first responsive grid
+- Light mode default
+- Simple navigation/filtering
+- Clean card-based layout
 
 ### Data Structure
 Each algorithm contains:
 - id: unique identifier
 - name: human-readable case name
 - notation: algorithm moves in standard notation
-- method: CFOP step (cross/f2l/oll/pll)
-- group: UI grouping category
+- method: "bgr" for beginner cases
+- group: "edge" or "corner" for OLL, permutation type for PLL
 - image: path to case visualization image
-- notes: markdown-formatted additional information
+- notes: basic information
 
 ### Technical Requirements
-- React 18+ with TypeScript
-- Ionic 8+ for UI components
-- Capacitor 7+ for native mobile deployment
-- Cubing.js for cube visualizations and scramble generation
+- React with TypeScript
 - Vite for build tooling
-- Local storage for user progress tracking
+- Cubing.js for interactive cube visualizations
+- Responsive CSS (no frameworks yet)
 
-## User Stories
+## Future Iterations (Not in Scope)
+- About page
+- Cubing notation primer
+- Intuitive Cross and F2L primer
+- Full CFOP method coverage (all F2L, OLL, PLL cases)
+- Interactive visualizations of solve algorithms
+- Scramble generator for practice
+- Solve time tracking for practice
+- Algorithm learning tracking for practice
+- Advanced UI components
+- Mobile app deployment
+- Additional algorithm sets
 
-### Algorithm Browsing
-- User can browse algorithms by CFOP step
-- User can view 3D cube visualization (static image >> animation) for each case
-- User can read algorithm notation and notes
-- User can mark algorithms as learned or favorite/marked for practice
-
-### Learning Progress
-- User can track which algorithms they've mastered
-- Progress persists across app sessions
-- User can filter to show only unlearned algorithms
-
-### Mobile Experience
-- App works offline for algorithm reference
-- Touch-optimized interface for mobile devices
-- Native app deployment via Capacitor
-
-## Technical Architecture
-
-### Reference Implementation
-- see cubing.react project for the app built last year by me + copilot chat mode. This should just be used for an example of my existing implementation. I quite the like the structure, user flows, content but I also want to experiment with new approaches, where as I would want to reuse the resources in future implementations.
-- index.html for core implementation with a more interactive experience
-- paper.html for a minimalist, printable, offline one-pager
-- src/data for alg sets defined in json with links to image assets
-- public/assets for generated cube images png or svg files
-
-### Shared Resources
-**IMPORTANT**: All reusable assets (algorithm JSON data, images, working components) are documented in [shared-resources.md](shared-resources.md). When building new apps, use symlinks for experimentation rather than copying.
-
-Key shared resources to reuse:
-- **Algorithm JSON data** (`shared-data/`): Complete CFOP algorithm definitions
-- **Algorithm images** (`shared-assets/cfop_*`): Generated cube case visualizations  
-- **Working components** (`cubing.react/cfop-app/src/components/`): Tested React components
-- **Type definitions** (`cubing.react/cfop-app/src/types/`): TypeScript interfaces
-
-### Component Structure
-- App: Main router and navigation
-- AlgorithmicPage: Main algorithm browsing interface
-- AlgMenuGrid: Algorithm set selection
-- AlgLearnGrid: Algorithm case display
-- AlgDetailPanel: Detailed algorithm information
-- CubePlayer: 3D cube visualization wrapper
-
-### Data Flow
-1. JSON algorithm data loaded from static files
-2. User selections update component state
-3. Progress tracking stored in localStorage
-4. Cube visualizations rendered via Cubing.js
-
-### Build Pipeline
-- TypeScript compilation via Vite
-- Ionic components for mobile UI
-- Capacitor for native app packaging
-- Automated testing with Cypress and Vitest
-
-## Future Enhancements
-- Official scramble generator integration
-- Simple solve timer functionality
-- Additional algorithm sets from other CFOP collections
-- PWA capabilities for offline use
+## Implementation Notes
+- Use shared resources via symlinks
+- Start with static grid, add interactivity iteratively
+- Focus on clean code and maintainable structure
+- Test on mobile devices early

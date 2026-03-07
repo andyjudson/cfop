@@ -1,53 +1,30 @@
-.app {
-  font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+/* Custom styles for image container and tooltips */
+.app-shell {
+  color: #1f2937;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 30px;
+.app-shell .title {
+  color: #111827;
 }
 
-h1 {
-  color: #333;
-  margin-bottom: 10px;
+.app-shell .subtitle,
+.app-shell .content {
+  color: #374151;
 }
 
-header p {
-  color: #666;
-  margin-bottom: 0;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.algorithm-section h2 {
-  color: white;
-  margin: 0 0 20px 0;
-  padding: 12px 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-.algorithm-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.algorithm-card {
-  border: 1px solid #ddd;
+.section-title {
+  margin-bottom: 1.25rem;
+  color: #111827 !important;
+  background: #eef2ff;
+  border: 1px solid #dbe3ff;
   border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 0.7rem 1rem;
+}
+
+.algo-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .image-container {
@@ -55,17 +32,27 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 200px;
 }
 
-.algorithm-card img {
+.image-container img {
   max-width: 100%;
   height: 180px;
   object-fit: contain;
-  margin-bottom: 10px;
-  display: block;
   cursor: pointer;
 }
 
+.notation {
+  background: #f8f9fa;
+  color: #111827;
+  padding: 8px;
+  border-radius: 3px;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Tooltip styles */
 .tooltip {
   position: absolute;
   left: calc(50% + 90px);
@@ -131,44 +118,24 @@ main {
   margin: 4px 0;
 }
 
-.algorithm-card h3 {
-  margin: 10px 0;
-  font-size: 1.1em;
-  color: #333;
-}
-
-.algorithm-card .notation {
-  font-family: monospace;
-  background: #f8f9fa;
-  padding: 8px;
-  border-radius: 3px;
-  margin: 10px 0;
-  font-size: 0.9em;
-  word-break: break-all;
-}
-
-.loading {
-  text-align: center;
-  padding: 50px;
-  font-size: 1.2em;
-  color: #666;
-}
-
+/* Mobile responsive */
 @media (max-width: 768px) {
-  .algorithm-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .tooltip {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: 0;
+    margin-left: 0;
     max-width: calc(100vw - 40px);
   }
   
   .tooltip::after {
     display: none;
+  }
+  
+  .tooltip-left {
+    left: 50%;
+    right: auto;
+    margin-right: 0;
   }
 }

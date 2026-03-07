@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Markdown from 'react-markdown';
+import 'bulma/css/bulma.min.css';
 import './App.css';
 
 interface CfopAlgorithm {
@@ -56,33 +57,39 @@ function App() {
   };
 
   const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
-    <section className="algorithm-section">
-      <h2>{title}</h2>
-      <div className="algorithm-grid">
+    <section className="section">
+      <h2 className="title is-4 has-text-centered section-title">{title}</h2>
+      <div className="columns is-multiline">
         {algs.map(alg => (
-          <div key={alg.id} className="algorithm-card">
-            <div className="image-container">
-              <img 
-                src={alg.image} 
-                alt={alg.name}
-                onMouseEnter={(e) => handleMouseEnter(alg.id, e)}
-                onMouseLeave={() => setHoveredAlg(null)}
-                onClick={(e) => {
-                  if (hoveredAlg === alg.id) {
-                    setHoveredAlg(null);
-                  } else {
-                    handleMouseEnter(alg.id, e);
-                  }
-                }}
-              />
-              {hoveredAlg === alg.id && alg.notes && (
-                <div className={`tooltip ${tooltipLeft ? 'tooltip-left' : ''}`}>
-                  <Markdown>{alg.notes}</Markdown>
+          <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
+            <div className="card algo-card">
+              <div className="card-content has-text-centered">
+                <div className="image-container">
+                  <img 
+                    src={alg.image} 
+                    alt={alg.name}
+                    onMouseEnter={(e) => handleMouseEnter(alg.id, e)}
+                    onMouseLeave={() => setHoveredAlg(null)}
+                    onClick={(e) => {
+                      if (hoveredAlg === alg.id) {
+                        setHoveredAlg(null);
+                      } else {
+                        handleMouseEnter(alg.id, e);
+                      }
+                    }}
+                  />
+                  {hoveredAlg === alg.id && alg.notes && (
+                    <div className={`tooltip ${tooltipLeft ? 'tooltip-left' : ''}`}>
+                      <Markdown>{alg.notes}</Markdown>
+                    </div>
+                  )}
                 </div>
-              )}
+                <h3 className="title is-5 mt-3">{alg.name}</h3>
+                <div className="content">
+                  <code className="notation">{alg.notation}</code>
+                </div>
+              </div>
             </div>
-            <h3>{alg.name}</h3>
-            <p className="notation">{alg.notation}</p>
           </div>
         ))}
       </div>
@@ -90,11 +97,11 @@ function App() {
   );
 
   return (
-    <div className="app">
-      <header>
-        <h1>Cubing - Learning CFOP 2LK Methodology</h1>
-        <p>Essential OLL and PLL algorithms for solving the last layer for a 3x3x3 Rubik's cube.</p>
-      </header>
+    <div className="container py-5 app-shell">
+      <section className="section pt-0 has-text-centered">
+        <h1 className="title is-2">Cubing - Learning CFOP 2LK Methodology</h1>
+        <p className="subtitle is-5">Essential OLL and PLL algorithms for solving the last layer for a 3x3x3 Rubik's cube. Assumes you've learnt intuitive Cross and F2L.</p>
+      </section>
 
       <main>
         {renderAlgorithmSection("Essential cases to learn first", essentials)}

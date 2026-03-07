@@ -25,6 +25,15 @@ Add interactive tooltips to display algorithm notes when hovering over case imag
 - CSS-based tooltip positioning
 - Touch event handling for mobile
 - Maintain existing card layout and styling
+- Bulma used for base layout/components with targeted custom CSS overrides
+
+### Styling Decisions (Captured)
+- Keep light-mode default look and avoid strong/saturated section colors
+- Remove colored page header background and use a neutral header section
+- Keep light cards with subtle border/shadow for readability
+- Use darker text for headings/body copy on white backgrounds
+- Keep notation text in monospace style for algorithm readability
+- Use a soft indigo-tint section header background (instead of cyan)
 
 ### User Stories
 - User hovers over Sune case image → sees note about cube orientation (oriented corner front-left, unoriented front-right facing forward)
@@ -42,7 +51,7 @@ Create a clean, single-page grid display of 2-look beginner cubing cases (OLL an
 - All sections use consistent styling (no special highlighting)
 
 ### Algorithm Sets (Current Focus)
-- **Beginner 2-look methods (bgr/2lk)**: Complete set of OLL and PLL cases for solving the last layer
+- **2-Look Methods (bgr/2lk)**: Complete set of OLL and PLL cases for solving the last layer
   - **OLL (Orientation of Last Layer)**: 10 cases
     - Edge orientation: Line, Hook, Dot cases (3 cases)
     - Corner orientation: Sune, AntiSune, H, Pi, T, L, U shapes (7 cases)
@@ -50,11 +59,11 @@ Create a clean, single-page grid display of 2-look beginner cubing cases (OLL an
     - Corner permutation: T-Perm, Y-Perm (2 cases)
     - Edge permutation: Ua-Perm, Ub-Perm, H-Perm, Z-Perm (4 cases)
 
-- **3-Look Subset (Recommended Starting Point)**: 5 essential cases for basic solving with repetition
+- **3-Look Subset (recommended starting point)**: 5 essential cases for basic solving with repetition
   - **OLL Corners**: Sune, AntiSune (2 cases)
   - **PLL**: T-Perm, Ua-Perm, H-Perm (3 cases)
   
-  These 5 algorithms provide a foundation that works (with repetition) and can be expanded to full 2-look solving.
+  These 5 algorithms provide a foundation that works (with repetition) and can be expanded to full 2-look solving, and then eventually to the full 1-look F2L (41 cases), OLL (57 cases), and PLL (21 cases) set of algorithms if you're brain will remember them all - not mine!!
 
 ### User Interface
 - Single page with no navigation
@@ -82,7 +91,7 @@ Each algorithm contains:
 ### Technical Requirements
 - React with TypeScript
 - Vite for build tooling
-- Responsive CSS (no frameworks yet)
+- Bulma for base page/card/grid structure + custom CSS for tooltips and visual tuning
 - Shared resources via symlinks
 
 ## Future Iterations (Not in Scope)
@@ -125,11 +134,14 @@ Each algorithm contains:
 - Tooltips positioned to right of cube image (auto-flips to left when near viewport edge) ✅
 - Smart positioning: detects available space and prevents off-screen overflow ✅
 - Centered cube images within cards ✅
+- Bulma adopted for layout/components (container, grid, cards, typography) ✅
+- Light theme styling tuned for readability (darker text, neutral header, soft section backgrounds) ✅
 - Production build verified ✅
 
 ### Future Iterations (Out of Scope)
 All of below ideas are out of scope until explicitly requested through speckit.specify. We are just capturing them here as a roadmap. We'll promote them up when ready as new feature specs.
 
+**Roadmap**
 - Expandable/collapsible sections for groups of cases
 - Full algorithm detail modal/page view
 - 3D cube visualizations

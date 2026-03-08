@@ -63,6 +63,7 @@ export function DemoModal({ algorithm, onClose }: DemoModalProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(-1);
   const [speed, setSpeed] = useState(1);
+  const [playerError, setPlayerError] = useState<string | null>(null);
   const twistyRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<TwistyPlayer | null>(null);
 
@@ -77,51 +78,101 @@ export function DemoModal({ algorithm, onClose }: DemoModalProps) {
     if (!twistyRef.current) {
       return;
     }
+    let mounted = true;
+    let hasRetried = false;
+    let retryTimer: number | null = null;
+    let player: TwistyPlayer | null = null;
+    let onMoveInfo: ((info: { patternIndex: number }) => void) | null = null;
+    let onTimelineInfo: ((info: { playing: boolean; atStart: boolean }) => void) | null = null;
 
-    const player = new TwistyPlayer({
-      puzzle: '3x3x3',
-      alg: algorithm.notation,
-      visualization: 'PG3D',
-      background: 'none',
-      hintFacelets: 'none',
-      controlPanel: 'none',
-      tempoScale: speed,
-      experimentalSetupAlg: 'z2',
-      experimentalSetupAnchor: 'end',
-      experimentalStickeringMaskOrbits: mask,
-      experimentalDragInput: 'none',
-    });
-
-    twistyRef.current.innerHTML = '';
-    twistyRef.current.appendChild(player);
-    playerRef.current = player;
-    setCurrentMoveIndex(-1);
-    setIsPlaying(false);
-
-    const onMoveInfo = (info: { patternIndex: number }) => {
-      const nextIndex = Math.min(Math.max(info.patternIndex, -1), moves.length - 1);
-      setCurrentMoveIndex(nextIndex);
-    };
-
-    const onTimelineInfo = (info: { playing: boolean; atStart: boolean }) => {
-      setIsPlaying(info.playing);
-      if (info.atStart) {
-        setCurrentMoveIndex(-1);
+    const cleanupPlayer = () => {
+      if (!player) {
+        return;
       }
-    };
 
-    player.experimentalModel.currentMoveInfo.addFreshListener(onMoveInfo);
-    player.experimentalModel.coarseTimelineInfo.addFreshListener(onTimelineInfo);
+      if (onMoveInfo) {
+        player.experimentalModel.currentMoveInfo.removeFreshListener(onMoveInfo);
+      }
+      if (onTimelineInfo) {
+        player.experimentalModel.coarseTimelineInfo.removeFreshListener(onTimelineInfo);
+      }
 
-    return () => {
-      player.experimentalModel.currentMoveInfo.removeFreshListener(onMoveInfo);
-      player.experimentalModel.coarseTimelineInfo.removeFreshListener(onTimelineInfo);
       if (twistyRef.current?.contains(player)) {
         twistyRef.current.removeChild(player);
       }
+
       if (playerRef.current === player) {
         playerRef.current = null;
       }
+
+      player = null;
+    };
+
+    const initPlayer = () => {
+      if (!mounted || !twistyRef.current) {
+        return;
+      }
+
+      try {
+        setPlayerError(null);
+
+        const nextPlayer = new TwistyPlayer({
+          puzzle: '3x3x3',
+          alg: algorithm.notation,
+          visualization: 'PG3D',
+          background: 'none',
+          hintFacelets: 'none',
+          controlPanel: 'none',
+          tempoScale: speed,
+          experimentalSetupAlg: 'z2',
+          experimentalSetupAnchor: 'end',
+          experimentalStickeringMaskOrbits: mask,
+          experimentalDragInput: 'none',
+        });
+
+        twistyRef.current.innerHTML = '';
+        twistyRef.current.appendChild(nextPlayer);
+        playerRef.current = nextPlayer;
+        player = nextPlayer;
+        setCurrentMoveIndex(-1);
+        setIsPlaying(false);
+
+        onMoveInfo = (info: { patternIndex: number }) => {
+          const nextIndex = Math.min(Math.max(info.patternIndex, -1), moves.length - 1);
+          setCurrentMoveIndex(nextIndex);
+        };
+
+        onTimelineInfo = (info: { playing: boolean; atStart: boolean }) => {
+          setIsPlaying(info.playing);
+          if (info.atStart) {
+            setCurrentMoveIndex(-1);
+          }
+        };
+
+        nextPlayer.experimentalModel.currentMoveInfo.addFreshListener(onMoveInfo);
+        nextPlayer.experimentalModel.coarseTimelineInfo.addFreshListener(onTimelineInfo);
+      } catch (error) {
+        cleanupPlayer();
+
+        if (!hasRetried) {
+          hasRetried = true;
+          retryTimer = window.setTimeout(initPlayer, 150);
+          return;
+        }
+
+        setPlayerError('Could not load cube visualization. Please close and reopen Demo.');
+        console.error('TwistyPlayer failed to initialize:', error);
+      }
+    };
+
+    initPlayer();
+
+    return () => {
+      mounted = false;
+      if (retryTimer !== null) {
+        window.clearTimeout(retryTimer);
+      }
+      cleanupPlayer();
     };
   }, [algorithm.id, algorithm.notation, moves.length, mask]);
 
@@ -205,6 +256,7 @@ export function DemoModal({ algorithm, onClose }: DemoModalProps) {
         </div>
 
         <div className="twisty-container" ref={twistyRef}></div>
+        {playerError && <p className="has-text-danger has-text-centered mt-2">{playerError}</p>}
 
         <div className="controls-panel">
           <div className="control-buttons">

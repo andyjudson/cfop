@@ -127,7 +127,7 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 - [ ] T021 [P] Manual parse test: sample 10 generated scrambles, verify `Alg.fromString` succeeds via console
 - [ ] T022 [P] Manual regression test: run full practice flow (scramble → timer start/stop → reset → stats view)
 - [ ] T023 [US1] Verify stats persistence (localStorage) still works across page reloads
-- [ ] T024 [US1] Build and deploy to GitHub Pages; test from production URL
+- [ ] T024 [US1] Build and deploy to GitHub Pages; test from production URL (after local validation gate passes)
 
 ---
 
@@ -140,6 +140,15 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 
 ---
 
+## Phase 7: Local Validation Gate (Required Before Merge/Push)
+
+- [ ] T029 Run local production build (`npm run build`) and confirm success
+- [ ] T030 Run manual local feature test pass (T018–T023) and record pass/fail checklist
+- [ ] T031 Perform brief manual code review/sign-off (generator rules, timeout/failure handling, request concurrency)
+- [ ] T032 Merge/push only after T029–T031 all pass
+
+---
+
 ## Dependencies & Execution Order
 
 ### Critical Path (Blocking)
@@ -148,6 +157,7 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 3. T007–T013 (integration, sequential within modal state) → T014–T017 (cleanup)
 4. T014–T017 → T018–T024 (testing depends on clean code)
 5. T018–T024 → T025–T028 (polish)
+6. T025–T028 → T029–T032 (required local validation gate before merge/push)
 
 ### Parallelization Opportunities
 - **T002–T006**: All implement different parts of generator module; can run in parallel if working in separate functions/branches within the file

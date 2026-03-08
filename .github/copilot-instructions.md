@@ -23,6 +23,14 @@
 - Keep implementation details out of high-level spec unless promoted intentionally
 - Treat `legacy-projects.md` as historical project context only
 - Keep `specs/` feature numbering aligned with the feature sequence tracked in `spec.md` (current next feature is 006)
+- Keep feature implementation summaries inside that feature's `specs/<feature-id>/` folder (not repo root)
+- Use clean lowercase kebab-case filenames for summaries, e.g. `implementation-summary.md`
+- Avoid uppercase or "shouting" summary filenames
+- Before any merge/push step, require a local validation gate:
+  - run local production build
+  - run manual feature test pass in local instance
+  - perform a brief manual review/checklist sign-off
+- Merge/push only after the local validation gate passes
 
 ## Implementation Notes
 - Use shared resources via symlinks

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
 import type { VisualizationConfig } from '../types/imageGenerator'
 
@@ -23,30 +23,41 @@ interface CubeViewerProps {
 export default function CubeViewer({ appliedConfig, onPlayerReady }: CubeViewerProps) {
   const hostRef = useRef<HTMLDivElement | null>(null)
   const playerRef = useRef<TwistyPlayerWithExperimental | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!hostRef.current) {
       return
     }
 
-    const player = new TwistyPlayer({
-      puzzle: '3x3x3',
-      visualization: 'PG3D',
-      background: 'none',
-      hintFacelets: 'none',
-      controlPanel: 'none',
-      experimentalDragInput: 'none',
-    }) as TwistyPlayerWithExperimental
+    try {
+      const player = new TwistyPlayer({
+        puzzle: '3x3x3',
+        visualization: 'PG3D',
+        background: 'none',
+        hintFacelets: 'none',
+        controlPanel: 'none',
+        experimentalDragInput: 'none',
+      }) as TwistyPlayerWithExperimental
 
-    hostRef.current.innerHTML = ''
-    hostRef.current.appendChild(player)
-    playerRef.current = player
-    onPlayerReady(player)
+      hostRef.current.innerHTML = ''
+      hostRef.current.appendChild(player)
+      playerRef.current = player
+      onPlayerReady(player)
+      setError(null)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to initialize TwistyPlayer'
+      setError(message)
+      console.error('CubeViewer error:', err)
+      onPlayerReady(null)
+    }
 
     return () => {
       onPlayerReady(null)
       playerRef.current = null
-      hostRef.current!.innerHTML = ''
+      if (hostRef.current) {
+        hostRef.current.innerHTML = ''
+      }
     }
   }, [onPlayerReady])
 
@@ -68,6 +79,16 @@ export default function CubeViewer({ appliedConfig, onPlayerReady }: CubeViewerP
 
   const is3D = appliedConfig.visualizationMode === '3d'
 
+  if (error) {
+    return (
+      <div className="box viewer-shell">
+        <div className="notification is-danger">
+          <p><strong>Error initializing cube viewer:</strong> {error}</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="box viewer-shell">
       <div
@@ -79,7 +100,7 @@ export default function CubeViewer({ appliedConfig, onPlayerReady }: CubeViewerP
       >
         <div className="twisty-host" ref={hostRef} />
       </div>
-      <p className="viewer-meta">Mode: {appliedConfig.visualizationMode.toUpperCase()} • Capture target: {is3D ? 'PNG 288×288' : 'SVG fixed viewBox'}</p>
+      <p className="viewer-meta">Mode: {appliedConfig.visualizationMode.toUpperCase()} • Capture target: {is3D ? 'PNG ~4096×4096 (resize offline: sips -Z 288 *.png)' : 'SVG 288×288 viewBox'}</p>
     </div>
   )
 }

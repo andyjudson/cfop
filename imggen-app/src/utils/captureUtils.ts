@@ -1,5 +1,7 @@
 import type { CaptureRequest, VisualizationMode } from '../types/imageGenerator'
 
+// Note: cubing.js experimentalDownloadScreenshot captures at native resolution (~4096px)
+// regardless of target size parameters. Use offline resize: sips -Z 288 *.png
 const TARGET_SIZE_3D = 288
 
 export function createCaptureRequest(mode: VisualizationMode): CaptureRequest {

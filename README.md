@@ -1,14 +1,39 @@
 # cubing.spec
 
-A spec-driven CFOP learning companion for Rubik's cube speedsolving. Built to support my journey from beginner method to sub-2-minute solves using the CFOP method.
+Specification-driven cubing applications for Rubik's cube learning and algorithm documentation.
 
-**Live app:** https://andyjudson.github.io/cubing.spec/
+**Live apps:** https://andyjudson.github.io/cubing.spec/
+
+## Applications
+
+### cfop-app
+CFOP learning companion for speedsolving with algorithm reference grids, interactive visualizations, practice timers, and solve tracking.
+
+**Features:**
+- Algorithm reference grids (2-look OLL/PLL + beginner cases)
+- Interactive tooltips with algorithm notes
+- Solve visualization modal with cubing.js TwistyPlayer
+- Practice timer with custom scramble generator
+- Persistent solve time tracking via localStorage
+
+**Directory:** `/cfop-app/` • [README](cfop-app/README.md)
+
+### imggen-app
+Standalone cube image generator for algorithm documentation with 3D PNG and 2D SVG export capabilities.
+
+**Features:**
+- 3D PNG capture at native resolution (~4096×4096)
+- 2D SVG export with 288×288 viewBox
+- Preset mask library for CFOP stages (default, cross, F2L, OLL, PLL)
+- Custom mask override with orbit notation
+- Setup algorithm configuration with anchor control
+- Algorithm validation and inversion logging
+
+**Directory:** `/imggen-app/` • [README](imggen-app/README.md)
 
 ## What is this?
 
-This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. The app provides algorithm grids, interactive visualizations, practice timers, and solve tracking to make learning efficient and fun.
-
-Development follows a specification-first approach using **spec-kit** principles, with AI-assisted implementation via **GitHub Copilot agent mode**.
+This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with AI-assisted implementation via **GitHub Copilot agent mode**.
 
 ## Motivation
 
@@ -50,43 +75,49 @@ Repetition is the key theme: consistent reps build recognition and muscle memory
 - **[cubing.js](https://github.com/cubing/cubing.js)** framework from Lucas Garron for cube graphics, animations, and algorithm visualization
 - **React 19** and **TypeScript 5.9** for modern reactive UI
 - **Vite 7** for fast development and optimized builds
+- **Bulma CSS** for UI components and responsive layout
 - **GitHub Copilot agent mode** for AI-assisted development
 - **spec-kit** methodology for specification-driven implementation
 - Deployed on **GitHub Pages**
 
-## Features
-
-- ✅ **Algorithm grids** - Visual reference for 2-look OLL/PLL and beginner cases
-- ✅ **Interactive tooltips** - Algorithm notes on hover for learning context
-- ✅ **Solve visualization** - cubing.js TwistyPlayer modal for animated algorithm playback
-- ✅ **Practice timer** - Scramble generation + solve timer with session tracking
-- ✅ **Stats persistence** - localStorage-based solve time history across sessions
-- ✅ **Custom scramble generator** - Local 20-move rule-based generation (no worker dependencies)
-
 ## Development
 
-```sh
+Each application is independent with its own package.json and build configuration.
+
+### cfop-app
+```bash
 cd cfop-app
 npm install
-npm run dev
+npm run dev  # http://127.0.0.1:5173/cubing.spec/
 ```
 
-Dev server runs at http://127.0.0.1:5173/cubing.spec/
-
-### Production Build
-
-```sh
-npm run build
-```
-
-Preview production build locally:
-```sh
-npm run preview
+### imggen-app
+```bash
+cd imggen-app
+npm install
+npm run dev  # http://localhost:5173/
 ```
 
 ## Acknowledgments
 
 Huge thanks to the cubing community educators who make this learning journey accessible, and to the cubing.js project for providing such a powerful toolkit for cube visualization and manipulation. This project wouldn't exist without their generous knowledge sharing.
+
+## Repository Structure
+
+```
+cubing.spec/
+├── cfop-app/           # CFOP learning companion (main app)
+├── imggen-app/         # Cube image generator (utility)
+├── specs/              # Feature specifications
+│   ├── 001-beginner-grid/
+│   ├── 002-tooltips/
+│   ├── 003-visualization-modal/
+│   ├── 004-practice-timer/
+│   ├── 005-stats-persistence/
+│   ├── 006-scramble-generator/
+│   └── 007-cube-image-generator/
+└── .specify/           # Spec-kit configuration
+```
 
 ## License
 
@@ -98,4 +129,4 @@ Note:
 
 ---
 
-**Status**: Active development • Feature 006 (custom scramble generator) in testing phase
+**Status**: Active development • Features 001-006 complete • Feature 007 (imggen-app) complete

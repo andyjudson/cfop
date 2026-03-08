@@ -9,6 +9,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { path: '/intuitive', label: 'Intuitive' },
+  { path: '/notation', label: 'Notation' },
   { path: '/2lk', label: 'Beginner' },
   { path: '/f2l', label: 'F2L' },
   { path: '/oll', label: 'OLL' },

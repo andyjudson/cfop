@@ -10,7 +10,8 @@ CFOP learning companion for speedsolving with algorithm reference grids, interac
 **Live app:** https://andyjudson.github.io/cubing.spec/
 
 **Features:**
-- Full CFOP navigation (2LK, F2L, OLL, PLL) with 119 total algorithms
+- Full CFOP navigation (Intuitive, Notation, Beginner/2LK, F2L, OLL, PLL)
+- Notation reference page covering face turns, modifiers, slices, rotations, and common triggers
 - Expandable/collapsible algorithm sections with session persistence
 - Interactive tooltips with algorithm notes (2LK page only)
 - Solve visualization modal with cubing.js TwistyPlayer (2LK page only)
@@ -146,4 +147,4 @@ Note:
 
 ---
 
-**Status**: Active development • Features 001-008 complete
+**Status**: Active development • Features 001-010 complete

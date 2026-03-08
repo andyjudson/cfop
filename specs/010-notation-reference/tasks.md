@@ -93,11 +93,11 @@
 
 **Purpose**: Final quality and non-regression pass across all stories.
 
-- [ ] T026 [P] Accessibility pass (heading hierarchy, alt text, readable fallback text) in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T027 [P] Responsive spacing/typography polish for notation sections in `cfop-app/src/App.css`
-- [ ] T028 Run production build validation via scripts in `cfop-app/package.json`
-- [ ] T029 Run manual non-regression route checks for existing pages via `cfop-app/src/App.tsx`
-- [ ] T030 Document implementation outcome in `specs/010-notation-reference/implementation-summary.md`
+- [X] T026 [P] Accessibility pass (heading hierarchy, alt text, readable fallback text) in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T027 [P] Responsive spacing/typography polish for notation sections in `cfop-app/src/App.css`
+- [X] T028 Run production build validation via scripts in `cfop-app/package.json`
+- [X] T029 Run manual non-regression route checks for existing pages via `cfop-app/src/App.tsx`
+- [X] T030 Document implementation outcome in `specs/010-notation-reference/implementation-summary.md`
 
 ---
 

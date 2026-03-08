@@ -5,7 +5,7 @@
 
 ## Summary
 
-Build a standalone React/Vite app at `cube-img-gen/` that uses cubing.js `TwistyPlayer` for 3x3 visualization and deterministic image export workflows. The tool provides controlled form inputs (setup/move algorithm, mode, anchor, mask), preset + custom mask logic, Apply/Play/Capture actions, and fixed output behavior (288×288 PNG in 3D, fixed-viewBox SVG in 2D), plus inline validation and developer console logging for inverted algorithms.
+Build a standalone React/Vite app at `imggen-app/` that uses cubing.js `TwistyPlayer` for 3x3 visualization and deterministic image export workflows. The tool provides controlled form inputs (setup/move algorithm, mode, anchor, mask), preset + custom mask logic, Apply/Play/Capture actions, and fixed output behavior (288×288 PNG in 3D, fixed-viewBox SVG in 2D), plus inline validation and developer console logging for inverted algorithms.
 
 ## Technical Context
 
@@ -14,9 +14,9 @@ Build a standalone React/Vite app at `cube-img-gen/` that uses cubing.js `Twisty
 **Storage**: N/A (no persistence required)  
 **Testing**: `npm run build` + manual validation checklist (captures, masks, keyboard, invalid-input handling)  
 **Target Platform**: Modern desktop browsers (Chrome/Safari/Edge), static-hostable web app  
-**Project Type**: Standalone frontend SPA tool (`cube-img-gen`)  
+**Project Type**: Standalone frontend SPA tool (`imggen-app`)  
 **Performance Goals**: Apply/render interactions remain responsive; 10 consecutive captures without UI freeze; normal 3D PNG target ≤200KB  
-**Constraints**: 3x3-only scope; fixed 288×288 PNG in 3D; fixed-viewBox SVG in 2D; invalid input must preserve text; Play/Capture disabled for empty/invalid algorithm  
+**Constraints**: 3x3-only scope; fixed 288×288 PNG in 3D; fixed-viewBox SVG in 2D; invalid input must preserve text; Play/Capture disabled for empty/invalid algorithm; strict standalone isolation from `cfop-app` (no cross-app links/routes/runtime coupling)  
 **Scale/Scope**: Single tool app with one main page, one TwistyPlayer instance, and controlled form/action workflow
 
 ## Constitution Check
@@ -46,7 +46,7 @@ specs/007-cube-image-generator/
 ### Source Code (repository root)
 
 ```text
-cube-img-gen/
+imggen-app/
 ├── index.html
 ├── package.json
 ├── tsconfig.json
@@ -70,7 +70,7 @@ cube-img-gen/
         └── captureUtils.ts
 ```
 
-**Structure Decision**: Use a standalone frontend app (`cube-img-gen`) to isolate developer tooling concerns from `cfop-app`, while keeping shared visual conventions (Bulma + project styling principles).
+**Structure Decision**: Use a standalone frontend app (`imggen-app`) to isolate developer tooling concerns from `cfop-app`, while keeping shared visual conventions (Bulma + project styling principles) and enforcing no cross-app navigation/runtime dependencies.
 
 ## Phase 0 Research (Completed)
 

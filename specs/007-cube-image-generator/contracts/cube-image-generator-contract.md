@@ -1,7 +1,7 @@
 # Contract: Cube Image Generator Tool
 
 ## Scope
-UI/domain contract for `cube-img-gen` standalone app.
+UI/domain contract for `imggen-app` standalone app.
 
 ## 1) Control Form Contract
 
@@ -70,3 +70,9 @@ Required configuration baseline:
 - App must build cleanly with `npm run build`.
 - 10 consecutive capture actions must complete without UI freeze.
 - 3D PNG output target is ≤200KB for typical captures (quality target, validated manually).
+
+## 7) Standalone Boundary Contract
+
+- `imggen-app` must not require `cfop-app` runtime imports.
+- `imggen-app` UI must not include navigation links/buttons into `cfop-app`.
+- `cfop-app` must not require runtime links/buttons into `imggen-app` for normal operation.

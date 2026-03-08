@@ -7,7 +7,7 @@
 ## Run locally
 
 ```bash
-cd cube-img-gen
+cd imggen-app
 npm install
 npm run dev -- --host 127.0.0.1 --port 5176
 ```

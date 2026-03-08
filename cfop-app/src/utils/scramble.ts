@@ -1,16 +1,9 @@
 import { Alg } from 'cubing/alg';
-import { setSearchDebug } from 'cubing/search';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
 import {
   generateFallback333ScrambleWithTimeout,
   type GenerateFallback333Result,
 } from './fallbackScrambleGenerator';
-
-// Enable esbuild workaround for production builds
-setSearchDebug({ 
-  prioritizeEsbuildWorkaroundForWorkerInstantiation: true,
-  showWorkerInstantiationWarnings: false,
-});
 
 const assertValidScramble = (notation: string): void => {
   const trimmed = notation.trim();

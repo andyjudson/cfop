@@ -330,15 +330,13 @@ Add complete CFOP algorithm reference pages (F2L, OLL, PLL) to cfop-app with nav
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
-- About page (covered by readme for now)
-- Notation primer page
-- Intuitive Cross and F2L primer page
-- Full CFOP algorithm grid page (all F2L, OLL, PLL cases)
-- Interactive visualizations of solve algorithms
+- Notation primer
+- Intuitive Cross and F2L primer
+- Interactive visualizations for any user selected cases
 - Algorithm learning tracking for practice
-- Revisit UI design
-- Mobile deployment
-- Additional algorithm sets
+- Revisit UI design, layout, theme, components
+- Mobile deployment or native app (unlikely)
+- Alternative algorithm sets (unlikely)
 
 ## Implementation Plan
 

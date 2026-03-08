@@ -174,7 +174,18 @@
 }
 
 .cfop-navbar .navbar-item.is-active {
-  border-radius: 6px;
+  border-radius: 4px;
+}
+
+.cfop-navbar .navbar-item.cfop-navbar-active {
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.cfop-navbar .navbar-item.cfop-navbar-active:hover {
+  background: #e0ecff;
+  color: #1e3a8a;
 }
 
   /* Collapsible section header styling */

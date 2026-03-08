@@ -47,7 +47,7 @@ export function CfopNavigation() {
                 <Link
                   key={path}
                   to={path}
-                  className={`navbar-item ${isActive ? 'is-active has-background-link has-text-white' : ''}`}
+                  className={`navbar-item ${isActive ? 'is-active cfop-navbar-active' : ''}`}
                   aria-current={isActive ? 'page' : undefined}
                   onClick={() => setIsMenuOpen(false)}
                 >

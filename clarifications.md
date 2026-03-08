@@ -158,3 +158,47 @@
 - Reduces risk of major architectural changes
 - Ensures implementation matches specification intent
 - Provides clear validation criteria for each phase
+
+---
+
+## Known Issues
+
+### Scramble Generation in Production Builds
+
+**Issue:** The `cubing/scramble` package uses Web Workers with dynamic instantiation patterns that are incompatible with Vite's production bundler.
+
+**Symptoms:**
+- Scramble generation works perfectly in development (`npm run dev`)
+- Production builds (`npm run build`) succeed without errors
+- Deployed site hangs at "Generating scramble..." indefinitely
+- No console errors visible
+
+**Root Cause:**
+- `cubing.js` uses `new Worker(new URL(..., import.meta.url))` pattern
+- Vite's production bundler cannot resolve these dynamic worker imports due to circular dependencies in cubing.js's build output
+- This is a known third-party library incompatibility, not a bug in cubing.js or Vite
+
+**References:**
+- https://github.com/cubing/cubing.js/issues/296 - cubing.js worker loading issues
+- https://github.com/cubing/cubing.js/issues/301 - Vite build failures
+- https://github.com/vitejs/vite/issues/14499 - Vite worker bundling limitations
+
+**Workarounds Attempted:**
+- Multiple Vite config variations (worker format, optimizeDeps, esbuild target)
+- Official Vite maintainer workaround from vitejs/vite#14499
+- TypeScript config adjustments
+- All attempts failed to resolve production worker loading
+
+**Current Resolution:**
+- **Scramble generation is a local development-only feature**
+- Works for personal practice during development
+- All other features (algorithm grid, demo modal, practice timer, stats tracking) work perfectly on deployed site
+- No code changes needed; documented as limitation
+
+**Alternative Solutions (Not Implemented):**
+- **mark3**: Prototype exists at https://github.com/cubing/mark3, but **not currently viable** for this app because it is an early prototype, not published to npm, requires Bun tooling, and currently calls `cubing/scramble` internally (so it inherits the same worker/bundling risk)
+- **mark2**: `cs0x7f/mark2` is an old fork of the Mark 2 project. The maintained upstream is https://github.com/cubing/mark2 (legacy JS/GWT-era code, not modern npm/ESM-first tooling). It may work only with custom integration and is not a low-risk drop-in for a Vite + React app.
+- **Simple random move generator**: Not WCA-quality but functional
+- **Switch bundlers**: Webpack/Parcel/Turbopack may have different worker handling, but significant migration effort with no guarantee of success
+
+**Decision:** Accept as local-only feature. The development experience is excellent, and the deployed site provides full functionality for algorithm learning, visualization, and practice timing.

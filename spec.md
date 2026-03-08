@@ -228,6 +228,68 @@ Extend the practice timer modal by persisting completed solve times in browser l
 - Space key binding added to demo modal for play/pause toggle (matches practice timer shortcut)
 - Removed header border from practice modal to match demo modal styling
 
+## Feature 006: Fallback Scramble Generator (Non-Official)
+
+### Status: Specified 📝
+
+### Scope
+Create a local, client-side fallback scramble generator that does **not** rely on `cubing/scramble` workers, while still producing valid scramble notation that can be consumed by existing app flows and parsed by cubing.js utilities.
+
+### Goals
+- Keep practice flow reliable in production deployments where `cubing/scramble` fails
+- Generate readable 3x3 scramble notation using deterministic guardrails (non-trivial, no immediate cancellations)
+- Ensure generated notation is compatible with cubing.js parsing/visualization APIs
+- Remove no-longer-needed Vite worker workaround config once fallback is active
+
+### Non-Goals
+- Achieving official WCA scramble status
+- Replacing TNoodle or official competition tooling
+- Building full random-state generators for all WCA events
+
+### Technical Requirements
+- Fallback generator implemented in app code (no worker dependency)
+- Output validation using `Alg.fromString` compatibility checks
+- Integration with practice modal scramble loading UX
+- Optional compatibility hook for TwistyPlayer usage (same notation format)
+- Vite config simplification after migration away from `cubing/scramble`
+
+### Decision Notes
+- Scrambles produced by this feature are **practice-grade**, not official competition scrambles
+- Existing worker workaround in Vite is safe to keep short-term, but should be removed once no runtime code imports `cubing/scramble`/`cubing/search`
+
+## Feature 007: Cube Image Generator Tool
+
+### Status: Specified 📝
+
+### Scope
+Create a standalone developer tool app (`/cubing.spec/cube-img-gen`) for generating high-quality cube state images (SVG/PNG) suitable for algorithm documentation and educational materials.
+
+### Goals
+- Provide efficient workflow for batch-generating algorithm case images
+- Support both 2D (SVG) and 3D (PNG) visualization modes with fixed output dimensions
+- Enable setup algorithms and custom stickering masks for different CFOP stages
+- Generate production-ready images without manual post-processing (no offline resize step)
+- Reuse React + Bulma + shared theme from cfop-app for consistent tooling ecosystem
+
+### Non-Goals
+- End-user learning features (this is a developer/content-creator tool)
+- Animation export or video generation
+- Support for non-3x3 puzzles in initial version
+- Integration with cfop-app runtime (standalone utility)
+
+### Technical Requirements
+- Standalone React app with cubing.js TwistyPlayer (visualization only, no interactive controls)
+- Form-based workflow with apply/play/capture actions
+- Configurable visualization parameters (setup alg, move alg, masks, anchor, 2D/3D mode)
+- Fixed-size image output (SVG inline for 2D, PNG with automatic sizing for 3D)
+- Preset masks for common CFOP stages (cross, F2L, OLL, PLL)
+- Development logging of inverted algorithms for case creation workflow
+
+### Decision Notes
+- Separate app keeps image generation tooling isolated from learner-facing cfop-app
+- Based on proven cubegen.html workflow but modernized with React component architecture
+- Fixed PNG dimensions eliminate manual resize step from legacy workflow
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**

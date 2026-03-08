@@ -11,9 +11,9 @@
 
 **Purpose**: Add page scaffold and wire initial route/navigation entry points.
 
-- [ ] T001 Create notation page scaffold with `CfopPageLayout` in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T002 Register notation route (`/notation`) in `cfop-app/src/App.tsx`
-- [ ] T003 Add `Notation` nav item placeholder in `cfop-app/src/components/CfopNavigation.tsx`
+- [X] T001 Create notation page scaffold with `CfopPageLayout` in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T002 Register notation route (`/notation`) in `cfop-app/src/App.tsx`
+- [X] T003 Add `Notation` nav item placeholder in `cfop-app/src/components/CfopNavigation.tsx`
 
 ---
 
@@ -23,11 +23,11 @@
 
 **⚠️ CRITICAL**: No user story work starts until this phase is complete.
 
-- [ ] T004 Create static entities (`NotationSection`, `NotationExample`, `TriggerReference`) in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T005 Implement reusable notation example card/tile renderer in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T006 [P] Implement per-example missing-image fallback indicator logic in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T007 [P] Add shared notation layout/responsive styles in `cfop-app/src/App.css`
-- [ ] T008 Add content guard comments to prevent copying legacy implementation patterns in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T004 Create static entities (`NotationSection`, `NotationExample`, `TriggerReference`) in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T005 Implement reusable notation example card/tile renderer in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T006 [P] Implement per-example missing-image fallback indicator logic in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T007 [P] Add shared notation layout/responsive styles in `cfop-app/src/App.css`
+- [X] T008 Add content guard comments to prevent copying legacy implementation patterns in `cfop-app/src/pages/NotationPage.tsx`
 
 **Checkpoint**: Foundation complete; user stories can proceed.
 
@@ -41,11 +41,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Implement Face Rotations section content and ordering in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T010 [US1] Implement Modifiers subsection content (`'`, `2`) in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T011 [P] [US1] Wire face/modifier notation assets from `cfop-app/public/assets/notation/` in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T012 [US1] Apply beginner-first symbol explanation text refinement in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T013 [US1] Manual validation for basic notation comprehension flow in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T009 [US1] Implement Face Rotations section content and ordering in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T010 [US1] Implement Modifiers subsection content (`'`, `2`) in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T011 [P] [US1] Wire face/modifier notation assets from `cfop-app/public/assets/notation/` in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T012 [US1] Apply beginner-first symbol explanation text refinement in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T013 [US1] Manual validation for basic notation comprehension flow in `cfop-app/src/pages/NotationPage.tsx`
 
 **Checkpoint**: US1 is fully functional and testable on its own.
 

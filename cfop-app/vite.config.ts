@@ -6,14 +6,14 @@ export default defineConfig({
   base: '/cubing.spec/',
   optimizeDeps: {
     exclude: ['cubing/scramble'],
+    esbuildOptions: {
+      target: 'esnext',
+    },
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'cubing': ['cubing/alg', 'cubing/twisty'],
-        }
-      }
-    }
-  }
+    target: 'esnext',
+    modulePreload: {
+      polyfill: false,
+    },
+  },
 })

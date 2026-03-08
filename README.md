@@ -2,8 +2,6 @@
 
 Specification-driven cubing applications for Rubik's cube learning and algorithm documentation.
 
-**Live apps:** https://andyjudson.github.io/cubing.spec/
-
 ## Applications
 
 ### cfop-app
@@ -76,12 +74,12 @@ Repetition is the key theme: consistent reps build recognition and muscle memory
 ## Built With
 
 - **Cubing knowledge** from [Milan Struyf](https://www.youtube.com/@CubeHead) (CubeHead) and [Dylan Wang](https://www.youtube.com/@JPerm) (JPerm)
-- **[cubing.js](https://github.com/cubing/cubing.js)** framework from Lucas Garron for cube graphics, animations, and algorithm visualization
+- **[Cubing.js](https://github.com/cubing/cubing.js)** framework from Lucas Garron for cube graphics and algorithm visualization
 - **React 19** and **TypeScript 5.9** for modern reactive UI
 - **Vite 7** for fast development and optimized builds
 - **Bulma CSS** for UI components and responsive layout
 - **GitHub Copilot agent mode** for AI-assisted development
-- **spec-kit** methodology for specification-driven implementation
+- **Spec-Kit** methodology for Specification-Driven Development
 - Deployed on **GitHub Pages**
 
 ## Development
@@ -133,4 +131,4 @@ Note:
 
 ---
 
-**Status**: Active development • Features 001-006 complete • Feature 007 (imggen-app) complete
+**Status**: Active development • Features 001-007 complete

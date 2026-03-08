@@ -6,7 +6,8 @@ CFOP learning companion for Rubik's cube speedsolving with full algorithm refere
 
 ## Features
 
-- **Full CFOP Navigation**: Navigate between 2LK, F2L (41 cases), OLL (57 cases), and PLL (21 cases) pages
+- **Full CFOP Navigation**: Navigate between Intuitive, Notation, 2LK, F2L (41 cases), OLL (57 cases), and PLL (21 cases) pages
+- **Notation Reference Page**: Face turns, modifiers, slices, cube rotations, and common trigger references
 - **Algorithm Reference Grids**: Visual reference for all CFOP algorithms organized by case groups
 - **Expandable Sections**: Collapse/expand algorithm groups with session persistence
 - **Interactive Tooltips**: Algorithm notes on hover for 2LK cases (learning context and execution tips)
@@ -38,7 +39,9 @@ npm run preview
 ## Usage
 
 ### Page Navigation
-- Navigate between four CFOP learning pages via persistent header menu:
+- Navigate between six CFOP learning pages via persistent header menu:
+  - **Intuitive**: Cross and F2L learning primer
+  - **Notation**: Move notation reference and trigger cheat sheet
   - **2LK**: Two-Look Beginner Method (9 essential algorithms)
   - **F2L**: First Two Layers (41 cases in 6 groups)
   - **OLL**: Orient Last Layer (57 cases in 7 consolidated groups)
@@ -114,6 +117,8 @@ cfop-app/
 │   ├── main.tsx                 # Entry point
 │   ├── pages/
 │   │   ├── BGRPage.tsx          # 2LK beginner page with interactive features
+│   │   ├── IntuitivePage.tsx    # Intuitive methods learning page
+│   │   ├── NotationPage.tsx     # Notation reference page
 │   │   ├── F2LPage.tsx          # F2L algorithm reference grid (41 cases)
 │   │   ├── OLLPage.tsx          # OLL algorithm reference grid (57 cases)
 │   │   └── PLLPage.tsx          # PLL algorithm reference grid (21 cases)

@@ -59,12 +59,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T014 [US2] Implement wide-turn notation explanations in Modifiers section in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T015 [US2] Implement Slice Moves section (`M`, `S`, `E`) in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T016 [US2] Implement Cube Rotations section (`x`, `y`, `z`) in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T017 [P] [US2] Wire slice/rotation assets from `cfop-app/public/assets/notation/` in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T018 [US2] Add contradiction check pass for symbol definitions in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T019 [US2] Manual validation for extended notation readability on ~393px baseline in `cfop-app/src/App.css`
+- [X] T014 [US2] Implement wide-turn notation explanations in Modifiers section in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T015 [US2] Implement Slice Moves section (`M`, `S`, `E`) in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T016 [US2] Implement Cube Rotations section (`x`, `y`, `z`) in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T017 [P] [US2] Wire slice/rotation assets from `cfop-app/public/assets/notation/` in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T018 [US2] Add contradiction check pass for symbol definitions in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T019 [US2] Manual validation for extended notation readability on ~393px baseline in `cfop-app/src/App.css`
 
 **Checkpoint**: US1 and US2 both work independently.
 
@@ -78,12 +78,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T020 [US3] Implement Common Triggers section with named trigger entries in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T021 [US3] Add inverse mapping display for each trigger in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T022 [US3] Add optional context/purpose lines for triggers in `cfop-app/src/pages/NotationPage.tsx`
-- [ ] T023 [US3] Finalize navbar order to `Intuitive → Notation → Beginner → F2L → OLL → PLL` in `cfop-app/src/components/CfopNavigation.tsx`
-- [ ] T024 [US3] Validate notation route deep-link and active nav state in `cfop-app/src/App.tsx`
-- [ ] T025 [US3] Manual validation for trigger lookup speed/clarity in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T020 [US3] Implement Common Triggers section with named trigger entries in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T021 [US3] Add inverse mapping display for each trigger in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T022 [US3] Add optional context/purpose lines for triggers in `cfop-app/src/pages/NotationPage.tsx`
+- [X] T023 [US3] Finalize navbar order to `Intuitive → Notation → Beginner → F2L → OLL → PLL` in `cfop-app/src/components/CfopNavigation.tsx`
+- [X] T024 [US3] Validate notation route deep-link and active nav state in `cfop-app/src/App.tsx`
+- [X] T025 [US3] Manual validation for trigger lookup speed/clarity in `cfop-app/src/pages/NotationPage.tsx`
 
 **Checkpoint**: All user stories are independently functional.
 

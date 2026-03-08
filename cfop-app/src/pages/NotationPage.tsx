@@ -69,7 +69,7 @@ function NotationExampleTile({ example }: NotationExampleTileProps) {
           />
         </div>
       )}
-      <div className="notation-example-label">{example.label}</div>
+      <div className="notation-example-label notation-light-header">{example.label}</div>
       <div className="notation-example-explanation is-size-7">{example.explanation}</div>
     </div>
   );
@@ -108,20 +108,20 @@ function NotationPage() {
           imageAlt: 'Front face clockwise rotation'
         },
         {
-          id: 'face-D',
-          symbol: 'D',
-          label: 'Down Face',
-          explanation: 'Turn the bottom face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-D-cw-arrow.png',
-          imageAlt: 'Down face clockwise rotation'
-        },
-        {
           id: 'face-L',
           symbol: 'L',
           label: 'Left Face',
           explanation: 'Turn the left face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-L-cw-arrow.png',
           imageAlt: 'Left face clockwise rotation'
+        },
+        {
+          id: 'face-D',
+          symbol: 'D',
+          label: 'Down Face',
+          explanation: 'Turn the bottom face clockwise 90 degrees',
+          imageSrc: '/cubing.spec/assets/notation/syntax-D-cw-arrow.png',
+          imageAlt: 'Down face clockwise rotation'
         },
         {
           id: 'face-B',
@@ -203,7 +203,7 @@ function NotationPage() {
         {
           id: 'rotation-x',
           symbol: 'x',
-          label: 'x (R axis)',
+          label: 'x-axis (follows R)',
           explanation: 'Rotate entire cube in same direction as R face',
           imageSrc: '/cubing.spec/assets/notation/syntax-X-cw-arrow.png',
           imageAlt: 'x cube rotation'
@@ -211,7 +211,7 @@ function NotationPage() {
         {
           id: 'rotation-y',
           symbol: 'y',
-          label: 'y (U axis)',
+          label: 'y-axis (follows U)',
           explanation: 'Rotate entire cube in same direction as U face',
           imageSrc: '/cubing.spec/assets/notation/syntax-Y-cw-arrow.png',
           imageAlt: 'y cube rotation'
@@ -219,7 +219,7 @@ function NotationPage() {
         {
           id: 'rotation-z',
           symbol: 'z',
-          label: 'z (F axis)',
+          label: 'z-axis (follows F)',
           explanation: 'Rotate entire cube in same direction as F face',
           imageSrc: '/cubing.spec/assets/notation/syntax-Z-cw-arrow.png',
           imageAlt: 'z cube rotation'
@@ -290,19 +290,19 @@ function NotationPage() {
           <div className="section notation-section">
             <h2 className="title is-4">Common Triggers</h2>
             <div className="content">
-              <table className="table is-fullwidth is-striped">
+              <table className="table is-fullwidth notation-plain-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Sequence</th>
-                    <th>Inverse</th>
-                    {triggers.some(t => t.context) && <th>Context</th>}
+                    <th className="notation-table-header">Name</th>
+                    <th className="notation-table-header">Sequence</th>
+                    <th className="notation-table-header">Inverse</th>
+                    {triggers.some(t => t.context) && <th className="notation-table-header">Context</th>}
                   </tr>
                 </thead>
                 <tbody>
                   {triggers.map((trigger) => (
                     <tr key={trigger.id}>
-                      <td><strong>{trigger.name}</strong></td>
+                      <td><span className="trigger-name-header">{trigger.name}</span></td>
                       <td><code>{trigger.sequence}</code></td>
                       <td><code>{trigger.inverse}</code></td>
                       {triggers.some(t => t.context) && <td>{trigger.context || '—'}</td>}

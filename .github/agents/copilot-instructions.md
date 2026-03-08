@@ -41,4 +41,5 @@ TypeScript 5.9 (React 19): Follow standard conventions
 
 
 <!-- MANUAL ADDITIONS START -->
+- Theme consistency guardrail: In `cfop-app`, card/table surfaces should remain light (`#fff`-based) and readable even when OS/browser prefers dark mode. For every UI feature, verify `.box`, `.card`, and `.table` surfaces/text contrast do not shift to dark-theme defaults unless explicitly requested.
 <!-- MANUAL ADDITIONS END -->

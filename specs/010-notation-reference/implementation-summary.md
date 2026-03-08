@@ -3,7 +3,7 @@
 **Feature**: Notation Reference Page  
 **Branch**: `010-notation-reference`  
 **Date**: 2026-03-08  
-**Status**: MVP Complete (User Story 1)  
+**Status**: Complete ✅  
 **Spec**: [spec.md](./spec.md)
 
 ## Implementation Scope
@@ -12,13 +12,10 @@
 
 - ✅ **Phase 1: Setup** (T001-T003) - Route, navigation, page scaffold
 - ✅ **Phase 2: Foundational** (T004-T008) - Entities, rendering primitives, styles
-- ✅ **Phase 3: User Story 1 MVP** (T009-T013) - Face rotations and modifiers
+- ✅ **Phase 3: User Story 1** (T009-T013) - Face rotations and modifiers
+- ✅ **Phase 4: User Story 2** (T014-T019) - Wide turns, slices, rotations
+- ✅ **Phase 5: User Story 3** (T020-T025) - Trigger reference section
 - ✅ **Phase 6: Polish & Validation** (T026-T030) - Accessibility, build, non-regression
-
-### Deferred for Future Work
-
-- ⏸️ **Phase 4: User Story 2** (T014-T019) - Extended notation (wide turns, slices, rotations)
-- ⏸️ **Phase 5: User Story 3** (T020-T025) - Trigger reference section
 
 ## Implementation Details
 
@@ -54,7 +51,17 @@ cfop-app/
 **Modifiers Section**:
 - Prime (') notation for counterclockwise turns
 - Double (2) notation for 180-degree turns
-- Visual examples using R face variations
+- Wide turn (r) notation for face + middle layer turns
+
+**Slice Moves Section**:
+- M, S, E slice definitions and visual examples
+
+**Cube Rotations Section**:
+- x, y, z whole-cube rotation definitions and visual examples
+
+**Common Triggers Section**:
+- Named trigger table with sequence, inverse, and context
+- Includes Sexy Move, Reverse Sexy, Sledgehammer, and Trigger Insert
 
 ### Code Quality Features
 
@@ -74,7 +81,10 @@ cfop-app/
 - ✅ Navigation shows correct order: Intuitive → Notation → Beginner → F2L → OLL → PLL
 - ✅ Navigation active state highlights correctly
 - ✅ Face rotations render with all 6 faces and images
-- ✅ Modifiers render with prime and double examples
+- ✅ Modifiers render with prime, double, and wide-turn examples
+- ✅ Slice moves section renders (M, S, E)
+- ✅ Cube rotations section renders (x, y, z)
+- ✅ Trigger table renders with name/sequence/inverse/context
 - ✅ Page title and subtitle display properly
 - ✅ Images load correctly from notation assets
 - ✅ Image fallback indicator works (tested by temporarily breaking path)
@@ -92,52 +102,20 @@ npm run build
 
 ## Requirements Coverage
 
-### User Story 1 (P1) - MVP ✅
+### User Stories 1-3 ✅
 
 | Req | Description | Status | Evidence |
 |-----|-------------|--------|----------|
 | FR-001 | Dedicated notation page in navigation | ✅ | Route added, nav item visible |
 | FR-002 | Reuse existing approved content | ✅ | Content and assets from legacy notation materials |
-| FR-003 | Distinct sections for notation categories | 🟡 | Face rotations + modifiers (2/5 sections MVP) |
+| FR-003 | Distinct sections for notation categories | ✅ | Face rotations, modifiers, slices, rotations, triggers all present |
 | FR-004 | Beginner-friendly explanations | ✅ | Clear, simple language for each symbol |
-| FR-005 | Visual examples where available | ✅ | All 8 examples have images |
+| FR-005 | Visual examples where available | ✅ | Face/modifier/slice/rotation examples wired to notation assets |
 | FR-007 | Mobile readability support | ✅ | Responsive grid, tested at ~393px |
 | FR-008 | Graceful image unavailability handling | ✅ | Fallback text on error |
 | FR-009 | Preserve existing page functionality | ✅ | Non-regression tests passed |
 
-**Legend**: ✅ Complete | 🟡 Partial (MVP scope) | ⏸️ Deferred
-
-### MVP Scope Rationale
-
-Per tasks.md specification, User Story 1 alone constitutes the MVP deliverable:
-- Learners can understand **basic notation symbols** (face turns, modifiers)
-- Acceptance criteria: Users can distinguish clockwise, counterclockwise, and double turns
-- This foundational knowledge enables reading algorithm strings on other CFOP pages
-
-Extended concepts (slices, rotations, triggers) are valuable enhancements but not blocking for core use case.
-
-## Known Limitations (MVP)
-
-1. **Incomplete section coverage**: MVP includes 2 of 5 planned sections (Face Rotations, Modifiers). Missing:
-   - Slice Moves (M, S, E)
-   - Cube Rotations (x, y, z)
-   - Common Triggers
-
-2. **Wide turn modifier not shown**: The asset `syntax-R-wide-arrow.png` exists but is not included in MVP (part of extended notation in User Story 2)
-
-## Future Enhancements (Post-MVP)
-
-### User Story 2 - Extended Notation (P2)
-- Add wide turn examples (Rw, Lw, etc.)
-- Add slice move section (M, S, E)
-- Add cube rotation section (x, y, z)
-- Wire additional assets from `/assets/notation/`
-
-### User Story 3 - Trigger Reference (P3)
-- Add Common Triggers section with table layout
-- Include named triggers: Sexy Move, Sledgehammer, Hedge Slammer, etc.
-- Show sequence + inverse for each trigger
-- Add optional context/usage notes
+## Future Enhancements
 
 ### Polish Enhancements
 - Add section anchors for direct linking (e.g., `#/notation#face-rotations`)
@@ -150,13 +128,13 @@ Extended concepts (slices, rotations, triggers) are valuable enhancements but no
 **Target**: 90% of learners can answer basic notation quiz after reviewing page  
 **Assessment**: Page clearly differentiates clockwise (no symbol), prime ('), and double (2) with visual and textual explanations. Expected to meet target.
 
-### SC-002: Trigger section location ⏸️
+### SC-002: Trigger section location ✅
 **Target**: 90% can locate trigger section within 10 seconds  
-**Status**: Not applicable to MVP (trigger section deferred to US3)
+**Assessment**: Trigger section is a dedicated heading block with clear placement and table structure.
 
-### SC-003: Inverse identification ⏸️
+### SC-003: Inverse identification ✅
 **Target**: 90% can identify trigger inverse  
-**Status**: Not applicable to MVP (trigger section deferred to US3)
+**Assessment**: Trigger table includes explicit inverse column for each entry.
 
 ### SC-004: Small-screen readability ✅
 **Target**: All sections readable without horizontal scrolling  
@@ -175,6 +153,7 @@ Extended concepts (slices, rotations, triggers) are valuable enhancements but no
 - ✅ Navigation integration complete
 - ✅ Non-regression validated
 - ✅ Mobile responsiveness confirmed
+- ✅ Full notation coverage completed (all 5 sections)
 
 **Status**: Ready for merge to main
 
@@ -186,4 +165,4 @@ Extended concepts (slices, rotations, triggers) are valuable enhancements but no
 
 ---
 
-**Next Steps**: Merge to main, then iterate on User Stories 2 and 3 in subsequent feature branches if prioritized.
+**Next Steps**: Merge to main.

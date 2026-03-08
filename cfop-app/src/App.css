@@ -530,7 +530,14 @@
 
 .notation-example-symbol {
   font-size: 1.5rem;
-  color: #363636;
+  color: #020617;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.notation-example-symbol strong {
+  color: #020617;
+  font-weight: 800;
 }
 
 .notation-example-image {
@@ -557,9 +564,57 @@
   color: #363636;
 }
 
+.notation-light-header {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #0f172a;
+  font-weight: 700;
+  padding: 0.3rem 0.55rem;
+}
+
+.trigger-name-header {
+  display: inline-block;
+  color: #0f172a;
+  font-weight: 400;
+}
+
 .notation-example-explanation {
   color: #666;
   line-height: 1.4;
+}
+
+/* Theme guardrail: keep notation cards/tables light regardless of system theme */
+.notation-section .box,
+.notation-section .table {
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+.notation-section .table th,
+.notation-section .table td {
+  color: #1f2937;
+  border-color: transparent;
+}
+
+.notation-section .table thead th,
+.notation-table-header {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.notation-plain-table,
+.notation-plain-table thead tr,
+.notation-plain-table tbody tr,
+.notation-plain-table th,
+.notation-plain-table td {
+  background-color: #ffffff;
+}
+
+.notation-plain-table th,
+.notation-plain-table td {
+  border: none;
 }
 
 @media screen and (max-width: 768px) {

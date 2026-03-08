@@ -17,6 +17,40 @@
   margin-top: 0.9rem;
 }
 
+.cfop-primer {
+  max-width: 760px;
+  margin-top: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #dbe4ef;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.cfop-primer p {
+  margin-bottom: 0.5rem;
+}
+
+.cfop-primer strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.cfop-primer ul {
+  margin: 0.35rem 0 0.6rem 1.15rem;
+}
+
+.cfop-primer li {
+  margin-bottom: 0.15rem;
+}
+
+.cfop-primer a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
 .essentials-summary {
   display: inline-block;
   margin-top: 0.75rem;
@@ -89,6 +123,59 @@
   padding: 0.75rem 1rem;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
 }
+
+  /* Collapsible section header styling */
+  .cfop-group-section {
+    padding: 0.35rem 0 !important;
+    margin: 0 !important;
+  }
+
+  .section-header {
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .section-header[aria-expanded="true"] {
+    margin-bottom: 0.85rem;
+  }
+
+  .section-header:hover {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
+  }
+
+  .section-header:active {
+    transform: scale(0.99);
+  }
+
+  .section-header .title {
+    margin: 0 !important;
+    color: #1e293b !important;
+    font-weight: 600;
+  }
+
+  .section-header .icon {
+    color: #64748b;
+    transition: transform 0.2s ease;
+  }
+
+  .section-header[aria-expanded="true"] .icon {
+    transform: rotate(180deg);
+  }
+
+  /* Smaller images for reference pages */
+  .algo-card-compact .image-container img {
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+  }
 
 .columns,
 .column {

@@ -1,15 +1,17 @@
 # cfop-app
 
-CFOP learning companion for Rubik's cube speedsolving with algorithm reference grids, interactive visualizations, practice timers, and solve tracking.
+CFOP learning companion for Rubik's cube speedsolving with full algorithm reference grids, expandable sections, page navigation, interactive visualizations, practice timers, and solve tracking.
 
 **Live app:** https://andyjudson.github.io/cubing.spec/
 
 ## Features
 
-- **Algorithm Reference Grids**: Visual reference for 2-look OLL/PLL and beginner CFOP cases
-- **Interactive Tooltips**: Algorithm notes on hover for learning context and execution tips
-- **Solve Visualization Modal**: cubing.js TwistyPlayer for animated algorithm playback
-- **Practice Timer Modal**: Scramble generation + solve timer with keyboard controls (Space to start/stop)
+- **Full CFOP Navigation**: Navigate between 2LK, F2L (41 cases), OLL (57 cases), and PLL (21 cases) pages
+- **Algorithm Reference Grids**: Visual reference for all CFOP algorithms organized by case groups
+- **Expandable Sections**: Collapse/expand algorithm groups with session persistence
+- **Interactive Tooltips**: Algorithm notes on hover for 2LK cases (learning context and execution tips)
+- **Solve Visualization Modal**: cubing.js TwistyPlayer for animated algorithm playback (2LK page only)
+- **Practice Timer Modal**: Scramble generation + solve timer with keyboard controls (2LK page only)
 - **Stats Persistence**: localStorage-based solve time history across sessions
 - **Custom Scramble Generator**: Local 20-move rule-based generation (no worker dependencies)
 
@@ -35,17 +37,29 @@ npm run preview
 
 ## Usage
 
-### Algorithm Grids
-- Browse OLL/PLL cases organized by recognition pattern
-- Essential cases marked with blue badges for 2-look progression
-- Click any cube image to open solve visualization modal
+### Page Navigation
+- Navigate between four CFOP learning pages via persistent header menu:
+  - **2LK**: Two-Look Beginner Method (9 essential algorithms)
+  - **F2L**: First Two Layers (41 cases in 6 groups)
+  - **OLL**: Orient Last Layer (57 cases in 7 consolidated groups)
+  - **PLL**: Permute Last Layer (21 cases in 5 groups)
+- Active page indicated in navigation menu
+- Hash-based routing supports browser back/forward and deep links
 
-### Solve Visualization
+### Algorithm Grids
+- Browse algorithms organized by recognition pattern groups
+- F2L, OLL, and PLL pages: static reference grids with expandable sections
+- 2LK page: essential cases marked with blue badges, interactive features enabled
+- **Expand/Collapse Controls**: Use "Expand All" / "Collapse All" buttons or click section headers
+- Section state persists within browser tab session (resets on tab close/refresh)
+
+### Solve Visualization (2LK page only)
+- Click any cube image to open solve visualization modal
 - Modal shows algorithm with cubing.js TwistyPlayer
 - Auto-plays on open
 - Close with escape key or click outside
 
-### Practice Timer
+### Practice Timer (2LK page only)
 - Click "Practice" button to open timer modal
 - Random 20-move scramble generated on open
 - Space bar to start/stop timer
@@ -82,9 +96,11 @@ Start with the **essential 4 algorithms** (Sune, AntiSune, T-Perm, Ua-Perm), the
 ## Tech Stack
 
 - **React 19** with TypeScript
+- **React Router** (HashRouter) for page navigation
 - **Vite** for build tooling
 - **Bulma CSS** for UI components
 - **cubing.js** (`cubing/twisty`, `cubing/alg`) for 3D rendering and algorithm parsing
+- **sessionStorage** for expand/collapse state persistence (per-page)
 - **localStorage** for persistent solve time tracking
 
 ## File Structure
@@ -92,15 +108,25 @@ Start with the **essential 4 algorithms** (Sune, AntiSune, T-Perm, Ua-Perm), the
 ```
 cfop-app/
 ├── src/
-│   ├── App.tsx              # Main component with routing and state
-│   ├── App.css              # Application-level styles
-│   ├── index.css            # Global styles and color scheme
-│   ├── main.tsx             # Entry point
+│   ├── App.tsx                  # Main routing configuration
+│   ├── App.css                  # Application-level styles
+│   ├── index.css                # Global styles and color scheme
+│   ├── main.tsx                 # Entry point
+│   ├── pages/
+│   │   ├── BGRPage.tsx          # 2LK beginner page with interactive features
+│   │   ├── F2LPage.tsx          # F2L algorithm reference grid (41 cases)
+│   │   ├── OLLPage.tsx          # OLL algorithm reference grid (57 cases)
+│   │   └── PLLPage.tsx          # PLL algorithm reference grid (21 cases)
 │   ├── components/
-│   │   ├── AlgoCard.tsx         # Algorithm card with image and notation
-│   │   ├── DemoModal.tsx        # Solve visualization modal
-│   │   └── PracticeModal.tsx    # Timer and scramble modal
+│   │   ├── AlgorithmGroupSection.tsx  # Expandable section wrapper
+│   │   ├── ExpandCollapseControls.tsx # Expand/Collapse All buttons
+│   │   ├── CfopNavigation.tsx         # Persistent header navigation
+│   │   ├── CfopPageLayout.tsx         # Shared page layout wrapper
+│   │   ├── ErrorBoundary.tsx          # Error display with retry
+│   │   ├── DemoModal.tsx              # Solve visualization modal (2LK only)
+│   │   └── PracticeSessionModal.tsx   # Timer and scramble modal (2LK only)
 │   ├── hooks/
+│   │   ├── useSectionToggle.ts  # Expand/collapse state management
 │   │   └── useStats.ts          # Solve stats management hook
 │   ├── types/
 │   │   └── algorithm.ts         # TypeScript type definitions
@@ -109,7 +135,11 @@ cfop-app/
 │       └── stats.ts             # Stats calculation utilities
 ├── public/
 │   ├── data/                    # Algorithm JSON data
-│   └── assets/                  # Cube images
+│   │   ├── algs-cfop-bgr.json   # 2-look beginner algorithms
+│   │   ├── algs-cfop-f2l.json   # Full F2L (41 cases)
+│   │   ├── algs-cfop-oll.json   # Full OLL (57 cases, 7 groups)
+│   │   └── algs-cfop-pll.json   # Full PLL (21 cases)
+│   └── assets/                  # Cube images (cfop_bgr, cfop_f2l, cfop_oll, cfop_pll)
 ├── package.json
 ├── vite.config.ts
 └── tsconfig.json
@@ -123,6 +153,14 @@ Requires modern browser with:
 - WebGL support (for cubing.js 3D rendering)
 
 ## Features Overview
+
+### Feature 008: Full CFOP Algorithm Grids
+- Four-page navigation: 2LK, F2L, OLL, PLL
+- Hash-based routing with browser history support
+- Expandable/collapsible algorithm groups
+- Session-persistent expand/collapse state (per-page)
+- 7 consolidated OLL groups for better scanability
+- Static reference grids (F2L, OLL, PLL) with no interactive overlays
 
 ### Feature 006: Custom Scramble Generator
 - Local 20-move rule-based generation

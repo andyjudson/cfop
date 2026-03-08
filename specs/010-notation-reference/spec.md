@@ -5,6 +5,12 @@
 **Status**: Draft  
 **Input**: User description: "Add a notation reference page to cfop-app by reusing and refining existing notation learning content (face turns, modifiers, slices, rotations, and triggers) so learners can understand algorithm syntax in one place."
 
+## Clarifications
+
+### Session 2026-03-08
+
+- Q: Where should the Notation page appear in the navigation menu, and what label should be used? → A: Option A - "Notation" label positioned between "Intuitive" and "Beginner" (pedagogical flow: overview → reference → practice progression)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Understand Basic Notation Symbols (Priority: P1)
@@ -60,7 +66,7 @@ As a practicing cuber, I can review common triggers and their inverses so I can 
 
 ### Functional Requirements
 
-- **FR-001**: The system MUST provide a dedicated notation reference page accessible from app navigation.
+- **FR-001**: The system MUST provide a dedicated notation reference page accessible from app navigation with label "Notation" positioned between "Intuitive" and "Beginner" menu items.
 - **FR-002**: The page MUST reuse existing approved notation teaching content as the baseline source, including explanatory text and visual assets.
 - **FR-003**: The page MUST include distinct sections for face rotations, modifiers, slice moves, cube rotations, and common triggers.
 - **FR-004**: The page MUST explain symbol meaning in beginner-friendly language for each notation section.

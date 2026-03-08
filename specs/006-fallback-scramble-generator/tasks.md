@@ -123,11 +123,11 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 
 - [x] T018 [P] Manual smoke test: generate 50+ consecutive scrambles locally (verify output format, no hangs)
 - [x] T019 [P] Manual concurrency test: rapid-click "New Scramble" 10+ times, verify stale filtering works
-- [ ] T020 [P] Manual failure test: simulate timeout by temporarily modifying generator (e.g., add `const delay = Math.random() * 1500; await new Promise(r => setTimeout(r, delay))` before returning result) to trigger 1000ms timeout consistently; verify last-valid scramble is preserved and inline error displays; remove delay before final commit
+- [x] T020 [P] Manual failure test: simulate timeout by temporarily modifying generator (e.g., add `const delay = Math.random() * 1500; await new Promise(r => setTimeout(r, delay))` before returning result) to trigger 1000ms timeout consistently; verify last-valid scramble is preserved and inline error displays; remove delay before final commit
 - [x] T021 [P] Manual parse test: sample 10 generated scrambles, verify `Alg.fromString` succeeds via console
 - [x] T022 [P] Manual regression test: run full practice flow (scramble → timer start/stop → reset → stats view)
 - [x] T023 [US1] Verify stats persistence (localStorage) still works across page reloads
-- [ ] T024 [US1] Build and deploy to GitHub Pages; test from production URL (after local validation gate passes)
+- [x] T024 [US1] Build and deploy to GitHub Pages; test from production URL (after local validation gate passes)
 
 ---
 
@@ -136,16 +136,16 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 - [x] T025 Add comments/JSDoc to scrambleGenerator.ts explaining quality rules
 - [x] T026 Update src/utils/scramble.ts imports/exports for clarity
 - [x] T027 Verify TypeScript build passes (`npm run build`)
-- [ ] T028 Update CHANGELOG or release notes (if applicable)
+- [x] T028 Update CHANGELOG or release notes (if applicable)
 
 ---
 
 ## Phase 7: Local Validation Gate (Required Before Merge/Push)
 
 - [x] T029 Run local production build (`npm run build`) and confirm success
-- [ ] T030 Run manual local feature test pass (T018–T023) and record pass/fail checklist (T020 pending)
+- [x] T030 Run manual local feature test pass (T018–T023) and record pass/fail checklist
 - [x] T031 Perform brief manual code review/sign-off (generator rules, timeout/failure handling, request concurrency)
-- [ ] T032 Merge/push only after T029–T031 all pass
+- [x] T032 Merge/push only after T029–T031 all pass
 
 ---
 

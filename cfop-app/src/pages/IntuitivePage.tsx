@@ -1,7 +1,7 @@
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 interface ExampleCase {
   id: string;
@@ -97,15 +97,15 @@ const F2L_STEP2_CASES: ExampleCase[] = [
 const F2L_STEP3_CASES: ExampleCase[] = [
   {
     id: 'f2l-step3-white-side-colours-match',
-    label: 'white to side + colours match',
+    label: 'white to side + colours matched',
     image: '/cubing.spec/assets/cfop_bgr/f2l_case3_setup1.png',
-    alt: 'F2L insert setup: white to side and colours match.',
+    alt: 'F2L insert setup: white to side and colours matchede.',
   },
   {
     id: 'f2l-step3-white-side-colours-not-match',
-    label: 'white to side + colours not match',
+    label: 'white to side + colours unmatched',
     image: '/cubing.spec/assets/cfop_bgr/f2l_case3_setup2.png',
-    alt: 'F2L insert setup: white to side and colours do not match.',
+    alt: 'F2L insert setup: white to side and colours unmatched.',
   },
   {
     id: 'f2l-step3-white-up',
@@ -128,30 +128,15 @@ function useMoveHintSafeCases(cases: ExampleCase[]) {
 }
 
 function CaseCards({ cases, columnsClass }: { cases: ExampleCase[]; columnsClass: string }) {
-  const [missingImages, setMissingImages] = useState<Record<string, boolean>>({});
-
   return (
     <div className="columns is-multiline mt-3">
       {cases.map(item => {
-        const missing = missingImages[item.id] ?? false;
         return (
           <div key={item.id} className={columnsClass}>
             <div className="card intuitive-case-card">
               <div className="card-content has-text-centered">
                 <h4 className="intuitive-case-label">{item.label}</h4>
-                {!missing ? (
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    className="intuitive-case-image"
-                    onError={() => setMissingImages(prev => ({ ...prev, [item.id]: true }))}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="intuitive-image-fallback" role="status" aria-live="polite">
-                    Image unavailable
-                  </div>
-                )}
+                <img src={item.image} alt={item.alt} className="intuitive-case-image" loading="lazy" />
                 {item.moveHint && <p className="intuitive-move-hint mt-2">{item.moveHint}</p>}
               </div>
             </div>
@@ -170,7 +155,7 @@ export default function IntuitivePage() {
   return (
     <CfopPageLayout
       pageTitle="Intuitive Methods"
-      subtitle="Learn Cross and F2L through pattern recognition and piece logic before algorithm-heavy practice."
+      subtitle="Learn Cross and F2L through pattern recognition and positional logic before algorithm-heavy practice."
     >
       <section className="section intuitive-section">
         <h2 className="title is-4 section-title">Intuitive Cross</h2>
@@ -200,7 +185,7 @@ export default function IntuitivePage() {
           slots around the Cross. Focus on repeatable patterns and setup ideas rather than memorizing long lists.
         </p>
 
-        <h3 className="title is-5 intuitive-step-title">Step 1: easy inserts</h3>
+        <h3 className="title is-5 intuitive-step-title">Step 1: Easy Inserts</h3>
         <ul className="intuitive-list">
           <li>
             If matching colours face up, hold the cube so the matched side is on the working side, push pair
@@ -213,7 +198,7 @@ export default function IntuitivePage() {
         </ul>
         <CaseCards cases={step1Cases} columnsClass="column is-one-quarter-desktop is-half-tablet" />
 
-        <h3 className="title is-5 intuitive-step-title">Step 2: setup pairs</h3>
+        <h3 className="title is-5 intuitive-step-title">Step 2: Setup Pairs</h3>
         <ul className="intuitive-list">
           <li>Find an edge-corner pair.</li>
           <li>Set up an easy-insert style case with the pair disconnected in the top layer.</li>
@@ -221,7 +206,7 @@ export default function IntuitivePage() {
         </ul>
         <CaseCards cases={step2Cases} columnsClass="column is-one-quarter-desktop is-half-tablet" />
 
-        <h3 className="title is-5 intuitive-step-title">Step 3: insert pairs</h3>
+        <h3 className="title is-5 intuitive-step-title">Step 3: Setup Inserts</h3>
         <ul className="intuitive-list">
           <li>
             If white is on the side and colours match, move the edge next to the corner to set up an insert case.

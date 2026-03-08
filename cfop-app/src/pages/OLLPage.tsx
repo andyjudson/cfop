@@ -70,7 +70,7 @@ function OLLPage() {
 
   return (
     <CfopPageLayout
-      pageTitle="OLL"
+      pageTitle="OLL Algorithms"
       subtitle="Orient Last Layer - 57 cases across 7 groups"
       introImageSrc="/cubing.spec/assets/cfop_oll.png"
       introImageAlt="OLL stage illustration"

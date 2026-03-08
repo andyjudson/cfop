@@ -70,7 +70,7 @@ function F2LPage() {
 
   return (
     <CfopPageLayout
-      pageTitle="F2L"
+      pageTitle="F2L Algorithms"
       subtitle="First Two Layers - 41 cases across 6 groups"
       introImageSrc="/cubing.spec/assets/cfop_f2l.png"
       introImageAlt="F2L stage illustration"

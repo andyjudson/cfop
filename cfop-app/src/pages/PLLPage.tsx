@@ -70,7 +70,7 @@ function PLLPage() {
 
   return (
     <CfopPageLayout
-      pageTitle="PLL"
+      pageTitle="PLL Algorithms"
       subtitle="Permute Last Layer - 21 cases across 5 groups"
       introImageSrc="/cubing.spec/assets/cfop_pll.png"
       introImageAlt="PLL stage illustration"

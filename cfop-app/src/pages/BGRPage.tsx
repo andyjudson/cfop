@@ -136,19 +136,15 @@ function BGRPage() {
 
   return (
     <CfopPageLayout
-      pageTitle="2-Look Methods"
+      pageTitle="Beginner Methods"
+      subtitle="Learn OLL and PLL with just 9 essential algorithms."
       introImageSrc="/cubing.spec/assets/cfop_solved.png"
       introImageAlt="Solved cube overview for CFOP 2-look intro"
       introContent={
         <>
-          <p>
-            <strong>CFOP</strong> is a four-stage method: <strong>Cross</strong>, <strong>F2L</strong>, <strong>OLL</strong>, <strong>PLL</strong>. 
-            Cross and F2L use intuitive solving—no algorithms required. 
-            OLL and PLL traditionally require memorizing 57 and 21 algorithms respectively, which can be overwhelming for beginners.
-          </p>
           <p className="mb-0">
-            <strong>2-Look methods</strong> simplify the last layer by breaking OLL and PLL into smaller subsets, 
-            reducing the algorithm count to just 9 cases, but require repetition. Learn these first to solve reliably under 2 minutes, 
+            <strong>2-look</strong> beginner methods simplify the last layer by breaking OLL and PLL into smaller subsets, 
+            reducing the algorithm count to just 9 cases, but require repetition. Learn these first to solve reliably around 1 to 2 minutes, 
             then expand to full OLL/PLL, and lastly full F2L or advanced techniques like scan ahead.
           </p>
         </>
@@ -179,10 +175,10 @@ function BGRPage() {
       </div>
 
       <main>
-        {renderAlgorithmSection("OLL edge cases", ollEdges)}
-        {renderAlgorithmSection("OLL corner cases", ollCorners)}
-        {renderAlgorithmSection("PLL corner cases", pllCorners)}
-        {renderAlgorithmSection("PLL edge cases", pllEdges)}
+        {renderAlgorithmSection("OLL Edge Cases", ollEdges)}
+        {renderAlgorithmSection("OLL Corner Cases", ollCorners)}
+        {renderAlgorithmSection("PLL Corner Cases", pllCorners)}
+        {renderAlgorithmSection("PLL Edge Cases", pllEdges)}
       </main>
 
       {showDemo && demoAlgorithm && (

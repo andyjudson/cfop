@@ -47,12 +47,24 @@ I first learned to solve a cube using the beginner method from [JPerm](https://w
 
 CFOP is a four-step 3x3 speedcubing method developed around 1981 and is responsible for most [world record](https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history) times over the last decade (sub-5 seconds is wild! 🤯).
 
-- **Cross** - Solve four edge pieces on the bottom face (intuitive)
+- **Cross** - Solve four edge pieces on the bottom face, typically white (intuitive)
 - **F2L** (First Two Layers) - Insert edge-corner pairs into four slots (intuitive or algorithmic). There are 41 algorithmic cases in total, or 4 if using the intuitive method.
-- **OLL** (Orientation of Last Layer) - Orient last layer pieces (algorithmic). There are 57 cases in total organized in 7 balanced groups, or 10 if using the 2-look method.
-- **PLL** (Permutation of Last Layer) - Position last layer pieces (algorithmic). There are 21 cases in total organized in 5 groups, or 6 if using the 2-look method.
+- **OLL** (Orientation of Last Layer) - Orient last layer pieces (algorithmic). There are 57 cases in total (organized in 7 balanced groups), or 10 if using the 2-look method.
+- **PLL** (Permutation of Last Layer) - Position last layer pieces (algorithmic). There are 21 cases in total (organized in 5 groups), or 6 if using the 2-look method.
 
-Start with the essential four algorithms (Sune, AntiSune, T-Perm, Ua-Perm), then gradually expand to the full 2-look suite for better efficiency.
+Start with the essential four algorithms (Sune, AntiSune, T-Perm, Ua-Perm), then gradually expand to the full 2-look methods for better efficiency.
+
+## Recommended YouTube videos
+
+- [CubeHead - Beginner Cross](https://youtu.be/M-vKaV2NbEo?si=nl3wJYTtbmRPfz2k)
+- [CubeHead - Beginner F2L](https://youtu.be/ReOZZHscIGk?si=stALTuOW_Z75eiL9)
+- [CubeHead - Beginner OLL](https://youtu.be/6PSBaxlBqRg?si=s3rRGgffgKjKl6KM)
+- [CubeHead - Beginner PLL](https://youtu.be/ZC9nwou59ow?si=GTKodwgH84Rwp6Yt)
+- [CubeHead - Beginner Tips](https://youtu.be/4ULKZ1dZs04?si=CmYU8pE21nfhd5Os)
+- [CubeHead - All F2L cases](https://youtu.be/3tYj-9f4dA0?si=J8aRw_oeWwpwNVc4)
+- [CubeHead - All OLL cases](https://youtu.be/Q947zZRYMdg?si=CApmtY2UWRpol3mW)
+- [CubeHead - All PLL cases](https://youtu.be/QVXKNAjl_0k?si=1yIu1ZEbDqsId0p9)
+- [CubeHead - Advanced Tips](https://youtu.be/HDlDcRhCR0Q?si=AELW7sNZKT-b9XxS)
 
 ## Practice Strategies
 

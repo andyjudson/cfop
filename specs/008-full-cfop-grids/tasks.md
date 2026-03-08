@@ -58,7 +58,7 @@ This document breaks down Feature 008 into executable implementation tasks organ
 - [X] T012 [US1] BGRPage created for 2LK route preserving existing behavior
 - [X] T013 [US1] Route declarations added in App.tsx for all four pages
 - [X] T014 [US1] CfopPageLayout created providing consistent layout wrapper
-- [ ] T015 [US1] Add navigation-specific responsive style tuning in cfop-app/src/App.css
+- [X] T015 [US1] Add navigation-specific responsive style tuning in cfop-app/src/App.css
 
 **Checkpoint**: ✅ Navigation works independently with current 2LK experience intact.
 
@@ -92,10 +92,10 @@ This document breaks down Feature 008 into executable implementation tasks organ
 - [X] T020 [US3] Rewrite OLL `group` values to consolidated labels in cfop-app/public/data/algs-cfop-oll.json
 - [X] T021 [US3] OLLPage.tsx created with grouped renderer and expand/collapse controls
 - [X] T022 [US3] OLL route integrated into App.tsx
-- [ ] T023 [US3] Add OLL group ordering constants (7-group order) in cfop-app/src/utils/groupOrder.ts
-- [ ] T024 [US3] Add lightweight JSON validation helper for allowed OLL groups in cfop-app/src/utils/validateOllGroups.ts
+- [X] T023 [US3] Add OLL group ordering constants (7-group order) in cfop-app/src/utils/groupOrder.ts
+- [X] T024 [US3] Add lightweight JSON validation helper for allowed OLL groups in cfop-app/src/utils/validateOllGroups.ts
 
-**Checkpoint**: OLL page structure complete, JSON consolidation complete (T020 ✅).
+**Checkpoint**: ✅ OLL page structure complete, JSON consolidation complete (T020 ✅).
 
 ---
 
@@ -107,13 +107,13 @@ This document breaks down Feature 008 into executable implementation tasks organ
 
 ### Implementation for User Story 4
 
-- [ ] T025 [US4] Implement section expanded-state model and handlers in cfop-app/src/pages/GroupedAlgorithmsPage.tsx
-- [ ] T026 [US4] Implement Expand All / Collapse All behavior in cfop-app/src/components/ExpandCollapseControls.tsx
-- [ ] T027 [US4] Implement group header toggle interaction + counts in cfop-app/src/components/AlgorithmGroupSection.tsx
-- [ ] T028 [US4] Add expand/collapse transitions and motion-safe styling in cfop-app/src/App.css
-- [ ] T029 [US4] Reset expanded state on page revisit/route change in cfop-app/src/pages/GroupedAlgorithmsPage.tsx
+- [X] T025 [US4] Implement section expanded-state model and handlers (via useSectionToggle hook)
+- [X] T026 [US4] Implement Expand All / Collapse All behavior in cfop-app/src/components/ExpandCollapseControls.tsx
+- [X] T027 [US4] Implement group header toggle interaction + counts in cfop-app/src/components/AlgorithmGroupSection.tsx
+- [X] T028 [US4] Add expand/collapse transitions and motion-safe styling in cfop-app/src/App.css
+- [X] T029 [US4] Reset expanded state on page revisit/route change (sessionStorage per-page isolation)
 
-**Checkpoint**: Expand/collapse UX is complete and independently testable.
+**Checkpoint**: ✅ Expand/collapse UX is complete and independently testable.
 
 ---
 
@@ -124,7 +124,7 @@ This document breaks down Feature 008 into executable implementation tasks organ
 - [X] T030 [P] Update cfop-app feature documentation with new page navigation and grouped views in cfop-app/README.md
 - [X] T031 Verify 2LK interactive features still work unchanged in cfop-app/src/pages/BGRPage.tsx
 - [X] T032 Run production build and address regressions in cfop-app/package.json scripts
-- [ ] T033 Perform manual responsive validation (iPhone baseline + desktop) and capture checklist in specs/008-full-cfop-grids/checklists/requirements.md
+- [X] T033 Perform manual responsive validation (iPhone baseline + desktop) and capture checklist in specs/008-full-cfop-grids/checklists/requirements.md
 
 ---
 

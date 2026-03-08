@@ -290,17 +290,54 @@ Create a standalone developer tool app (`/cubing.spec/imggen-app`) for generatin
 - Based on proven cubegen.html workflow but modernized with React component architecture
 - Fixed PNG dimensions eliminate manual resize step from legacy workflow
 
+## Feature 008: Full CFOP Algorithm Grids
+
+### Status: Complete ✅
+
+### Scope
+Add complete CFOP algorithm reference pages (F2L, OLL, PLL) to cfop-app with navigation between beginner 2-look page and advanced full method pages.
+
+### Goals
+- Provide comprehensive reference for all 119 full CFOP algorithms (41 F2L, 57 OLL, 21 PLL)
+- Enable cubers to progress from 2-look beginner method to full CFOP
+- Organize algorithms by case groups for pattern recognition learning
+- Maintain consistent UI/UX with existing 2-look page styling
+- Support mobile and desktop viewing with responsive grid layout
+
+### Non-Goals
+- Interactive features (tooltips, demo player, practice timer) on full CFOP pages at this stage
+- Search or filter functionality (users can scroll/scan to find cases)
+- Algorithm learning progress tracking
+- Alternative algorithm suggestions or favorites system
+
+### Pages
+- **2LK Page** (existing): Beginner 2-look method (16 cases) with all interactive features
+- **F2L Page** (new): Full F2L method (41 cases) organized in 6 groups
+- **OLL Page** (new): Full OLL method (57 cases) organized in 14 groups  
+- **PLL Page** (new): Full PLL method (21 cases) organized in 5 groups
+
+### Navigation
+- Page-level routing with navigation menu on all CFOP pages
+- Active page indicator in navigation
+- Browser URL updates for deep linking and back/forward button support
+- Modals close when navigating between pages
+
+### Data & Assets
+- Uses existing algorithm JSON files: `algs-cfop-f2l.json`, `algs-cfop-oll.json`, `algs-cfop-pll.json`
+- Uses existing cube state images from `./assets/cfop_f2l/`, `./assets/cfop_oll/`, `./assets/cfop_pll/`
+- All data and assets already complete from previous feature work
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
-- About page
-- Cubing notation primer
-- Intuitive Cross and F2L primer
-- Full CFOP method coverage (all F2L, OLL, PLL cases)
+- About page (covered by readme for now)
+- Notation primer page
+- Intuitive Cross and F2L primer page
+- Full CFOP algorithm grid page (all F2L, OLL, PLL cases)
 - Interactive visualizations of solve algorithms
 - Algorithm learning tracking for practice
-- Advanced UI components
-- Mobile app deployment
+- Revisit UI design
+- Mobile deployment
 - Additional algorithm sets
 
 ## Implementation Plan
@@ -378,3 +415,24 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - Consistent header styling across modals (no border separation) ✅
 - All three user stories implemented and validated ✅
 - Production build and manual browser validation completed ✅
+
+**Feature 008 - Full CFOP Algorithm Grids (Completed)**:
+- Four-page navigation implemented: 2LK, F2L, OLL, PLL ✅
+- Hash-based routing with browser history support ✅
+- React Router integration with active page indicators ✅
+- BGRPage refactored from App.tsx with all interactive features preserved ✅
+- F2LPage created with 41 cases organized in 6 groups ✅
+- OLLPage created with 57 cases consolidated into 7 balanced groups ✅
+- PLLPage created with 21 cases organized in 5 groups ✅
+- OLL group consolidation: 14 groups → 7 groups (improved scanability) ✅
+- Expandable/collapsible algorithm sections with sessionStorage persistence ✅
+- useSectionToggle hook for per-page expand/collapse state management ✅
+- AlgorithmGroupSection component with Title Case transformation ✅
+- ExpandCollapseControls for "Expand All"/"Collapse All" functionality ✅
+- CfopNavigation component with persistent header and active indicators ✅
+- CfopPageLayout wrapper providing consistent layout across pages ✅
+- ErrorBoundary component for graceful data loading error handling ✅
+- Responsive design validated on mobile and desktop ✅
+- README.md updated with full navigation and feature documentation ✅
+- Production build validated: 1.78s, no errors ✅
+- react-router-dom dependency added ✅

@@ -203,3 +203,36 @@
     font-size: 1.2rem;
   }
 }
+
+@media (max-width: 430px) {
+  .practice-modal {
+    width: min(620px, 94vw);
+    padding: 0.75rem 0.75rem 0.9rem;
+  }
+
+  .practice-block {
+    padding: 0.7rem;
+  }
+
+  .timer-display {
+    font-size: 1.45rem;
+    padding: 0.55rem;
+  }
+
+  .timer-state-pill {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.02rem;
+  }
+
+  .stat-note {
+    font-size: 0.68rem;
+  }
+}

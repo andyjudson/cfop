@@ -37,6 +37,7 @@
 - Start with static grid, add interactivity iteratively
 - Focus on clean code and maintainable structure
 - Test on mobile devices early
+- Use iPhone 16 (standard size, ~393px CSS width) as the primary small-screen baseline for modal sizing and typography tuning
 - Modal dialog should use consistent styling, be responsive, and support keyboard navigation where logical e.g. start-stop or play-pause controls
 - localStorage persistence uses versioned envelopes with defensive validation
 

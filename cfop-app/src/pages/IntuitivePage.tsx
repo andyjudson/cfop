@@ -171,13 +171,6 @@ export default function IntuitivePage() {
     <CfopPageLayout
       pageTitle="Intuitive Methods"
       subtitle="Learn Cross and F2L through pattern recognition and piece logic before algorithm-heavy practice."
-      introContent={
-        <>
-          <p>
-            This page focuses on intuitive CFOP learning: understand piece relationships, then apply simple
-            repeatable ideas, learn to recognize common cases and decide next step confidently.</p>
-        </>
-      }
     >
       <section className="section intuitive-section">
         <h2 className="title is-4 section-title">Intuitive Cross</h2>

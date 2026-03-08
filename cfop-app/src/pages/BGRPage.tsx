@@ -136,7 +136,7 @@ function BGRPage() {
 
   return (
     <CfopPageLayout
-      pageTitle="2LK"
+      pageTitle="2-Look Methods"
       introImageSrc="/cubing.spec/assets/cfop_solved.png"
       introImageAlt="Solved cube overview for CFOP 2-look intro"
       introContent={
@@ -147,8 +147,8 @@ function BGRPage() {
             OLL and PLL traditionally require memorizing 57 and 21 algorithms respectively, which can be overwhelming for beginners.
           </p>
           <p className="mb-0">
-            <strong>2LK (Two Look)</strong> simplifies the last layer by breaking OLL and PLL into smaller subsets, 
-            reducing the algorithm count to just 9 cases. Learn these first to solve reliably under 2 minutes, 
+            <strong>2-Look methods</strong> simplify the last layer by breaking OLL and PLL into smaller subsets, 
+            reducing the algorithm count to just 9 cases, but require repetition. Learn these first to solve reliably under 2 minutes, 
             then expand to full OLL/PLL, and lastly full F2L or advanced techniques like scan ahead.
           </p>
         </>

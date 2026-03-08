@@ -52,7 +52,7 @@ cfop-app/
 │   │   └── PracticeSessionModal.tsx
 │   ├── utils/
 │   │   ├── scramble.ts
-│   │   └── fallbackScrambleGenerator.ts   # new
+│   │   └── scrambleGenerator.ts   # new
 │   └── types/
 │       └── practice.ts
 ├── vite.config.ts

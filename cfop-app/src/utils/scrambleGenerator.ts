@@ -1,8 +1,7 @@
 /**
- * Fallback Scramble Generator for 3x3 Rubik's Cube
+ * Scramble Generator for 3x3 Rubik's Cube
  *
- * Provides deterministic, rule-based scramble generation for practice mode
- * when `cubing/scramble` workers are unavailable (e.g., GitHub Pages production).
+ * Provides deterministic, rule-based scramble generation for practice mode.
  *
  * Quality Constraints:
  * - Fixed 20-move output length
@@ -43,18 +42,18 @@ interface Move {
 /**
  * Success response from scramble generation
  */
-export interface GenerateFallback333Success {
+export interface Generate333Success {
   ok: true;
   scrambleText: string;
   generatedAtMs: number;
-  source: "fallback-local";
+  source: "local";
   requestId?: number;
 }
 
 /**
  * Failure response from scramble generation
  */
-export interface GenerateFallback333Failure {
+export interface Generate333Failure {
   ok: false;
   reason: "timeout" | "parse-error" | "generation-error";
   message: string;
@@ -65,14 +64,14 @@ export interface GenerateFallback333Failure {
 /**
  * Result type: success or failure
  */
-export type GenerateFallback333Result =
-  | GenerateFallback333Success
-  | GenerateFallback333Failure;
+export type Generate333Result =
+  | Generate333Success
+  | Generate333Failure;
 
 /**
  * Options for scramble generation
  */
-export interface GenerateFallback333Options {
+export interface Generate333Options {
   length?: number; // Default 20 for v1
   timeoutMs?: number; // Default 1000
   requestId?: number; // For tracking stale requests
@@ -201,11 +200,11 @@ function validateWithParser(scrambleText: string): boolean {
  * - Resolves or fails within 1000ms (timeout wrapper in caller)
  *
  * @param options - Generation options (length, timeoutMs, requestId)
- * @returns Promise<GenerateFallback333Result>
+ * @returns Promise<Generate333Result>
  */
-export async function generateFallback333Scramble(
-  options?: GenerateFallback333Options
-): Promise<GenerateFallback333Result> {
+export async function generate333Scramble(
+  options?: Generate333Options
+): Promise<Generate333Result> {
   const length = options?.length ?? 20;
   const requestId = options?.requestId;
 
@@ -237,7 +236,7 @@ export async function generateFallback333Scramble(
       ok: true,
       scrambleText,
       generatedAtMs: Date.now(),
-      source: "fallback-local",
+      source: "local",
       requestId,
     };
   } catch (error) {
@@ -260,12 +259,12 @@ export async function generateFallback333Scramble(
  * @param options - Generation options
  * @returns Promise that resolves with result or rejects on timeout
  */
-export async function generateFallback333ScrambleWithTimeout(
-  options?: GenerateFallback333Options
-): Promise<GenerateFallback333Result> {
+export async function generate333ScrambleWithTimeout(
+  options?: Generate333Options
+): Promise<Generate333Result> {
   const timeoutMs = options?.timeoutMs ?? 1000;
 
-  const timeoutPromise = new Promise<GenerateFallback333Result>(
+  const timeoutPromise = new Promise<Generate333Result>(
     (_, reject) => {
       setTimeout(() => {
         reject(
@@ -277,7 +276,7 @@ export async function generateFallback333ScrambleWithTimeout(
     }
   );
 
-  const generationPromise = generateFallback333Scramble(options);
+  const generationPromise = generate333Scramble(options);
 
   try {
     return await Promise.race([generationPromise, timeoutPromise]);
@@ -292,4 +291,4 @@ export async function generateFallback333ScrambleWithTimeout(
   }
 }
 
-export default generateFallback333Scramble;
+export default generate333Scramble;

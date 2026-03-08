@@ -5,11 +5,11 @@ Contract between generator utilities and practice modal integration.
 
 ## API Contract
 
-### `generateFallback333Scramble(options?)`
+### `generate333Scramble(options?)`
 
 #### Input
 ```ts
-type GenerateFallback333Options = {
+type Generate333Options = {
   length?: 20;          // optional, defaults to 20 (v1 fixed)
   timeoutMs?: 1000;     // optional, defaults to 1000
   requestId?: number;   // optional integration token for stale filtering
@@ -18,18 +18,18 @@ type GenerateFallback333Options = {
 
 #### Output (success)
 ```ts
-type GenerateFallback333Success = {
+type Generate333Success = {
   ok: true;
   scrambleText: string;
   generatedAtMs: number;
-  source: "fallback-local";
+  source: "local";
   requestId?: number;
 };
 ```
 
 #### Output (failure)
 ```ts
-type GenerateFallback333Failure = {
+type Generate333Failure = {
   ok: false;
   reason: "timeout" | "parse-error" | "generation-error";
   message: string;

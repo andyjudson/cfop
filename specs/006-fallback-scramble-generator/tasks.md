@@ -12,7 +12,7 @@
 Replace runtime dependency on `cubing/scramble` workers (production blocker) with a local deterministic rule-based 3x3 scramble generator. Preserve existing practice modal UX (timer, stats, visual feedback). Enforce 20-move parseable output with 1000ms timeout, last-click-wins concurrency semantics, and last-valid-scramble preservation on failure.
 
 **Deliverables**:
-- `src/utils/fallbackScrambleGenerator.ts` — generator function + validation layer
+- `src/utils/scrambleGenerator.ts` — generator function + validation layer
 - `src/utils/scramble.ts` — integration hook
 - `src/components/PracticeSessionModal.tsx` — modal integration + request tracking
 - `vite.config.ts` — remove scramble worker workarounds
@@ -62,7 +62,7 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 - All outputs parseable by `Alg.fromString`
 - Timeout wrapper returns failure after 1000ms
 
-- [x] T002 [P] Implement fallbackScrambleGenerator.ts with core move generation logic
+- [x] T002 [P] Implement scrambleGenerator.ts with core move generation logic
 - [x] T003 [P] Implement quality constraint validation (no consecutive/opposite-face patterns)
 - [x] T004 [P] Implement parser validation wrapper (Alg.fromString compatibility)
 - [x] T005 [P] Implement timeout wrapper with configurable duration (1000ms default)
@@ -121,19 +121,19 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 - Solve stats persist and display correctly
 - GitHub Pages deploy stable
 
-- [ ] T018 [P] Manual smoke test: generate 50+ consecutive scrambles locally (verify output format, no hangs)
-- [ ] T019 [P] Manual concurrency test: rapid-click "New Scramble" 10+ times, verify stale filtering works
+- [x] T018 [P] Manual smoke test: generate 50+ consecutive scrambles locally (verify output format, no hangs)
+- [x] T019 [P] Manual concurrency test: rapid-click "New Scramble" 10+ times, verify stale filtering works
 - [ ] T020 [P] Manual failure test: simulate timeout by temporarily modifying generator (e.g., add `const delay = Math.random() * 1500; await new Promise(r => setTimeout(r, delay))` before returning result) to trigger 1000ms timeout consistently; verify last-valid scramble is preserved and inline error displays; remove delay before final commit
-- [ ] T021 [P] Manual parse test: sample 10 generated scrambles, verify `Alg.fromString` succeeds via console
-- [ ] T022 [P] Manual regression test: run full practice flow (scramble → timer start/stop → reset → stats view)
-- [ ] T023 [US1] Verify stats persistence (localStorage) still works across page reloads
+- [x] T021 [P] Manual parse test: sample 10 generated scrambles, verify `Alg.fromString` succeeds via console
+- [x] T022 [P] Manual regression test: run full practice flow (scramble → timer start/stop → reset → stats view)
+- [x] T023 [US1] Verify stats persistence (localStorage) still works across page reloads
 - [ ] T024 [US1] Build and deploy to GitHub Pages; test from production URL (after local validation gate passes)
 
 ---
 
 ## Phase 6: Polish & Documentation
 
-- [x] T025 Add comments/JSDoc to fallbackScrambleGenerator.ts explaining quality rules
+- [x] T025 Add comments/JSDoc to scrambleGenerator.ts explaining quality rules
 - [x] T026 Update src/utils/scramble.ts imports/exports for clarity
 - [x] T027 Verify TypeScript build passes (`npm run build`)
 - [ ] T028 Update CHANGELOG or release notes (if applicable)
@@ -143,7 +143,7 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 ## Phase 7: Local Validation Gate (Required Before Merge/Push)
 
 - [x] T029 Run local production build (`npm run build`) and confirm success
-- [ ] T030 Run manual local feature test pass (T018–T023) and record pass/fail checklist
+- [ ] T030 Run manual local feature test pass (T018–T023) and record pass/fail checklist (T020 pending)
 - [x] T031 Perform brief manual code review/sign-off (generator rules, timeout/failure handling, request concurrency)
 - [ ] T032 Merge/push only after T029–T031 all pass
 
@@ -175,10 +175,10 @@ Replace runtime dependency on `cubing/scramble` workers (production blocker) wit
 ## Implementation Strategy
 
 ### MVP Scope (Phase 2 + Phase 3)
-- Implement fallback generator core (T002–T006)
+- Implement local generator core (T002–T006)
 - Integrate into modal with last-click-wins (T007–T013)
 - Verify via manual smoke test (T018, T019)
-- **Deliverable**: Working practice modal with fallback scrambles, no production blocker
+- **Deliverable**: Working practice modal with local scrambles, no production blocker
 
 ### Incremental Delivery
 - **Checkpoint 1** (MVP): Generator + modal integration passing manual smoke tests

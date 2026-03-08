@@ -14,7 +14,7 @@
 - [x] Implementation plan (plan.md)
 - [x] Technical design (research.md, data-model.md)
 - [x] API contracts (contracts/scramble-generator-contract.md)
-- [x] Task breakdown (tasks.md - 28 tasks across 6 phases)
+- [x] Task breakdown (tasks.md - 32 tasks across 7 phases)
 - [x] Constitution alignment check (PASS)
 
 ### Phase 1: Setup ✅
@@ -50,12 +50,12 @@
 
 ## Implementation Details
 
-### Fallback Generator (`src/utils/fallbackScrambleGenerator.ts`)
+### Scramble Generator (`src/utils/scrambleGenerator.ts`)
 
 **Lines of Code**: 295  
 **Key Functions**:
-- `generateFallback333Scramble()` - Core generator with quality constraints
-- `generateFallback333ScrambleWithTimeout()` - Timeout-wrapped version
+- `generate333Scramble()` - Core generator with quality constraints
+- `generate333ScrambleWithTimeout()` - Timeout-wrapped version
 - `generateMove()` - Single move generation respecting constraints
 - `generateMoveSequence()` - 20-move sequence generation
 - `validateWithParser()` - Alg.fromString compatibility check
@@ -71,15 +71,15 @@
 
 **Type Safety**:
 ```typescript
-export type GenerateFallback333Result = 
-  | GenerateFallback333Success  // { ok: true, scrambleText, ... }
-  | GenerateFallback333Failure  // { ok: false, reason, message, ... }
+export type Generate333Result = 
+   | Generate333Success  // { ok: true, scrambleText, ... }
+   | Generate333Failure  // { ok: false, reason, message, ... }
 ```
 
 ### Modal Integration (`src/utils/scramble.ts`)
 
 **Changes**:
-- Replaced `randomScrambleForEvent('333')` with `generateFallback333ScrambleWithTimeout()`
+- Replaced `randomScrambleForEvent('333')` with `generate333ScrambleWithTimeout()`
 - Removed `cubing/scramble` import (production blocker eliminated)
 - Removed `cubing/search` debug configuration
 - Enhanced error handling with detailed failure reasons
@@ -113,7 +113,7 @@ export default defineConfig({
 ### Functional Requirements (14/14) ✅
 | FR-ID | Requirement | Status | Implementation |
 |-------|-------------|--------|-----------------|
-| FR-001 | Client-side 3x3 generator, no cubing/scramble | ✅ | fallbackScrambleGenerator.ts |
+| FR-001 | Client-side 3x3 generator, no cubing/scramble | ✅ | scrambleGenerator.ts |
 | FR-002 | Alg.fromString parseable output | ✅ | validateWithParser() |
 | FR-003 | Fixed 20-move length | ✅ | generateMoveSequence(20) |
 | FR-004 | No same-face / opposite-face patterns | ✅ | generateMove() constraints |
@@ -126,7 +126,7 @@ export default defineConfig({
 | FR-011 | Preserve last valid on failure, inline error | ✅ | Error state already in modal |
 | FR-012 | Last-click-wins semantics | ✅ | requestIdRef already tracking |
 | FR-013 | No UI text for practice-grade (docs only) | ✅ | No UI changes needed |
-| FR-014 | 1000ms timeout enforcement | ✅ | generateFallback333ScrambleWithTimeout() |
+| FR-014 | 1000ms timeout enforcement | ✅ | generate333ScrambleWithTimeout() |
 
 ### Success Criteria (3/3) ✅
 - **SC-001**: 50+ consecutive valid scrambles → Ready for T018 smoke test
@@ -149,19 +149,19 @@ export default defineConfig({
 
 ## Remaining Work
 
-### Phase 5: Testing & Validation (NOT YET STARTED)
-- [ ] T018: Manual smoke test (50+ consecutive scrambles)
-- [ ] T019: Rapid-click concurrency test (10+ quick requests)
+### Phase 5: Testing & Validation (IN PROGRESS)
+- [x] T018: Manual smoke test (50+ consecutive scrambles)
+- [x] T019: Rapid-click concurrency test (10+ quick requests)
 - [ ] T020: Timeout simulation test (add temporary delay, verify failure path)
-- [ ] T021: Parser validation (sample 10 scrambles via Alg.fromString)
-- [ ] T022: Regression test (timer, stats, solve recording flows)
-- [ ] T023: Persistence test (localStorage across page reload)
+- [x] T021: Parser validation (sample 10 scrambles via Alg.fromString)
+- [x] T022: Regression test (timer, stats, solve recording flows)
+- [x] T023: Persistence test (localStorage across page reload)
 - [ ] T024: Production deploy test (GitHub Pages)
 
-### Phase 6: Polish & Documentation (NOT YET STARTED)
-- [ ] T025: Add JSDoc comments to generator explaining quality rules
-- [ ] T026: Update scramble.ts exports for clarity
-- [ ] T027: Final TypeScript build verification
+### Phase 6: Polish & Documentation (MOSTLY COMPLETE)
+- [x] T025: Add JSDoc comments to generator explaining quality rules
+- [x] T026: Update scramble.ts exports for clarity
+- [x] T027: Final TypeScript build verification
 - [ ] T028: Update CHANGELOG / release notes
 
 ---
@@ -173,7 +173,7 @@ export default defineConfig({
 cd cfop-app
 npm run build          # Verify production build
 npm run dev            # Start dev server
-# Open browser to http://localhost:5174/cubing.spec/
+# Open browser to http://127.0.0.1:5173/cubing.spec/
 # Click "Practice Session" button
 # Click "New Scramble" multiple times → verify 20-move scrambles appear
 # Verify no "Generating..." hang (should be instant)
@@ -225,8 +225,8 @@ npm run dev            # Start dev server
 
 | File | Changes | Commits |
 |------|---------|---------|
-| `cfop-app/src/utils/fallbackScrambleGenerator.ts` | New file (295 lines) | a88b855 |
-| `cfop-app/src/utils/scramble.ts` | Replace cubing/scramble with fallback | 683db77, 88df8ab |
+| `cfop-app/src/utils/scrambleGenerator.ts` | New file (renamed from fallbackScrambleGenerator.ts) | a88b855 |
+| `cfop-app/src/utils/scramble.ts` | Replace cubing/scramble with local generator | 683db77, 88df8ab |
 | `cfop-app/vite.config.ts` | Remove worker workarounds | 88df8ab |
 | `spec.md` | Update Feature 006 scope notes | 11674d8 |
 | `specs/006-fallback-scramble-generator/*` | Complete spec + plan + tasks | 11674d8 |

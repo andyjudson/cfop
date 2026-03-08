@@ -12,7 +12,7 @@ Represents a generated scramble string used by practice flow.
   - Tokenized move list (length 20)
 - `generatedAtMs: number`
   - Unix epoch milliseconds
-- `source: "fallback-local"`
+- `source: "local"`
   - Distinguishes origin from legacy worker generator
 - `isParseValid: boolean`
   - True only if `Alg.fromString(text)` succeeds

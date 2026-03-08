@@ -1,9 +1,9 @@
 import { Alg } from 'cubing/alg';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
 import {
-  generateFallback333ScrambleWithTimeout,
-  type GenerateFallback333Result,
-} from './fallbackScrambleGenerator';
+  generate333ScrambleWithTimeout,
+  type Generate333Result,
+} from './scrambleGenerator';
 
 const assertValidScramble = (notation: string): void => {
   const trimmed = notation.trim();
@@ -30,7 +30,7 @@ const assertValidScramble = (notation: string): void => {
 export const generateRandom333Scramble = async (
   source: ScrambleSource = 'manual',
 ): Promise<ScrambleState> => {
-  const result: GenerateFallback333Result = await generateFallback333ScrambleWithTimeout({
+  const result: Generate333Result = await generate333ScrambleWithTimeout({
     length: 20,
     timeoutMs: 1000,
   });

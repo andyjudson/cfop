@@ -39,3 +39,11 @@
 - Test on mobile devices early
 - Modal dialog should use consistent styling, be responsive, and support keyboard navigation where logical e.g. start-stop or play-pause controls
 - localStorage persistence uses versioned envelopes with defensive validation
+
+## Local Development Server
+- Before starting dev server, check for existing Vite processes: `ps aux | grep -i vite`
+- Kill existing processes before starting new ones to avoid port conflicts
+- Use simple foreground commands during active testing: `npm run dev -- --host 127.0.0.1 --port 5173`
+- Avoid nohup/background processes during manual test phases - harder to manage and diagnose
+- File renames or major code changes may cause dev server to exit - restart as needed
+- Default dev server URL: http://127.0.0.1:5173/cubing.spec/

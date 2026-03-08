@@ -172,13 +172,29 @@ export function DemoModal({ algorithm, onClose }: DemoModalProps) {
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
+      return;
+    }
+
+    if (e.code === 'Space' || e.key === ' ') {
+      e.preventDefault();
+      
+      if (e.repeat) {
+        return;
+      }
+
+      // Toggle play/pause on Space key
+      if (isPlaying) {
+        handlePause();
+      } else {
+        handlePlay();
+      }
     }
   };
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [isPlaying, onClose]);
 
   return (
     <div className="modal-backdrop" onClick={handleBackdropClick}>

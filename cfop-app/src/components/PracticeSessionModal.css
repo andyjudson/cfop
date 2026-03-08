@@ -31,9 +31,8 @@
 }
 
 .practice-modal-content {
-  margin-top: 0.75rem;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 0.9rem;
+  margin-top: 1rem;
+  padding-top: 0;
 }
 
 .practice-block {
@@ -147,6 +146,46 @@
   border: 1px solid #fecaca;
 }
 
+/* Statistics Display */
+.stats-display {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  flex: 1 1 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+  font-family: monospace;
+}
+
+.stat-note {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-style: italic;
+  margin-top: 0.15rem;
+}
+
 @media (max-width: 768px) {
   .practice-modal {
     padding: 0.85rem 0.85rem 1rem;
@@ -154,5 +193,13 @@
 
   .timer-display {
     font-size: 1.7rem;
+  }
+
+  .stat-item {
+    flex: 1 1 140px;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
   }
 }

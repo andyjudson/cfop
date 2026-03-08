@@ -148,6 +148,86 @@ Add interactive 3D cube visualization using cubing.js library. Focus on:
 - User clicks rewind → cube returns to solved state
 - User presses Escape or clicks backdrop → modal closes
 
+## Feature 004: Practice Scramble + Solve Timer Modal
+
+### Status: Complete ✅
+
+### Scope
+Add a dedicated practice modal for lightweight solve rehearsal. Focus on:
+- Opening a separate modal dialog for practice flow
+- Random 3x3 scramble generation on demand
+- Simple solve timer with clear start/stop behavior
+- Predictable interaction rules between scramble and timer actions
+
+### Features
+- New "Practice Scramble + Timer" entry button on the main page
+- Practice modal opens/closes via button, escape key, and backdrop interaction
+- Random scramble generation on modal open and via `New Scramble`
+- Simple timer with `idle`, `running`, and `stopped` states
+- Live elapsed timer display and retained final time on stop
+- Space key toggles timer start/stop while modal is open
+- Running-state protection: scramble cannot be replaced while timing is active
+- Non-blocking status feedback for blocked scramble action
+- Space key handling prevents background page scroll while practicing
+- Improved scramble text layout (centered, padded, balanced wrapping)
+
+### Technical Requirements
+- Use existing `cubing` dependency (`cubing/scramble`) for random 3x3 scrambles
+- Keep timer state deterministic and robust under rapid interactions
+- Keep feature client-side only (no persistence or backend dependency)
+- Preserve existing grid/tooltip/demo behavior without regressions
+
+### User Stories
+- User opens practice modal → sees scramble and timer UI
+- User generates new scramble repeatedly when not timing
+- User starts timer, stops timer, and sees final time
+- User presses Space in practice modal → timer starts/stops without scrolling the page
+- User attempts `New Scramble` while timer running → scramble remains unchanged with clear feedback
+
+## Feature 005: Persistent Solve Time Stats
+
+### Status: Complete ✅
+
+### Scope
+Extend the practice timer modal by persisting completed solve times in browser localStorage and displaying derived statistics. Focus on:
+- Save and display last solve time across sessions
+- Calculate and show rolling average of last 5 solves
+- Track and display personal best (fastest) solve time
+- Robust localStorage handling with validation and corruption recovery
+- Clean stats UI with reset functionality
+
+### Features
+- Solve history persistence using versioned localStorage envelope
+- Three statistics displayed in practice modal:
+  - Last time: Most recent completed solve
+  - Average (last 5): Rolling mean with partial state note for <5 solves
+  - Best time: Fastest solve ever recorded
+- Stats update immediately after each solve
+- Stats persist across modal close/reopen and browser sessions
+- "Reset Stats" button to clear all history instantly (no confirmation)
+- Empty state handling with clear placeholders (—) when no data exists
+- Defensive validation: corrupted/invalid data falls back to safe empty state
+- Bounded history (max 100 records) prevents unbounded storage growth
+
+### Technical Requirements
+- Browser localStorage with versioned JSON envelope (version, updatedAt, solves[])
+- Runtime validation for stored data (invalid records ignored)
+- React hook (useSolveStats) for stat computation and persistence integration
+- localStorage operations wrapped in try/catch for non-fatal error handling
+- Maintain existing timer/scramble behavior without regressions
+
+### User Stories
+- User completes solve → "Last time" displays and persists across sessions
+- User completes 5+ solves → "Average (last 5)" shows accurate rolling mean
+- User completes faster solve → "Best time" updates immediately
+- User clicks "Reset Stats" → all statistics clear and revert to empty state
+- User encounters corrupted localStorage → practice flow continues without errors
+
+### UX Refinements (Bonus)
+- Unified modal headers: both practice and demo modals use consistent Bulma delete button
+- Space key binding added to demo modal for play/pause toggle (matches practice timer shortcut)
+- Removed header border from practice modal to match demo modal styling
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
@@ -156,8 +236,6 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - Intuitive Cross and F2L primer
 - Full CFOP method coverage (all F2L, OLL, PLL cases)
 - Interactive visualizations of solve algorithms
-- Scramble generator for practice
-- Solve time tracking for practice
 - Algorithm learning tracking for practice
 - Advanced UI components
 - Mobile app deployment
@@ -213,3 +291,28 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - Compact modal/cube/control sizing tuned to avoid notation crowding ✅
 - Control strip reverted to transparent (no full-width background fill) ✅
 - Escape key + backdrop click + close button dismissal verified ✅
+
+**Feature 004 - Practice Scramble + Solve Timer Modal (Completed)**:
+- Main-page practice entry button and dedicated modal ✅
+- Random scramble generation on open and on demand ✅
+- Timer state machine (`idle`/`running`/`stopped`) implemented ✅
+- Start/stop/reset solve flow with stable elapsed display ✅
+- Running-state scramble protection with user feedback ✅
+- Space key timer shortcut (start/stop) with background scroll suppression ✅
+- Scramble layout refinement (centered, padded, cleaner wrapping) ✅
+- Minor header/subtitle spacing polish on main page ✅
+- Production build and manual browser validation completed ✅
+
+**Feature 005 - Persistent Solve Time Stats (Completed)**:
+- localStorage persistence for solve history with versioned envelope ✅
+- useSolveStats hook with save/load/reset functionality ✅
+- Statistics display in practice modal (Last time, Average of last 5, Best time) ✅
+- Defensive validation and corruption-safe fallback for stored data ✅
+- Bounded history (max 100 records) to prevent unbounded growth ✅
+- Empty/partial state handling for <5 solves with helpful UI notes ✅
+- Reset Stats button with instant clear (no confirmation warning) ✅
+- Unified modal headers (both practice and demo use Bulma delete button) ✅
+- Space key binding added to demo modal for play/pause toggle ✅
+- Consistent header styling across modals (no border separation) ✅
+- All three user stories implemented and validated ✅
+- Production build and manual browser validation completed ✅

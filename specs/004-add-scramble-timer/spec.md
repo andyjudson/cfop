@@ -2,7 +2,7 @@
 
 **Feature Branch**: `[004-add-scramble-timer]`  
 **Created**: 2026-03-07  
-**Status**: Draft  
+**Status**: Complete ✅  
 **Input**: User description: "Add a button to show another modal dialog, generate a random scramble, and display a simple timer to measure solve time". 
 
 ## User Scenarios & Testing *(mandatory)*
@@ -49,6 +49,7 @@ As a learner doing a solve, I want a simple timer that I can start and stop so I
 1. **Given** the timer is idle, **When** the user starts the timer, **Then** elapsed time begins increasing visibly.
 2. **Given** the timer is running, **When** the user stops the timer, **Then** elapsed time stops changing and the final solve time remains visible.
 3. **Given** a solve time is displayed, **When** the user starts a new timing attempt, **Then** the timer starts from zero for the new attempt.
+4. **Given** the practice modal is open, **When** the user presses the Space key, **Then** the timer toggles between start and stop states.
 
 ---
 
@@ -78,6 +79,7 @@ As a learner completing repeated solves, I want scramble generation and timing t
 - User requests a new scramble while the timer is running; the resulting behavior is explicit and consistent with documented timer rules.
 - User leaves the page and returns during or after timing; the interface does not present misleading running time.
 - Generated scramble contains malformed notation; the system must prevent display of invalid scramble text.
+- User presses Space while the practice modal is open; the page must not scroll in the background.
 
 ## Requirements *(mandatory)*
 
@@ -98,6 +100,7 @@ As a learner completing repeated solves, I want scramble generation and timing t
 - **FR-008**: The system MUST prevent conflicting timer actions so that only one active timing session can exist at a time.
 - **FR-009**: The system MUST define and enforce a consistent behavior when a new scramble is requested during an active timing session.
 - **FR-010**: The system MUST keep scramble and timer controls understandable for first-time users without requiring documentation.
+- **FR-011**: The system MUST allow Space key control in the practice modal to start/stop timing and MUST suppress default page scroll behavior for that key press.
 
 ### Key Entities *(include if feature involves data)*
 

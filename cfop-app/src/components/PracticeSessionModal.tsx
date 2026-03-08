@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { MdClose } from 'react-icons/md';
 import { useSolveTimer } from '../hooks/useSolveTimer';
+import { useSolveStats } from '../hooks/useSolveStats';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
 import { generateRandom333Scramble } from '../utils/scramble';
 import { formatElapsedMs, formatTimerLabel } from '../utils/timeFormat';
@@ -18,6 +18,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const requestIdRef = useRef(0);
   const { timer, start, stop, reset, canStart, canStop } = useSolveTimer();
+  const { stats, saveSolve, resetStats } = useSolveStats();
 
   const loadScramble = useCallback(
     async (source: ScrambleSource) => {
@@ -59,21 +60,6 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
       return;
     }
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen, onClose]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
     requestIdRef.current += 1;
     reset();
     clearTransientState();
@@ -91,15 +77,61 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
     await loadScramble('manual');
   };
 
-  const handleStart = () => {
+  const handleStart = useCallback(() => {
     clearTransientState();
     start();
-  };
+  }, [clearTransientState, start]);
 
-  const handleStop = () => {
+  const handleStop = useCallback(() => {
     stop();
+    // Persist the completed solve
+    saveSolve(timer.elapsedMs);
     setStatusMessage('Solve recorded. Generate a new scramble for the next attempt.');
-  };
+  }, [saveSolve, stop, timer.elapsedMs]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (event.code !== 'Space' && event.key !== ' ') {
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      const tag = target?.tagName;
+      const isTypingTarget =
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        tag === 'SELECT' ||
+        target?.isContentEditable;
+
+      if (isTypingTarget) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (event.repeat || isScrambleLoading) {
+        return;
+      }
+
+      if (timer.state === 'running') {
+        handleStop();
+      } else {
+        handleStart();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [handleStart, handleStop, isOpen, isScrambleLoading, onClose, timer.state]);
 
   if (!isOpen) {
     return null;
@@ -113,9 +145,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
       <div className="practice-modal" onClick={(event) => event.stopPropagation()}>
         <header className="practice-modal-header">
           <h2 className="title is-4">Practice Session</h2>
-          <button className="button is-white" onClick={onClose} aria-label="Close practice session">
-            <MdClose size={20} />
-          </button>
+          <button className="delete" onClick={onClose} aria-label="close"></button>
         </header>
 
         <section className="practice-modal-content">
@@ -154,6 +184,43 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
               <button className="button is-warning is-light" onClick={handleStop} disabled={!canStop}>
                 Stop
               </button>
+            </div>
+          </div>
+
+          <div className="practice-block">
+            <div className="practice-block-header">
+              <h3 className="title is-6">Statistics</h3>
+              <button
+                className="button is-danger is-light is-small"
+                onClick={resetStats}
+                title="Clear all statistics"
+              >
+                Reset Stats
+              </button>
+            </div>
+
+            <div className="stats-display">
+              <div className="stat-item">
+                <span className="stat-label">Last time</span>
+                <span className="stat-value">
+                  {stats.lastTimeMs !== null ? formatElapsedMs(stats.lastTimeMs) : '—'}
+                </span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Average (last 5)</span>
+                <span className="stat-value">
+                  {stats.averageLast5Ms !== null ? formatElapsedMs(stats.averageLast5Ms) : '—'}
+                </span>
+                {stats.solveCount > 0 && stats.solveCount < 5 && (
+                  <span className="stat-note">({stats.solveCount}/5 solves)</span>
+                )}
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Best time</span>
+                <span className="stat-value">
+                  {stats.bestTimeMs !== null ? formatElapsedMs(stats.bestTimeMs) : '—'}
+                </span>
+              </div>
             </div>
           </div>
 

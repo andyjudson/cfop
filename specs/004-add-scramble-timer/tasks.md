@@ -90,6 +90,7 @@
 - [X] T020 [P] Update practice entry button copy and accessibility labels in cfop-app/src/App.tsx
 - [X] T021 Run full build/type-check via scripts in cfop-app/package.json and fix any resulting issues in cfop-app/src/App.tsx
 - [X] T022 Validate manual checklist and record completion notes in specs/004-add-scramble-timer/quickstart.md
+- [X] T023 Add Space-key timer toggle and prevent background scroll in cfop-app/src/components/PracticeSessionModal.tsx
 
 ---
 

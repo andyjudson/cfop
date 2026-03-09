@@ -109,7 +109,7 @@
   gap: 0.4rem;
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
   font-size: 0.9rem;
   transition: all 0.2s ease;
   box-shadow: 0 1px 4px rgba(59, 130, 246, 0.15);
@@ -142,7 +142,7 @@
   border-radius: 999px;
   font-size: 0.9rem;
   line-height: 1;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0.01em;
   color: var(--color-accent-primary);
   background: var(--color-bg-subtle);
@@ -180,7 +180,7 @@
 .cfop-navbar .navbar-item.cfop-navbar-active {
   background: var(--color-bg-subtle);
   color: var(--color-accent-primary);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .cfop-navbar .navbar-item.cfop-navbar-active:hover {
@@ -242,7 +242,7 @@
 
 .intuitive-case-label {
   color: var(--color-accent-primary);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   line-height: 1.25;
   min-height: 2.5rem;
   margin-bottom: 0.5rem;
@@ -305,7 +305,7 @@
   .section-header .title {
     margin: 0 !important;
     color: var(--color-text-primary) !important;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   .section-header .icon {
@@ -480,7 +480,7 @@
   }
 
   .cfop-navbar .navbar-item {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   .cfop-navbar .navbar-item.is-active {
@@ -531,13 +531,13 @@
 .notation-example-symbol {
   font-size: 1.5rem;
   color: var(--color-text-primary);
-  font-weight: 800;
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0.01em;
 }
 
 .notation-example-symbol strong {
   color: var(--color-text-primary);
-  font-weight: 800;
+  font-weight: var(--font-weight-bold);
 }
 
 .notation-example-image {
@@ -560,7 +560,7 @@
 }
 
 .notation-example-label {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-secondary);
 }
 
@@ -569,14 +569,14 @@
   border: 1px solid var(--color-border-light);
   border-radius: 8px;
   color: var(--color-text-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   padding: 0.3rem 0.55rem;
 }
 
 .trigger-name-header {
   display: inline-block;
   color: var(--color-text-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .notation-example-explanation {
@@ -601,7 +601,7 @@
 .notation-table-header {
   background-color: var(--color-bg-muted);
   color: var(--color-text-primary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .notation-plain-table,

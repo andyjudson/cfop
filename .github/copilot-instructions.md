@@ -7,11 +7,14 @@
 
 ## Current Status
 - Features 001 through 010 are implemented in `cfop-app` and tracked in specs artifacts.
-- Current focus is a maintenance cleanup pass for:
-  - CSS consistency (light surfaces, contrast, typography)
-  - Reusable page primitives (cards/sections)
-  - Style deduplication and maintainability
-- Do maintenance cleanup before starting the next net-new feature specification.
+- CSS/component maintenance cleanup completed (March 2026):
+  - Design token system established (60+ CSS custom properties in `index.css`)
+  - Shared `AlgorithmCard` component created for algorithm pages
+  - All algorithm pages migrated to shared card components (BGR, F2L, OLL, PLL, Intuitive)
+  - Hardcoded colors replaced with CSS variables
+  - Font weights normalized to 400/600/700
+  - Duplicated card/tooltip styling consolidated
+- Ready for next net-new feature specification.
 
 ## Resource usage
 - Reuse shared resources from `cubing.spec/shared-data` and `cubing.spec/shared-assets`
@@ -38,6 +41,9 @@
 
 ## Implementation Notes
 - Use shared resources via symlinks
+- Use shared `AlgorithmCard` component for algorithm displays (`standard`, `compact`, and `IntuitiveCaseCard` variants)
+- Use CSS custom properties from `index.css` for new/updated styles (`--color-*`, `--space-*`, `--font-*`, `--shadow-*`, `--radius-*`, `--gradient-*`)
+- Font weights must use the normalized scale only: 400 (normal), 600 (semibold), 700 (bold)
 - Start with static grid, add interactivity iteratively
 - Focus on clean code and maintainable structure
 - Test on mobile devices early

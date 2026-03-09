@@ -1,4 +1,5 @@
 import { CfopPageLayout } from '../components/CfopPageLayout';
+import { IntuitiveCaseCard } from '../components/AlgorithmCard';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 import { useMemo } from 'react';
@@ -133,13 +134,12 @@ function CaseCards({ cases, columnsClass }: { cases: ExampleCase[]; columnsClass
       {cases.map(item => {
         return (
           <div key={item.id} className={columnsClass}>
-            <div className="card intuitive-case-card">
-              <div className="card-content has-text-centered">
-                <h4 className="intuitive-case-label">{item.label}</h4>
-                <img src={item.image} alt={item.alt} className="intuitive-case-image" loading="lazy" />
-                {item.moveHint && <p className="intuitive-move-hint mt-2">{item.moveHint}</p>}
-              </div>
-            </div>
+            <IntuitiveCaseCard
+              label={item.label}
+              image={item.image}
+              alt={item.alt}
+              moveHint={item.moveHint}
+            />
           </div>
         );
       })}

@@ -128,28 +128,6 @@
   box-shadow: 0 3px 8px rgba(59, 130, 246, 0.25);
 }
 
-.essential-pill {
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  width: 1.6rem;
-  height: 1.6rem;
-  padding: 0;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  line-height: 1;
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.01em;
-  color: var(--color-accent-primary);
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border-light);
-  box-shadow: 0 1px 2px rgba(30, 64, 175, 0.18);
-}
-
 .section-title {
   margin-bottom: 1.25rem;
   color: var(--color-text-primary) !important;
@@ -271,13 +249,13 @@
   font-size: 0.86rem;
 }
 
-  /* Collapsible section header styling */
-  .cfop-group-section {
-    padding: 0.35rem 0 !important;
-    margin: 0 !important;
-  }
+/* Collapsible section header styling */
+.cfop-group-section {
+  padding: 0.35rem 0 !important;
+  margin: 0 !important;
+}
 
-  .section-header {
+.section-header {
     cursor: pointer;
     padding: 1rem 1.25rem;
     margin-bottom: 0;
@@ -317,140 +295,9 @@
     transform: rotate(180deg);
   }
 
-  /* Smaller images for reference pages */
-  .algo-card-compact .image-container img {
-    max-width: 200px;
-    margin: 0 auto;
-    display: block;
-  }
-
 .columns,
 .column {
   overflow: visible;
-}
-
-.algo-card {
-  background: var(--color-bg-base);
-  border: 1px solid var(--color-border-light);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
-  overflow: visible;
-  z-index: 1;
-}
-
-.algo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
-  z-index: 40;
-}
-
-.algo-card .card-content {
-  position: relative;
-  padding-top: 2.35rem;
-}
-
-.image-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 190px;
-}
-
-.image-container img {
-  max-width: 100%;
-  height: 180px;
-  object-fit: contain;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.2s ease;
-}
-
-.image-container img:hover {
-  transform: scale(1.02);
-}
-
-.notation {
-  background: var(--color-bg-subtle);
-  color: var(--color-text-primary);
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border-light);
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: monospace;
-  font-size: 0.92em;
-}
-
-/* Tooltip styles */
-.tooltip {
-  position: absolute;
-  left: calc(50% + 90px);
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 15px;
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: white;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 0.85em;
-  line-height: 1.5;
-  max-width: 300px;
-  width: max-content;
-  text-align: left;
-  z-index: 2000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  pointer-events: none;
-}
-
-.tooltip::after {
-  content: '';
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 8px solid transparent;
-  border-right-color: rgba(0, 0, 0, 0.9);
-}
-
-.tooltip-left {
-  left: auto;
-  right: calc(50% + 90px);
-  margin-left: 0;
-  margin-right: 15px;
-}
-
-.tooltip-left::after {
-  right: auto;
-  left: 100%;
-  border-right-color: transparent;
-  border-left-color: rgba(0, 0, 0, 0.9);
-}
-
-.tooltip p {
-  margin: 0 0 8px 0;
-}
-
-.tooltip p:last-child {
-  margin-bottom: 0;
-}
-
-.tooltip strong {
-  color: var(--color-accent-gold);
-}
-
-.tooltip ul {
-  margin: 8px 0;
-  padding-left: 20px;
-}
-
-.tooltip li {
-  margin: 4px 0;
 }
 
 /* Mobile responsive */

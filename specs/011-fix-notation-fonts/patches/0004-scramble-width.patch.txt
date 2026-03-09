@@ -1,0 +1,58 @@
+# Patch proposal: adjust scramble display width
+# Target: cfop-app/src/components/PracticeSessionModal.css (or .scramble-display/.scramble-text selector)
+
+Problem:
+- `.scramble-text` now appears narrower than before (max-width reduced or padding increased elsewhere).
+
+Proposal:
+- Ensure `.scramble-display` uses a generous max-width and `.scramble-text` centers and allows wrapping at sensible points.
+
+*** Begin Patch
+*** Update File: cfop-app/src/components/PracticeSessionModal.css
+@@
+ .scramble-display {
+-  background: #ffffff;
+-  color: #111827;
+-  border: 1px solid #d9e2ee;
+-  border-radius: 8px;
+-  padding: 0.7rem 1rem;
+-  min-height: 2.8rem;
+-  display: flex;
+-  justify-content: center;
+-}
+-
+-.scramble-text {
+-  font-family: var(--font-mono);
+-  font-size: 1rem;
+-  line-height: 1.45;
+-  text-align: center;
+-  max-width: 34ch;
+-  margin: 0 auto;
+-  text-wrap: balance;
+-}
++  background: #ffffff;
++  color: #111827;
++  border: 1px solid #d9e2ee;
++  border-radius: 8px;
++  padding: 0.6rem 1rem; /* slightly tighter vertically */
++  min-height: 2.8rem;
++  display: flex;
++  justify-content: center;
++}
++
++.scramble-text {
++  font-family: var(--font-mono);
++  font-size: 1rem;
++  line-height: 1.45;
++  text-align: center;
++  max-width: calc(100% - 2rem); /* allow the scramble to use most of the container */
++  width: 100%;
++  margin: 0 auto;
++  white-space: normal;
++  word-break: break-word;
++}
+*** End Patch
+
+Notes:
+- `34ch` is a fixed character width which may underflow on smaller containers; using `calc(100% - X)` allows the scramble to expand to the available space while keeping padding.
+- Verify on narrow viewports to ensure scrambles don't wrap awkwardly; adjust `font-size` at smaller breakpoints if needed.

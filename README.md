@@ -133,7 +133,9 @@ cubing.spec/
 │   ├── 005-stats-persistence/
 │   ├── 006-scramble-generator/
 │   ├── 007-cube-image-generator/
-│   └── 008-full-cfop-grids/
+│   ├── 008-full-cfop-grids/
+│   ├── 009-intuitive-methods/
+│   └── 010-notation-reference/
 └── .specify/           # Spec-kit configuration
 ```
 

@@ -1,0 +1,46 @@
+# Patch proposal: restore algorithm notation full-width in AlgorithmCard
+# Target: cfop-app/src/components/AlgorithmCard.css
+
+Problem:
+- Notation text previously filled the card width; after recent changes it wraps in a narrow container.
+- Likely caused by padding/margin or inline-block display on `.notation` wrapper.
+
+Proposal:
+- Make `.notation` a block-level element that can occupy available space, and adjust internal spacing so move tokens are flex-wrapped but centered when appropriate.
+
+*** Begin Patch
+*** Update File: cfop-app/src/components/AlgorithmCard.css
+@@
+-.algo-card .notation {
+-  display: inline-block;
++.algo-card .notation {
++  display: block;
+   background: var(--color-bg-muted);
+   color: var(--color-text-primary);
+   padding: var(--space-sm) var(--space-md);
+   border-radius: var(--radius-sm);
+   font-family: var(--font-mono);
+   font-size: var(--font-size-sm);
+   font-weight: var(--font-weight-normal);
+   letter-spacing: 0.02em;
+   word-spacing: 0.15em;
+   white-space: normal;
+   line-height: 1.6;
+ }
++
++.algo-card .notation .moves {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.4rem;
++  justify-content: flex-start; /* or center if preferred */
++}
++
++.algo-card .notation .moves .move-token {
++  min-width: 2.3rem;
++  text-align: center;
++}
+*** End Patch
+
+Notes:
+- Update the React/JSX structure if needed so notation contains a `.moves` wrapper with `.move-token` elements (or adapt selectors to current DOM).
+- This patch restores block behavior and gives more predictable width and wrapping behavior across cards.

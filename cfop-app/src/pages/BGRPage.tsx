@@ -1,29 +1,17 @@
 import { useState, useEffect } from 'react';
-import Markdown from 'react-markdown';
-import { MdStar, MdVideocam, MdTimer } from 'react-icons/md';
+import { MdVideocam, MdTimer } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 import { DemoModal } from '../components/DemoModal';
 import { PracticeSessionModal } from '../components/PracticeSessionModal';
 import { CfopPageLayout } from '../components/CfopPageLayout';
-
-interface CfopAlgorithm {
-  id: string;
-  name: string;
-  notation: string;
-  method: string;
-  group: string;
-  image: string;
-  notes: string;
-}
+import { AlgorithmCard, type CfopAlgorithm } from '../components/AlgorithmCard';
 
 const essentialIds = ['oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
 
 function BGRPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredAlg, setHoveredAlg] = useState<string | null>(null);
-  const [tooltipLeft, setTooltipLeft] = useState<boolean>(false);
   const [showDemo, setShowDemo] = useState(false);
   const [demoAlgorithm, setDemoAlgorithm] = useState<CfopAlgorithm | null>(null);
   const [showPracticeSession, setShowPracticeSession] = useState(false);
@@ -57,17 +45,6 @@ function BGRPage() {
     return <div className="loading">Loading 2-look algorithms...</div>;
   }
 
-  const handleMouseEnter = (algId: string, event: React.MouseEvent<HTMLImageElement>) => {
-    const img = event.currentTarget;
-    const rect = img.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    
-    // Check if there's enough space on the right (tooltip width ~300px + margin)
-    const spaceOnRight = viewportWidth - rect.right;
-    setTooltipLeft(spaceOnRight < 350);
-    setHoveredAlg(algId);
-  };
-
   const handleOpenDemo = () => {
     if (algorithms.length > 0) {
       const randomAlg = algorithms[Math.floor(Math.random() * algorithms.length)];
@@ -95,39 +72,11 @@ function BGRPage() {
       <div className="columns is-multiline">
         {algs.map(alg => (
           <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
-            <div className="card algo-card">
-              <div className="card-content has-text-centered">
-                <div className="image-container">
-                  <img 
-                    src={alg.image} 
-                    alt={alg.name}
-                    onMouseEnter={(e) => handleMouseEnter(alg.id, e)}
-                    onMouseLeave={() => setHoveredAlg(null)}
-                    onClick={(e) => {
-                      if (hoveredAlg === alg.id) {
-                        setHoveredAlg(null);
-                      } else {
-                        handleMouseEnter(alg.id, e);
-                      }
-                    }}
-                  />
-                  {hoveredAlg === alg.id && alg.notes && (
-                    <div className={`tooltip ${tooltipLeft ? 'tooltip-left' : ''}`}>
-                      <Markdown>{alg.notes}</Markdown>
-                    </div>
-                  )}
-                </div>
-                <h3 className="title is-5 mt-3">{alg.name}</h3>
-                {essentialIds.includes(alg.id) && (
-                  <span className="essential-pill">
-                    <MdStar size={14} />
-                  </span>
-                )}
-                <div className="content">
-                  <code className="notation">{alg.notation}</code>
-                </div>
-              </div>
-            </div>
+            <AlgorithmCard
+              algorithm={alg}
+              variant="standard"
+              essential={essentialIds.includes(alg.id)}
+            />
           </div>
         ))}
       </div>

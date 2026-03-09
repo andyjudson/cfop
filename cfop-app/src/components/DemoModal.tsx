@@ -2,17 +2,8 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { Alg, Move } from 'cubing/alg';
 import { TwistyPlayer } from 'cubing/twisty';
 import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove } from 'react-icons/md';
+import { type CfopAlgorithm } from './AlgorithmCard';
 import './DemoModal.css';
-
-interface CfopAlgorithm {
-  id: string;
-  name: string;
-  notation: string;
-  method: string;
-  group: string;
-  image: string;
-  notes: string;
-}
 
 interface DemoModalProps {
   algorithm: CfopAlgorithm;

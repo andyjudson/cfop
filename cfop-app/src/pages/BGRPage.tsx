@@ -72,11 +72,7 @@ function BGRPage() {
       <div className="columns is-multiline">
         {algs.map(alg => (
           <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
-            <AlgorithmCard
-              algorithm={alg}
-              variant="standard"
-              essential={essentialIds.includes(alg.id)}
-            />
+            <AlgorithmCard algorithm={alg} variant="standard" />
           </div>
         ))}
       </div>
@@ -96,13 +92,12 @@ function BGRPage() {
             reducing the algorithm count to just 9 cases, but require repetition. Learn these first to solve reliably around 1 to 2 minutes, 
             then expand to full OLL/PLL, and lastly full F2L or advanced techniques like scan ahead.
           </p>
+          <p className="mt-2 mb-0">
+            <strong>Essentials:</strong> {essentialsSummary}
+          </p>
         </>
       }
     >
-      <div className="has-text-centered mb-5">
-        <p className="essentials-summary"><strong>Essentials:</strong> {essentialsSummary}</p>
-      </div>
-      
       <div className="has-text-centered mb-5 button-row">
         <button
           className="button is-link is-light demo-button"

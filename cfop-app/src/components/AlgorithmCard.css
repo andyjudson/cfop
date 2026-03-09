@@ -48,21 +48,6 @@
   cursor: pointer;
 }
 
-/* Essential marker pill */
-.algo-card .essential-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: #fef3c7;
-  border: 1px solid #fcd34d;
-  border-radius: var(--radius-full);
-  padding: 0.15rem 0.5rem;
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  color: #92400e;
-  margin-top: 0.25rem;
-}
-
 /* Algorithm notation display */
 .algo-card .notation {
   display: inline-block;

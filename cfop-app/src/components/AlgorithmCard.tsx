@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Markdown from 'react-markdown';
-import { MdStar } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import './AlgorithmCard.css';
 
@@ -10,7 +9,6 @@ export interface CfopAlgorithm {
   notation: string;
   image: string;
   notes?: string;
-  essential?: boolean;
   method?: string;
   group?: string;
 }
@@ -18,14 +16,12 @@ export interface CfopAlgorithm {
 interface AlgorithmCardProps {
   algorithm: CfopAlgorithm;
   variant?: 'standard' | 'compact';
-  essential?: boolean;
   onImageInteraction?: (algorithmId: string) => void;
 }
 
 export function AlgorithmCard({ 
   algorithm, 
   variant = 'standard',
-  essential = false,
   onImageInteraction 
 }: AlgorithmCardProps) {
   const [hoveredAlg, setHoveredAlg] = useState<string | null>(null);
@@ -74,11 +70,6 @@ export function AlgorithmCard({
           )}
         </div>
         <h3 className="title is-5 mt-3">{algorithm.name}</h3>
-        {essential && (
-          <span className="essential-pill">
-            <MdStar size={14} />
-          </span>
-        )}
         <div className="content">
           <code className="notation">{algorithm.notation}</code>
         </div>

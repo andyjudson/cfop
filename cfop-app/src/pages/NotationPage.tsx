@@ -262,16 +262,16 @@ function NotationPage() {
   return (
     <CfopPageLayout
       pageTitle="Notation Reference"
-      subtitle="A comprehensive reference for understanding cube notation, including face turns, modifiers, slices, rotations, and triggers"
+      subtitle="A comprehensive reference for understanding cube notation - face turns, modifiers, slices, rotations, and triggers"
     >
-      <div className="container">
+      <>
         {sections.length === 0 ? (
-          <div className="section">
-            <h2 className="title is-4">Coming Soon</h2>
-            <p>Notation reference content will be added here.</p>
-          </div>
-        ) : (
-          sections.map((section) => (
+        <div className="section">
+          <h2 className="title is-4">Coming Soon</h2>
+          <p>Notation reference content will be added here.</p>
+        </div>
+      ) : (
+        sections.map((section) => (
             <div key={section.id} className="section notation-section">
               <h2 className="title is-4">{section.title}</h2>
               <p className="subtitle is-6">{section.description}</p>
@@ -314,7 +314,7 @@ function NotationPage() {
             </div>
           </div>
         )}
-      </div>
+      </>
     </CfopPageLayout>
   );
 }

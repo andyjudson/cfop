@@ -1,9 +1,71 @@
 :root {
+  /* Typography */
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1f2937;
-  background: #fff;
+  
+  /* Design Tokens - Colors */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-tertiary: #64748b;
+  --color-text-emphasis: #111827;
+  --color-text-subtle: #1f2937;
+  
+  --color-bg-base: #ffffff;
+  --color-bg-subtle: #f8fafc;
+  --color-bg-muted: #f1f5f9;
+  --color-bg-emphasis: #e2e8f0;
+  
+  --color-border-light: #e2e8f0;
+  --color-border-medium: #cbd5e1;
+  --color-border-emphasis: #dbe4ef;
+  
+  --color-accent-primary: #2563eb;
+  --color-accent-dark: #3b4f87;
+  
+  --color-notation-symbol: #020617;
+  
+  /* Design Tokens - Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+  
+  /* Design Tokens - Typography Scale */
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  
+  /* Design Tokens - Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 2px 6px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 4px 12px rgba(15, 23, 42, 0.12);
+  
+  /* Design Tokens - Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-full: 999px;
+  
+  /* Design Tokens - Gradients */
+  --gradient-section-light: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --gradient-section-medium: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --gradient-section-emphasis: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+  
+  /* Legacy values for compatibility during migration */
+  color: var(--color-text-subtle);
+  background: var(--color-bg-base);
 }
 
 * {

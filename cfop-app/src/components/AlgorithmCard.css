@@ -50,7 +50,7 @@
 
 /* Algorithm notation display */
 .algo-card .notation {
-  display: inline-block;
+  display: block;
   background: var(--color-bg-muted);
   color: var(--color-text-primary);
   padding: var(--space-sm) var(--space-md);
@@ -62,6 +62,18 @@
   word-spacing: 0.15em;
   white-space: normal;
   line-height: 1.6;
+}
+
+.algo-card .notation .moves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: flex-start;
+}
+
+.algo-card .notation .moves .move-token {
+  min-width: 2.3rem;
+  text-align: center;
 }
 
 /* Tooltip for algorithm notes */

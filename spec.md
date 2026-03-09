@@ -332,6 +332,7 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 **Roadmaps**
 - Notation primer
 - Intuitive Cross and F2L primer
+- Lookup official WCA event shuffles e.g. for world records / moves used / timings, and test yourself ... not sure if any of this is possible
 - Interactive visualizations for any user selected cases
 - Algorithm learning tracking for practice
 - Revisit UI design, layout, theme, components

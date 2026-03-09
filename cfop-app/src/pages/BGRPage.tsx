@@ -90,7 +90,7 @@ function BGRPage() {
           <p className="mb-0">
             <strong>2-look</strong> beginner methods simplify the last layer by breaking OLL and PLL into smaller subsets, 
             reducing the algorithm count to just 9 cases, but require repetition. Learn these first to solve reliably around 1 to 2 minutes, 
-            then expand to full OLL/PLL, and lastly full F2L or advanced techniques like scan ahead.
+            then expand to full OLL/PLL, and lastly full F2L.
           </p>
           <p className="mt-2 mb-0">
             <strong>Essentials:</strong> {essentialsSummary}

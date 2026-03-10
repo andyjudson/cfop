@@ -95,6 +95,8 @@ The following UI regressions were observed during verification and should be tra
 - Algorithm notation width in cards: notation no longer spans full card width as before — investigate `AlgorithmCard` layout/padding and notation wrapper display rules.
 - Scramble display width reduced: scramble text container (`.scramble-text`) appears narrower than previously; restore intended max-width/spacing.
 - Inconsistent card variants: Notation and Intuitive page cards differ from other pages and from each other; decide on consolidation (1, 2, or 3 standardized card variants) and update `AlgorithmCard` variants accordingly.
+- Essential algorithm marker missing: the star/essential marker that indicates an algorithm is 'essential' or favorited has disappeared from algorithm cards and grids; restore its visual (icon), positioning, and interactive behavior (toggle + a11y label).
+- Grid-style parity between Notation and Intuitive: the notation grid and the intuitive method grid exhibit inconsistent spacing, card padding, notation width, and image sizing which causes a jarring visual mismatch. Restore a shared card/grid baseline (tokens for padding, unified `.notation` rules, consistent `.image-container` sizing) so both pages visually match and behave consistently at mobile and desktop breakpoints.
 
 Suggested short-term actions
 ---------------------------

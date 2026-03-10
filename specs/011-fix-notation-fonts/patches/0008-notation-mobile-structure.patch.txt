@@ -1,0 +1,29 @@
+Patch 0008: Notation page mobile layout parity
+
+Problem
+-------
+The Notation page does not appear to use the same container/grid/page structure as other app pages on mobile; items can overflow or have inconsistent spacing, making the page feel broken on iPhone-sized viewports.
+
+Goal
+----
+Identify structural differences between Notation and other pages (Beginner/Intuitive) and refactor to a shared page/container pattern so that grid/cards behave consistently at mobile breakpoints.
+
+Investigation checklist
+-----------------------
+- Compare top-level page wrappers: `.page`, `.container`, `.section` usage between pages.
+- Check for page-specific overrides for padding / max-width / margin on Notation.
+- Verify grid CSS (columns, gap, min-width) and whether Notation uses different breakpoints.
+- Inspect any inline styles or page-level classes applied in Notation page TSX that differ from others.
+
+Proposed Fixes
+--------------
+1. Extract a shared page wrapper (e.g., `.app-page` or `.content-container`) with standard responsive tokens (`--space-lg`, `--space-md`) and use it across Notation, Intuitive, and Beginner pages.
+2. Ensure `.algo-card` and `.intuitive-case-card` rely on the same grid rules for container width and item sizing.
+3. Replace any hardcoded pixel paddings in Notation with tokenized spacing and media queries used by other pages.
+4. Run a responsive QA pass at 393px and 1280×800.
+
+Acceptance
+----------
+- Notation page matches Beginner/Intuitive layout and spacing on mobile.
+- No overflow/clipping at iPhone-16 width; `algo-card` content wraps appropriately.
+- Visual snapshots show parity between pages.

@@ -403,6 +403,12 @@
   font-weight: var(--font-weight-normal);
 }
 
+.trigger-syntax {
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+  text-align: left;
+}
+
 .notation-example-explanation {
   color: var(--color-text-tertiary);
   line-height: 1.4;

@@ -97,6 +97,8 @@ The following UI regressions were observed during verification and should be tra
 - Inconsistent card variants: Notation and Intuitive page cards differ from other pages and from each other; decide on consolidation (1, 2, or 3 standardized card variants) and update `AlgorithmCard` variants accordingly.
 - Essential algorithm marker missing: the star/essential marker that indicates an algorithm is 'essential' or favorited has disappeared from algorithm cards and grids; restore its visual (icon), positioning, and interactive behavior (toggle + a11y label).
 - Grid-style parity between Notation and Intuitive: the notation grid and the intuitive method grid exhibit inconsistent spacing, card padding, notation width, and image sizing which causes a jarring visual mismatch. Restore a shared card/grid baseline (tokens for padding, unified `.notation` rules, consistent `.image-container` sizing) so both pages visually match and behave consistently at mobile and desktop breakpoints.
+ - Notation page mobile layout: the Notation page does not fit well on small screens — it appears to be using an inconsistent page structure compared with other pages (different container, padding, or grid rules). Investigate the Notation page layout, unify container/grid rules with the Intuitive and Beginner pages, and ensure the page uses responsive tokens and breakpoints (iPhone 16 baseline).
+ - Default landing page: the app currently opens to the Intuitive page by default. Make the Beginner/primer page the default landing route for new/first-time users. Document the routing change, update navigation order if needed, and ensure no regressions in deep links.
 
 Suggested short-term actions
 ---------------------------

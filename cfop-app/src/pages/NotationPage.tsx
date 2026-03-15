@@ -304,8 +304,8 @@ function NotationPage() {
                   {triggers.map((trigger) => (
                     <tr key={trigger.id}>
                       <td><span className="trigger-name-header">{trigger.name}</span></td>
-                      <td><code>{trigger.sequence}</code></td>
-                      <td><code>{trigger.inverse}</code></td>
+                      <td><span className="trigger-syntax">{trigger.sequence}</span></td>
+                      <td><span className="trigger-syntax">{trigger.inverse}</span></td>
                       {triggers.some(t => t.context) && <td>{trigger.context || '—'}</td>}
                     </tr>
                   ))}

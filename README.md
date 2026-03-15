@@ -1,11 +1,11 @@
 # cubing.spec
 
-Specification-driven cubing applications for Rubik's cube learning and algorithm documentation.
+This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with AI-assisted implementation via **GitHub Copilot agent mode**.
 
 ## Applications
 
 ### cfop-app
-CFOP learning companion for speedsolving with algorithm reference grids, interactive visualizations, practice timers, and solve tracking.
+CFOP learning companion with algorithm reference grids, interactive visualizations, practice timers, and solve tracking.
 
 **Live app:** https://andyjudson.github.io/cubing.spec/
 
@@ -22,7 +22,7 @@ CFOP learning companion for speedsolving with algorithm reference grids, interac
 **Directory:** `/cfop-app/` • [README](cfop-app/README.md)
 
 ### imggen-app
-Local-only standalone cube image generator for algorithm documentation with 3D PNG and 2D SVG export capabilities.
+Standalone cube image generator for use in algorithm documentation with 3D PNG and 2D SVG export capabilities.
 
 **Usage:** Local development tool (not deployed to GitHub Pages)
 
@@ -35,10 +35,6 @@ Local-only standalone cube image generator for algorithm documentation with 3D P
 - Algorithm validation and inversion logging
 
 **Directory:** `/imggen-app/` • [README](imggen-app/README.md)
-
-## What is this?
-
-This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with AI-assisted implementation via **GitHub Copilot agent mode**.
 
 ## Motivation
 

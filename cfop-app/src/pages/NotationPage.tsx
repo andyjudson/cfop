@@ -84,20 +84,20 @@ function NotationPage() {
       description: 'Each face of the cube can be turned clockwise (no symbol), counterclockwise (prime \'), or 180 degrees (2).',
       examples: [
         {
-          id: 'face-U',
-          symbol: 'U',
-          label: 'Up Face',
-          explanation: 'Turn the top face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-U-cw-arrow.png',
-          imageAlt: 'Up face clockwise rotation'
-        },
-        {
           id: 'face-R',
           symbol: 'R',
           label: 'Right Face',
           explanation: 'Turn the right face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-R-cw-arrow.png',
           imageAlt: 'Right face clockwise rotation'
+        },
+        {
+          id: 'face-U',
+          symbol: 'U',
+          label: 'Up Face',
+          explanation: 'Turn the top face clockwise 90 degrees',
+          imageSrc: '/cubing.spec/assets/notation/syntax-U-cw-arrow.png',
+          imageAlt: 'Up face clockwise rotation'
         },
         {
           id: 'face-F',
@@ -277,7 +277,7 @@ function NotationPage() {
               <p className="subtitle is-6">{section.description}</p>
               <div className="columns is-multiline">
                 {section.examples.map((example) => (
-                  <div key={example.id} className="column is-one-third-tablet is-one-quarter-desktop">
+                  <div key={example.id} className="column is-one-third-desktop">
                     <NotationExampleTile example={example} />
                   </div>
                 ))}

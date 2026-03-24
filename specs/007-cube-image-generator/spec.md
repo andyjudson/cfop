@@ -102,13 +102,13 @@ As a content developer creating case setup images, I want inverted algorithms lo
 - Rapid repeated apply/capture clicks should not cause race conditions or corrupt downloads
 - Large/complex algorithms should render without performance degradation
 - Switching between 2D/3D modes MUST preserve all current settings (algorithms, mask, anchor) and re-render the cube state with the new visualization mode
-- The new `imggen-app` MUST remain isolated from `cfop-app` with no navigation links, shared runtime state, or cross-app UI coupling
+- The new `cubify-app` MUST remain isolated from `cfop-app` with no navigation links, shared runtime state, or cross-app UI coupling
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: The app MUST be a standalone React application located in `/cubing.spec/imggen-app/`.
+- **FR-001**: The app MUST be a standalone React application located in `/cubing.spec/cubify-app/`.
 - **FR-002**: The app MUST use cubing.js TwistyPlayer for cube visualization with rendering-only mode (no interactive controls on player).
 - **FR-003**: The app MUST provide form inputs for setup algorithm, move algorithm, visualization mode (2D/3D), anchor (start/end), and stickering mask.
 - **FR-004**: The app MUST provide preset mask dropdown with options: default, cross, F2L, OLL, PLL.
@@ -124,7 +124,7 @@ As a content developer creating case setup images, I want inverted algorithms lo
 - **FR-014**: Play and Capture buttons MUST be disabled when the algorithm field is empty or contains invalid notation, and enabled only when a valid algorithm is present.
 - **FR-015**: Switching between 2D and 3D visualization modes MUST preserve all current form settings (setup algorithm, move algorithm, mask, anchor) and automatically re-render the cube with the new mode.
 - **FR-016**: Generated 3D PNG output SHOULD target a file size of ≤200KB under normal usage to keep documentation assets lightweight.
-- **FR-017**: `imggen-app` MUST remain standalone from `cfop-app`: no buttons/links between apps, no shared routing dependencies, and no required runtime imports from `cfop-app` source.
+- **FR-017**: `cubify-app` MUST remain standalone from `cfop-app`: no buttons/links between apps, no shared routing dependencies, and no required runtime imports from `cfop-app` source.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -181,7 +181,7 @@ Based on legacy cubegen.html implementation:
 ### Component Structure
 
 ```
-imggen-app/
+cubify-app/
 ├── src/
 │   ├── App.tsx              # Main app container
 │   ├── main.tsx             # React entry point

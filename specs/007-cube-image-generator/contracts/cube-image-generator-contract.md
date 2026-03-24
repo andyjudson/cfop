@@ -1,7 +1,7 @@
 # Contract: Cube Image Generator Tool
 
 ## Scope
-UI/domain contract for `imggen-app` standalone app.
+UI/domain contract for `cubify-app` standalone app.
 
 ## 1) Control Form Contract
 
@@ -73,6 +73,6 @@ Required configuration baseline:
 
 ## 7) Standalone Boundary Contract
 
-- `imggen-app` must not require `cfop-app` runtime imports.
-- `imggen-app` UI must not include navigation links/buttons into `cfop-app`.
-- `cfop-app` must not require runtime links/buttons into `imggen-app` for normal operation.
+- `cubify-app` must not require `cfop-app` runtime imports.
+- `cubify-app` UI must not include navigation links/buttons into `cfop-app`.
+- `cfop-app` must not require runtime links/buttons into `cubify-app` for normal operation.

@@ -21,7 +21,7 @@ CFOP learning companion with algorithm reference grids, interactive visualizatio
 
 **Directory:** `/cfop-app/` • [README](cfop-app/README.md)
 
-### imggen-app
+### cubify-app
 Standalone cube image generator for use in algorithm documentation with 3D PNG and 2D SVG export capabilities.
 
 **Usage:** Local development tool (not deployed to GitHub Pages)
@@ -34,7 +34,7 @@ Standalone cube image generator for use in algorithm documentation with 3D PNG a
 - Setup algorithm configuration with anchor control
 - Algorithm validation and inversion logging
 
-**Directory:** `/imggen-app/` • [README](imggen-app/README.md)
+**Directory:** `/cubify-app/` • [README](cubify-app/README.md)
 
 ## Motivation
 
@@ -104,9 +104,9 @@ npm install
 npm run dev  # http://localhost:5173/cubing.spec/
 ```
 
-### imggen-app
+### cubify-app
 ```bash
-cd imggen-app
+cd cubify-app
 npm install
 npm run dev  # http://localhost:5173/
 ```
@@ -120,7 +120,7 @@ Huge thanks to the cubing community educators who make this learning journey acc
 ```
 cubing.spec/
 ├── cfop-app/           # CFOP learning companion (main app)
-├── imggen-app/         # Cube image generator (utility)
+├── cubify-app/         # Cube image generator (utility)
 ├── specs/              # Feature specifications
 │   ├── 001-beginner-grid/
 │   ├── 002-tooltips/

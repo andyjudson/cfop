@@ -11,15 +11,15 @@
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Initialize standalone `imggen-app` app with required tooling and base structure.
+**Purpose**: Initialize standalone `cubify-app` app with required tooling and base structure.
 
-- [x] T001 Create standalone app folder structure in imggen-app/
-- [x] T002 Create project manifest and scripts in imggen-app/package.json
-- [x] T003 [P] Create TypeScript config files in imggen-app/tsconfig.json, imggen-app/tsconfig.app.json, imggen-app/tsconfig.node.json
-- [x] T004 [P] Create Vite + React entry files in imggen-app/index.html, imggen-app/vite.config.ts, imggen-app/src/main.tsx
-- [x] T005 [P] Create base app shell and styles in imggen-app/src/App.tsx, imggen-app/src/App.css, imggen-app/src/index.css
-- [x] T006 Install and lock dependencies (`react`, `react-dom`, `cubing`, `bulma`, `typescript`, `vite`, `@vitejs/plugin-react`) in imggen-app/package-lock.json
-- [x] T047 Add standalone boundary note in imggen-app README/entry docs: no links/buttons/routes to cfop-app and no cross-app coupling
+- [x] T001 Create standalone app folder structure in cubify-app/
+- [x] T002 Create project manifest and scripts in cubify-app/package.json
+- [x] T003 [P] Create TypeScript config files in cubify-app/tsconfig.json, cubify-app/tsconfig.app.json, cubify-app/tsconfig.node.json
+- [x] T004 [P] Create Vite + React entry files in cubify-app/index.html, cubify-app/vite.config.ts, cubify-app/src/main.tsx
+- [x] T005 [P] Create base app shell and styles in cubify-app/src/App.tsx, cubify-app/src/App.css, cubify-app/src/index.css
+- [x] T006 Install and lock dependencies (`react`, `react-dom`, `cubing`, `bulma`, `typescript`, `vite`, `@vitejs/plugin-react`) in cubify-app/package-lock.json
+- [x] T047 Add standalone boundary note in cubify-app README/entry docs: no links/buttons/routes to cfop-app and no cross-app coupling
 
 ---
 
@@ -29,14 +29,14 @@
 
 **⚠️ CRITICAL**: No user story work should begin until this phase is complete.
 
-- [x] T007 Define domain types and action-state contracts in imggen-app/src/types/imageGenerator.ts
-- [x] T008 [P] Implement preset mask constants and lookup helpers in imggen-app/src/utils/maskPresets.ts
-- [x] T009 [P] Implement algorithm parse/validation helpers in imggen-app/src/utils/algUtils.ts
-- [x] T010 [P] Implement capture filename + mode helpers in imggen-app/src/utils/captureUtils.ts
-- [x] T011 Create TwistyPlayer wrapper component skeleton in imggen-app/src/components/CubeViewer.tsx
-- [x] T012 Create form component skeleton with controlled props in imggen-app/src/components/ControlForm.tsx
-- [x] T013 Create action button group skeleton in imggen-app/src/components/ActionButtons.tsx
-- [x] T014 Wire foundational state and component composition in imggen-app/src/App.tsx
+- [x] T007 Define domain types and action-state contracts in cubify-app/src/types/imageGenerator.ts
+- [x] T008 [P] Implement preset mask constants and lookup helpers in cubify-app/src/utils/maskPresets.ts
+- [x] T009 [P] Implement algorithm parse/validation helpers in cubify-app/src/utils/algUtils.ts
+- [x] T010 [P] Implement capture filename + mode helpers in cubify-app/src/utils/captureUtils.ts
+- [x] T011 Create TwistyPlayer wrapper component skeleton in cubify-app/src/components/CubeViewer.tsx
+- [x] T012 Create form component skeleton with controlled props in cubify-app/src/components/ControlForm.tsx
+- [x] T013 Create action button group skeleton in cubify-app/src/components/ActionButtons.tsx
+- [x] T014 Wire foundational state and component composition in cubify-app/src/App.tsx
 
 **Checkpoint**: Foundation ready - user story implementation can now begin.
 
@@ -48,16 +48,16 @@
 
 **Independent Test**: Enter a valid algorithm, Apply, then Capture in both modes and verify output dimensions/format.
 
-- [ ] T015 [P] [US1] Implement algorithm field validation + inline error state in imggen-app/src/utils/algUtils.ts
-- [ ] T016 [US1] Implement setup/move algorithm inputs and Enter-to-Apply submit behavior in imggen-app/src/components/ControlForm.tsx
-- [ ] T017 [US1] Implement Apply action to update TwistyPlayer state in imggen-app/src/App.tsx
-- [ ] T018 [US1] Implement render-only TwistyPlayer baseline config (`background:none`, `hintFacelets:none`, `controlPanel:none`) in imggen-app/src/components/CubeViewer.tsx
-- [ ] T019 [US1] Implement Capture action using `experimentalDownloadScreenshot` in imggen-app/src/components/ActionButtons.tsx
-- [ ] T020 [US1] Enforce 3D capture target sizing (288x288) and 2D fixed SVG workflow in imggen-app/src/components/CubeViewer.tsx
-- [ ] T021 [US1] Implement timestamped filename pattern `cubing-3x3-{timestamp}` in imggen-app/src/utils/captureUtils.ts
-- [ ] T022 [US1] Disable Play/Capture for empty or invalid move algorithm in imggen-app/src/App.tsx and imggen-app/src/components/ActionButtons.tsx
+- [ ] T015 [P] [US1] Implement algorithm field validation + inline error state in cubify-app/src/utils/algUtils.ts
+- [ ] T016 [US1] Implement setup/move algorithm inputs and Enter-to-Apply submit behavior in cubify-app/src/components/ControlForm.tsx
+- [ ] T017 [US1] Implement Apply action to update TwistyPlayer state in cubify-app/src/App.tsx
+- [ ] T018 [US1] Implement render-only TwistyPlayer baseline config (`background:none`, `hintFacelets:none`, `controlPanel:none`) in cubify-app/src/components/CubeViewer.tsx
+- [ ] T019 [US1] Implement Capture action using `experimentalDownloadScreenshot` in cubify-app/src/components/ActionButtons.tsx
+- [ ] T020 [US1] Enforce 3D capture target sizing (288x288) and 2D fixed SVG workflow in cubify-app/src/components/CubeViewer.tsx
+- [ ] T021 [US1] Implement timestamped filename pattern `cubing-3x3-{timestamp}` in cubify-app/src/utils/captureUtils.ts
+- [ ] T022 [US1] Disable Play/Capture for empty or invalid move algorithm in cubify-app/src/App.tsx and cubify-app/src/components/ActionButtons.tsx
 - [ ] T023 [US1] Execute manual validation checklist items for SC-001/SC-002/SC-004 from specs/007-cube-image-generator/quickstart.md and record pass/fail outcomes
-- [ ] T044 [US1] Implement 2D↔3D mode-switch state preservation + automatic re-render in imggen-app/src/App.tsx and imggen-app/src/components/CubeViewer.tsx (FR-015)
+- [ ] T044 [US1] Implement 2D↔3D mode-switch state preservation + automatic re-render in cubify-app/src/App.tsx and cubify-app/src/components/CubeViewer.tsx (FR-015)
 
 **Checkpoint**: User Story 1 fully functional and independently testable.
 
@@ -69,10 +69,10 @@
 
 **Independent Test**: Select each preset (`default`, `cross`, `f2l`, `oll`, `pll`) and verify expected visual output after Apply.
 
-- [ ] T024 [P] [US2] Implement preset mask selector UI in imggen-app/src/components/ControlForm.tsx
-- [ ] T025 [US2] Map preset keys to mask notation and expose effective preset value in imggen-app/src/utils/maskPresets.ts
-- [ ] T026 [US2] Apply selected preset mask to TwistyPlayer stickering configuration in imggen-app/src/components/CubeViewer.tsx
-- [ ] T027 [US2] Wire preset selection state and Apply behavior in imggen-app/src/App.tsx
+- [ ] T024 [P] [US2] Implement preset mask selector UI in cubify-app/src/components/ControlForm.tsx
+- [ ] T025 [US2] Map preset keys to mask notation and expose effective preset value in cubify-app/src/utils/maskPresets.ts
+- [ ] T026 [US2] Apply selected preset mask to TwistyPlayer stickering configuration in cubify-app/src/components/CubeViewer.tsx
+- [ ] T027 [US2] Wire preset selection state and Apply behavior in cubify-app/src/App.tsx
 - [ ] T028 [US2] Execute preset mask validation checklist from specs/007-cube-image-generator/quickstart.md and record pass/fail outcomes
 
 **Checkpoint**: User Story 2 independently functional and testable.
@@ -85,9 +85,9 @@
 
 **Independent Test**: Enter a custom mask, Apply, and confirm custom value takes precedence over selected preset.
 
-- [ ] T029 [P] [US3] Implement custom mask text input with preserved value in imggen-app/src/components/ControlForm.tsx
-- [ ] T030 [US3] Implement deterministic mask precedence (`custom > preset`) in imggen-app/src/App.tsx
-- [ ] T031 [US3] Apply effective mask (including custom overrides) in imggen-app/src/components/CubeViewer.tsx
+- [ ] T029 [P] [US3] Implement custom mask text input with preserved value in cubify-app/src/components/ControlForm.tsx
+- [ ] T030 [US3] Implement deterministic mask precedence (`custom > preset`) in cubify-app/src/App.tsx
+- [ ] T031 [US3] Apply effective mask (including custom overrides) in cubify-app/src/components/CubeViewer.tsx
 - [ ] T032 [US3] Execute custom-mask override validation checklist from specs/007-cube-image-generator/quickstart.md and record pass/fail outcomes
 
 **Checkpoint**: User Story 3 independently functional and testable.
@@ -100,9 +100,9 @@
 
 **Independent Test**: With valid algorithm, Play animates at configured speed; invalid/empty algorithm keeps Play disabled.
 
-- [ ] T033 [P] [US4] Implement Play button UI and disabled-state props in imggen-app/src/components/ActionButtons.tsx
-- [ ] T034 [US4] Implement play action wiring and timing configuration (~1.5x baseline) in imggen-app/src/components/CubeViewer.tsx
-- [ ] T035 [US4] Integrate play state gating with validation state in imggen-app/src/App.tsx
+- [ ] T033 [P] [US4] Implement Play button UI and disabled-state props in cubify-app/src/components/ActionButtons.tsx
+- [ ] T034 [US4] Implement play action wiring and timing configuration (~1.5x baseline) in cubify-app/src/components/CubeViewer.tsx
+- [ ] T035 [US4] Integrate play state gating with validation state in cubify-app/src/App.tsx
 - [ ] T036 [US4] Execute playback validation checklist from specs/007-cube-image-generator/quickstart.md and record pass/fail outcomes
 
 **Checkpoint**: User Story 4 independently functional and testable.
@@ -115,8 +115,8 @@
 
 **Independent Test**: Apply valid algorithm and verify both original and inverted notation appear in browser console.
 
-- [ ] T037 [P] [US5] Implement algorithm inversion formatter utility in imggen-app/src/utils/algUtils.ts
-- [ ] T038 [US5] Emit structured console logs on Apply for original/inverted algorithms in imggen-app/src/App.tsx
+- [ ] T037 [P] [US5] Implement algorithm inversion formatter utility in cubify-app/src/utils/algUtils.ts
+- [ ] T038 [US5] Emit structured console logs on Apply for original/inverted algorithms in cubify-app/src/App.tsx
 - [ ] T039 [US5] Execute console-log validation checklist from specs/007-cube-image-generator/quickstart.md and record pass/fail outcomes
 
 **Checkpoint**: User Story 5 independently functional and testable.
@@ -127,13 +127,13 @@
 
 **Purpose**: Final consistency, manual QA, and feature documentation closure.
 
-- [ ] T040 [P] Apply shared theme + Bulma consistency in imggen-app/src/App.css and imggen-app/src/index.css (FR-009), including responsive layout tuning for desktop + small screens
-- [ ] T041 [P] Add concise developer usage notes for imggen-app in README.md
+- [ ] T040 [P] Apply shared theme + Bulma consistency in cubify-app/src/App.css and cubify-app/src/index.css (FR-009), including responsive layout tuning for desktop + small screens
+- [ ] T041 [P] Add concise developer usage notes for cubify-app in README.md
 - [ ] T045 [P] Create specs/007-cube-image-generator/implementation-summary.md scaffold for validation logs and completion notes
 - [ ] T046 Define and document explicit SC-008 measurement method (PNG file-size check procedure for 10-sample run) in specs/007-cube-image-generator/quickstart.md and specs/007-cube-image-generator/implementation-summary.md
-- [ ] T048 Validate isolation guardrail (FR-017): confirm no buttons/links between `cfop-app` and `imggen-app`, no shared route dependency, and no runtime imports from `cfop-app` into `imggen-app`; record result in specs/007-cube-image-generator/implementation-summary.md
+- [ ] T048 Validate isolation guardrail (FR-017): confirm no buttons/links between `cfop-app` and `cubify-app`, no shared route dependency, and no runtime imports from `cfop-app` into `cubify-app`; record result in specs/007-cube-image-generator/implementation-summary.md
 - [ ] T042 Run full quickstart validation checklist and record outcomes in specs/007-cube-image-generator/implementation-summary.md
-- [ ] T043 Run final build gate for imggen-app (`npm run build`) and capture result in specs/007-cube-image-generator/implementation-summary.md
+- [ ] T043 Run final build gate for cubify-app (`npm run build`) and capture result in specs/007-cube-image-generator/implementation-summary.md
 
 ---
 
@@ -179,16 +179,16 @@
 
 ```bash
 # Parallelizable tasks for US2:
-Task: "T024 [US2] Implement preset mask selector UI in imggen-app/src/components/ControlForm.tsx"
-Task: "T025 [US2] Map preset keys to mask notation in imggen-app/src/utils/maskPresets.ts"
+Task: "T024 [US2] Implement preset mask selector UI in cubify-app/src/components/ControlForm.tsx"
+Task: "T025 [US2] Map preset keys to mask notation in cubify-app/src/utils/maskPresets.ts"
 ```
 
 ## Parallel Example: User Story 4
 
 ```bash
 # Parallelizable tasks for US4:
-Task: "T033 [US4] Implement Play button UI and disabled-state props in imggen-app/src/components/ActionButtons.tsx"
-Task: "T034 [US4] Implement play action wiring and timing configuration in imggen-app/src/components/CubeViewer.tsx"
+Task: "T033 [US4] Implement Play button UI and disabled-state props in cubify-app/src/components/ActionButtons.tsx"
+Task: "T034 [US4] Implement play action wiring and timing configuration in cubify-app/src/components/CubeViewer.tsx"
 ```
 
 ## Implementation Strategy

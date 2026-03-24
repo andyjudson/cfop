@@ -80,7 +80,7 @@ As a maintainer, I want obsolete worker-specific Vite workarounds removed once f
 - **FR-004**: The generator MUST avoid immediate move cancellation and same-face repetition in consecutive moves.
 - **FR-005**: The practice modal MUST use the fallback generator for scramble requests in both development and production builds.
 - **FR-006**: The app MUST preserve existing timer, solve stats, modal UX behavior, and scramble-protection-during-active-timer after migration (users cannot request new scramble while timer is running).
-- **FR-007**: The app MUST keep generated scramble output compatible with cubing.js parsing APIs; visualization/rendering compatibility is optional for v1 (may be deferred to Feature 007 imggen-app tool).
+- **FR-007**: The app MUST keep generated scramble output compatible with cubing.js parsing APIs; visualization/rendering compatibility is optional for v1 (may be deferred to Feature 007 cubify-app tool).
 - **FR-008**: Once runtime dependence on `cubing/scramble`/`cubing/search` is removed, Vite worker workaround configuration MUST be removed or reduced to only still-needed settings.
 - **FR-009**: Build and deployment pipelines MUST pass after configuration cleanup.
 - **FR-010**: The feature MUST clearly communicate that generated scrambles are practice-grade and not official WCA competition scrambles.

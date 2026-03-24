@@ -27,7 +27,7 @@ Actors
 
 Scope & Constraints
 -------------------
-- Applies primarily to `cfop-app` (notation, intuitive, algorithm grids) but may include shared assets if the font files/styles are used in `imggen-app`.
+- Applies primarily to `cfop-app` (notation, intuitive, algorithm grids) but may include shared assets if the font files/styles are used in `cubify-app`.
 - Changes should respect existing design tokens (`index.css`) and avoid introducing new, unapproved fonts.
 
 Assumptions
@@ -65,7 +65,7 @@ Key Entities
 - Notation grid pages (notation, intuitive, 2LK pages)
 
 [NEEDS CLARIFICATION: Scope]
-- Should the font fix be applied to all applications in the repo (`cfop-app`, `imggen-app`) or only `cfop-app`? (see Questions below)
+- Should the font fix be applied to all applications in the repo (`cfop-app`, `cubify-app`) or only `cfop-app`? (see Questions below)
 
 [NEEDS CLARIFICATION: Priority]
 - Should this be a hotfix merged immediately to the main branch, or scheduled as a feature branch for next sprint?

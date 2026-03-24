@@ -7,7 +7,7 @@
 ## Run locally
 
 ```bash
-cd imggen-app
+cd cubify-app
 npm install
 npm run dev -- --host 127.0.0.1 --port 5176
 ```

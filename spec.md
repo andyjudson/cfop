@@ -262,7 +262,7 @@ Create a local, client-side fallback scramble generator that does **not** rely o
 ### Status: Specified 📝
 
 ### Scope
-Create a standalone developer tool app (`/cubing.spec/imggen-app`) for generating high-quality cube state images (SVG/PNG) suitable for algorithm documentation and educational materials.
+Create a standalone developer tool app (`/cubing.spec/cubify-app`) for generating high-quality cube state images (SVG/PNG) suitable for algorithm documentation and educational materials.
 
 ### Goals
 - Provide efficient workflow for batch-generating algorithm case images

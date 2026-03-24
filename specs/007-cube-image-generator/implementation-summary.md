@@ -6,12 +6,12 @@
 
 ## Overview
 
-Feature 007 fully implemented. Standalone `imggen-app` provides a complete cube image generation utility with 3D PNG and 2D SVG export capabilities, preset mask library for CFOP stages, and custom mask override support.
+Feature 007 fully implemented. Standalone `cubify-app` provides a complete cube image generation utility with 3D PNG and 2D SVG export capabilities, preset mask library for CFOP stages, and custom mask override support.
 
 ### Implementation Complete
 
 **Setup Phase (T001–T006, T047)**: ✅ COMPLETE
-- Created standalone app folder structure at `/cubing.spec/imggen-app/`
+- Created standalone app folder structure at `/cubing.spec/cubify-app/`
 - Configured TypeScript, Vite, React 19, package.json with required dependencies
 - Installed and locked dependencies; `npm install` completed successfully
 - Added standalone boundary note in README.md (no cross-app coupling)
@@ -46,7 +46,7 @@ Feature 007 fully implemented. Standalone `imggen-app` provides a complete cube 
 
 ```bash
 $ npm run build
-> imggen-app@0.1.0 build
+> cubify-app@0.1.0 build
 > tsc -b && vite build
 
 ✓ built successfully
@@ -122,7 +122,7 @@ VITE ready in [X]ms
 
 ### File Structure
 ```
-imggen-app/
+cubify-app/
 ├── package.json (dependencies installed)
 ├── package-lock.json (locked)
 ├── tsconfig.json, tsconfig.app.json, tsconfig.node.json
@@ -167,16 +167,16 @@ imggen-app/
 ## Isolation Verification (FR-017)
 
 ✅ **Confirmed No Cross-App Coupling**:
-- No imports from `cfop-app` in imggen-app source
+- No imports from `cfop-app` in cubify-app source
 - No shared routing, buttons, or navigation between apps
 - Standalone app structure fully isolated
-- Documented boundary rules in imggen-app/README.md
+- Documented boundary rules in cubify-app/README.md
 
 ## Deployment Notes
 
 ### Local Development
 ```bash
-cd imggen-app
+cd cubify-app
 npm install
 npm run dev
 ```

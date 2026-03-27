@@ -327,6 +327,32 @@ Add complete CFOP algorithm reference pages (F2L, OLL, PLL) to cfop-app with nav
 - Uses existing cube state images from `./assets/cfop_f2l/`, `./assets/cfop_oll/`, `./assets/cfop_pll/`
 - All data and assets already complete from previous feature work
 
+## Feature 009: Intuitive Methods Learning Page
+
+### Status: Complete ✅
+
+### Scope
+Add a dedicated Intuitive Methods page covering intuitive Cross and intuitive F2L guidance, with visual case examples and step-based progression structure. Content migrated from legacy materials with creator-specific references removed in favour of neutral instructional wording.
+
+### Key Decisions
+- Static content only — no collapsible sections, interactive cards, or hint-reveal controls
+- Case cards show label + image; incomplete move hints omitted; unavailable images show a placeholder
+- Page accessible from main navigation between Intuitive and Beginner items
+- `IntuitiveCaseCard` variant of `AlgorithmCard` component for case visuals
+
+## Feature 010: Notation Reference Page
+
+### Status: Complete ✅
+
+### Scope
+Add a dedicated notation reference page covering face rotations, modifiers, slice moves, cube rotations, and common triggers. Each section uses visual examples from existing notation assets with beginner-friendly explanations.
+
+### Key Decisions
+- Navigation label "Notation", positioned between Intuitive and Beginner in the menu
+- Trigger section shows name and sequence only (inverse omitted as derivable from the page explanation)
+- Notation tiles use consistent card styling matching algorithm pages
+- Static reference content only — no interactive players or timers
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
@@ -415,6 +441,21 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - Consistent header styling across modals (no border separation) ✅
 - All three user stories implemented and validated ✅
 - Production build and manual browser validation completed ✅
+
+**Feature 009 - Intuitive Methods Learning Page (Completed)**:
+- Intuitive Methods page added with Cross and F2L sections ✅
+- Step-based F2L guidance (easy inserts, setup pairs, setup inserts) ✅
+- `IntuitiveCaseCard` component for visual case examples ✅
+- Incomplete move hints omitted; unavailable images show placeholder ✅
+- Page added to main navigation ✅
+- Static content only — no interactive controls ✅
+
+**Feature 010 - Notation Reference Page (Completed)**:
+- Notation page added covering face rotations, modifiers, slice moves, cube rotations, triggers ✅
+- Visual tile cards per notation example with image + symbol + explanation ✅
+- Common triggers section with name and sequence (inverse omitted) ✅
+- Navigation label "Notation" added between Intuitive and Beginner ✅
+- Consistent card and section-banner styling matching other pages ✅
 
 **Feature 008 - Full CFOP Algorithm Grids (Completed)**:
 - Four-page navigation implemented: 2LK, F2L, OLL, PLL ✅

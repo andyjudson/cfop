@@ -7,13 +7,12 @@
 
 ## Current Status
 - Features 001 through 010 are implemented in `cfop-app` and tracked in specs artifacts.
-- CSS/component maintenance cleanup completed (March 2026):
-  - Design token system established (60+ CSS custom properties in `index.css`)
-  - Shared `AlgorithmCard` component created for algorithm pages
-  - All algorithm pages migrated to shared card components (BGR, F2L, OLL, PLL, Intuitive)
-  - Hardcoded colors replaced with CSS variables
-  - Font weights normalized to 400/600/700
-  - Duplicated card/tooltip styling consolidated
+- CSS baseline refined (March 2026):
+  - Design token system in `index.css`: `--color-*`, `--space-*`, `--shadow-*`, `--radius-*`, `--gradient-*`
+  - No hardcoded `rgba()` or hex values in CSS — tokens only; `--shadow-accent`/`--shadow-accent-hover` for accent-blue shadows
+  - Algorithm notation uses `font-family: inherit` (proportional Inter, not monospace)
+  - `react-markdown` removed; tooltip notes are plain text; JSON data is pure syntax (no `\n`, no markdown)
+  - All pages use `section-title` class on section headings for consistent banner styling
 - Ready for next net-new feature specification.
 
 ## Resource usage
@@ -42,8 +41,12 @@
 ## Implementation Notes
 - Use shared resources via symlinks
 - Use shared `AlgorithmCard` component for algorithm displays (`standard`, `compact`, and `IntuitiveCaseCard` variants)
-- Use CSS custom properties from `index.css` for new/updated styles (`--color-*`, `--space-*`, `--font-*`, `--shadow-*`, `--radius-*`, `--gradient-*`)
-- Font weights must use the normalized scale only: 400 (normal), 600 (semibold), 700 (bold)
+- Use CSS custom properties from `index.css` for all styles — no hardcoded `rgba()` or hex values
+- Font weights: 400 (normal), 600 (semibold), 700 (bold) only
+- Algorithm notation: `font-family: inherit` on `<code>` elements (proportional Inter; explicit inherit required to override browser UA monospace default)
+- Algorithm JSON: pure notation syntax only — no `\n` line breaks, no markdown formatting
+- Section headings use `section-title` class for consistent banner across all pages
+- Bulma `.title + .subtitle` has a built-in negative margin — override with a scoped rule if spacing adjustment needed
 - Start with static grid, add interactivity iteratively
 - Focus on clean code and maintainable structure
 - Test on mobile devices early

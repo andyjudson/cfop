@@ -11,12 +11,24 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–010 complete. Feature 011 (CSS cleanup/design token system) under active refinement. Ready for next net-new feature.
+Features 001–010 complete. CSS baseline refined. Ready for next net-new feature.
 
-CSS standards established in 011:
-- 60+ CSS custom properties in `cfop-app/src/index.css` (`--color-*`, `--space-*`, `--font-*`, `--shadow-*`, `--radius-*`, `--gradient-*`)
-- Shared `AlgorithmCard` component with `standard`, `compact`, and `IntuitiveCaseCard` variants
+## CSS Standards
+
+- All custom properties defined in `cfop-app/src/index.css`: `--color-*`, `--space-*`, `--shadow-*`, `--radius-*`, `--gradient-*`
+- No hardcoded `rgba()` or hex values in component/page CSS — use tokens only
+- Shadow tokens: `--shadow-sm/md/lg/xl` for neutral shadows; `--shadow-accent` / `--shadow-accent-hover` for accent-blue button shadows
 - Font weights: 400 (normal), 600 (semibold), 700 (bold) only
+- Algorithm notation uses `font-family: inherit` (proportional Inter) — `<code>` elements need this explicitly to override the browser UA monospace default
+- Section headings use `section-title` class for consistent banner styling across all pages
+- Bulma's `.title + .subtitle` applies `margin-top: -1.25rem` — override explicitly with a scoped rule if more space is needed
+- Shared `AlgorithmCard` component (`standard`, `compact`, `IntuitiveCaseCard` variants) for all algorithm displays
+
+## Data / Presentation Separation
+
+- Algorithm JSON (`public/data/*.json`) contains pure notation syntax only — no `\n` line breaks, no markdown (`**bold**`)
+- Any presentation transformation (spacing, formatting) belongs in the component layer, not the data
+- `react-markdown` has been removed; tooltip notes render as plain text
 
 ## Tech Stack (cfop-app)
 

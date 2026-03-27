@@ -71,6 +71,7 @@ This application exists to help users (namely me) learn Rubik's cube solving met
 - Keep numbering contiguous and aligned with the feature numbering in `spec.md`.
 - If historical features are missing folders, backfill them as retrospective artifacts and label them clearly as retrospective.
 - Prefer this hybrid pattern over either extreme (single monolithic spec only, or disconnected per-feature docs only).
+- Every completed feature MUST have a summary entry in `specs/spec.md` — both a `## Feature NNN` section and a bullet entry in the Implementation Plan. This is the canonical record of what was built and why.
 
 ### Maintenance & Refactor Workflow
 - Treat cross-cutting cleanup (styling consistency, component reuse, deduplication, architecture hardening) as maintenance work, not feature delivery, unless it introduces new end-user functionality.

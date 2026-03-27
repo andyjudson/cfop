@@ -1,4 +1,4 @@
-# Copilot Instructions (Current Work)
+# Copilot Instructions
 
 ## Scope
 - Primary project: `cubing.spec`

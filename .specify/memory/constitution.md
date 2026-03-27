@@ -1,50 +1,118 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Speckit Constitution for Cubing App
 
-## Core Principles
+## Project Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Educational Focus
+This application exists to help users (namely me) learn Rubik's cube solving methods, specifically the CFOP (Cross, F2L, OLL, PLL) system. All features must support this educational goal.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Open Source & Accessibility
+- Code should be open source and freely available
+- Content should be accessible to users worldwide
+- No paywalls or premium features that restrict learning
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Technical Excellence
+- Use modern, maintainable web technologies
+- Prioritize performance and user experience
+- Follow web standards and best practices
+- Consider cross-platform compatibility but essentially macOS and iOS
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+## Constraints & Boundaries
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Content Ownership
+- Content based on publicly available CFOP methods
+- Avoid direct copying of proprietary tutorial content
+- Respect copyright of external educational materials
+- Keep implementation private to avoid commercial conflicts
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Technology Choices
+- Web-first approach with React ecosystem (React 19+, TypeScript, Vite)
+- Mobile deployment via Capacitor or PWA (no native iOS licensing)
+- Cubing.js for cube visualizations (maintained library on github)
+- Algorithm sets should be maintained in JSON (shared via symlinks)
+- Prefer lite or minimalist frameworks (Bulma CSS for base layout)
+- Minimal dependencies to ensure long-term maintainability
+- Shared resources pattern: symlink from `shared-data/` and `shared-assets/`
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Scope Limitations
+- Focus exclusively on CFOP method learning (intuitive + 3-look, 2-look, 1-look levels)
+- Limited tracking features, at most a scramble generator and timer for personal use so can stay in one app
+- No social or competitive features or user accounts
+- No monetization or advertising
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Quality Standards
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Code Quality
+- TypeScript for type safety
+- Comprehensive testing (unit + e2e)
+- Clean, documented code following React best practices
+- Regular dependency updates and security reviews
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+### User Experience
+- Intuitive navigation and information hierarchy
+- Fast loading and responsive interactions
+- Accessible design for all users
+- Consistent visual design across platforms
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Performance Requirements
+- Fast initial load times
+- Smooth cube animations and interactions
+- Efficient data structures and rendering
+- Minimal bundle size for web deployment
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+## Development Guidelines
+
+### Specification Workflow (Hybrid Model)
+- Keep `spec.md` as the high-level product narrative, status ledger, and feature sequence source of truth.
+- Create one per-feature folder under `specs/<NNN>-<kebab-name>/` for every new feature from now on.
+- For each feature folder, include at minimum:
+	- `spec.md`
+	- `checklists/requirements.md`
+	- `implementation-summary.md` (once implemented)
+- Keep numbering contiguous and aligned with the feature numbering in `spec.md`.
+- If historical features are missing folders, backfill them as retrospective artifacts and label them clearly as retrospective.
+- Prefer this hybrid pattern over either extreme (single monolithic spec only, or disconnected per-feature docs only).
+
+### Maintenance & Refactor Workflow
+- Treat cross-cutting cleanup (styling consistency, component reuse, deduplication, architecture hardening) as maintenance work, not feature delivery, unless it introduces new end-user functionality.
+- Before starting maintenance, add a short scope note in planning artifacts (target area, acceptance criteria, and constraints) so changes are auditable.
+- After completion, update implementation notes/instructions with the final standards that were actually implemented.
+- Keep maintenance commits focused and incremental (small batches with validation between batches).
+
+### Architecture Decisions
+- Component-based React architecture
+- State management via React hooks
+- Local storage for user data persistence
+- CDN delivery for external dependencies
+
+### Deployment Strategy
+- Web deployment as primary platform (e.g. running locally)
+- Mobile apps via Capacitor or PWA for enhanced experience
+- No server-side requirements (static hosting)
+- Offline-capable for algorithm reference when traveling
+
+### Maintenance Approach
+- Regular framework and dependency updates
+- Backward compatibility for user data
+- Documentation of architectural decisions via spec.md (feature-based numbering)
+- Clear separation of concerns in codebase
+- Iterative development: spec → implement → refine → document
+
+## Success Criteria
+
+### User Value
+- Users can effectively learn CFOP algorithms
+- Progress tracking helps maintain motivation
+- Mobile accessibility enables learning anywhere
+- Reliable performance across devices
+
+### Technical Sustainability
+- Codebase remains maintainable over time
+- Dependencies stay current and secure
+- Build process is reliable and fast
+- Documentation supports future development
+
+### Educational Impact
+- Content remains accurate and up-to-date
+- Learning experience is engaging and effective
+- Community can contribute improvements
+- Project serves as educational resource

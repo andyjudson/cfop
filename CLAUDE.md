@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Project context for Claude Code. See [docs/constitution.md](docs/constitution.md) for principles and [specs/spec.md](specs/spec.md) for the full feature ledger.
+Project context for Claude Code. See [.specify/memory/constitution.md](.specify/memory/constitution.md) for principles and [specs/spec.md](specs/spec.md) for the full feature ledger.
 
 ## Project Scope
 

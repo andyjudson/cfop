@@ -72,7 +72,7 @@ function BGRPage() {
       <div className="columns is-multiline">
         {algs.map(alg => (
           <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
-            <AlgorithmCard algorithm={alg} variant="standard" />
+            <AlgorithmCard algorithm={alg} variant="standard" isEssential={essentialIds.includes(alg.id)} />
           </div>
         ))}
       </div>

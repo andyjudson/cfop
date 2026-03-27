@@ -1,6 +1,6 @@
 # cubing.spec
 
-This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with AI-assisted implementation via **GitHub Copilot agent mode**.
+This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with agentic AI-assisted implementation via **GitHub Copilot** and **Claude Code**.
 
 ## Applications
 
@@ -89,8 +89,8 @@ Repetition is the key theme: consistent reps build recognition and muscle memory
 - **React 19** and **TypeScript 5.9** for modern reactive UI
 - **Vite 7** for fast development and optimized builds
 - **Bulma CSS** for UI components and responsive layout
-- **GitHub Copilot agent mode** for AI-assisted development
-- **Spec-Kit** methodology for Specification-Driven Development
+- **GitHub Copilot** and **Claude Code** for agentic AI assisted development
+- **Spec-Kit** methodology for specification-driven development
 - Deployed on **GitHub Pages**
 
 ## Development

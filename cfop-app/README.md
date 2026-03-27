@@ -191,4 +191,4 @@ Requires modern browser with:
 - **Cubing knowledge** from [CubeHead](https://www.youtube.com/@CubeHead) (Milan Struyf) and [JPerm](https://www.youtube.com/@JPerm) (Dylan Wang)
 - **cubing.js** framework from Lucas Garron for cube visualization
 - **spec-kit** methodology for specification-driven development
-- **GitHub Copilot** for AI-assisted implementation
+- **GitHub Copilot** and **Claude Code** for AI-assisted implementation

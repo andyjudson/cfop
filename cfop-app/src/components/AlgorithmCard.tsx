@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MdStars } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import './AlgorithmCard.css';
 
@@ -15,13 +16,15 @@ export interface CfopAlgorithm {
 interface AlgorithmCardProps {
   algorithm: CfopAlgorithm;
   variant?: 'standard' | 'compact';
+  isEssential?: boolean;
   onImageInteraction?: (algorithmId: string) => void;
 }
 
-export function AlgorithmCard({ 
-  algorithm, 
+export function AlgorithmCard({
+  algorithm,
   variant = 'standard',
-  onImageInteraction 
+  isEssential = false,
+  onImageInteraction
 }: AlgorithmCardProps) {
   const [hoveredAlg, setHoveredAlg] = useState<string | null>(null);
   const [tooltipLeft, setTooltipLeft] = useState(false);
@@ -53,6 +56,11 @@ export function AlgorithmCard({
 
   return (
     <div className={cardClassName}>
+      {isEssential && (
+        <div className="essential-badge" aria-label="Essential algorithm">
+          <MdStars size={18} />
+        </div>
+      )}
       <div className="card-content has-text-centered">
         <div className="image-container">
           <img 

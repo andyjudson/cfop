@@ -45,7 +45,7 @@ interface NotationExampleTileProps {
 
 function NotationExampleTile({ example }: NotationExampleTileProps) {
   return (
-    <div className="box notation-example-tile">
+    <div className="notation-example-tile">
       <div className="notation-example-symbol">
         <strong>{example.symbol}</strong>
       </div>
@@ -87,7 +87,7 @@ function NotationPage() {
           id: 'face-R',
           symbol: 'R',
           label: 'Right Face',
-          explanation: 'Turn the right face clockwise 90 degrees',
+          explanation: 'Turn right face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-R-cw-arrow.png',
           imageAlt: 'Right face clockwise rotation'
         },
@@ -95,7 +95,7 @@ function NotationPage() {
           id: 'face-U',
           symbol: 'U',
           label: 'Up Face',
-          explanation: 'Turn the top face clockwise 90 degrees',
+          explanation: 'Turn top face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-U-cw-arrow.png',
           imageAlt: 'Up face clockwise rotation'
         },
@@ -103,7 +103,7 @@ function NotationPage() {
           id: 'face-F',
           symbol: 'F',
           label: 'Front Face',
-          explanation: 'Turn the front face clockwise 90 degrees',
+          explanation: 'Turn front face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-F-cw-arrow.png',
           imageAlt: 'Front face clockwise rotation'
         },
@@ -111,7 +111,7 @@ function NotationPage() {
           id: 'face-L',
           symbol: 'L',
           label: 'Left Face',
-          explanation: 'Turn the left face clockwise 90 degrees',
+          explanation: 'Turn left face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-L-cw-arrow.png',
           imageAlt: 'Left face clockwise rotation'
         },
@@ -119,7 +119,7 @@ function NotationPage() {
           id: 'face-D',
           symbol: 'D',
           label: 'Down Face',
-          explanation: 'Turn the bottom face clockwise 90 degrees',
+          explanation: 'Turn bottom face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-D-cw-arrow.png',
           imageAlt: 'Down face clockwise rotation'
         },
@@ -127,7 +127,7 @@ function NotationPage() {
           id: 'face-B',
           symbol: 'B',
           label: 'Back Face',
-          explanation: 'Turn the back face clockwise 90 degrees',
+          explanation: 'Turn back face clockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-B-cw-arrow.png',
           imageAlt: 'Back face clockwise rotation'
         },
@@ -141,8 +141,8 @@ function NotationPage() {
         {
           id: 'mod-prime',
           symbol: "R'",
-          label: 'Prime (Counterclockwise)',
-          explanation: 'Turn the face counterclockwise 90 degrees',
+          label: 'Prime (counterclockwise)',
+          explanation: 'Turn face counterclockwise 90 degrees',
           imageSrc: '/cubing.spec/assets/notation/syntax-R-ccw-arrow.png',
           imageAlt: 'Right face counterclockwise rotation'
         },
@@ -150,7 +150,7 @@ function NotationPage() {
           id: 'mod-double',
           symbol: 'R2',
           label: 'Double Turn (180°)',
-          explanation: 'Turn the face 180 degrees (direction doesn\'t matter)',
+          explanation: 'Turn face 180 degrees (direction doesn\'t matter)',
           imageSrc: '/cubing.spec/assets/notation/syntax-R-double-arrow.png',
           imageAlt: 'Right face double turn'
         },
@@ -158,7 +158,7 @@ function NotationPage() {
           id: 'mod-wide',
           symbol: 'r',
           label: 'Wide Turn (lowercase)',
-          explanation: 'Turn the face and middle layer together simultaneously',
+          explanation: 'Turn face and middle layer together simultaneously',
           imageSrc: '/cubing.spec/assets/notation/syntax-R-wide-arrow.png',
           imageAlt: 'Right face wide turn'
         },
@@ -172,24 +172,24 @@ function NotationPage() {
         {
           id: 'slice-M',
           symbol: 'M',
-          label: 'M (Middle)',
-          explanation: 'Turn middle layer in same direction as L face (between R and L)',
+          label: 'Middle Slice',
+          explanation: 'Same direction as L face',
           imageSrc: '/cubing.spec/assets/notation/syntax-M-cw-arrow.png',
           imageAlt: 'M slice turn'
         },
         {
           id: 'slice-S',
           symbol: 'S',
-          label: 'S (Standing)',
-          explanation: 'Turn middle layer in same direction as F face (between F and B)',
+          label: 'Standing Slice',
+          explanation: 'Same direction as F face',
           imageSrc: '/cubing.spec/assets/notation/syntax-S-cw-arrow.png',
           imageAlt: 'S slice turn'
         },
         {
           id: 'slice-E',
           symbol: 'E',
-          label: 'E (Equatorial)',
-          explanation: 'Turn middle layer in same direction as D face (between U and D)',
+          label: 'Equatorial Slice',
+          explanation: 'Same direction as D face',
           imageSrc: '/cubing.spec/assets/notation/syntax-E-cw-arrow.png',
           imageAlt: 'E slice turn'
         },
@@ -203,24 +203,24 @@ function NotationPage() {
         {
           id: 'rotation-x',
           symbol: 'x',
-          label: 'Follows R (X axis)',
-          explanation: 'Rotate entire cube in same direction as R face',
+          label: 'Rotate on X axis',
+          explanation: 'Same direction as R face',
           imageSrc: '/cubing.spec/assets/notation/syntax-X-cw-arrow.png',
           imageAlt: 'x cube rotation'
         },
         {
           id: 'rotation-y',
           symbol: 'y',
-          label: 'Follows U (Y axis)',
-          explanation: 'Rotate entire cube in same direction as U face',
+          label: 'Rotate on Y axis',
+          explanation: 'Same direction as U face',
           imageSrc: '/cubing.spec/assets/notation/syntax-Y-cw-arrow.png',
           imageAlt: 'y cube rotation'
         },
         {
           id: 'rotation-z',
           symbol: 'z',
-          label: 'Follows F (Z axis)',
-          explanation: 'Rotate entire cube in same direction as F face',
+          label: 'Rotate on Z axis',
+          explanation: 'Same direction as F face',
           imageSrc: '/cubing.spec/assets/notation/syntax-Z-cw-arrow.png',
           imageAlt: 'z cube rotation'
         },
@@ -273,7 +273,7 @@ function NotationPage() {
       ) : (
         sections.map((section) => (
             <div key={section.id} className="section notation-section">
-              <h2 className="title is-4">{section.title}</h2>
+              <h2 className="title is-4 has-text-centered section-title">{section.title}</h2>
               <p className="subtitle is-6">{section.description}</p>
               <div className="columns is-multiline">
                 {section.examples.map((example) => (
@@ -288,22 +288,17 @@ function NotationPage() {
 
         {triggers.length > 0 && (
           <div className="section notation-section">
-            <h2 className="title is-4">Common Triggers</h2>
-            <div className="content">
-              <p>Triggers are short, repeatable sequences commonly used in algorithms to manipulate pieces efficiently. They are usually enclosed in brackets. To invert any algorithm segment, you reverse the order of the moves and invert each move. Here are some of the important named ones:</p>            
-              <ul className="notation-trigger-list">
+            <h2 className="title is-4 has-text-centered section-title">Common Triggers</h2>
+            <p className="subtitle is-6">Triggers are short, repeatable sequences commonly used in algorithms (enclosed in brackets) to manipulate pieces efficiently.</p>
+            <ul className="notation-trigger-list">
               {triggers.map(trigger => (
                 <li key={trigger.id} className="notation-trigger-item">
-                  <div>
-                    <span className="trigger-name">{trigger.name}</span>
-                    <span className="trigger-context">({trigger.context})</span>
-                    <span className="trigger-syntax">{trigger.sequence}</span>
-                    <span className="trigger-inverse">(inverse: {trigger.inverse})</span>
-                  </div>
+                  <div className="trigger-name">{trigger.name}</div>
+                  <div className="trigger-syntax">{trigger.sequence}</div>
+                  {trigger.context && <div className="trigger-context">{trigger.context}</div>}
                 </li>
               ))}
             </ul>
-            </div>
           </div>
         )}
       </>

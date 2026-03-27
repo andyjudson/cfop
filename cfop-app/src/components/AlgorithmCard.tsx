@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Markdown from 'react-markdown';
 import 'bulma/css/bulma.min.css';
 import './AlgorithmCard.css';
 
@@ -65,7 +64,7 @@ export function AlgorithmCard({
           />
           {hoveredAlg === algorithm.id && algorithm.notes && (
             <div className={`tooltip ${tooltipLeft ? 'tooltip-left' : ''}`}>
-              <Markdown>{algorithm.notes}</Markdown>
+              {algorithm.notes}
             </div>
           )}
         </div>

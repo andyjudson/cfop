@@ -56,29 +56,29 @@
   margin-bottom: var(--space-md);
 }
 
-.algo-card .notation {
+.algo-card code.notation {
   display: block;
   background: var(--color-bg-muted);
   color: var(--color-text-primary);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
+  font-family: inherit;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
-  letter-spacing: 0.02em;
-  word-spacing: 0.15em;
+  letter-spacing: 0.03em;
+  word-spacing: 0.2em;
   white-space: normal;
   line-height: 1.6;
 }
 
-.algo-card .notation .moves {
+.algo-card code.notation .moves {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   justify-content: flex-start;
 }
 
-.algo-card .notation .moves .move-token {
+.algo-card code.notation .moves .move-token {
   min-width: 2.3rem;
   text-align: center;
 }
@@ -159,13 +159,14 @@
 
 /* Intuitive Case Card Variant */
 .intuitive-case-card {
-  background: var(--color-bg-base);
+  background: var(--color-bg-base) !important;
   color: var(--color-text-primary);
   border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   height: 100%;
+  min-height: 220px;
 }
 
 .intuitive-case-card:hover {
@@ -173,11 +174,17 @@
   transform: translateY(-1px);
 }
 
+.intuitive-case-card .card-content {
+  background: transparent;
+}
+
 .intuitive-case-label {
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
   font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-base);
-  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.25;
+  min-height: 2.5rem;
+  margin-bottom: var(--space-sm);
 }
 
 .intuitive-case-image {
@@ -192,5 +199,4 @@
 .intuitive-move-hint {
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
-  font-family: var(--font-mono);
 }

@@ -5,7 +5,7 @@ import '../App.css';
 import { DemoModal } from '../components/DemoModal';
 import { PracticeSessionModal } from '../components/PracticeSessionModal';
 import { CfopPageLayout } from '../components/CfopPageLayout';
-import { AlgorithmCard, type CfopAlgorithm } from '../components/AlgorithmCard';
+import { AlgorithmCard, AlgorithmNotesSheet, type CfopAlgorithm } from '../components/AlgorithmCard';
 
 const essentialIds = ['oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
 
@@ -15,6 +15,7 @@ function BGRPage() {
   const [showDemo, setShowDemo] = useState(false);
   const [demoAlgorithm, setDemoAlgorithm] = useState<CfopAlgorithm | null>(null);
   const [showPracticeSession, setShowPracticeSession] = useState(false);
+  const [notesAlg, setNotesAlg] = useState<CfopAlgorithm | null>(null);
 
   useEffect(() => {
     const loadAlgorithms = async () => {
@@ -72,7 +73,12 @@ function BGRPage() {
       <div className="columns is-multiline">
         {algs.map(alg => (
           <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
-            <AlgorithmCard algorithm={alg} variant="standard" isEssential={essentialIds.includes(alg.id)} />
+            <AlgorithmCard
+                algorithm={alg}
+                variant="standard"
+                isEssential={essentialIds.includes(alg.id)}
+                onShowNotes={setNotesAlg}
+              />
           </div>
         ))}
       </div>
@@ -137,6 +143,8 @@ function BGRPage() {
         isOpen={showPracticeSession}
         onClose={handleClosePracticeSession}
       />
+
+      <AlgorithmNotesSheet algorithm={notesAlg} onClose={() => setNotesAlg(null)} />
     </CfopPageLayout>
   );
 }

@@ -78,6 +78,7 @@ This application exists to help users (namely me) learn Rubik's cube solving met
 - Before starting maintenance, add a short scope note in planning artifacts (target area, acceptance criteria, and constraints) so changes are auditable.
 - After completion, update implementation notes/instructions with the final standards that were actually implemented.
 - Keep maintenance commits focused and incremental (small batches with validation between batches).
+- Behavior-changing repairs that affect existing features (e.g. replacing an interaction pattern) should be noted in that feature's `implementation-summary.md`, even if they don't earn a new spec number.
 
 ### Architecture Decisions
 - Component-based React architecture

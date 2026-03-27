@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { MdStars } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import './AlgorithmCard.css';
@@ -17,41 +17,17 @@ interface AlgorithmCardProps {
   algorithm: CfopAlgorithm;
   variant?: 'standard' | 'compact';
   isEssential?: boolean;
-  onImageInteraction?: (algorithmId: string) => void;
+  onShowNotes?: (algorithm: CfopAlgorithm) => void;
 }
 
 export function AlgorithmCard({
   algorithm,
   variant = 'standard',
   isEssential = false,
-  onImageInteraction
+  onShowNotes
 }: AlgorithmCardProps) {
-  const [hoveredAlg, setHoveredAlg] = useState<string | null>(null);
-  const [tooltipLeft, setTooltipLeft] = useState(false);
-
-  const handleMouseEnter = (algId: string, e: React.MouseEvent<HTMLImageElement>) => {
-    setHoveredAlg(algId);
-    const imgElement = e.currentTarget;
-    const rect = imgElement.getBoundingClientRect();
-    const spaceOnRight = window.innerWidth - rect.right;
-    setTooltipLeft(spaceOnRight < 320);
-    onImageInteraction?.(algId);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredAlg(null);
-  };
-
-  const handleClick = (algId: string, e: React.MouseEvent<HTMLImageElement>) => {
-    if (hoveredAlg === algId) {
-      setHoveredAlg(null);
-    } else {
-      handleMouseEnter(algId, e);
-    }
-  };
-
-  const cardClassName = variant === 'compact' 
-    ? 'card algo-card algo-card-compact' 
+  const cardClassName = variant === 'compact'
+    ? 'card algo-card algo-card-compact'
     : 'card algo-card';
 
   return (
@@ -63,18 +39,12 @@ export function AlgorithmCard({
       )}
       <div className="card-content has-text-centered">
         <div className="image-container">
-          <img 
-            src={algorithm.image} 
+          <img
+            src={algorithm.image}
             alt={algorithm.name}
-            onMouseEnter={(e) => handleMouseEnter(algorithm.id, e)}
-            onMouseLeave={handleMouseLeave}
-            onClick={(e) => handleClick(algorithm.id, e)}
+            onClick={() => algorithm.notes && onShowNotes?.(algorithm)}
+            style={{ cursor: algorithm.notes && onShowNotes ? 'pointer' : 'default' }}
           />
-          {hoveredAlg === algorithm.id && algorithm.notes && (
-            <div className={`tooltip ${tooltipLeft ? 'tooltip-left' : ''}`}>
-              {algorithm.notes}
-            </div>
-          )}
         </div>
         <h3 className="title is-5 mt-3">{algorithm.name}</h3>
         <div className="content">
@@ -82,6 +52,43 @@ export function AlgorithmCard({
         </div>
       </div>
     </div>
+  );
+}
+
+interface AlgorithmNotesSheetProps {
+  algorithm: CfopAlgorithm | null;
+  onClose: () => void;
+}
+
+export function AlgorithmNotesSheet({ algorithm, onClose }: AlgorithmNotesSheetProps) {
+  useEffect(() => {
+    if (!algorithm) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [algorithm, onClose]);
+
+  return (
+    <>
+      <div
+        className={`notes-sheet-backdrop${algorithm ? ' is-visible' : ''}`}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div
+        className={`notes-sheet${algorithm ? ' is-open' : ''}`}
+        role="dialog"
+        aria-label={algorithm?.name ?? 'Algorithm notes'}
+      >
+        <div className="notes-sheet-header">
+          <span className="notes-sheet-title">{algorithm?.name}</span>
+          <button className="notes-sheet-close" onClick={onClose} aria-label="Close notes">×</button>
+        </div>
+        {algorithm?.notes && (
+          <p className="notes-sheet-body">{algorithm.notes}</p>
+        )}
+      </div>
+    </>
   );
 }
 

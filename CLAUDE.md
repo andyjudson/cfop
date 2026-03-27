@@ -70,3 +70,10 @@ npm run dev -- --host 127.0.0.1 --port 5173
 - Kill existing Vite processes before starting to avoid port conflicts
 - Use foreground commands during active testing (avoid nohup/background)
 - File renames or major changes may cause the dev server to exit — restart as needed
+
+## Active Technologies
+- TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md (011-about-page-nav)
+- N/A (static content only) (011-about-page-nav)
+
+## Recent Changes
+- 011-about-page-nav: Added TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md

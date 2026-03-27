@@ -1,4 +1,4 @@
-# Overview of past projects for learning CFOP whilst using AI to assist with coding
+# Overview of past cubing projects for learning CFOP
 
 ## Project 1 - cubing.static
 **Overview**: 

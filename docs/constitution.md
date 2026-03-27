@@ -1,4 +1,4 @@
-# Cubing App Constitution
+# Speckit Constitution for Cubing App
 
 ## Project Principles
 

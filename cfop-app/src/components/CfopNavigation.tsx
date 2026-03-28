@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MdVideocam, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool } from 'react-icons/md';
+import { MdAnimation, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import { VisualizerModal } from './VisualizerModal';
 import { PracticeSessionModal } from './PracticeSessionModal';
@@ -103,7 +103,7 @@ export function CfopNavigation() {
                 onClick={openVisualizer}
                 aria-label="Open algorithm visualizer"
               >
-                <MdVideocam size={16} />
+                <MdAnimation size={16} />
                 <span>Visualize</span>
               </button>
               <button

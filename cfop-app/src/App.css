@@ -210,6 +210,14 @@
   color: var(--color-accent-primary);
 }
 
+.cubehead-inline {
+  height: 1.2em;
+  width: auto;
+  vertical-align: middle;
+  display: inline;
+  margin-inline: 0.15em;
+}
+
 .intuitive-step-title {
   margin-top: 1rem;
   margin-bottom: 0.5rem;

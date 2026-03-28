@@ -13,12 +13,12 @@ export default function AboutPage() {
         <p>
           The Rubik's Cube was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since
           the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of
-          competitors. 
+          competitors and insane world record times of sub-5 seconds for single and average solves in recent years.
+        </p>
+        <p className="mt-3">I was a child only 2 years old when the cube was invented and I never learnt how to solve it (legitimately) as a child. A few years ago, I was on holiday with my family, and my daughter bought me a Rubik's cube (traditional, clunky design), and I was determined to learn to solve it. I found the beginner method online from JPerm and after watching that repeated for a few hours, I'd achieved my first solve 🤪 and was hooked. I then wanted to understand more and see if I could push times reliably in the 1 to 2 minute range. I started learning CFOP, and it's been a fun journey since, I may have upgraded to a Gan cube along the way 🤓. The methodical nature of CFOP, with its clear stages and algorithmic patterns, makes it a great fit for my learning style. The 2-look CFOP is a sweet spot for me where I can achieve good times without needing to memorise a huge number of algorithms.
         </p>
         <p className="mt-3">
-          This app was built to support my own cubing learning journey, starting from the beginner method
-          and working toward consistent sub-two-minute solves using CFOP methods. Cubing knowledge here is drawn from the
-          excellent YouTube tutorials by <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang) and <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf).
+          I've developed this app to reinforce my learning and track my progress, whilst also nurturing my engineering skills - the YouTube videos have been invaluable for learning techniques and strategies, but I found focusing on specific algorithms and techniques was tedious as it needs targeted repetition many times, and other sites were cluttered or covered in ads with trackers. I wanted a clean, modern and mobile friendly environment, to let me focus on learning, and hopefully it serves others well too. Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
         </p>
       </section>
 
@@ -56,7 +56,7 @@ export default function AboutPage() {
           </li>
           <li>
             <strong>2-Look CFOP</strong> — The recommended starting point for the last layer. Uses 2-Look OLL and PLL with only 9–12
-            algorithms. Achievable in 1–2 minutes per solve, with the probability of repetition. I'm at this level and it's a great balance of speed and memorisation for casual cubing.
+            algorithms. Achievable in 1–2 minutes per solve, with the probability of repetition.
           </li>
           <li>
             <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn all 57 OLL and 21 PLL cases plus algorithmic F2L for
@@ -66,19 +66,37 @@ export default function AboutPage() {
       </section>
 
       <section className="section about-section">
-        <h2 className="title is-4 has-text-centered section-title">World Cube Association</h2>
-        <p className="mt-3">
-          The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages. CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency and the skill of its practitioners.
-        </p>
-       <p className="mt-3">
-          The scramble/timer feature on the Beginner page uses the same 20-move WCA-style scramble format, so your practice environment closely mirrors competition conditions, with time tracking for both single solves and averages over last-5 solves. 
-        </p>
+        <h2 className="title is-4 has-text-centered section-title">Practice Strategies</h2>
+        <p>Repetition is the core theme — consistent reps build recognition and muscle memory.</p>
+        <div className="columns mt-3">
+          <div className="column">
+            <h3 className="title is-5 mb-2">Focused algorithm practice</h3>
+            <ul className="about-list">
+              <li>Set focused weekly goals to improve one F2L intuition or lock in PLL recognition.</li>
+              <li>Start slow for accuracy and finger placement, then increase speed gradually.</li>
+              <li>Repeat each algorithm 10–20 times in one session to build muscle memory.</li>
+              <li>Watch the pieces move as you execute to strengthen visual and logical understanding.</li>
+              <li>Work on efficient finger tricks and reduce unnecessary cube rotations.</li>
+            </ul>
+          </div>
+          <div className="column">
+            <h3 className="title is-5 mb-2">Random scramble practice</h3>
+            <ul className="about-list">
+              <li>Scramble and practice one stage at a time — Cross, F2L, OLL, or PLL.</li>
+              <li>Set measurable targets e.g. Cross under 8 moves, F2L under 30 seconds.</li>
+              <li>Use a timer for full solves to track your progress over time.</li>
+              <li>Analyze your solves to identify areas for improvement and adjust your practice accordingly.</li>
+              <li>Beat the champions e.g. challenge yourself with scrambles and times from event finals.</li>
+              <li>Have fun and celebrate milestones, whether it's mastering a new algorithm or achieving a personal best time!</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section className="section about-section">
         <h2 className="title is-4 has-text-centered section-title">Video Resources</h2>
         <p>
-          These tutorials from CubeHead are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves.
+          These tutorials from CubeHead<img src={`${import.meta.env.BASE_URL}assets/cubehead.png`} alt="CubeHead" className="cubehead-inline" /> are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves. These are a great starting point for learning CFOP, and the intuitive methods are especially helpful for building a strong foundation before diving into algorithm memorisation. The videos are well-structured and beginner-friendly, making them an excellent resource for cubers at all levels.
         </p>
         <div className="columns mt-3">
           <div className="column">
@@ -104,29 +122,15 @@ export default function AboutPage() {
       </section>
 
       <section className="section about-section">
-        <h2 className="title is-4 has-text-centered section-title">Practice Strategies</h2>
-        <p>Repetition is the core theme — consistent reps build recognition and muscle memory.</p>
-        <div className="columns mt-3">
-          <div className="column">
-            <h3 className="title is-5 mb-2">Focused algorithm practice</h3>
-            <ul className="about-list">
-              <li>Set focused weekly goals — improve one F2L case set or lock in PLL recognition.</li>
-              <li>Start slow for accuracy and finger placement, then increase speed gradually.</li>
-              <li>Repeat each algorithm 10–20 times in one session to build muscle memory.</li>
-              <li>Watch the pieces move as you execute — strengthen visual and logical understanding.</li>
-              <li>Work on efficient finger tricks and reduce unnecessary cube rotations.</li>
-            </ul>
-          </div>
-          <div className="column">
-            <h3 className="title is-5 mb-2">Random scramble practice</h3>
-            <ul className="about-list">
-              <li>Scramble and practice one stage at a time — Cross, F2L, OLL, or PLL.</li>
-              <li>Set measurable targets — Cross under 8 moves, F2L under 30 seconds.</li>
-              <li>Use a timer for full solves to track your progress over time.</li>
-            </ul>
-          </div>
-        </div>
+        <h2 className="title is-4 has-text-centered section-title">World Cube Association</h2>
+        <p className="mt-3">
+          The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages. CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency and the skill of its practitioners.
+        </p>
+       <p className="mt-3">
+          The scramble/timer feature uses the same 20-move WCA-style scramble format, so your practice environment closely mirrors competition conditions, with time tracking for both single solves and averages over last-5 solves. 
+        </p>
       </section>
+
     </CfopPageLayout>
   );
 }

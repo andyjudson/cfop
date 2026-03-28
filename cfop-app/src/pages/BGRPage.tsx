@@ -7,7 +7,7 @@ import { PracticeSessionModal } from '../components/PracticeSessionModal';
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { AlgorithmCard, AlgorithmNotesSheet, type CfopAlgorithm } from '../components/AlgorithmCard';
 
-const essentialIds = ['oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
+const essentialIds = ['oll_cross_line','oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
 
 function BGRPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);

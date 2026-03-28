@@ -400,19 +400,6 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - `DemoModal` deleted; its CSS absorbed into `VisualizerModal.css` with hardcoded values replaced by tokens
 - Modal width 580px to prevent long algorithm move sequences wrapping to 3 lines
 
-## Feature Backlog (Not in Scope)
-All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
-**Roadmaps**
-- Notation primer >> done
-- Intuitive Cross and F2L primer >> done
-- About page (migrate sections from readme) >> done
-- Integrate official WCA event scrambles, "beat the champion" mode (world record evolution chart done ✅)
-- Interactive visualizations for any user selected cases
-- Algorithm learning tracking for practice
-- Revisit UI design, layout, theme, components
-- Mobile deployment or native app (unlikely)
-- Alternative algorithm sets (unlikely)
-
 ## Implementation Plan
 
 ### Completed Features ✅

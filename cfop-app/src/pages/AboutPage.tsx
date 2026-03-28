@@ -1,4 +1,5 @@
 import { CfopPageLayout } from '../components/CfopPageLayout';
+import { WrEvolutionChart } from '../components/WrEvolutionChart';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 
@@ -15,10 +16,10 @@ export default function AboutPage() {
           the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of
           competitors and insane world record times of sub-5 seconds for single and average solves in recent years.
         </p>
-        <p className="mt-3">I was a child only 2 years old when the cube was invented and I never learnt how to solve it (legitimately) as a child. A few years ago, I was on holiday with my family, and my daughter bought me a Rubik's cube (traditional, clunky design), and I was determined to learn to solve it. I found the beginner method online from JPerm and after watching that repeated for a few hours, I'd achieved my first solve 🤪 and was hooked. I then wanted to understand more and see if I could push times reliably in the 1 to 2 minute range. I started learning CFOP, and it's been a fun journey since, I may have upgraded to a Gan cube along the way 🤓. The methodical nature of CFOP, with its clear stages and algorithmic patterns, makes it a great fit for my learning style. The 2-look CFOP is a sweet spot for me where I can achieve good times without needing to memorise a huge number of algorithms.
+        <p className="mt-3">I was only 2 years old when the cube was invented and I never learnt how to solve it (legitimately) as a child. A few years ago, I was on holiday with my family, and my daughter bought me a cube (traditional, clunky design), and I was determined to learn to solve it. I found the beginner method online from JPerm and after watching that repeatedly for a few hours, I'd achieved my first solve 🤪 and was hooked. I then wanted to understand more and see if I could push times reliably in the 1 to 2 minute range. I started learning CFOP, and it's been a fun journey since, I may have upgraded to a Gan cube along the way 🤓. The methodical nature of CFOP, with its clear stages and algorithmic patterns, makes it a great fit for my learning style. The 2-look CFOP is a sweet spot for me where I can achieve good times without needing to memorise a huge number of algorithms.
         </p>
         <p className="mt-3">
-          I've developed this app to reinforce my learning and track my progress, whilst also nurturing my engineering skills - the YouTube videos have been invaluable for learning techniques and strategies, but I found focusing on specific algorithms and techniques was tedious as it needs targeted repetition many times, and other sites were cluttered or covered in ads with trackers. I wanted a clean, modern and mobile friendly environment, to let me focus on learning, and hopefully it serves others well too. Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
+          I've developed this app to reinforce my learning and track my progress, whilst also nurturing my engineering skills - the YouTube videos have been invaluable for learning techniques and strategies, but I found focusing on specific algorithms and techniques was tedious as it needs targeted repetition, and other sites were ugly and polluted in ads or trackers. I wanted a clean, modern and mobile friendly environment, to let me focus on learning, and hopefully it serves others well too. Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
         </p>
       </section>
 
@@ -127,8 +128,9 @@ export default function AboutPage() {
           The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages. CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency and the skill of its practitioners.
         </p>
        <p className="mt-3">
-          The scramble/timer feature uses the same 20-move WCA-style scramble format, so your practice environment closely mirrors competition conditions, with time tracking for both single solves and averages over last-5 solves. 
+          The scramble/timer feature uses the same 20-move WCA-style scramble format, so your practice environment closely mirrors competition conditions, with time tracking for both single solves and averages over last-5 solves.
         </p>
+        <WrEvolutionChart />
       </section>
 
     </CfopPageLayout>

@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–010 complete. CSS baseline refined. Ready for next net-new feature.
+Features 001–012 complete. CSS baseline refined. Ready for next net-new feature.
 
 ## CSS Standards
 
@@ -74,6 +74,8 @@ npm run dev -- --host 127.0.0.1 --port 5173
 ## Active Technologies
 - TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md (011-about-page-nav)
 - N/A (static content only) (011-about-page-nav)
+- TypeScript 5.9 / React 19 / Vite 7 + Recharts (new, ~38–42 kB gzip tree-shaken); existing: Bulma CSS 1.x, react-router-dom 7.x, react-icons 5.x (012-wca-wr-chart)
+- N/A — data read from static file at runtime (012-wca-wr-chart)
 
 ## Recent Changes
 - 011-about-page-nav: Added TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md

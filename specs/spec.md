@@ -368,13 +368,30 @@ Consolidate all educational and contextual content (cubing background, CFOP prim
 - Backdrop-close and Escape-dismiss added to hamburger, consistent with notes sheet pattern
 - README files (root + cfop-app) stripped of educational content; technical documentation retained
 
+## Feature 012: WCA World Record Evolution Chart
+
+### Status: Complete ✅
+
+### Scope
+Add an interactive step-line chart to the "World Cube Association" section of the About page, visualising how 3×3 Single and Average world record times have evolved from 2004 to the present. The chart reads from a static NDJSON data file (`public/data/wca-wr-evo.json`) that can be updated by file replacement with no code changes.
+
+### Key Decisions
+- **Recharts** (tree-shaken, ~40 kB gzip): native `type="stepAfter"` line, JSX tooltip, React-native API
+- Unified `data` array on `<LineChart>` with separate `dataKey` per `<Line>` (Recharts v3 pattern)
+- CSS custom property tokens for all colours; `getComputedStyle` resolution at runtime for Recharts stroke props
+- Custom `TooltipContentProps`-typed tooltip component — competitor name, country flag, date, time
+- Explicit `xTicks` at 2-year boundaries via `Date.UTC` to prevent duplicate year labels
+- Explicit `yMax` computed across both series to correct Recharts v3 single-dataKey domain limitation
+- `--color-accent-warm: #e05c28` added to token system for Average WR series (warm orange complement to blue Single WR)
+- Competition ID removed from tooltip for cleaner display
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
 - Notation primer >> done
 - Intuitive Cross and F2L primer >> done
 - About page (migrate sections from readme) >> done
-- Integrate official WCA event scrambles, "beat the champion" mode and "world record evolution"
+- Integrate official WCA event scrambles, "beat the champion" mode (world record evolution chart done ✅)
 - Interactive visualizations for any user selected cases
 - Algorithm learning tracking for practice
 - Revisit UI design, layout, theme, components
@@ -492,6 +509,16 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - README.md updated with full navigation and feature documentation ✅
 - Production build validated: 1.78s, no errors ✅
 - react-router-dom dependency added ✅
+
+**Feature 012 - WCA World Record Evolution Chart (Completed)**:
+- `WrEvolutionChart` self-contained component with NDJSON fetch, parse, and Recharts render ✅
+- Two step-line series (Single WR + Average WR) with unified data array on `<LineChart>` ✅
+- Custom tooltip: competitor name, country flag emoji, formatted date, solve time ✅
+- Explicit 2-year X-axis ticks; explicit Y-axis max across both series ✅
+- Colour tokens only: `--color-accent-primary` (blue) + `--color-accent-warm` (orange, new token) ✅
+- Graceful fallback for missing/failed data file ✅
+- `<WrEvolutionChart />` single tag in `AboutPage.tsx` WCA section ✅
+- Production build verified, no TypeScript errors ✅
 
 **Feature 011 - About Page & Persistent Hamburger Navigation (Completed)**:
 - AboutPage.tsx created with six content sections: Cubing Background, CFOP Primer, Methods Overview, WCA Context, Video Resources, Practice Strategies ✅

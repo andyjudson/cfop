@@ -6,6 +6,7 @@ CFOP learning companion for Rubik's cube speedsolving with full algorithm refere
 
 ## Features
 
+- **About Page**: Cubing background, CFOP primer, WCA context, and interactive WR evolution chart (Single + Average 3×3 world records from 2004 to present)
 - **Full CFOP Navigation**: Navigate between Intuitive, Notation, 2LK, F2L (41 cases), OLL (57 cases), and PLL (21 cases) pages
 - **Notation Reference Page**: Face turns, modifiers, slices, cube rotations, and common trigger references
 - **Algorithm Reference Grids**: Visual reference for all CFOP algorithms organized by case groups
@@ -23,7 +24,7 @@ CFOP learning companion for Rubik's cube speedsolving with full algorithm refere
 npm install
 npm run dev
 ```
-Access at: `http://127.0.0.1:5173/cubing.spec/`
+Access at: `http://localhost:5173/cubing.spec/`
 
 ### Production Build
 ```bash

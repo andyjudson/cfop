@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { MdPlayArrow, MdStop, MdShuffle, MdHistory, MdChangeCircle } from 'react-icons/md';
 import { useSolveTimer } from '../hooks/useSolveTimer';
 import { useSolveStats } from '../hooks/useSolveStats';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
@@ -153,13 +154,9 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
       setCompetitiveSession(updatedSession);
       if (newIndex >= competitiveSession.scrambles.length) {
         setCompOutcome(computeOutcome(updatedSession));
-      } else {
-        const remaining = competitiveSession.scrambles.length - newIndex;
-        setStatusMessage(`Solve ${newIndex} of ${competitiveSession.scrambles.length} recorded. ${remaining} to go.`);
       }
     } else {
       saveSolve(timer.elapsedMs);
-      setStatusMessage('Solve recorded. Generate a new scramble for the next attempt.');
     }
   }, [competitiveSession, mode, saveSolve, stop, timer.elapsedMs]);
 
@@ -218,9 +215,6 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
     ? Math.min(competitiveSession.currentIndex, competitiveSession.scrambles.length - 1)
     : 0;
   const compScramble = isCompetitive ? competitiveSession.scrambles[safeIndex] : null;
-  const solveProgress = isCompetitive
-    ? `Solve ${Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} of ${competitiveSession.scrambles.length}`
-    : null;
 
   // Running comparison values (shown after first solve)
   const solvedTimes = competitiveSession?.solveTimesMs ?? [];
@@ -233,25 +227,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
       <div className="practice-modal" onClick={(event) => event.stopPropagation()}>
         <header className="practice-modal-header">
           <h2 className="title is-4">Practice Session</h2>
-          <div className="practice-header-controls">
-            <div className="buttons has-addons mode-toggle">
-              <button
-                className={`button is-small ${mode === 'standard' ? 'is-link' : 'is-light'}`}
-                onClick={() => handleToggleMode('standard')}
-                disabled={timer.state === 'running'}
-              >
-                Standard
-              </button>
-              <button
-                className={`button is-small ${mode === 'competitive' ? 'is-link' : 'is-light'}`}
-                onClick={() => handleToggleMode('competitive')}
-                disabled={timer.state === 'running'}
-              >
-                Competitive
-              </button>
-            </div>
-            <button className="delete" onClick={onClose} aria-label="close"></button>
-          </div>
+          <button className="delete" onClick={onClose} aria-label="close"></button>
         </header>
 
         <section className="practice-modal-content">
@@ -277,28 +253,19 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
               {/* Scramble block */}
               <div className="practice-block">
                 <div className="practice-block-header">
-                  <h3 className="title is-6">Scramble</h3>
-                  {isCompetitive ? (
-                    <span className="solve-progress">{solveProgress}</span>
-                  ) : (
-                    <button
-                      className="button is-link is-light is-small"
-                      onClick={handleNewScramble}
-                      disabled={isScrambleLoading}
-                    >
-                      {isScrambleLoading ? 'Generating...' : 'New Scramble'}
-                    </button>
-                  )}
+                  <h3 className="title is-6 scramble-title">
+                    <span>Scramble</span>
+                    {isCompetitive && competitiveSession && (
+                      <>
+                        <span className="scramble-title-sep">—</span>
+                        <span className="scramble-competition-name">{competitiveSession.competition.competition_name}</span>
+                        <span className={`tier-badge tier-${competitiveSession.competition.tier}`}>
+                          {competitiveSession.competition.tier === 'wr' ? 'WR' : 'Champ'}
+                        </span>
+                      </>
+                    )}
+                  </h3>
                 </div>
-
-                {isCompetitive && competitiveSession && (
-                  <div className="competitive-context">
-                    <span className="competitive-event-name">{competitiveSession.competition.competition_name}</span>
-                    <span className={`tier-badge tier-${competitiveSession.competition.tier}`}>
-                      {competitiveSession.competition.tier === 'wr' ? 'WR' : 'Champ'}
-                    </span>
-                  </div>
-                )}
 
                 <div className="scramble-display" aria-live="polite">
                   <span className="scramble-text">
@@ -312,20 +279,61 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
               <div className="practice-block">
                 <div className="practice-block-header">
                   <h3 className="title is-6">Timer</h3>
-                  <span className={`timer-state-pill timer-state-${timer.state}`}>{timerStatus}</span>
+                  <div className="timer-header-pills">
+                    {isCompetitive && competitiveSession ? (
+                      <span className="solve-count-pill">
+                        {Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} / {competitiveSession.scrambles.length}
+                      </span>
+                    ) : stats.solveCount > 0 ? (
+                      <span className="solve-count-pill">{stats.solveCount} solve{stats.solveCount !== 1 ? 's' : ''}</span>
+                    ) : null}
+                    <span className={`timer-state-pill timer-state-${timer.state}`}>{timerStatus}</span>
+                  </div>
                 </div>
                 <div className="timer-display" aria-live="polite">{timerDisplay}</div>
                 <div className="timer-controls">
+                  {!isCompetitive && (
+                    <button
+                      className="button is-link is-light is-small"
+                      onClick={handleNewScramble}
+                      disabled={isScrambleLoading}
+                    >
+                      <span className="icon is-small"><MdShuffle /></span>
+                      <span>Scramble</span>
+                    </button>
+                  )}
                   <button
-                    className="button is-primary"
+                    className="button is-primary is-small"
                     onClick={handleStart}
                     disabled={!canStart || (!isCompetitive && isScrambleLoading)}
                   >
-                    Start
+                    <span className="icon is-small"><MdPlayArrow /></span>
+                    <span>Start</span>
                   </button>
-                  <button className="button is-warning is-light" onClick={handleStop} disabled={!canStop}>
-                    Stop
+                  <button
+                    className="button is-warning is-light is-small"
+                    onClick={handleStop}
+                    disabled={!canStop}
+                  >
+                    <span className="icon is-small"><MdStop /></span>
+                    <span>Stop</span>
                   </button>
+                  <div className="buttons has-addons mode-toggle">
+                    <button
+                      className={`button is-small ${isCompetitive ? 'is-light' : 'is-link'}`}
+                      onClick={() => handleToggleMode('standard')}
+                      disabled={timer.state === 'running'}
+                    >
+                      Standard
+                    </button>
+                    <button
+                      className={`button is-small ${isCompetitive ? 'is-link' : 'is-light'}`}
+                      onClick={() => handleToggleMode('competitive')}
+                      disabled={timer.state === 'running'}
+                    >
+                      Competitive
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -333,13 +341,14 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
               {isCompetitive && competitiveSession ? (
                 <div className="practice-block">
                   <div className="practice-block-header">
-                    <h3 className="title is-6 vs-champion-title">vs {competitiveSession.competition.winner_name}</h3>
+                    <h3 className="title is-6">vs <span className="vs-champion-name">{competitiveSession.competition.winner_name}</span></h3>
                     <button
                       className="button is-light is-small"
                       onClick={() => setShowSelector(true)}
                       disabled={timer.state === 'running'}
                     >
-                      Change
+                      <span className="icon is-small"><MdChangeCircle /></span>
+                      <span>Change</span>
                     </button>
                   </div>
                   <div className="stats-display">
@@ -372,9 +381,9 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     <button
                       className="button is-danger is-light is-small"
                       onClick={resetStats}
-                      title="Clear all statistics"
                     >
-                      Reset Stats
+                      <span className="icon is-small"><MdHistory /></span>
+                      <span>Reset</span>
                     </button>
                   </div>
                   <div className="stats-display">

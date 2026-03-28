@@ -30,10 +30,30 @@
   color: #0f172a;
 }
 
-.practice-header-controls {
+.vs-champion-name {
+  color: var(--color-accent-primary);
+}
+
+.scramble-title {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 0.35em;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.scramble-title-sep {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.scramble-competition-name {
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .mode-toggle {
@@ -45,35 +65,6 @@
   margin-bottom: 0;
 }
 
-.vs-champion-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-}
-
-.solve-progress {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-}
-
-.competitive-context {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-sm);
-}
-
-.competitive-event-name {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 .tier-badge {
   display: inline-flex;
@@ -91,9 +82,8 @@
 }
 
 .tier-championship {
-  background: var(--color-bg-emphasis);
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border-medium);
+  background: var(--color-accent-warm);
+  color: var(--color-bg-base);
 }
 
 .practice-modal-content {
@@ -162,6 +152,24 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.timer-header-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.solve-count-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  color: var(--color-accent-primary);
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-border-medium);
 }
 
 .timer-state-pill {

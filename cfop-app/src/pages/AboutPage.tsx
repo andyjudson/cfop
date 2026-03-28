@@ -21,6 +21,9 @@ export default function AboutPage() {
         <p className="mt-3">
           I've developed this app to reinforce my learning and track my progress, whilst also nurturing my engineering skills - the YouTube videos have been invaluable for learning techniques and strategies, but I found focusing on specific algorithms and techniques was tedious as it needs targeted repetition, and other sites were ugly and polluted in ads or trackers. I wanted a clean, modern and mobile friendly environment, to let me focus on learning, and hopefully it serves others well too. Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
         </p>
+        <p className="mt-3">
+          The app is open source — you can find the code on <a href="https://github.com/andyjudson/cubing.spec" target="_blank" rel="noreferrer">GitHub</a>. If you spot a bug, have a suggestion, or want to see a new feature, feel free to open an issue there.
+        </p>
       </section>
 
       <section className="section about-section">

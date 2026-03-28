@@ -277,10 +277,10 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                   <h3 className="title is-6">Timer</h3>
                   {isCompetitive && competitiveSession ? (
                     <span className="solve-count-pill">
-                      scramble {Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} of {competitiveSession.scrambles.length}
+                      Scramble: {Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} of {competitiveSession.scrambles.length}
                     </span>
                   ) : stats.solveCount > 0 ? (
-                    <span className="solve-count-pill">{stats.solveCount} solve{stats.solveCount !== 1 ? 's' : ''}</span>
+                    <span className="solve-count-pill">Solve: {stats.solveCount}</span>
                   ) : null}
                 </div>
                 <div className="timer-display" aria-live="polite">{timerDisplay}</div>

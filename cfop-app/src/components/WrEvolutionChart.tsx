@@ -10,6 +10,7 @@ import './WrEvolutionChart.css';
 interface WrRawRecord {
   competition_date: number;
   competition_id: string;
+  competition_name: string;
   person_id: string;
   person_name: string;
   person_country: string;
@@ -23,6 +24,7 @@ interface WrRecord {
   personName: string;
   personCountry: string;
   competitionId: string;
+  competitionName: string;
   formattedDate: string;
   flagEmoji: string;
 }
@@ -77,6 +79,7 @@ function normaliseRecord(raw: WrRawRecord): WrRecord {
     personName: raw.person_name.replace(/\s*\([^)]+\)/, '').trim(),
     personCountry: raw.person_country,
     competitionId: raw.competition_id,
+    competitionName: raw.competition_name,
     formattedDate: `${MONTHS[d.getMonth()]} ${d.getFullYear()}`,
     flagEmoji: COUNTRY_FLAGS[raw.person_country] ?? '',
   };
@@ -133,6 +136,7 @@ function WrTooltipContent({ active, payload }: TooltipContentProps) {
                 <div className="wr-tooltip-person">
                   {record.flagEmoji} {record.personName} · {record.personCountry}
                 </div>
+                <div className="wr-tooltip-meta">{record.competitionName}</div>
                 <div className="wr-tooltip-meta">{record.formattedDate}</div>
               </>
             )}
@@ -151,7 +155,7 @@ export function WrEvolutionChart() {
   const [loadState, setLoadState] = useState<LoadState>('loading');
 
   useEffect(() => {
-    fetch(import.meta.env.BASE_URL + 'data/wca-wr-evo.json')
+    fetch(import.meta.env.BASE_URL + 'data/wca-wr-evolution.json')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load WR data');
         return res.text();

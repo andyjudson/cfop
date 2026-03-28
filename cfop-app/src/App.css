@@ -328,6 +328,14 @@
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  .app-shell .title.is-3 {
+    font-size: 1.35rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
   .cfop-primer {
     gap: 0.65rem;
   }

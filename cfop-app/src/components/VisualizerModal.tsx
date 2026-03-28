@@ -66,7 +66,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   const [ollData, setOllData] = useState<CfopAlgorithm[]>([]);
   const [pllData, setPllData] = useState<CfopAlgorithm[]>([]);
   const [loadState, setLoadState] = useState<LoadState>('loading');
-  const [selectedSet, setSelectedSet] = useState<'OLL' | 'PLL'>('OLL');
+  const [selectedSet, setSelectedSet] = useState<'OLL' | 'PLL'>('PLL');
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [currentAlg, setCurrentAlg] = useState<CfopAlgorithm | null>(null);
 
@@ -85,7 +85,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
         setOllData(oll);
         setPllData(pll);
         setLoadState('ready');
-        setCurrentAlg(pickRandom(oll));
+        setCurrentAlg(pickRandom(pll));
       })
       .catch(() => setLoadState('error'));
   }, []);

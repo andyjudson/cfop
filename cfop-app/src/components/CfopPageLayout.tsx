@@ -24,7 +24,7 @@ export function CfopPageLayout({
       <CfopNavigation />
       <div className="container py-5" style={{ maxWidth: '1200px' }}>
         <section className="section pt-0 has-text-centered">
-          <h1 className="title is-3">Cubing - Learning CFOP <span className="has-text-grey-light">|</span> {pageTitle}</h1>
+          <h1 className="title is-3">Learning CFOP <span className="has-text-grey-light">|</span> {pageTitle}</h1>
           {subtitle && <p className="subtitle is-6 page-intro-subtitle">{subtitle}</p>}
           {introContent && (
             <div className="cfop-primer has-text-left mx-auto mt-4">

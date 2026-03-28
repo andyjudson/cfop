@@ -30,37 +30,21 @@
   color: #0f172a;
 }
 
-.vs-champion-name {
-  color: var(--color-accent-primary);
-}
-
-.scramble-title {
-  display: flex;
-  align-items: center;
-  gap: 0.35em;
-  flex-wrap: nowrap;
-  min-width: 0;
-}
-
-.scramble-title-sep {
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
-}
-
-.scramble-competition-name {
-  font-weight: 600;
-  color: var(--color-accent-primary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-}
-
-.stats-block-actions {
+.practice-header-controls {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  flex-shrink: 0;
+}
+
+.vs-champion-name {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
+.block-caption {
+  margin-top: var(--space-sm);
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
 }
 
 .mode-toggle {
@@ -251,6 +235,10 @@
 @media (max-width: 768px) {
   .practice-modal {
     padding: 0.85rem 0.85rem 1rem;
+  }
+
+  .practice-modal-header .title.is-4 {
+    font-size: 1.1rem;
   }
 
   .timer-display {

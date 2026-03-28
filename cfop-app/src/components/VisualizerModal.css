@@ -226,6 +226,10 @@
     padding: 1rem;
   }
 
+  .modal-header .title.is-4 {
+    font-size: 1.1rem;
+  }
+
   .twisty-container {
     height: 220px;
   }

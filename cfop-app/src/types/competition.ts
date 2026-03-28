@@ -9,6 +9,8 @@ export interface Competition {
   winner_name: string;
   winner_single: number;
   winner_average: number | null;
+  wr_single: number | null;
+  wr_average: number | null;
   scramble_groups: Record<string, string[]>;
 }
 

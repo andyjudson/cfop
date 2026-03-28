@@ -292,7 +292,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 </select>
               </div>
               <button
-                className="button is-warning is-light visualizer-shuffle-btn"
+                className="button is-link is-light visualizer-shuffle-btn"
                 onClick={handleShuffle}
                 title="Shuffle"
               >

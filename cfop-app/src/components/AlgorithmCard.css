@@ -95,6 +95,21 @@
   text-align: center;
 }
 
+/* Intuitive case card: notation block */
+.intuitive-case-card code.notation {
+  display: block;
+  background: var(--color-bg-muted);
+  color: var(--color-text-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.03em;
+  word-spacing: 0.2em;
+  text-align: center;
+}
+
 /* Notes bottom sheet */
 .notes-sheet-backdrop {
   position: fixed;

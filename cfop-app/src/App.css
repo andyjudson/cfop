@@ -152,7 +152,21 @@
 .cfop-navbar .navbar-menu .navbar-item {
   display: flex;
   align-items: center;
+  gap: 0.3rem;
   min-height: 3.1rem;
+}
+
+.cfop-navbar .cfop-navbar-img-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+
+.cfop-navbar .navbar-item:hover .cfop-navbar-img-icon,
+.cfop-navbar .navbar-item.cfop-navbar-active .cfop-navbar-img-icon {
+  opacity: 1;
 }
 
 /* Backdrop for click-outside dismiss */

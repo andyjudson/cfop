@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MdVideocam, MdTimer } from 'react-icons/md';
+import { MdVideocam, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import { VisualizerModal } from './VisualizerModal';
 import { PracticeSessionModal } from './PracticeSessionModal';
@@ -8,16 +8,20 @@ import { PracticeSessionModal } from './PracticeSessionModal';
 interface NavLink {
   path: string;
   label: string;
+  icon?: React.ComponentType<{ size?: number }>;
+  img?: string;
 }
 
+const BASE = import.meta.env.BASE_URL;
+
 const navLinks: NavLink[] = [
-  { path: '/about', label: 'About' },
-  { path: '/notation', label: 'Notation' },
-  { path: '/intuitive', label: 'Intuitive' },
-  { path: '/2lk', label: 'Beginner' },
-  { path: '/f2l', label: 'F2L' },
-  { path: '/oll', label: 'OLL' },
-  { path: '/pll', label: 'PLL' },
+  { path: '/about',     label: 'About',     icon: MdInfo },
+  { path: '/notation',  label: 'Notation',  icon: MdLanguage },
+  { path: '/intuitive', label: 'Intuitive', icon: MdPsychology },
+  { path: '/2lk',       label: 'Beginner',  icon: MdSchool },
+  { path: '/f2l',       label: 'F2L',       img: `${BASE}assets/cfop_f2l.png` },
+  { path: '/oll',       label: 'OLL',       img: `${BASE}assets/cfop_oll.png` },
+  { path: '/pll',       label: 'PLL',       img: `${BASE}assets/cfop_pll.png` },
 ];
 
 export function CfopNavigation() {
@@ -77,17 +81,19 @@ export function CfopNavigation() {
           </div>
           <div id="cfop-navbar-menu" className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
             <div className="navbar-start">
-              {navLinks.map(({ path, label }) => {
+              {navLinks.map(({ path, label, icon: Icon, img }) => {
                 const isActive = location.pathname === path;
                 return (
                   <Link
                     key={path}
                     to={path}
-                    className={`navbar-item ${isActive ? 'is-active cfop-navbar-active' : ''}`}
+                    className={`navbar-item cfop-navbar-link ${isActive ? 'is-active cfop-navbar-active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {label}
+                    {Icon && <Icon size={16} />}
+                    {img && <img src={img} alt="" className="cfop-navbar-img-icon" />}
+                    <span>{label}</span>
                   </Link>
                 );
               })}

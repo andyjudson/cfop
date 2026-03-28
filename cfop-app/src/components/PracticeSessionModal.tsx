@@ -6,7 +6,7 @@ import type { ScrambleSource, ScrambleState } from '../types/practice';
 import type { PracticeMode, Competition, CompetitiveSession, ComparisonOutcome } from '../types/competition';
 import { generateRandom333Scramble } from '../utils/scramble';
 import { loadCompetitions, pickRandomGroup } from '../utils/competitionData';
-import { formatElapsedMs, formatTimerLabel } from '../utils/timeFormat';
+import { formatElapsedMs } from '../utils/timeFormat';
 import { ComparisonResult } from './ComparisonResult';
 import { CompetitionSelector } from './CompetitionSelector';
 import './PracticeSessionModal.css';
@@ -131,10 +131,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
   );
 
   const handleNewScramble = async () => {
-    if (timer.state === 'running') {
-      setStatusMessage('Finish your current solve before generating a new scramble.');
-      return;
-    }
+    if (timer.state === 'running') return;
     clearTransientState();
     reset();
     await loadScramble('manual');
@@ -207,7 +204,6 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
   if (!isOpen) return null;
 
   const timerDisplay = formatElapsedMs(timer.elapsedMs);
-  const timerStatus = formatTimerLabel(timer.elapsedMs, timer.state);
   const isCompetitive = mode === 'competitive' && competitiveSession !== null;
 
   // Competitive display values
@@ -279,22 +275,19 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
               <div className="practice-block">
                 <div className="practice-block-header">
                   <h3 className="title is-6">Timer</h3>
-                  <div className="timer-header-pills">
-                    {isCompetitive && competitiveSession ? (
-                      <span className="solve-count-pill">
-                        {Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} / {competitiveSession.scrambles.length}
-                      </span>
-                    ) : stats.solveCount > 0 ? (
-                      <span className="solve-count-pill">{stats.solveCount} solve{stats.solveCount !== 1 ? 's' : ''}</span>
-                    ) : null}
-                    <span className={`timer-state-pill timer-state-${timer.state}`}>{timerStatus}</span>
-                  </div>
+                  {isCompetitive && competitiveSession ? (
+                    <span className="solve-count-pill">
+                      scramble {Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} of {competitiveSession.scrambles.length}
+                    </span>
+                  ) : stats.solveCount > 0 ? (
+                    <span className="solve-count-pill">{stats.solveCount} solve{stats.solveCount !== 1 ? 's' : ''}</span>
+                  ) : null}
                 </div>
                 <div className="timer-display" aria-live="polite">{timerDisplay}</div>
                 <div className="timer-controls">
                   {!isCompetitive && (
                     <button
-                      className="button is-link is-light is-small"
+                      className="button is-warning is-small"
                       onClick={handleNewScramble}
                       disabled={isScrambleLoading}
                     >
@@ -302,38 +295,25 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                       <span>Scramble</span>
                     </button>
                   )}
-                  <button
-                    className="button is-primary is-small"
-                    onClick={handleStart}
-                    disabled={!canStart || (!isCompetitive && isScrambleLoading)}
-                  >
-                    <span className="icon is-small"><MdPlayArrow /></span>
-                    <span>Start</span>
-                  </button>
-                  <button
-                    className="button is-warning is-light is-small"
-                    onClick={handleStop}
-                    disabled={!canStop}
-                  >
-                    <span className="icon is-small"><MdStop /></span>
-                    <span>Stop</span>
-                  </button>
-                  <div className="buttons has-addons mode-toggle">
+                  {timer.state === 'running' ? (
                     <button
-                      className={`button is-small ${isCompetitive ? 'is-light' : 'is-link'}`}
-                      onClick={() => handleToggleMode('standard')}
-                      disabled={timer.state === 'running'}
+                      className="button is-danger is-small"
+                      onClick={handleStop}
+                      disabled={!canStop}
                     >
-                      Standard
+                      <span className="icon is-small"><MdStop /></span>
+                      <span>Stop</span>
                     </button>
+                  ) : (
                     <button
-                      className={`button is-small ${isCompetitive ? 'is-link' : 'is-light'}`}
-                      onClick={() => handleToggleMode('competitive')}
-                      disabled={timer.state === 'running'}
+                      className="button is-primary is-small"
+                      onClick={handleStart}
+                      disabled={!canStart || (!isCompetitive && isScrambleLoading)}
                     >
-                      Competitive
+                      <span className="icon is-small"><MdPlayArrow /></span>
+                      <span>Start</span>
                     </button>
-                  </div>
+                  )}
                 </div>
               </div>
 
@@ -342,14 +322,32 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                 <div className="practice-block">
                   <div className="practice-block-header">
                     <h3 className="title is-6">vs <span className="vs-champion-name">{competitiveSession.competition.winner_name}</span></h3>
-                    <button
-                      className="button is-light is-small"
-                      onClick={() => setShowSelector(true)}
-                      disabled={timer.state === 'running'}
-                    >
-                      <span className="icon is-small"><MdChangeCircle /></span>
-                      <span>Change</span>
-                    </button>
+                    <div className="stats-block-actions">
+                      <div className="mode-toggle">
+                        <button
+                          className="button is-small is-light"
+                          onClick={() => handleToggleMode('standard')}
+                          disabled={timer.state === 'running'}
+                        >
+                          Standard
+                        </button>
+                        <button
+                          className="button is-small is-link"
+                          onClick={() => handleToggleMode('competitive')}
+                          disabled={timer.state === 'running'}
+                        >
+                          Competitive
+                        </button>
+                      </div>
+                      <button
+                        className="button is-small"
+                        onClick={() => setShowSelector(true)}
+                        disabled={timer.state === 'running'}
+                      >
+                        <span className="icon is-small"><MdChangeCircle /></span>
+                        <span>Change</span>
+                      </button>
+                    </div>
                   </div>
                   <div className="stats-display">
                     <div className="stat-item">
@@ -378,13 +376,31 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                 <div className="practice-block">
                   <div className="practice-block-header">
                     <h3 className="title is-6">Statistics</h3>
-                    <button
-                      className="button is-danger is-light is-small"
-                      onClick={resetStats}
-                    >
-                      <span className="icon is-small"><MdHistory /></span>
-                      <span>Reset</span>
-                    </button>
+                    <div className="stats-block-actions">
+                      <div className="mode-toggle">
+                        <button
+                          className="button is-small is-link"
+                          onClick={() => handleToggleMode('standard')}
+                          disabled={timer.state === 'running'}
+                        >
+                          Standard
+                        </button>
+                        <button
+                          className="button is-small is-light"
+                          onClick={() => handleToggleMode('competitive')}
+                          disabled={timer.state === 'running'}
+                        >
+                          Competitive
+                        </button>
+                      </div>
+                      <button
+                        className="button is-small"
+                        onClick={resetStats}
+                      >
+                        <span className="icon is-small"><MdHistory /></span>
+                        <span>Reset</span>
+                      </button>
+                    </div>
                   </div>
                   <div className="stats-display">
                     <div className="stat-item">

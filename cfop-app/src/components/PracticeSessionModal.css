@@ -56,13 +56,30 @@
   min-width: 0;
 }
 
+.stats-block-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
 .mode-toggle {
-  margin: 0;
-  align-self: center;
+  display: inline-flex;
+  align-items: center;
 }
 
 .mode-toggle .button {
-  margin-bottom: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.mode-toggle .button:first-child {
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+}
+
+.mode-toggle .button:last-child {
+  border-radius: 0 4px 4px 0;
 }
 
 
@@ -154,10 +171,9 @@
   gap: 0.5rem;
 }
 
-.timer-header-pills {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+.timer-controls .button:hover {
+  filter: none;
+  opacity: 0.92;
 }
 
 .solve-count-pill {
@@ -172,33 +188,6 @@
   border: 1px solid var(--color-border-medium);
 }
 
-.timer-state-pill {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.2rem 0.6rem;
-  border: 1px solid transparent;
-}
-
-.timer-state-idle {
-  color: #334155;
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-}
-
-.timer-state-running {
-  color: #065f46;
-  background: #ecfdf5;
-  border-color: #34d399;
-}
-
-.timer-state-stopped {
-  color: #7c2d12;
-  background: #fff7ed;
-  border-color: #fdba74;
-}
 
 .practice-status,
 .practice-error {

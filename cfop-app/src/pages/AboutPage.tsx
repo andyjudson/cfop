@@ -11,7 +11,7 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 has-text-centered section-title">Cubing Background</h2>
         <p>
-          The Rubik's Cube was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since
+          The Rubik's Cube <img src={`${import.meta.env.BASE_URL}assets/cubing-64.png`} alt="CFOP app" className="logo-inline" />  was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since
           the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of
           competitors and insane world record times of sub-5 seconds for single and average solves in recent years.
         </p>
@@ -96,7 +96,7 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 has-text-centered section-title">Video Resources</h2>
         <p>
-          These tutorials from CubeHead<img src={`${import.meta.env.BASE_URL}assets/cubehead.png`} alt="CubeHead" className="cubehead-inline" /> are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves. These are a great starting point for learning CFOP, and the intuitive methods are especially helpful for building a strong foundation before diving into algorithm memorisation. The videos are well-structured and beginner-friendly, making them an excellent resource for cubers at all levels.
+          These tutorials from CubeHead<img src={`${import.meta.env.BASE_URL}assets/cubehead.png`} alt="CubeHead" className="logo-inline" /> are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves. These are a great starting point for learning CFOP, and the intuitive methods are especially helpful for building a strong foundation before diving into algorithm memorisation. The videos are well-structured and beginner-friendly, making them an excellent resource for cubers at all levels.
         </p>
         <div className="columns mt-3">
           <div className="column">

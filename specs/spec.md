@@ -385,6 +385,21 @@ Add an interactive step-line chart to the "World Cube Association" section of th
 - `--color-accent-warm: #e05c28` added to token system for Average WR series (warm orange complement to blue Single WR)
 - Competition ID removed from tooltip for cleaner display
 
+## Feature 013: Global Algorithm Visualizer & Practice Timer
+
+### Status: Complete ✅
+
+### Scope
+Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into the nav bar, accessible from any page. Upgraded the Visualizer to a full OLL/PLL browser with three selectors (set, group, specific algorithm) and a Shuffle button. Cleaned up the Beginner page by removing the now-redundant modal trigger buttons. Deleted `DemoModal` (superseded by `VisualizerModal`).
+
+### Key Decisions
+- `CfopNavigation` owns modal state — no context or prop drilling; modals render directly from nav
+- New `VisualizerModal` self-loads OLL/PLL data, manages its own set/group/algorithm selection state
+- Three-selector layout: Set → Group → Algorithm + Shuffle; algorithm selector updates when set/group changes
+- Auto-shuffles OLL on open so player is never empty
+- `DemoModal` deleted; its CSS absorbed into `VisualizerModal.css` with hardcoded values replaced by tokens
+- Modal width 580px to prevent long algorithm move sequences wrapping to 3 lines
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
@@ -509,6 +524,14 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - README.md updated with full navigation and feature documentation ✅
 - Production build validated: 1.78s, no errors ✅
 - react-router-dom dependency added ✅
+
+**Feature 013 - Global Algorithm Visualizer & Practice Timer (Completed)**:
+- `VisualizerModal` component with OLL/PLL data loading, 3-selector UI (set/group/algorithm), Shuffle ✅
+- "Visualize" and "Practice" nav action buttons in `CfopNavigation` — accessible from any page ✅
+- `DemoModal` deleted; styles absorbed into `VisualizerModal.css` with hardcoded values replaced by tokens ✅
+- Beginner page cleaned up: Demo/Practice buttons, state, and imports removed ✅
+- Default route changed from `/about` to `/2lk` ✅
+- Production build verified, no TypeScript errors ✅
 
 **Feature 012 - WCA World Record Evolution Chart (Completed)**:
 - `WrEvolutionChart` self-contained component with NDJSON fetch, parse, and Recharts render ✅

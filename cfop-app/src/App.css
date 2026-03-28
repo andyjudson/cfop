@@ -177,6 +177,23 @@
   color: var(--color-accent-primary);
 }
 
+.cfop-navbar .navbar-item.cfop-navbar-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text-secondary);
+}
+
+.cfop-navbar .navbar-item.cfop-navbar-action:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-accent-primary);
+}
+
 .intuitive-section {
   padding-block: 1.5rem;
 }

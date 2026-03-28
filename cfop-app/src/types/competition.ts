@@ -27,6 +27,8 @@ export interface ComparisonOutcome {
   userAverageMs: number | null;
   winnerSingleS: number;
   winnerAverageS: number | null;
+  wrSingleS: number | null;
+  wrAverageS: number | null;
   beatSingle: boolean;
   beatAverage: boolean | null;
   competitionName: string;

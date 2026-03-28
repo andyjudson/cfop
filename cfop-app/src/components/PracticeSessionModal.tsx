@@ -33,6 +33,8 @@ function computeOutcome(session: CompetitiveSession): ComparisonOutcome {
     userAverageMs,
     winnerSingleS: competition.winner_single,
     winnerAverageS: competition.winner_average,
+    wrSingleS: competition.wr_single ?? null,
+    wrAverageS: competition.wr_average ?? null,
     beatSingle,
     beatAverage,
     competitionName: competition.competition_name,
@@ -222,7 +224,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
     <div className="practice-modal-backdrop" onClick={onClose}>
       <div className="practice-modal" onClick={(event) => event.stopPropagation()}>
         <header className="practice-modal-header">
-          <h2 className="title is-4">Practice Session</h2>
+          <h2 className="title is-4">Practice</h2>
           <div className="practice-header-controls">
             <div className="mode-toggle">
               <button

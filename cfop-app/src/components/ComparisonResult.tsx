@@ -31,6 +31,8 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
     userAverageMs,
     winnerSingleS,
     winnerAverageS,
+    wrSingleS,
+    wrAverageS,
     beatSingle,
     beatAverage,
     competitionName,
@@ -45,6 +47,10 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
       ? userAverageMs - winnerAverageS * 1000
       : null;
 
+  const wrSingleDeltaMs = wrSingleS !== null ? userBestSingleMs - wrSingleS * 1000 : null;
+  const wrAvgDeltaMs =
+    wrAverageS !== null && userAverageMs !== null ? userAverageMs - wrAverageS * 1000 : null;
+
   return (
     <div className="comparison-result">
       <div className="comparison-header">
@@ -57,7 +63,7 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
           <tr>
             <th></th>
             <th>You</th>
-            <th>Champion</th>
+            <th>Target</th>
             <th>Delta</th>
           </tr>
         </thead>
@@ -85,6 +91,30 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
                 }`}
               >
                 {avgDeltaMs !== null ? fmtDelta(avgDeltaMs) : '—'}
+              </td>
+            </tr>
+          )}
+          {wrSingleS !== null && (
+            <tr>
+              <td className="comparison-row-label comparison-wr-label">WR single</td>
+              <td className={`comparison-user-time${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? ' is-beat' : ''}`}>
+                {formatElapsedMs(userBestSingleMs)}
+              </td>
+              <td className="comparison-wr-time">{fmtS(wrSingleS)}</td>
+              <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+                {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
+              </td>
+            </tr>
+          )}
+          {wrAverageS !== null && (
+            <tr>
+              <td className="comparison-row-label comparison-wr-label">WR average</td>
+              <td className={`comparison-user-time${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? ' is-beat' : ''}`}>
+                {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
+              </td>
+              <td className="comparison-wr-time">{fmtS(wrAverageS)}</td>
+              <td className={`comparison-delta ${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+                {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
               </td>
             </tr>
           )}

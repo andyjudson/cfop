@@ -71,6 +71,16 @@
   color: var(--color-text-secondary);
 }
 
+.comparison-wr-label {
+  color: var(--color-accent-primary) !important;
+}
+
+.comparison-wr-time {
+  font-family: var(--font-mono);
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
 .comparison-delta {
   font-family: var(--font-mono);
   font-size: 0.85rem;

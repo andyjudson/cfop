@@ -14,14 +14,3 @@ export const formatElapsedMs = (elapsedMs: number): string => {
   return `${seconds}.${pad2(centiseconds)}`;
 };
 
-export const formatTimerLabel = (elapsedMs: number, phase: 'idle' | 'running' | 'stopped'): string => {
-  if (phase === 'idle') {
-    return 'Ready';
-  }
-
-  if (phase === 'running') {
-    return 'Solving';
-  }
-
-  return `Final: ${formatElapsedMs(elapsedMs)}`;
-};

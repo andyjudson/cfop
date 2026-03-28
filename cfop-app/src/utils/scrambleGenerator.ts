@@ -202,7 +202,7 @@ function validateWithParser(scrambleText: string): boolean {
  * @param options - Generation options (length, timeoutMs, requestId)
  * @returns Promise<Generate333Result>
  */
-export async function generate333Scramble(
+async function generate333Scramble(
   options?: Generate333Options
 ): Promise<Generate333Result> {
   const length = options?.length ?? 20;
@@ -291,4 +291,4 @@ export async function generate333ScrambleWithTimeout(
   }
 }
 
-export default generate333Scramble;
+

@@ -165,6 +165,7 @@
 .cfop-navbar .navbar-menu {
   display: none;
   padding: 0;
+  background-color: var(--color-bg-base);
 }
 
 .cfop-navbar .navbar-menu.is-active {
@@ -176,6 +177,7 @@
   align-items: center;
   gap: 0.3rem;
   min-height: 2.75rem;
+  color: var(--color-text-secondary);
 }
 
 .cfop-navbar .cfop-navbar-img-icon {
@@ -206,6 +208,7 @@
   --bulma-navbar-height: 2.75rem;
   --bulma-navbar-item-hover-background-color: var(--color-bg-emphasis);
   --bulma-navbar-item-hover-color: var(--color-text-primary);
+  background-color: var(--color-bg-base) !important;
 }
 
 .cfop-navbar .navbar-menu .navbar-item:hover {

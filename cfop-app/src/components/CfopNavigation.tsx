@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MdAnimation, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool } from 'react-icons/md';
+import { MdAnimation, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool, MdDarkMode, MdLightMode } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import { VisualizerModal } from './VisualizerModal';
 import { PracticeSessionModal } from './PracticeSessionModal';
+import { useTheme } from '../hooks/useTheme';
 
 interface NavLink {
   path: string;
@@ -29,6 +30,7 @@ export function CfopNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showVisualizer, setShowVisualizer] = useState(false);
   const [showPractice, setShowPractice] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -65,6 +67,14 @@ export function CfopNavigation() {
       <nav className="navbar is-light cfop-navbar" role="navigation" aria-label="CFOP method navigation">
         <div className="container">
           <div className="navbar-brand">
+            <button
+              className="cfop-theme-toggle"
+              type="button"
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              onClick={toggleTheme}
+            >
+              {theme === 'light' ? <MdDarkMode size={20} /> : <MdLightMode size={20} />}
+            </button>
             <button
               className={`navbar-burger ${isMenuOpen ? 'is-active' : ''}`}
               aria-label="Toggle navigation"

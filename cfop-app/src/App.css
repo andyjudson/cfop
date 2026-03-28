@@ -132,10 +132,30 @@
   min-height: 3.1rem;
 }
 
+/* Theme toggle button — sits to the left of the hamburger */
+.cfop-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0 0.5rem;
+  margin-left: auto;
+  height: 3.1rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.cfop-theme-toggle:hover {
+  color: var(--color-accent-primary);
+}
+
 /* Always show hamburger regardless of screen width */
 .cfop-navbar .navbar-burger {
   display: flex !important;
-  margin-left: auto;
+  margin-left: 0;
   color: var(--color-text-secondary);
 }
 

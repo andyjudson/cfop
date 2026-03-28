@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { MdVideocam, MdTimer } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
+import { VisualizerModal } from './VisualizerModal';
+import { PracticeSessionModal } from './PracticeSessionModal';
 
 interface NavLink {
   path: string;
@@ -20,6 +23,8 @@ const navLinks: NavLink[] = [
 export function CfopNavigation() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showVisualizer, setShowVisualizer] = useState(false);
+  const [showPractice, setShowPractice] = useState(false);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -31,6 +36,18 @@ export function CfopNavigation() {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [isMenuOpen]);
+
+  const openVisualizer = () => {
+    setShowPractice(false);
+    setShowVisualizer(true);
+    setIsMenuOpen(false);
+  };
+
+  const openPractice = () => {
+    setShowVisualizer(false);
+    setShowPractice(true);
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
@@ -74,10 +91,36 @@ export function CfopNavigation() {
                   </Link>
                 );
               })}
+              <button
+                type="button"
+                className="navbar-item cfop-navbar-action"
+                onClick={openVisualizer}
+                aria-label="Open algorithm visualizer"
+              >
+                <MdVideocam size={16} />
+                <span>Visualize</span>
+              </button>
+              <button
+                type="button"
+                className="navbar-item cfop-navbar-action"
+                onClick={openPractice}
+                aria-label="Open practice timer"
+              >
+                <MdTimer size={16} />
+                <span>Practice</span>
+              </button>
             </div>
           </div>
         </div>
       </nav>
+
+      {showVisualizer && (
+        <VisualizerModal onClose={() => setShowVisualizer(false)} />
+      )}
+      <PracticeSessionModal
+        isOpen={showPractice}
+        onClose={() => setShowPractice(false)}
+      />
     </>
   );
 }

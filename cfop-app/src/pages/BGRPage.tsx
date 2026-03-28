@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-import { MdVideocam, MdTimer } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
-import { DemoModal } from '../components/DemoModal';
-import { PracticeSessionModal } from '../components/PracticeSessionModal';
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { AlgorithmCard, AlgorithmNotesSheet, type CfopAlgorithm } from '../components/AlgorithmCard';
 
@@ -12,9 +9,6 @@ const essentialIds = ['oll_cross_line','oll_sune', 'oll_antisune', 'pll_t', 'pll
 function BGRPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showDemo, setShowDemo] = useState(false);
-  const [demoAlgorithm, setDemoAlgorithm] = useState<CfopAlgorithm | null>(null);
-  const [showPracticeSession, setShowPracticeSession] = useState(false);
   const [notesAlg, setNotesAlg] = useState<CfopAlgorithm | null>(null);
 
   useEffect(() => {
@@ -45,27 +39,6 @@ function BGRPage() {
   if (loading) {
     return <div className="loading">Loading 2-look algorithms...</div>;
   }
-
-  const handleOpenDemo = () => {
-    if (algorithms.length > 0) {
-      const randomAlg = algorithms[Math.floor(Math.random() * algorithms.length)];
-      setDemoAlgorithm(randomAlg);
-      setShowDemo(true);
-    }
-  };
-
-  const handleCloseDemo = () => {
-    setShowDemo(false);
-    setDemoAlgorithm(null);
-  };
-
-  const handleOpenPracticeSession = () => {
-    setShowPracticeSession(true);
-  };
-
-  const handleClosePracticeSession = () => {
-    setShowPracticeSession(false);
-  };
 
   const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
     <section className="section">
@@ -104,42 +77,12 @@ function BGRPage() {
         </>
       }
     >
-
-      <div className="has-text-centered mb-5 button-row">
-        <button
-          className="button is-link is-light demo-button"
-          onClick={handleOpenPracticeSession}
-          aria-label="Open scramble and timer practice session"
-        >
-          <MdTimer size={18} />
-          <span>Practice Scramble + Timer</span>
-        </button>
-
-        <button 
-          className="button is-primary demo-button"
-          onClick={handleOpenDemo}
-          aria-label="Open random algorithm demo"
-        >
-          <MdVideocam size={18} />
-          <span>Demo Random Algorithm</span>
-        </button>       
-      </div> 
-
       <main>
         {renderAlgorithmSection("OLL Edge Cases", ollEdges)}
         {renderAlgorithmSection("OLL Corner Cases", ollCorners)}
         {renderAlgorithmSection("PLL Corner Cases", pllCorners)}
         {renderAlgorithmSection("PLL Edge Cases", pllEdges)}
       </main>
-
-      {showDemo && demoAlgorithm && (
-        <DemoModal algorithm={demoAlgorithm} onClose={handleCloseDemo} />
-      )}
-
-      <PracticeSessionModal
-        isOpen={showPracticeSession}
-        onClose={handleClosePracticeSession}
-      />
 
       <AlgorithmNotesSheet algorithm={notesAlg} onClose={() => setNotesAlg(null)} />
     </CfopPageLayout>

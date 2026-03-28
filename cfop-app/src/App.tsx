@@ -19,7 +19,7 @@ function App() {
         <Route path="/f2l" element={<F2LPage />} />
         <Route path="/oll" element={<OLLPage />} />
         <Route path="/pll" element={<PLLPage />} />
-        <Route path="/" element={<Navigate to="/about" replace />} />
+        <Route path="/" element={<Navigate to="/2lk" replace />} />
       </Routes>
     </HashRouter>
   );

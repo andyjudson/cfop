@@ -1,6 +1,6 @@
 # cubing.spec
 
-This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with AI-assisted implementation.
+This project serves as a personal reference for learning and practicing CFOP (Cross, F2L, OLL, PLL) — the dominant speedcubing method used in competitive solving. Development follows a specification-first approach using **spec-kit** principles, with AI-agentic-assisted implementation.
 
 ## Applications
 
@@ -43,7 +43,7 @@ Standalone cube image generator for use in algorithm documentation with 3D PNG a
 - **React 19** and **TypeScript 5.9** for modern reactive UI
 - **Vite 7** for fast development and optimized builds
 - **Bulma CSS** for UI components and responsive layout
-- **GitHub Copilot** and **Claude Code** for AI assisted development
+- **GitHub Copilot** and **Claude Code** for AI-agentic-assisted development
 - **Spec-Kit** methodology for specification-driven development
 - Deployed on **GitHub Pages**
 

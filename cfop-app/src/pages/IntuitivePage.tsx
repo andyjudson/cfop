@@ -163,9 +163,7 @@ export default function IntuitivePage() {
           The goal of this step is to solve first-layer edges so white edges align with their matching side
           centres. The cross can always be solved in 8 moves or fewer. Keep white on bottom, start with easier
           cases, avoid disrupting solved edges, remember opposite colours (red/orange, green/blue) to avoid
-          unnecessary cube rotations. 
-          I'd recommend watching CubeHead's - learning <a href="https://www.youtube.com/watch?v=M-vKaV2NbEo">
-          Intuitive Cross</a> video.
+          unnecessary cube rotations.
         </p>
         <ul className="intuitive-list">
           <li>
@@ -186,9 +184,7 @@ export default function IntuitivePage() {
         <h2 className="title is-4 section-title">Intuitive F2L</h2>
         <p className="intuitive-note">
           The goal is to solve the first two layers by pairing corners and edges, then inserting those pairs into
-          slots around the cross, ignoring all yellows. Focus on repeatable patterns and setup ideas rather than memorizing long lists. 
-          I'd recommend watching CubeHead's - learning <a href="https://www.youtube.com/watch?v=ReOZZHscIGk">
-          Intuitive F2L</a> video.
+          slots around the cross, ignoring all yellows. Focus on repeatable patterns and setup ideas rather than memorizing long lists.
         </p>
 
         <h3 className="title is-5 intuitive-step-title">Step 1: Easy Inserts</h3>

@@ -36,52 +36,6 @@ Standalone cube image generator for use in algorithm documentation with 3D PNG a
 
 **Directory:** `/cubify-app/` • [README](cubify-app/README.md)
 
-## Motivation
-
-I first learned to solve a cube using the beginner method from [JPerm](https://www.youtube.com/@JPerm) (Dylan Wang) and progressed to CFOP through tutorials from [CubeHead](https://www.youtube.com/@CubeHead) (Milan Struyf). This app helps consolidate that learning with quick visual references and practice tools. I'm not a cubing expert — just a beginner aiming for consistent sub-2-minute solves while experimenting with modern web development workflows.
-
-## CFOP Primer
-
-CFOP is a four-step 3x3 speedcubing method developed around 1981 and is responsible for most [world record](https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history) times over the last decade (sub-5 seconds is wild! 🤯).
-
-- **Cross** - Solve four edge pieces on the bottom face, typically white (intuitive)
-- **F2L** (First Two Layers) - Insert edge-corner pairs into four slots (intuitive or algorithmic). There are 41 algorithmic cases in total, or 4 if using the intuitive method.
-- **OLL** (Orientation of Last Layer) - Orient last layer pieces (algorithmic). There are 57 cases in total (organized in 7 balanced groups), or 10 if using the 2-look method.
-- **PLL** (Permutation of Last Layer) - Position last layer pieces (algorithmic). There are 21 cases in total (organized in 5 groups), or 6 if using the 2-look method.
-
-Start with the essential four algorithms (Sune, AntiSune, T-Perm, Ua-Perm), then gradually expand to the full 2-look methods for better efficiency.
-
-## Recommended YouTube videos
-
-- [CubeHead - Beginner Cross](https://youtu.be/M-vKaV2NbEo?si=nl3wJYTtbmRPfz2k)
-- [CubeHead - Beginner F2L](https://youtu.be/ReOZZHscIGk?si=stALTuOW_Z75eiL9)
-- [CubeHead - Beginner OLL](https://youtu.be/6PSBaxlBqRg?si=s3rRGgffgKjKl6KM)
-- [CubeHead - Beginner PLL](https://youtu.be/ZC9nwou59ow?si=GTKodwgH84Rwp6Yt)
-- [CubeHead - Beginner Tips](https://youtu.be/4ULKZ1dZs04?si=CmYU8pE21nfhd5Os)
-- [CubeHead - All F2L cases](https://youtu.be/3tYj-9f4dA0?si=J8aRw_oeWwpwNVc4)
-- [CubeHead - All OLL cases](https://youtu.be/Q947zZRYMdg?si=CApmtY2UWRpol3mW)
-- [CubeHead - All PLL cases](https://youtu.be/QVXKNAjl_0k?si=1yIu1ZEbDqsId0p9)
-- [CubeHead - Advanced Tips](https://youtu.be/HDlDcRhCR0Q?si=AELW7sNZKT-b9XxS)
-
-## Practice Strategies
-
-Repetition is the key theme: consistent reps build recognition and muscle memory.
-
-### Solve with algorithms in mind
-
-- Practice with focused weekly goals (for example: improve one F2L case set or PLL recognition).
-- Start slow for accuracy and finger placement, then increase speed gradually.
-- Repeat each algorithm 10-20 times in one session to build muscle memory.
-- Observe piece movement during execution to strengthen visual + logical understanding.
-- Work on efficient finger tricks and reduce unnecessary cube rotations.
-- If you make a mistake, re-scramble and repeat the same case with cleaner execution.
-
-### Solve with random scrambles
-
-- Scramble randomly and practice one stage at a time (Cross, F2L, OLL, or PLL).
-- Set measurable targets (for example: Cross under 8 moves, F2L under 30 seconds).
-- Use a timer for algorithms and full solves to track progress over time.
-
 ## Built With
 
 - **Cubing knowledge** from [Milan Struyf](https://www.youtube.com/@CubeHead) (CubeHead) and [Dylan Wang](https://www.youtube.com/@JPerm) (JPerm)

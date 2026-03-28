@@ -353,12 +353,27 @@ Add a dedicated notation reference page covering face rotations, modifiers, slic
 - Notation tiles use consistent card styling matching algorithm pages
 - Static reference content only — no interactive players or timers
 
+## Feature 011: About Page & Persistent Hamburger Navigation
+
+### Status: Complete ✅
+
+### Scope
+Consolidate all educational and contextual content (cubing background, CFOP primer, methods overview, WCA context, video resources, practice strategies) into a dedicated About page as the first navigation item. Replace Bulma's responsive desktop nav bar expansion with a persistent hamburger menu at all screen widths. Clean README files to contain only technical documentation.
+
+### Key Decisions
+- About page is a single scrollable page with six named sections (no sub-pages or tabs)
+- Hamburger always visible via CSS override of Bulma's default desktop expansion behaviour
+- Root `/` redirect changed from `/2lk` to `/about` — About is the landing page
+- BGRPage intro trimmed to essentials summary only; IntuitivePage links left in place (contextually appropriate)
+- Backdrop-close and Escape-dismiss added to hamburger, consistent with notes sheet pattern
+- README files (root + cfop-app) stripped of educational content; technical documentation retained
+
 ## Feature Backlog (Not in Scope)
 All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
 **Roadmaps**
 - Notation primer >> done
 - Intuitive Cross and F2L primer >> done
-- About page (migrate sections from readme)
+- About page (migrate sections from readme) >> done
 - Integrate official WCA event scrambles, "beat the champion" mode and "world record evolution"
 - Interactive visualizations for any user selected cases
 - Algorithm learning tracking for practice
@@ -477,3 +492,15 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - README.md updated with full navigation and feature documentation ✅
 - Production build validated: 1.78s, no errors ✅
 - react-router-dom dependency added ✅
+
+**Feature 011 - About Page & Persistent Hamburger Navigation (Completed)**:
+- AboutPage.tsx created with six content sections: Cubing Background, CFOP Primer, Methods Overview, WCA Context, Video Resources, Practice Strategies ✅
+- Root `/` redirect changed from `/2lk` to `/about` ✅
+- About added as first item in CfopNavigation navLinks ✅
+- Always-hamburger CSS override applied — `.cfop-navbar .navbar-burger { display: flex !important; }` ✅
+- `.cfop-navbar .navbar-menu` hidden until `.is-active` at all viewport widths ✅
+- Backdrop-close (click outside) and Escape-dismiss added to hamburger menu ✅
+- BGRPage intro trimmed to essentials summary only; video links and context prose migrated ✅
+- README.md (root): Motivation, CFOP Primer, Recommended Videos, Practice Strategies removed ✅
+- cfop-app/README.md: CFOP Method Overview and Practice Strategies sections removed ✅
+- Production build verified: no errors ✅

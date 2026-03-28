@@ -16,8 +16,8 @@
 
 **Purpose**: Content audit — inventory what exists and where before any code changes.
 
-- [ ] T001 Read cfop-app/src/pages/BGRPage.tsx and cfop-app/src/pages/IntuitivePage.tsx — document all intro/educational content that needs migrating to About page
-- [ ] T002 [P] Read README.md (repo root) and cfop-app/README.md (if present) — document all educational content (CFOP background, methods, video links, practice tips) to be removed
+- [x] T001 Read cfop-app/src/pages/BGRPage.tsx and cfop-app/src/pages/IntuitivePage.tsx — document all intro/educational content that needs migrating to About page
+- [x] T002 [P] Read README.md (repo root) and cfop-app/README.md (if present) — document all educational content (CFOP background, methods, video links, practice tips) to be removed
 
 ---
 
@@ -27,7 +27,7 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T003 Add `/about` route and update root redirect from `/2lk` to `/about` in cfop-app/src/App.tsx (import AboutPage once created; use a stub if needed to unblock)
+- [x] T003 Add `/about` route and update root redirect from `/2lk` to `/about` in cfop-app/src/App.tsx (import AboutPage once created; use a stub if needed to unblock)
 
 **Checkpoint**: Foundation ready — routing exists for /about before page content is authored.
 
@@ -41,15 +41,15 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Create cfop-app/src/pages/AboutPage.tsx — CfopPageLayout wrapper with six section stubs: Cubing Background, CFOP Primer, Methods Overview, WCA Context, Video Resources, Practice Strategies
-- [ ] T005 [US1] Fill "Cubing Background" section in cfop-app/src/pages/AboutPage.tsx — brief history and context of Rubik's cube speedsolving
-- [ ] T006 [US1] Fill "CFOP Primer" section in cfop-app/src/pages/AboutPage.tsx — what CFOP stands for, the four stages (Cross, F2L, OLL, PLL), why it's effective
-- [ ] T007 [US1] Fill "Methods Overview" section in cfop-app/src/pages/AboutPage.tsx — 2-look vs full CFOP, intuitive vs algorithm-heavy, suggested learning path
-- [ ] T008 [US1] Fill "WCA Context" section in cfop-app/src/pages/AboutPage.tsx — what WCA competitions are, how times are measured, relevance to the scramble/timer feature
-- [ ] T009 [US1] Fill "Video Resources" section in cfop-app/src/pages/AboutPage.tsx — migrate curated video links from BGRPage.tsx intro and README (CubeHead OLL/PLL + any others from audit)
-- [ ] T010 [US1] Fill "Practice Strategies" section in cfop-app/src/pages/AboutPage.tsx — tips for drilling algorithms, using the scramble/timer, building recognition
-- [ ] T011 [US1] Remove migrated intro content from cfop-app/src/pages/BGRPage.tsx — trim video links and any cubing-context prose now covered by About; retain the "Essentials Cases" summary line as it is page-specific
-- [ ] T012 [US1] Remove migrated intro content from cfop-app/src/pages/IntuitivePage.tsx — trim any cubing-background prose identified in T001 audit; retain page-specific intro only
+- [x] T004 [US1] Create cfop-app/src/pages/AboutPage.tsx — CfopPageLayout wrapper with six section stubs: Cubing Background, CFOP Primer, Methods Overview, WCA Context, Video Resources, Practice Strategies
+- [x] T005 [US1] Fill "Cubing Background" section in cfop-app/src/pages/AboutPage.tsx — brief history and context of Rubik's cube speedsolving
+- [x] T006 [US1] Fill "CFOP Primer" section in cfop-app/src/pages/AboutPage.tsx — what CFOP stands for, the four stages (Cross, F2L, OLL, PLL), why it's effective
+- [x] T007 [US1] Fill "Methods Overview" section in cfop-app/src/pages/AboutPage.tsx — 2-look vs full CFOP, intuitive vs algorithm-heavy, suggested learning path
+- [x] T008 [US1] Fill "WCA Context" section in cfop-app/src/pages/AboutPage.tsx — what WCA competitions are, how times are measured, relevance to the scramble/timer feature
+- [x] T009 [US1] Fill "Video Resources" section in cfop-app/src/pages/AboutPage.tsx — migrate curated video links from BGRPage.tsx intro and README (CubeHead OLL/PLL + any others from audit)
+- [x] T010 [US1] Fill "Practice Strategies" section in cfop-app/src/pages/AboutPage.tsx — tips for drilling algorithms, using the scramble/timer, building recognition
+- [x] T011 [US1] Remove migrated intro content from cfop-app/src/pages/BGRPage.tsx — trim video links and any cubing-context prose now covered by About; retain the "Essentials Cases" summary line as it is page-specific
+- [x] T012 [US1] Remove migrated intro content from cfop-app/src/pages/IntuitivePage.tsx — trim any cubing-background prose identified in T001 audit; retain page-specific intro only
 
 **Checkpoint**: User Story 1 complete — `/about` renders all six sections; existing page intros are trimmed without losing content.
 
@@ -63,10 +63,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Add `{ path: '/about', label: 'About' }` as first entry in navLinks array in cfop-app/src/components/CfopNavigation.tsx
-- [ ] T014 [US2] Add always-hamburger CSS overrides to cfop-app/src/App.css — `.cfop-navbar .navbar-burger { display: flex !important; }`, hide `.cfop-navbar .navbar-menu` and show only when `.is-active`
-- [ ] T015 [US2] Add click-outside backdrop to cfop-app/src/components/CfopNavigation.tsx — transparent overlay div rendered when menu is open, onClick triggers setIsMenuOpen(false)
-- [ ] T016 [US2] Add Escape key dismiss via useEffect in cfop-app/src/components/CfopNavigation.tsx — listener added when menu opens, removed on close or unmount
+- [x] T013 [US2] Add `{ path: '/about', label: 'About' }` as first entry in navLinks array in cfop-app/src/components/CfopNavigation.tsx
+- [x] T014 [US2] Add always-hamburger CSS overrides to cfop-app/src/App.css — `.cfop-navbar .navbar-burger { display: flex !important; }`, hide `.cfop-navbar .navbar-menu` and show only when `.is-active`
+- [x] T015 [US2] Add click-outside backdrop to cfop-app/src/components/CfopNavigation.tsx — transparent overlay div rendered when menu is open, onClick triggers setIsMenuOpen(false)
+- [x] T016 [US2] Add Escape key dismiss via useEffect in cfop-app/src/components/CfopNavigation.tsx — listener added when menu opens, removed on close or unmount
 
 **Checkpoint**: User Story 2 complete — hamburger always visible, About first in menu, all dismiss interactions work.
 
@@ -80,8 +80,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T017 [US3] Edit README.md — remove all CFOP educational content identified in T002 audit; retain setup, architecture, deployment, and contribution sections only
-- [ ] T018 [P] [US3] Edit cfop-app/README.md (if present) — same cleanup: technical content only
+- [x] T017 [US3] Edit README.md — remove all CFOP educational content identified in T002 audit; retain setup, architecture, deployment, and contribution sections only
+- [x] T018 [P] [US3] Edit cfop-app/README.md (if present) — same cleanup: technical content only
 
 **Checkpoint**: User Story 3 complete — README files are developer-facing documents only.
 
@@ -91,10 +91,10 @@
 
 **Purpose**: Build verification, cross-viewport manual test, and spec ledger update.
 
-- [ ] T019 Run production build in cfop-app/ (`npm run build`) and confirm no TypeScript or compile errors
-- [ ] T020 Manual cross-viewport test — verify hamburger icon visible and functional at 375px, 768px, 1280px, 1440px viewport widths
-- [ ] T021 [P] Verify About page: all six section headings present, About is first item in nav menu, root `/` redirects to `/about`
-- [ ] T022 [P] Add Feature 011 entry to specs/spec.md — narrative section + bullet in Implementation Plan
+- [x] T019 Run production build in cfop-app/ (`npm run build`) and confirm no TypeScript or compile errors
+- [x] T020 Manual cross-viewport test — verify hamburger icon visible and functional at 375px, 768px, 1280px, 1440px viewport widths
+- [x] T021 [P] Verify About page: all six section headings present, About is first item in nav menu, root `/` redirects to `/about`
+- [x] T022 [P] Add Feature 011 entry to specs/spec.md — narrative section + bullet in Implementation Plan
 
 ---
 

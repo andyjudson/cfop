@@ -69,33 +69,6 @@ npm run preview
 - Solve times automatically saved to localStorage
 - View session stats (count, best, average, session average)
 
-## CFOP Method Overview
-
-CFOP is a four-step speedcubing method:
-
-| Step | Description | Cases |
-|------|-------------|-------|
-| **Cross** | Solve four edge pieces on bottom face | Intuitive |
-| **F2L** | Insert edge-corner pairs (First Two Layers) | 41 total (4 intuitive) |
-| **OLL** | Orient last layer pieces | 57 total (10 for 2-look) |
-| **PLL** | Permute last layer pieces | 21 total (6 for 2-look) |
-
-Start with the **essential 4 algorithms** (Sune, AntiSune, T-Perm, Ua-Perm), then expand to full 2-look suite.
-
-## Practice Strategies
-
-### Focused Algorithm Practice
-- Set weekly goals (e.g., improve one F2L case set or PLL recognition)
-- Start slow for accuracy and finger placement, increase speed gradually
-- Repeat each algorithm 10-20 times in one session for muscle memory
-- Observe piece movement during execution for visual + logical understanding
-- Work on efficient finger tricks and reduce unnecessary cube rotations
-
-### Random Scramble Practice
-- Scramble randomly and practice one stage at a time (Cross, F2L, OLL, or PLL)
-- Set measurable targets (e.g., Cross under 8 moves, F2L under 30 seconds)
-- Use timer for algorithms and full solves to track progress over time
-
 ## Tech Stack
 
 - **React 19** with TypeScript

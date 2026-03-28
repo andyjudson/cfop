@@ -124,15 +124,42 @@
 
 .cfop-navbar {
   border-bottom: 1px solid var(--color-border-light);
+  position: relative;
+  z-index: 30;
 }
 
 .cfop-navbar .navbar-brand {
   min-height: 3.1rem;
 }
 
+/* Always show hamburger regardless of screen width */
 .cfop-navbar .navbar-burger {
+  display: flex !important;
   margin-left: auto;
   color: var(--color-text-secondary);
+}
+
+/* Always hide nav menu until toggled */
+.cfop-navbar .navbar-menu {
+  display: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.cfop-navbar .navbar-menu.is-active {
+  display: block;
+}
+
+.cfop-navbar .navbar-menu .navbar-item {
+  display: flex;
+  align-items: center;
+  min-height: 3.1rem;
+}
+
+/* Backdrop for click-outside dismiss */
+.cfop-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 29;
 }
 
 .cfop-navbar .navbar-item.is-active {
@@ -152,6 +179,35 @@
 
 .intuitive-section {
   padding-block: 1.5rem;
+}
+
+.about-section {
+  padding-block: 1.5rem;
+}
+
+.about-list {
+  margin: 0.35rem 0 0.9rem 1.15rem;
+  color: var(--color-text-secondary);
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.about-list li {
+  margin-bottom: 0.35rem;
+  display: list-item;
+}
+
+.about-list strong {
+  color: var(--color-text-primary);
+}
+
+.about-section p {
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+.about-section a {
+  color: var(--color-accent-primary);
 }
 
 .intuitive-step-title {

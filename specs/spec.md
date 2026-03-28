@@ -400,19 +400,6 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - `DemoModal` deleted; its CSS absorbed into `VisualizerModal.css` with hardcoded values replaced by tokens
 - Modal width 580px to prevent long algorithm move sequences wrapping to 3 lines
 
-## Feature Backlog (Not in Scope)
-All of below ideas are out of scope until explicitly requested. We are just capturing them here as a backlog. We'll explore them iteratively using speckit.specify prompts.
-**Roadmaps**
-- Notation primer >> done
-- Intuitive Cross and F2L primer >> done
-- About page (migrate sections from readme) >> done
-- Integrate official WCA event scrambles, "beat the champion" mode (world record evolution chart done ✅)
-- Interactive visualizations for any user selected cases
-- Algorithm learning tracking for practice
-- Revisit UI design, layout, theme, components
-- Mobile deployment or native app (unlikely)
-- Alternative algorithm sets (unlikely)
-
 ## Implementation Plan
 
 ### Completed Features ✅
@@ -524,6 +511,16 @@ All of below ideas are out of scope until explicitly requested. We are just capt
 - README.md updated with full navigation and feature documentation ✅
 - Production build validated: 1.78s, no errors ✅
 - react-router-dom dependency added ✅
+
+**Feature 014 - Beat the Champion (Completed)**:
+- Competitive practice mode using real WCA competition scrambles (57 events: 36 WR + 21 championship) ✅
+- Mode toggle in timer controls row with MUI icons; competition name + tier badge inline in scramble header ✅
+- Solve progress pill (`n / 5`) and standard solve count pill in timer header ✅
+- Comparison result screen: user times vs winner single + average, beat/miss verdict ✅
+- Competition selector: scrollable list with tier badges, winner times, row highlight ✅
+- WR badge accent blue, Champ badge accent orange; winner/competition names in accent blue ✅
+- `saveSolve` only called in standard mode — competitive solves never contaminate stats ✅
+- Production build verified, no TypeScript errors ✅
 
 **Feature 013 - Global Algorithm Visualizer & Practice Timer (Completed)**:
 - `VisualizerModal` component with OLL/PLL data loading, 3-selector UI (set/group/algorithm), Shuffle ✅

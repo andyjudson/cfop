@@ -1,0 +1,113 @@
+.comparison-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.comparison-header {
+  text-align: center;
+}
+
+.comparison-event-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.comparison-vs {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.comparison-table th {
+  padding: var(--space-xs) var(--space-sm);
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.comparison-table th:first-child {
+  text-align: left;
+}
+
+.comparison-table td {
+  padding: var(--space-sm) var(--space-sm);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.comparison-row-label {
+  text-align: left !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.comparison-user-time {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.comparison-user-time.is-beat {
+  color: var(--color-success);
+}
+
+.comparison-champ-time {
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+.comparison-delta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.delta-ahead {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.delta-behind {
+  color: var(--color-text-secondary);
+}
+
+.comparison-verdict {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+}
+
+.verdict-beat {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success-border);
+}
+
+.verdict-miss {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-light);
+}
+
+.comparison-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}

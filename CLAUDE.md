@@ -78,6 +78,8 @@ npm run dev -- --host 127.0.0.1 --port 5173
 - N/A — data read from static file at runtime (012-wca-wr-chart)
 - TypeScript 5.9 / React 19 / Vite 7 + Existing: cubing.js (TwistyPlayer), react-icons/md, Bulma CSS 1.x, react-router-dom 7.x. No new dependencies. (013-global-alg-visualizer)
 - N/A — runtime state only; no persistence (013-global-alg-visualizer)
+- TypeScript 5.9 / React 19 / Vite 7 + Bulma CSS 1.x, react-router-dom 7.x, react-icons 5.x (all existing — no new dependencies) (014-beat-the-champion)
+- No new persistence — competitive session is ephemeral (session only) (014-beat-the-champion)
 
 ## Recent Changes
 - 011-about-page-nav: Added TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md

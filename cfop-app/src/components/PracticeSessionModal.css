@@ -30,6 +30,62 @@
   color: #0f172a;
 }
 
+.vs-champion-name {
+  color: var(--color-accent-primary);
+}
+
+.scramble-title {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.scramble-title-sep {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.scramble-competition-name {
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.mode-toggle {
+  margin: 0;
+  align-self: center;
+}
+
+.mode-toggle .button {
+  margin-bottom: 0;
+}
+
+
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  flex-shrink: 0;
+}
+
+.tier-wr {
+  background: var(--color-accent-primary);
+  color: var(--color-bg-base);
+}
+
+.tier-championship {
+  background: var(--color-accent-warm);
+  color: var(--color-bg-base);
+}
+
 .practice-modal-content {
   margin-top: 1rem;
   padding-top: 0;
@@ -96,6 +152,24 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.timer-header-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.solve-count-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  color: var(--color-accent-primary);
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-border-medium);
 }
 
 .timer-state-pill {

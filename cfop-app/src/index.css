@@ -25,6 +25,10 @@
   --color-accent-warm: #e05c28;
   
   --color-notation-symbol: #020617;
+
+  --color-success: #15803d;
+  --color-success-bg: #f0fdf4;
+  --color-success-border: #bbf7d0;
   
   /* Design Tokens - Spacing */
   --space-xs: 0.25rem;

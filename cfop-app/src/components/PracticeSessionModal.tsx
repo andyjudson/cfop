@@ -2,8 +2,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSolveTimer } from '../hooks/useSolveTimer';
 import { useSolveStats } from '../hooks/useSolveStats';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
+import type { PracticeMode, Competition, CompetitiveSession, ComparisonOutcome } from '../types/competition';
 import { generateRandom333Scramble } from '../utils/scramble';
+import { loadCompetitions, pickRandomGroup } from '../utils/competitionData';
 import { formatElapsedMs, formatTimerLabel } from '../utils/timeFormat';
+import { ComparisonResult } from './ComparisonResult';
+import { CompetitionSelector } from './CompetitionSelector';
 import './PracticeSessionModal.css';
 
 interface PracticeSessionModalProps {
@@ -11,7 +15,32 @@ interface PracticeSessionModalProps {
   onClose: () => void;
 }
 
+function computeOutcome(session: CompetitiveSession): ComparisonOutcome {
+  const { competition, solveTimesMs } = session;
+  const userBestSingleMs = Math.min(...solveTimesMs);
+  const userAverageMs =
+    solveTimesMs.length > 0
+      ? solveTimesMs.reduce((a, b) => a + b, 0) / solveTimesMs.length
+      : null;
+  const beatSingle = userBestSingleMs < competition.winner_single * 1000;
+  let beatAverage: boolean | null = null;
+  if (competition.winner_average !== null && userAverageMs !== null) {
+    beatAverage = userAverageMs < competition.winner_average * 1000;
+  }
+  return {
+    userBestSingleMs,
+    userAverageMs,
+    winnerSingleS: competition.winner_single,
+    winnerAverageS: competition.winner_average,
+    beatSingle,
+    beatAverage,
+    competitionName: competition.competition_name,
+    winnerName: competition.winner_name,
+  };
+}
+
 export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalProps) {
+  // Standard mode state
   const [scramble, setScramble] = useState<ScrambleState | null>(null);
   const [isScrambleLoading, setIsScrambleLoading] = useState(false);
   const [scrambleError, setScrambleError] = useState<string | null>(null);
@@ -20,58 +49,91 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
   const { timer, start, stop, reset, canStart, canStop } = useSolveTimer();
   const { stats, saveSolve, resetStats } = useSolveStats();
 
-  const loadScramble = useCallback(
-    async (source: ScrambleSource) => {
-      const requestId = ++requestIdRef.current;
+  // Competitive mode state
+  const [mode, setMode] = useState<PracticeMode>('standard');
+  const [competitiveSession, setCompetitiveSession] = useState<CompetitiveSession | null>(null);
+  const [compOutcome, setCompOutcome] = useState<ComparisonOutcome | null>(null);
+  const [showSelector, setShowSelector] = useState(false);
+  const [competitions, setCompetitions] = useState<Competition[]>([]);
 
-      setIsScrambleLoading(true);
-      setScrambleError(null);
-
-      try {
-        const nextScramble = await generateRandom333Scramble(source);
-        if (requestId !== requestIdRef.current) {
-          return;
-        }
-
-        setScramble(nextScramble);
-      } catch (error) {
-        console.error('Failed to generate scramble:', error);
-        if (requestId !== requestIdRef.current) {
-          return;
-        }
-
-        setScrambleError('Could not generate a scramble. Please try again.');
-      } finally {
-        if (requestId === requestIdRef.current) {
-          setIsScrambleLoading(false);
-        }
-      }
-    },
-    [],
-  );
+  const loadScramble = useCallback(async (source: ScrambleSource) => {
+    const requestId = ++requestIdRef.current;
+    setIsScrambleLoading(true);
+    setScrambleError(null);
+    try {
+      const nextScramble = await generateRandom333Scramble(source);
+      if (requestId !== requestIdRef.current) return;
+      setScramble(nextScramble);
+    } catch (error) {
+      console.error('Failed to generate scramble:', error);
+      if (requestId !== requestIdRef.current) return;
+      setScrambleError('Could not generate a scramble. Please try again.');
+    } finally {
+      if (requestId === requestIdRef.current) setIsScrambleLoading(false);
+    }
+  }, []);
 
   const clearTransientState = useCallback(() => {
     setScrambleError(null);
     setStatusMessage(null);
   }, []);
 
+  // On modal open: always start in standard mode
   useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
+    if (!isOpen) return;
     requestIdRef.current += 1;
     reset();
     clearTransientState();
+    setMode('standard');
+    setCompetitiveSession(null);
+    setCompOutcome(null);
+    setShowSelector(false);
     loadScramble('initial');
   }, [clearTransientState, isOpen, loadScramble, reset]);
+
+  const initCompetitiveSession = useCallback(
+    (competition: Competition) => {
+      const { groupId, scrambles } = pickRandomGroup(competition);
+      setCompetitiveSession({ competition, groupId, scrambles, currentIndex: 0, solveTimesMs: [] });
+      setCompOutcome(null);
+      reset();
+      clearTransientState();
+    },
+    [clearTransientState, reset],
+  );
+
+  const handleToggleMode = useCallback(
+    async (newMode: PracticeMode) => {
+      if (timer.state === 'running' || newMode === mode) return;
+
+      if (newMode === 'competitive') {
+        try {
+          const loaded = await loadCompetitions();
+          setCompetitions(loaded);
+          setMode('competitive');
+          setShowSelector(false);
+          initCompetitiveSession(loaded[0]);
+        } catch (error) {
+          console.error('Failed to load competition data:', error);
+          setStatusMessage('Competitive mode unavailable — using random scrambles.');
+        }
+      } else {
+        setMode('standard');
+        setCompetitiveSession(null);
+        setCompOutcome(null);
+        setShowSelector(false);
+        clearTransientState();
+        loadScramble('initial');
+      }
+    },
+    [clearTransientState, initCompetitiveSession, loadScramble, mode, timer.state],
+  );
 
   const handleNewScramble = async () => {
     if (timer.state === 'running') {
       setStatusMessage('Finish your current solve before generating a new scramble.');
       return;
     }
-
     clearTransientState();
     reset();
     await loadScramble('manual');
@@ -84,43 +146,55 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
 
   const handleStop = useCallback(() => {
     stop();
-    // Persist the completed solve
-    saveSolve(timer.elapsedMs);
-    setStatusMessage('Solve recorded. Generate a new scramble for the next attempt.');
-  }, [saveSolve, stop, timer.elapsedMs]);
+    if (mode === 'competitive' && competitiveSession !== null) {
+      const newTimes = [...competitiveSession.solveTimesMs, timer.elapsedMs];
+      const newIndex = competitiveSession.currentIndex + 1;
+      const updatedSession: CompetitiveSession = { ...competitiveSession, solveTimesMs: newTimes, currentIndex: newIndex };
+      setCompetitiveSession(updatedSession);
+      if (newIndex >= competitiveSession.scrambles.length) {
+        setCompOutcome(computeOutcome(updatedSession));
+      } else {
+        const remaining = competitiveSession.scrambles.length - newIndex;
+        setStatusMessage(`Solve ${newIndex} of ${competitiveSession.scrambles.length} recorded. ${remaining} to go.`);
+      }
+    } else {
+      saveSolve(timer.elapsedMs);
+      setStatusMessage('Solve recorded. Generate a new scramble for the next attempt.');
+    }
+  }, [competitiveSession, mode, saveSolve, stop, timer.elapsedMs]);
+
+  const handleTryAgain = useCallback(() => {
+    if (competitiveSession === null) return;
+    initCompetitiveSession(competitiveSession.competition);
+  }, [competitiveSession, initCompetitiveSession]);
+
+  const handleBackToStandard = useCallback(() => {
+    setMode('standard');
+    setCompetitiveSession(null);
+    setCompOutcome(null);
+    setShowSelector(false);
+    clearTransientState();
+    loadScramble('initial');
+  }, [clearTransientState, loadScramble]);
 
   useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
+    if (!isOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
         return;
       }
-
-      if (event.code !== 'Space' && event.key !== ' ') {
-        return;
-      }
+      if (event.code !== 'Space' && event.key !== ' ') return;
 
       const target = event.target as HTMLElement | null;
       const tag = target?.tagName;
       const isTypingTarget =
-        tag === 'INPUT' ||
-        tag === 'TEXTAREA' ||
-        tag === 'SELECT' ||
-        target?.isContentEditable;
-
-      if (isTypingTarget) {
-        return;
-      }
+        tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target?.isContentEditable;
+      if (isTypingTarget) return;
 
       event.preventDefault();
-
-      if (event.repeat || isScrambleLoading) {
-        return;
-      }
+      if (event.repeat || isScrambleLoading) return;
 
       if (timer.state === 'running') {
         handleStop();
@@ -133,98 +207,205 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [handleStart, handleStop, isOpen, isScrambleLoading, onClose, timer.state]);
 
-  if (!isOpen) {
-    return null;
-  }
+  if (!isOpen) return null;
 
   const timerDisplay = formatElapsedMs(timer.elapsedMs);
   const timerStatus = formatTimerLabel(timer.elapsedMs, timer.state);
+  const isCompetitive = mode === 'competitive' && competitiveSession !== null;
+
+  // Competitive display values
+  const safeIndex = competitiveSession
+    ? Math.min(competitiveSession.currentIndex, competitiveSession.scrambles.length - 1)
+    : 0;
+  const compScramble = isCompetitive ? competitiveSession.scrambles[safeIndex] : null;
+  const solveProgress = isCompetitive
+    ? `Solve ${Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} of ${competitiveSession.scrambles.length}`
+    : null;
+
+  // Running comparison values (shown after first solve)
+  const solvedTimes = competitiveSession?.solveTimesMs ?? [];
+  const userRunningBestMs = solvedTimes.length > 0 ? Math.min(...solvedTimes) : null;
+  const userRunningAvgMs =
+    solvedTimes.length > 1 ? solvedTimes.reduce((a, b) => a + b, 0) / solvedTimes.length : null;
 
   return (
     <div className="practice-modal-backdrop" onClick={onClose}>
       <div className="practice-modal" onClick={(event) => event.stopPropagation()}>
         <header className="practice-modal-header">
           <h2 className="title is-4">Practice Session</h2>
-          <button className="delete" onClick={onClose} aria-label="close"></button>
+          <div className="practice-header-controls">
+            <div className="buttons has-addons mode-toggle">
+              <button
+                className={`button is-small ${mode === 'standard' ? 'is-link' : 'is-light'}`}
+                onClick={() => handleToggleMode('standard')}
+                disabled={timer.state === 'running'}
+              >
+                Standard
+              </button>
+              <button
+                className={`button is-small ${mode === 'competitive' ? 'is-link' : 'is-light'}`}
+                onClick={() => handleToggleMode('competitive')}
+                disabled={timer.state === 'running'}
+              >
+                Competitive
+              </button>
+            </div>
+            <button className="delete" onClick={onClose} aria-label="close"></button>
+          </div>
         </header>
 
         <section className="practice-modal-content">
-          <div className="practice-block">
-            <div className="practice-block-header">
-              <h3 className="title is-6">Scramble</h3>
-              <button
-                className="button is-link is-light is-small"
-                onClick={handleNewScramble}
-                disabled={isScrambleLoading}
-              >
-                {isScrambleLoading ? 'Generating...' : 'New Scramble'}
-              </button>
-            </div>
+          {showSelector ? (
+            <CompetitionSelector
+              competitions={competitions}
+              selectedId={competitiveSession?.competition.competition_id ?? ''}
+              onSelect={(competition) => {
+                initCompetitiveSession(competition);
+                setShowSelector(false);
+              }}
+              onCancel={() => setShowSelector(false)}
+            />
+          ) : compOutcome !== null ? (
+            <ComparisonResult
+              outcome={compOutcome}
+              onTryAgain={handleTryAgain}
+              onChangeCompetition={() => setShowSelector(true)}
+              onBackToStandard={handleBackToStandard}
+            />
+          ) : (
+            <>
+              {/* Scramble block */}
+              <div className="practice-block">
+                <div className="practice-block-header">
+                  <h3 className="title is-6">Scramble</h3>
+                  {isCompetitive ? (
+                    <span className="solve-progress">{solveProgress}</span>
+                  ) : (
+                    <button
+                      className="button is-link is-light is-small"
+                      onClick={handleNewScramble}
+                      disabled={isScrambleLoading}
+                    >
+                      {isScrambleLoading ? 'Generating...' : 'New Scramble'}
+                    </button>
+                  )}
+                </div>
 
-            <div className="scramble-display" aria-live="polite">
-              <span className="scramble-text">{scramble?.value ?? 'No scramble available yet.'}</span>
-            </div>
-            {scrambleError && <p className="practice-error">{scrambleError}</p>}
-          </div>
-
-          <div className="practice-block">
-            <div className="practice-block-header">
-              <h3 className="title is-6">Timer</h3>
-              <span className={`timer-state-pill timer-state-${timer.state}`}>{timerStatus}</span>
-            </div>
-
-            <div className="timer-display" aria-live="polite">
-              {timerDisplay}
-            </div>
-
-            <div className="timer-controls">
-              <button className="button is-primary" onClick={handleStart} disabled={!canStart || isScrambleLoading}>
-                Start
-              </button>
-              <button className="button is-warning is-light" onClick={handleStop} disabled={!canStop}>
-                Stop
-              </button>
-            </div>
-          </div>
-
-          <div className="practice-block">
-            <div className="practice-block-header">
-              <h3 className="title is-6">Statistics</h3>
-              <button
-                className="button is-danger is-light is-small"
-                onClick={resetStats}
-                title="Clear all statistics"
-              >
-                Reset Stats
-              </button>
-            </div>
-
-            <div className="stats-display">
-              <div className="stat-item">
-                <span className="stat-label">Last time</span>
-                <span className="stat-value">
-                  {stats.lastTimeMs !== null ? formatElapsedMs(stats.lastTimeMs) : '—'}
-                </span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-label">Average (last 5)</span>
-                <span className="stat-value">
-                  {stats.averageLast5Ms !== null ? formatElapsedMs(stats.averageLast5Ms) : '—'}
-                </span>
-                {stats.solveCount > 0 && stats.solveCount < 5 && (
-                  <span className="stat-note">({stats.solveCount}/5 solves)</span>
+                {isCompetitive && competitiveSession && (
+                  <div className="competitive-context">
+                    <span className="competitive-event-name">{competitiveSession.competition.competition_name}</span>
+                    <span className={`tier-badge tier-${competitiveSession.competition.tier}`}>
+                      {competitiveSession.competition.tier === 'wr' ? 'WR' : 'Champ'}
+                    </span>
+                  </div>
                 )}
-              </div>
-              <div className="stat-item">
-                <span className="stat-label">Best time</span>
-                <span className="stat-value">
-                  {stats.bestTimeMs !== null ? formatElapsedMs(stats.bestTimeMs) : '—'}
-                </span>
-              </div>
-            </div>
-          </div>
 
-          {statusMessage && <p className="practice-status">{statusMessage}</p>}
+                <div className="scramble-display" aria-live="polite">
+                  <span className="scramble-text">
+                    {isCompetitive ? (compScramble ?? 'Loading…') : (scramble?.value ?? 'No scramble available yet.')}
+                  </span>
+                </div>
+                {scrambleError && <p className="practice-error">{scrambleError}</p>}
+              </div>
+
+              {/* Timer block */}
+              <div className="practice-block">
+                <div className="practice-block-header">
+                  <h3 className="title is-6">Timer</h3>
+                  <span className={`timer-state-pill timer-state-${timer.state}`}>{timerStatus}</span>
+                </div>
+                <div className="timer-display" aria-live="polite">{timerDisplay}</div>
+                <div className="timer-controls">
+                  <button
+                    className="button is-primary"
+                    onClick={handleStart}
+                    disabled={!canStart || (!isCompetitive && isScrambleLoading)}
+                  >
+                    Start
+                  </button>
+                  <button className="button is-warning is-light" onClick={handleStop} disabled={!canStop}>
+                    Stop
+                  </button>
+                </div>
+              </div>
+
+              {/* Stats block: running comparison in competitive, standard stats otherwise */}
+              {isCompetitive && competitiveSession ? (
+                <div className="practice-block">
+                  <div className="practice-block-header">
+                    <h3 className="title is-6 vs-champion-title">vs {competitiveSession.competition.winner_name}</h3>
+                    <button
+                      className="button is-light is-small"
+                      onClick={() => setShowSelector(true)}
+                      disabled={timer.state === 'running'}
+                    >
+                      Change
+                    </button>
+                  </div>
+                  <div className="stats-display">
+                    <div className="stat-item">
+                      <span className="stat-label">Your best single</span>
+                      <span className="stat-value">
+                        {userRunningBestMs !== null ? formatElapsedMs(userRunningBestMs) : '—'}
+                      </span>
+                      <span className="stat-note">
+                        Target: {formatElapsedMs(competitiveSession.competition.winner_single * 1000)}
+                      </span>
+                    </div>
+                    {competitiveSession.competition.winner_average !== null && (
+                      <div className="stat-item">
+                        <span className="stat-label">Your average</span>
+                        <span className="stat-value">
+                          {userRunningAvgMs !== null ? formatElapsedMs(userRunningAvgMs) : '—'}
+                        </span>
+                        <span className="stat-note">
+                          Target: {formatElapsedMs(competitiveSession.competition.winner_average * 1000)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="practice-block">
+                  <div className="practice-block-header">
+                    <h3 className="title is-6">Statistics</h3>
+                    <button
+                      className="button is-danger is-light is-small"
+                      onClick={resetStats}
+                      title="Clear all statistics"
+                    >
+                      Reset Stats
+                    </button>
+                  </div>
+                  <div className="stats-display">
+                    <div className="stat-item">
+                      <span className="stat-label">Last time</span>
+                      <span className="stat-value">
+                        {stats.lastTimeMs !== null ? formatElapsedMs(stats.lastTimeMs) : '—'}
+                      </span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Average (last 5)</span>
+                      <span className="stat-value">
+                        {stats.averageLast5Ms !== null ? formatElapsedMs(stats.averageLast5Ms) : '—'}
+                      </span>
+                      {stats.solveCount > 0 && stats.solveCount < 5 && (
+                        <span className="stat-note">({stats.solveCount}/5 solves)</span>
+                      )}
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Best time</span>
+                      <span className="stat-value">
+                        {stats.bestTimeMs !== null ? formatElapsedMs(stats.bestTimeMs) : '—'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {statusMessage && <p className="practice-status">{statusMessage}</p>}
+            </>
+          )}
         </section>
       </div>
     </div>

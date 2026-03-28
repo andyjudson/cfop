@@ -14,7 +14,7 @@
 
 **Purpose**: Data file in place and project structure ready
 
-- [ ] T001 Copy `pyspark_sandbox/export/clean/wca_beat_the_champion.json` → `cfop-app/public/data/wca-beat-the-champion.json`
+- [x] T001 Copy `pyspark_sandbox/export/clean/wca_beat_the_champion.json` → `cfop-app/public/data/wca-beat-the-champion.json`
 
 ---
 
@@ -24,8 +24,8 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T002 Create `cfop-app/src/types/competition.ts` with `Competition`, `PracticeMode`, `CompetitiveSession`, `ComparisonOutcome` interfaces per data-model.md
-- [ ] T003 [P] Create `cfop-app/src/utils/competitionData.ts` — fetch + NDJSON parse using `import.meta.env.BASE_URL + 'data/wca-beat-the-champion.json'`; module-level `Competition[]` cache; returns `Competition[]` or throws on failure
+- [x] T002 Create `cfop-app/src/types/competition.ts` with `Competition`, `PracticeMode`, `CompetitiveSession`, `ComparisonOutcome` interfaces per data-model.md
+- [x] T003 [P] Create `cfop-app/src/utils/competitionData.ts` — fetch + NDJSON parse using `import.meta.env.BASE_URL + 'data/wca-beat-the-champion.json'`; module-level `Competition[]` cache; returns `Competition[]` or throws on failure
 
 **Checkpoint**: Types defined, data loader works — user story implementation can begin
 
@@ -39,14 +39,14 @@
 
 ### Implementation
 
-- [ ] T004 [US1] Add `mode: PracticeMode` state (default `'standard'`) and `competitiveSession: CompetitiveSession | null` state to `PracticeSessionModal.tsx`; add mode toggle segmented control to modal header (`cfop-app/src/components/PracticeSessionModal.tsx`)
-- [ ] T005 [US1] Implement toggle-to-competitive logic in `PracticeSessionModal.tsx`: call `loadCompetitions()`, auto-select `data[0]` (most recent), randomly pick a group key, set `CompetitiveSession` with `currentIndex: 0, solveTimesMs: []`; disable toggle while `timer.state === 'running'`
-- [ ] T006 [US1] In `PracticeSessionModal.tsx`, serve scrambles from `competitiveSession.scrambles[currentIndex]` when `mode === 'competitive'` instead of calling `generateRandom333Scramble()`; show solve progress label ("Solve N of 5") in the scramble block
-- [ ] T007 [US1] In `handleStop` for competitive mode (`PracticeSessionModal.tsx`): push `timer.elapsedMs` to `solveTimesMs`, increment `currentIndex`; do NOT call `saveSolve()` (standard stats must stay clean)
-- [ ] T008 [US1] Create `cfop-app/src/components/ComparisonResult.tsx` + `ComparisonResult.css`: accepts `ComparisonOutcome` prop; renders two-column comparison table (user vs champion single + average); "You beat the champion!" indicator when `beatSingle || beatAverage`; shortfall text otherwise; "Try Again" and "Back to Standard" buttons; omits average row when `winner_average` is null
-- [ ] T009 [US1] Wire `ComparisonResult` into `PracticeSessionModal.tsx`: compute `ComparisonOutcome` when `currentIndex === scrambles.length` after final solve stop; replace scramble + timer blocks with `ComparisonResult`; "Try Again" re-randomises group for same competition; "Back to Standard" clears session and sets `mode: 'standard'`
-- [ ] T010 [US1] Add data load failure fallback in `PracticeSessionModal.tsx`: if `loadCompetitions()` throws, revert `mode` to `'standard'` and show the existing `practice-status` notice ("Competitive mode unavailable — using random scrambles")
-- [ ] T011 [P] [US1] Add mode toggle styles and competitive scramble block styles to `cfop-app/src/components/PracticeSessionModal.css`; add `ComparisonResult.css` tokens-only styles (no hardcoded hex/rgba); verify 393px viewport renders without overflow
+- [x] T004 [US1] Add `mode: PracticeMode` state (default `'standard'`) and `competitiveSession: CompetitiveSession | null` state to `PracticeSessionModal.tsx`; add mode toggle segmented control to modal header (`cfop-app/src/components/PracticeSessionModal.tsx`)
+- [x] T005 [US1] Implement toggle-to-competitive logic in `PracticeSessionModal.tsx`: call `loadCompetitions()`, auto-select `data[0]` (most recent), randomly pick a group key, set `CompetitiveSession` with `currentIndex: 0, solveTimesMs: []`; disable toggle while `timer.state === 'running'`
+- [x] T006 [US1] In `PracticeSessionModal.tsx`, serve scrambles from `competitiveSession.scrambles[currentIndex]` when `mode === 'competitive'` instead of calling `generateRandom333Scramble()`; show solve progress label ("Solve N of 5") in the scramble block
+- [x] T007 [US1] In `handleStop` for competitive mode (`PracticeSessionModal.tsx`): push `timer.elapsedMs` to `solveTimesMs`, increment `currentIndex`; do NOT call `saveSolve()` (standard stats must stay clean)
+- [x] T008 [US1] Create `cfop-app/src/components/ComparisonResult.tsx` + `ComparisonResult.css`: accepts `ComparisonOutcome` prop; renders two-column comparison table (user vs champion single + average); "You beat the champion!" indicator when `beatSingle || beatAverage`; shortfall text otherwise; "Try Again" and "Back to Standard" buttons; omits average row when `winner_average` is null
+- [x] T009 [US1] Wire `ComparisonResult` into `PracticeSessionModal.tsx`: compute `ComparisonOutcome` when `currentIndex === scrambles.length` after final solve stop; replace scramble + timer blocks with `ComparisonResult`; "Try Again" re-randomises group for same competition; "Back to Standard" clears session and sets `mode: 'standard'`
+- [x] T010 [US1] Add data load failure fallback in `PracticeSessionModal.tsx`: if `loadCompetitions()` throws, revert `mode` to `'standard'` and show the existing `practice-status` notice ("Competitive mode unavailable — using random scrambles")
+- [x] T011 [P] [US1] Add mode toggle styles and competitive scramble block styles to `cfop-app/src/components/PracticeSessionModal.css`; add `ComparisonResult.css` tokens-only styles (no hardcoded hex/rgba); verify 393px viewport renders without overflow
 
 **Checkpoint**: Full P1 loop — mode toggle → auto-selected competition → 5 real scrambles → comparison result — works end to end
 
@@ -60,10 +60,10 @@
 
 ### Implementation
 
-- [ ] T012 [P] [US2] Create `cfop-app/src/components/CompetitionSelector.tsx`: accepts `competitions: Competition[]`, `selectedId: string`, `onSelect: (c: Competition) => void`, `onCancel: () => void`; renders scrollable list with one row per competition (name, year, tier badge, winner single, winner average or "—"); highlights selected row; includes Cancel button
-- [ ] T013 [P] [US2] Create `cfop-app/src/components/CompetitionSelector.css`: tokens-only styles; scrollable list constrained within modal height; tier badge variants for 'wr' and 'championship'; mobile-first (393px)
-- [ ] T014 [US2] Integrate `CompetitionSelector` into `PracticeSessionModal.tsx`: add `showSelector: boolean` state; show selector panel (replacing scramble/timer area) on first Competitive mode activation and when "Change Competition" is tapped; on `onSelect` — initialise new `CompetitiveSession` with the chosen competition and a freshly randomised group; on `onCancel` — hide selector, return to current session
-- [ ] T015 [US2] Add "Change Competition" link/button to the competitive scramble block in `PracticeSessionModal.tsx`; show competition name + tier badge as context header above scramble display
+- [x] T012 [P] [US2] Create `cfop-app/src/components/CompetitionSelector.tsx`: accepts `competitions: Competition[]`, `selectedId: string`, `onSelect: (c: Competition) => void`, `onCancel: () => void`; renders scrollable list with one row per competition (name, year, tier badge, winner single, winner average or "—"); highlights selected row; includes Cancel button
+- [x] T013 [P] [US2] Create `cfop-app/src/components/CompetitionSelector.css`: tokens-only styles; scrollable list constrained within modal height; tier badge variants for 'wr' and 'championship'; mobile-first (393px)
+- [x] T014 [US2] Integrate `CompetitionSelector` into `PracticeSessionModal.tsx`: add `showSelector: boolean` state; show selector panel (replacing scramble/timer area) on first Competitive mode activation and when "Change Competition" is tapped; on `onSelect` — initialise new `CompetitiveSession` with the chosen competition and a freshly randomised group; on `onCancel` — hide selector, return to current session
+- [x] T015 [US2] Add "Change Competition" link/button to the competitive scramble block in `PracticeSessionModal.tsx`; show competition name + tier badge as context header above scramble display
 
 **Checkpoint**: Competition selector fully functional — list visible, selection updates scrambles and target times
 
@@ -77,8 +77,8 @@
 
 ### Implementation
 
-- [ ] T016 [US3] Verify `PracticeSessionModal.tsx` toggle-to-standard path: `competitiveSession` set to `null`, `showSelector` set to `false`, `mode` set to `'standard'`, call `loadScramble('initial')` to resume random scrambles; `useSolveStats` / `saveSolve` only called in standard mode paths (audit all `handleStop` branches)
-- [ ] T017 [US3] On modal close (`isOpen` effect reset), clear `competitiveSession`, `showSelector`, and `mode` back to `'standard'` in `PracticeSessionModal.tsx` so reopening always starts in Standard mode
+- [x] T016 [US3] Verify `PracticeSessionModal.tsx` toggle-to-standard path: `competitiveSession` set to `null`, `showSelector` set to `false`, `mode` set to `'standard'`, call `loadScramble('initial')` to resume random scrambles; `useSolveStats` / `saveSolve` only called in standard mode paths (audit all `handleStop` branches)
+- [x] T017 [US3] On modal close (`isOpen` effect reset), clear `competitiveSession`, `showSelector`, and `mode` back to `'standard'` in `PracticeSessionModal.tsx` so reopening always starts in Standard mode
 
 **Checkpoint**: All three user stories functional — Standard ↔ Competitive toggle clean, no stat contamination
 
@@ -86,9 +86,9 @@
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T018 [P] Verify no hardcoded `rgba()` or hex values in `ComparisonResult.css`, `CompetitionSelector.css`, or new rules in `PracticeSessionModal.css` — use `--color-*`, `--shadow-*`, `--radius-*` tokens from `cfop-app/src/index.css`
+- [x] T018 [P] Verify no hardcoded `rgba()` or hex values in `ComparisonResult.css`, `CompetitionSelector.css`, or new rules in `PracticeSessionModal.css` — use `--color-*`, `--shadow-*`, `--radius-*` tokens from `cfop-app/src/index.css`
 - [ ] T019 [P] Manual viewport test at 393px: mode toggle in header, competition selector list, competitive scramble block, comparison result — no overflow or truncation (SC-004)
-- [ ] T020 Run production build and confirm no TypeScript errors or bundle warnings: `cd cfop-app && npm run build`
+- [x] T020 Run production build and confirm no TypeScript errors or bundle warnings: `cd cfop-app && npm run build`
 - [ ] T021 Manual feature test pass against quickstart.md checklist and all spec acceptance scenarios
 
 ---

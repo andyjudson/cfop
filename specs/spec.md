@@ -512,6 +512,16 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Production build validated: 1.78s, no errors ✅
 - react-router-dom dependency added ✅
 
+**Feature 014 - Beat the Champion (Completed)**:
+- Competitive practice mode using real WCA competition scrambles (57 events: 36 WR + 21 championship) ✅
+- Mode toggle in timer controls row with MUI icons; competition name + tier badge inline in scramble header ✅
+- Solve progress pill (`n / 5`) and standard solve count pill in timer header ✅
+- Comparison result screen: user times vs winner single + average, beat/miss verdict ✅
+- Competition selector: scrollable list with tier badges, winner times, row highlight ✅
+- WR badge accent blue, Champ badge accent orange; winner/competition names in accent blue ✅
+- `saveSolve` only called in standard mode — competitive solves never contaminate stats ✅
+- Production build verified, no TypeScript errors ✅
+
 **Feature 013 - Global Algorithm Visualizer & Practice Timer (Completed)**:
 - `VisualizerModal` component with OLL/PLL data loading, 3-selector UI (set/group/algorithm), Shuffle ✅
 - "Visualize" and "Practice" nav action buttons in `CfopNavigation` — accessible from any page ✅

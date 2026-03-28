@@ -87,9 +87,9 @@
 ## Phase 6: Polish & Cross-Cutting Concerns
 
 - [x] T018 [P] Verify no hardcoded `rgba()` or hex values in `ComparisonResult.css`, `CompetitionSelector.css`, or new rules in `PracticeSessionModal.css` — use `--color-*`, `--shadow-*`, `--radius-*` tokens from `cfop-app/src/index.css`
-- [ ] T019 [P] Manual viewport test at 393px: mode toggle in header, competition selector list, competitive scramble block, comparison result — no overflow or truncation (SC-004)
+- [x] T019 [P] Manual viewport test at 393px: mode toggle in header, competition selector list, competitive scramble block, comparison result — no overflow or truncation (SC-004)
 - [x] T020 Run production build and confirm no TypeScript errors or bundle warnings: `cd cfop-app && npm run build`
-- [ ] T021 Manual feature test pass against quickstart.md checklist and all spec acceptance scenarios
+- [x] T021 Manual feature test pass against quickstart.md checklist and all spec acceptance scenarios
 
 ---
 

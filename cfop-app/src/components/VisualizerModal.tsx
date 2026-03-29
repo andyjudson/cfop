@@ -165,7 +165,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
           experimentalSetupAlg: 'z2',
           experimentalSetupAnchor: 'end',
           experimentalStickeringMaskOrbits: mask,
-          experimentalDragInput: 'none',
+          experimentalDragInput: 'auto',
         });
 
         twistyRef.current.innerHTML = '';

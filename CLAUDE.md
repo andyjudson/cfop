@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–013 complete. CSS baseline refined. Ready for next net-new feature.
+Features 001–015 complete. 016 (Playwright E2E) in progress.
 
 ## CSS Standards
 
@@ -53,9 +53,11 @@ React 19, TypeScript, Vite, Bulma CSS, cubing.js, react-router-dom
 
 - Use CSS custom properties from `index.css` for all new/updated styles
 - Use shared `AlgorithmCard` component for algorithm displays
-- Shared data/assets via symlinks from `shared-data/` and `shared-assets/`; do not copy into app folders
 - localStorage uses versioned envelopes with defensive validation
 - iPhone 16 (~393px CSS width) is the primary small-screen baseline for modal sizing
+- All `fetch()` calls use `import.meta.env.BASE_URL + 'data/...'` — never hardcode `/cubing.spec/`
+- Pages use `error` state + `throw error` to propagate fetch failures to `ErrorBoundary`; `WrEvolutionChart` follows the same pattern, wrapped in `ErrorBoundary` in `AboutPage`
+- No loading state placeholders — data renders when ready, empty until then
 
 ## Local Dev Server (cfop-app)
 
@@ -71,18 +73,17 @@ npm run dev -- --host 127.0.0.1 --port 5173
 - Use foreground commands during active testing (avoid nohup/background)
 - File renames or major changes may cause the dev server to exit — restart as needed
 
-## Active Technologies
-- TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md (011-about-page-nav)
-- N/A (static content only) (011-about-page-nav)
-- TypeScript 5.9 / React 19 / Vite 7 + Recharts (new, ~38–42 kB gzip tree-shaken); existing: Bulma CSS 1.x, react-router-dom 7.x, react-icons 5.x (012-wca-wr-chart)
-- N/A — data read from static file at runtime (012-wca-wr-chart)
-- TypeScript 5.9 / React 19 / Vite 7 + Existing: cubing.js (TwistyPlayer), react-icons/md, Bulma CSS 1.x, react-router-dom 7.x. No new dependencies. (013-global-alg-visualizer)
-- N/A — runtime state only; no persistence (013-global-alg-visualizer)
-- TypeScript 5.9 / React 19 / Vite 7 + Bulma CSS 1.x, react-router-dom 7.x, react-icons 5.x (all existing — no new dependencies) (014-beat-the-champion)
-- No new persistence — competitive session is ephemeral (session only) (014-beat-the-champion)
-- TypeScript 5.9 / React 19 / Vite 7 + Bulma CSS 1.x, react-icons/md (existing — `MdDarkMode`, `MdLightMode`); no new dependencies (015-dark-mode)
-- `localStorage` key `cfop-theme` (`'light' | 'dark'`) (015-dark-mode)
-- TypeScript 5.9 + `@playwright/test` (new, dev-only); existing: Vite 7, React 19, react-router-dom 7 (HashRouter) (016-playwright-e2e-tests)
+## Testing (cfop-app)
 
-## Recent Changes
-- 011-about-page-nav: Added TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md
+- E2E only — Playwright (`@playwright/test`), Chromium, runs against local dev server
+- Test files in `cfop-app/e2e/`, config in `cfop-app/playwright.config.ts`
+- Run: `cd cfop-app && npx playwright test`
+
+## Active Technologies (cfop-app)
+
+**Runtime**: TypeScript 5.9, React 19, Vite 7
+**UI**: Bulma CSS 1.x, react-icons 5.x
+**Routing**: react-router-dom 7.x (HashRouter)
+**Visualisation**: cubing.js (TwistyPlayer), Recharts 3.x
+**Testing**: @playwright/test (dev-only)
+**Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)

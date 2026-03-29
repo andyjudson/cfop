@@ -193,6 +193,13 @@
   opacity: 1;
 }
 
+.cfop-navbar-divider {
+  height: 1px;
+  background-color: var(--color-border-light);
+  border: none;
+  margin: 0.25rem 0.75rem;
+}
+
 /* Backdrop for click-outside dismiss */
 .cfop-nav-backdrop {
   position: fixed;
@@ -225,26 +232,6 @@
 .cfop-navbar .navbar-item.cfop-navbar-active:hover {
   background: var(--color-bg-emphasis);
   color: var(--color-accent-primary);
-}
-
-.cfop-navbar .navbar-item.cfop-navbar-action {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  min-height: 2.75rem;
-  padding: 0.5rem 0.75rem;
-  margin: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--color-text-secondary);
-}
-
-.cfop-navbar .navbar-item.cfop-navbar-action:hover {
-  background-color: var(--color-bg-emphasis);
-  color: var(--color-text-primary);
 }
 
 .intuitive-section {

@@ -56,12 +56,12 @@
 
 **Independent Test**: Toggle dark mode, navigate every page — OLL/PLL/F2L cards, practice modal, visualiser, WR chart, comparison result — all readable, no invisible elements, cube diagrams legible.
 
-- [ ] T009 [P] [US2] Audit and fix any remaining hardcoded colours in `src/App.css` that don't correctly resolve under dark tokens (check shadows, gradients, section-title background)
-- [ ] T010 [P] [US2] Audit `src/components/AlgorithmCard.css` and `src/components/ComparisonResult.css` under dark mode — verify all `var(--color-*)` references resolve correctly; fix any tokens that map to wrong dark values
+- [X] T009 [P] [US2] Audit and fix any remaining hardcoded colours in `src/App.css` that don't correctly resolve under dark tokens (check shadows, gradients, section-title background)
+- [X] T010 [P] [US2] Audit `src/components/AlgorithmCard.css` and `src/components/ComparisonResult.css` under dark mode — verify all `var(--color-*)` references resolve correctly; fix any tokens that map to wrong dark values
 - [X] T011 [P] [US2] Add targeted Bulma dark-mode overrides inside the `[data-theme="dark"]` block in `src/index.css` — override `--bulma-body-background-color`, `--bulma-body-color`, `--bulma-background`, `--bulma-box-background-color`, and `--bulma-light` lightness values so `is-light` buttons remain visible on dark card backgrounds
-- [ ] T012 [US2] Manually review all pages in dark mode (OLL, PLL, F2L, Notation, About, Intuitive) and fix any contrast or visibility issues found — update token values in `src/index.css` `[data-theme="dark"]` block as needed
-- [ ] T013 [US2] Manually review both modals (Practice, Visualiser) in dark mode and verify cube net diagrams remain legible — dark grey/black facelets must be distinguishable from `--color-bg-subtle` (`#1e293b`) card backgrounds; fix if needed
-- [ ] T014 [US2] Manually review the WR evolution chart (`WrEvolutionChart`) in dark mode — verify chart lines, grid, tooltips, and axis labels are legible; update chart colour resolution in `src/components/WrEvolutionChart.tsx` if `resolveTokenColour` picks up incorrect values (chart colours are read at mount time from CSS variables)
+- [X] T012 [US2] Manually review all pages in dark mode (OLL, PLL, F2L, Notation, About, Intuitive) and fix any contrast or visibility issues found — update token values in `src/index.css` `[data-theme="dark"]` block as needed
+- [X] T013 [US2] Manually review both modals (Practice, Visualiser) in dark mode and verify cube net diagrams remain legible — dark grey/black facelets must be distinguishable from `--color-bg-subtle` (`#1e293b`) card backgrounds; fix if needed
+- [X] T014 [US2] Manually review the WR evolution chart (`WrEvolutionChart`) in dark mode — verify chart lines, grid, tooltips, and axis labels are legible; update chart colour resolution in `src/components/WrEvolutionChart.tsx` if `resolveTokenColour` picks up incorrect values (chart colours are read at mount time from CSS variables)
 
 **Checkpoint**: Full dark mode passes visual review across all pages and components.
 
@@ -82,8 +82,8 @@
 ## Phase 6: Polish & Cross-Cutting Concerns
 
 - [X] T016 [P] Run production build (`npm run build` in `cfop-app/`) and verify no TypeScript errors and no theme-related visual regressions in the built output
-- [ ] T017 [P] Test on iPhone viewport (375–393px) — verify toggle button position alongside hamburger is correct, no overflow
-- [ ] T018 Update `specs/spec.md` feature ledger to record feature 015 as complete
+- [X] T017 [P] Test on iPhone viewport (375–393px) — verify toggle button position alongside hamburger is correct, no overflow
+- [X] T018 Update `specs/spec.md` feature ledger to record feature 015 as complete
 
 ---
 

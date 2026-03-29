@@ -31,5 +31,6 @@ export interface ComparisonOutcome {
   beatSingle: boolean;
   beatAverage: boolean | null;
   competitionName: string;
+  competitionYear: number;
   winnerName: string;
 }

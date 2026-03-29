@@ -36,6 +36,7 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
     beatSingle,
     beatAverage,
     competitionName,
+    competitionYear,
     winnerName,
   } = outcome;
 
@@ -69,7 +70,7 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
         </thead>
         <tbody>
           <tr>
-            <td className="comparison-row-label">Best single</td>
+            <td className="comparison-row-label">Single</td>
             <td className={`comparison-user-time${beatSingle ? ' is-beat' : ''}`}>
               {formatElapsedMs(userBestSingleMs)}
             </td>
@@ -96,7 +97,7 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
           )}
           {wrSingleAtTimeS !== null && (
             <tr>
-              <td className="comparison-row-label comparison-wr-label">WR at time</td>
+              <td className="comparison-row-label comparison-wr-label">WR single ({competitionYear})</td>
               <td className={`comparison-user-time${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? ' is-beat' : ''}`}>
                 {formatElapsedMs(userBestSingleMs)}
               </td>
@@ -108,7 +109,7 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
           )}
           {wrAverageAtTimeS !== null && (
             <tr>
-              <td className="comparison-row-label comparison-wr-label">WR avg at time</td>
+              <td className="comparison-row-label comparison-wr-label">WR average ({competitionYear})</td>
               <td className={`comparison-user-time${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? ' is-beat' : ''}`}>
                 {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
               </td>

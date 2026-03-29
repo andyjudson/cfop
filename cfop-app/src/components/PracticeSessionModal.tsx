@@ -38,6 +38,7 @@ function computeOutcome(session: CompetitiveSession): ComparisonOutcome {
     beatSingle,
     beatAverage,
     competitionName: competition.competition_name,
+    competitionYear: competition.year,
     winnerName: competition.winner_name,
   };
 }

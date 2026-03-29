@@ -132,7 +132,13 @@
   min-height: 2.75rem;
 }
 
-/* Theme toggle button — sits to the left of the hamburger */
+/* Icon group — pushed to the right, sits beside the hamburger */
+.cfop-nav-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
 .cfop-theme-toggle {
   display: flex;
   align-items: center;
@@ -142,7 +148,6 @@
   cursor: pointer;
   color: var(--color-text-secondary);
   padding: 0 0.5rem;
-  margin-left: auto;
   height: 2.75rem;
   font-size: 1rem;
   line-height: 1;

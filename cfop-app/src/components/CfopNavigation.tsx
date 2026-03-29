@@ -70,30 +70,32 @@ export function CfopNavigation() {
       <nav className="navbar is-light cfop-navbar" role="navigation" aria-label="CFOP method navigation">
         <div className="container">
           <div className="navbar-brand">
-            <button
-              className="cfop-theme-toggle"
-              type="button"
-              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-              onClick={toggleTheme}
-            >
-              {theme === 'light' ? <MdDarkMode size={20} /> : <MdLightMode size={20} />}
-            </button>
-            <button
-              className="cfop-theme-toggle"
-              type="button"
-              aria-label="Open algorithm visualizer"
-              onClick={openVisualizer}
-            >
-              <MdAnimation size={20} />
-            </button>
-            <button
-              className="cfop-theme-toggle"
-              type="button"
-              aria-label="Open practice timer"
-              onClick={openPractice}
-            >
-              <MdTimer size={20} />
-            </button>
+            <div className="cfop-nav-icons">
+              <button
+                className="cfop-theme-toggle"
+                type="button"
+                aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+                onClick={toggleTheme}
+              >
+                {theme === 'light' ? <MdDarkMode size={20} /> : <MdLightMode size={20} />}
+              </button>
+              <button
+                className="cfop-theme-toggle"
+                type="button"
+                aria-label="Open algorithm visualizer"
+                onClick={openVisualizer}
+              >
+                <MdAnimation size={20} />
+              </button>
+              <button
+                className="cfop-theme-toggle"
+                type="button"
+                aria-label="Open practice timer"
+                onClick={openPractice}
+              >
+                <MdTimer size={20} />
+              </button>
+            </div>
             <button
               className={`navbar-burger ${isMenuOpen ? 'is-active' : ''}`}
               aria-label="Toggle navigation"

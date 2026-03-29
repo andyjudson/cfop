@@ -17,10 +17,11 @@ function isValidCompetition(record: unknown): record is Competition {
     typeof r.competition_name === 'string' &&
     typeof r.year === 'number' &&
     typeof r.country === 'string' &&
-    (r.tier === 'wr' || r.tier === 'championship') &&
     typeof r.winner_name === 'string' &&
     typeof r.winner_single === 'number' &&
     (r.winner_average === null || typeof r.winner_average === 'number') &&
+    (r.wr_single_at_time === null || typeof r.wr_single_at_time === 'number') &&
+    (r.wr_average_at_time === null || typeof r.wr_average_at_time === 'number') &&
     typeof r.scramble_groups === 'object' &&
     r.scramble_groups !== null
   );

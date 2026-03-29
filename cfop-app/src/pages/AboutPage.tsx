@@ -127,11 +127,11 @@ export default function AboutPage() {
           </li>
           <li>
             <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random
-            scrambles using unofficial but WCA-equivalent logic, with a space-bar timer and rolling stats
-            (last time, best time, average of last 5). <em>Champion mode</em> (just for fun), loads the actual
-            scrambles from an official WCA competition final, complete the set and see how your best single
-            and average stack up against the event winner. The world record standing on the day of that competition is also shown; 
-            this is the WR at that point in time, not necessarily set at the same event or by the same person as the winner.
+            scrambles with a space-bar timer and rolling stats (last time, best time, ao5).{' '}
+            <em>Champion mode</em> (just for fun) loads the actual scrambles from a real WCA
+            competition final. Complete the set of 5 scrambles and see how your times compare to the event winner 
+            and the world record at the time (not necessarily set at that event or by the winner).
+            WCA events with scrambles go back to 2015 with over 50 international competition finals available to you.
           </li>
           <li>
             <strong>WCA Records Chart</strong> — A visualisation of how the 3×3 world record single and
@@ -171,7 +171,7 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 section-title">World Cube Association</h2>
         <p className="mt-3">
-          The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages - 🤯 just incredible. CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency, the skill of its practitioners, and the shifts in cube engineering.
+          The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages - 🤯 just incredible!! CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency, the skill of its practitioners, and the shifts in cube engineering.
         </p>        
         <WrEvolutionChart />
       </section>

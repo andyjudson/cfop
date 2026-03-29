@@ -109,8 +109,8 @@ export default function AboutPage() {
             wide moves, rotations) with visual examples so you can read any algorithm you encounter.
           </li>
           <li>
-            <strong>Intuitive F2L</strong> — The four key F2L patterns explained without algorithms, building
-            spatial reasoning that underpins faster solves at any level.
+            <strong>Intuitive Cross and F2L</strong> — The core logic for Cross and the four key F2L patterns explained without algorithms, 
+            building spatial reasoning that underpins faster solves at any level.
           </li>
           <li>
             <strong>Beginner 2-Look</strong> — The minimal algorithm set for solving OLL and PLL in two passes
@@ -129,14 +129,13 @@ export default function AboutPage() {
             <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random
             scrambles using unofficial but WCA-equivalent logic, with a space-bar timer and rolling stats
             (last time, best time, average of last 5). <em>Beat the Champion mode</em> loads the actual
-            scrambles from an official WCA competition final — complete the set and see how your best single
-            and average stack up against the event winner. For added context, the historical world record
-            standing on the day of that competition is also shown; this is the WR at that point in time, not
-            necessarily set at the same event or by the same person as the winner.
+            scrambles from an official WCA competition final, complete the set and see how your best single
+            and average stack up against the event winner. The world record standing on the day of that competition is also shown; 
+            this is the WR at that point in time, not necessarily set at the same event or by the same person as the winner.
           </li>
           <li>
             <strong>WCA Records Chart</strong> — A visualisation of how the 3×3 world record single and
-            average have evolved since the WCA was founded, sourced from official WCA data.
+            average times have evolved since the WCA was founded, sourced from official WCA data.
           </li>
         </ul>
       </section>

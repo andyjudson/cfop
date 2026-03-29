@@ -1,7 +1,7 @@
 .practice-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 10, 0.8);
+  background: var(--color-modal-backdrop);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +13,9 @@
   max-height: 90vh;
   overflow: auto;
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.24);
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border-medium);
+  box-shadow: var(--shadow-modal);
   padding: 1rem 1rem 1.25rem;
 }
 
@@ -27,7 +28,7 @@
 
 .practice-modal-header .title {
   margin: 0;
-  color: #0f172a;
+  color: var(--color-text-primary);
 }
 
 .practice-header-controls {
@@ -56,6 +57,7 @@
   margin: 0;
   border-radius: 0;
 }
+
 
 .mode-toggle .button:first-child {
   border-radius: 4px 0 0 4px;
@@ -93,8 +95,8 @@
 }
 
 .practice-block {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-light);
   border-radius: 10px;
   padding: 0.85rem;
 }
@@ -113,13 +115,13 @@
 
 .practice-block-header .title {
   margin: 0;
-  color: #0f172a;
+  color: var(--color-text-primary);
 }
 
 .scramble-display {
-  background: #ffffff;
-  color: #111827;
-  border: 1px solid #d9e2ee;
+  background: var(--color-bg-base);
+  color: var(--color-text-emphasis);
+  border: 1px solid var(--color-border-emphasis);
   border-radius: 8px;
   padding: 0.7rem 1rem;
   min-height: 2.8rem;
@@ -141,9 +143,9 @@
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-  color: #0f172a;
-  background: #ffffff;
-  border: 1px solid #d9e2ee;
+  color: var(--color-text-primary);
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border-emphasis);
   border-radius: 10px;
   padding: 0.65rem;
 }
@@ -182,15 +184,15 @@
 }
 
 .practice-status {
-  color: #1d4ed8;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  color: var(--color-info-text);
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
 }
 
 .practice-error {
-  color: #991b1b;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+  color: var(--color-error-text);
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
 }
 
 /* Statistics Display */
@@ -205,8 +207,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: #ffffff;
-  border: 1px solid #d9e2ee;
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border-emphasis);
   border-radius: 8px;
   padding: 0.65rem 0.75rem;
 }
@@ -214,7 +216,7 @@
 .stat-label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
@@ -223,12 +225,12 @@
   font-family: var(--font-mono);
   font-size: 1.35rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
 }
 
 .stat-note {
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: var(--color-text-muted);
   margin-top: 0.15rem;
 }
 

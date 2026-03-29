@@ -31,11 +31,12 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
     userAverageMs,
     winnerSingleS,
     winnerAverageS,
-    wrSingleS,
-    wrAverageS,
+    wrSingleAtTimeS,
+    wrAverageAtTimeS,
     beatSingle,
     beatAverage,
     competitionName,
+    competitionYear,
     winnerName,
   } = outcome;
 
@@ -47,9 +48,9 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
       ? userAverageMs - winnerAverageS * 1000
       : null;
 
-  const wrSingleDeltaMs = wrSingleS !== null ? userBestSingleMs - wrSingleS * 1000 : null;
+  const wrSingleDeltaMs = wrSingleAtTimeS !== null ? userBestSingleMs - wrSingleAtTimeS * 1000 : null;
   const wrAvgDeltaMs =
-    wrAverageS !== null && userAverageMs !== null ? userAverageMs - wrAverageS * 1000 : null;
+    wrAverageAtTimeS !== null && userAverageMs !== null ? userAverageMs - wrAverageAtTimeS * 1000 : null;
 
   return (
     <div className="comparison-result">
@@ -62,60 +63,54 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
         <thead>
           <tr>
             <th></th>
-            <th>You</th>
-            <th>Target</th>
-            <th>Delta</th>
+            <th>Single</th>
+            {winnerAverageS !== null && <th>Average</th>}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="comparison-row-label">Best single</td>
-            <td className={`comparison-user-time${beatSingle ? ' is-beat' : ''}`}>
-              {formatElapsedMs(userBestSingleMs)}
-            </td>
-            <td className="comparison-champ-time">{fmtS(winnerSingleS)}</td>
-            <td className={`comparison-delta ${singleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
-              {fmtDelta(singleDeltaMs)}
-            </td>
-          </tr>
-          {winnerAverageS !== null && (
-            <tr>
-              <td className="comparison-row-label">Average</td>
-              <td className={`comparison-user-time${beatAverage === true ? ' is-beat' : ''}`}>
+          <tr className="row-you">
+            <td className="comparison-row-label">You</td>
+            <td className={beatSingle ? 'is-beat' : ''}>{formatElapsedMs(userBestSingleMs)}</td>
+            {winnerAverageS !== null && (
+              <td className={beatAverage === true ? 'is-beat' : ''}>
                 {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
               </td>
-              <td className="comparison-champ-time">{fmtS(winnerAverageS)}</td>
-              <td
-                className={`comparison-delta ${
-                  avgDeltaMs !== null && avgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'
-                }`}
-              >
+            )}
+          </tr>
+          <tr className="row-champ">
+            <td className="comparison-row-label">Champion</td>
+            <td>{fmtS(winnerSingleS)}</td>
+            {winnerAverageS !== null && <td>{fmtS(winnerAverageS)}</td>}
+          </tr>
+          <tr className="row-champ">
+            <td className="comparison-row-label">Delta</td>
+            <td className={singleDeltaMs < 0 ? 'delta-ahead' : ''}>{fmtDelta(singleDeltaMs)}</td>
+            {winnerAverageS !== null && (
+              <td className={avgDeltaMs !== null && avgDeltaMs < 0 ? 'delta-ahead' : ''}>
                 {avgDeltaMs !== null ? fmtDelta(avgDeltaMs) : '—'}
               </td>
+            )}
+          </tr>
+          {wrSingleAtTimeS !== null && (
+            <tr className="row-wr">
+              <td className="comparison-row-label">WR ({competitionYear})</td>
+              <td>{fmtS(wrSingleAtTimeS)}</td>
+              {winnerAverageS !== null && (
+                <td>{wrAverageAtTimeS !== null ? fmtS(wrAverageAtTimeS) : '—'}</td>
+              )}
             </tr>
           )}
-          {wrSingleS !== null && (
-            <tr>
-              <td className="comparison-row-label comparison-wr-label">WR single</td>
-              <td className={`comparison-user-time${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? ' is-beat' : ''}`}>
-                {formatElapsedMs(userBestSingleMs)}
-              </td>
-              <td className="comparison-wr-time">{fmtS(wrSingleS)}</td>
-              <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+          {wrSingleAtTimeS !== null && (
+            <tr className="row-wr">
+              <td className="comparison-row-label">Delta</td>
+              <td className={wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : ''}>
                 {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
               </td>
-            </tr>
-          )}
-          {wrAverageS !== null && (
-            <tr>
-              <td className="comparison-row-label comparison-wr-label">WR average</td>
-              <td className={`comparison-user-time${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? ' is-beat' : ''}`}>
-                {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
-              </td>
-              <td className="comparison-wr-time">{fmtS(wrAverageS)}</td>
-              <td className={`comparison-delta ${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
-                {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
-              </td>
+              {winnerAverageS !== null && (
+                <td className={wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : ''}>
+                  {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
+                </td>
+              )}
             </tr>
           )}
         </tbody>

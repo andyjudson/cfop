@@ -4,7 +4,7 @@ import '../App.css';
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { AlgorithmCard, AlgorithmNotesSheet, type CfopAlgorithm } from '../components/AlgorithmCard';
 
-const essentialIds = ['oll_cross_line','oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
+const essentialIds = ['oll_cross_line','oll_cross_hook','oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
 
 function BGRPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
@@ -42,7 +42,7 @@ function BGRPage() {
 
   const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
     <section className="section">
-      <h2 className="title is-4 has-text-centered section-title">{title}</h2>
+      <h2 className="title is-4 section-title">{title}</h2>
       <div className="columns is-multiline">
         {algs.map(alg => (
           <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
@@ -72,7 +72,7 @@ function BGRPage() {
             Learn these first to solve reliably around 1 to 2 minutes, then expand to full OLL/PLL, and lastly full F2L.
           </p>
           <p className="mt-2 mb-0">
-            <strong>Essentials Cases:</strong> {essentialsSummary}
+            <strong>Minimum to solve any last layer:</strong> {essentialsSummary}
           </p>
         </>
       }

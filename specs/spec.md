@@ -512,6 +512,20 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Production build validated: 1.78s, no errors ✅
 - react-router-dom dependency added ✅
 
+**Feature 015 - Dark Mode (Completed)**:
+- Dark/light theme toggle (moon/sun icons) always visible in navbar brand bar alongside Visualizer and Practice icon buttons ✅
+- `useTheme` hook: `localStorage` persistence (`cfop-theme`), OS `prefers-color-scheme` fallback, try/catch for private browsing ✅
+- FOUC-prevention inline script in `<head>` applies theme before first paint ✅
+- Full `[data-theme="dark"]` CSS token override block in `index.css`; Bulma CSS variable overrides for navbar and components ✅
+- Navbar restructured: section divider between primer/beginner and F2L/OLL/PLL; Visualize and Practice moved to icon-only brand bar ✅
+- Modal borders added; `PracticeSessionModal.css` and `VisualizerModal.css` fully tokenised ✅
+- Beat the Champion data model fixed: `tier` removed, `wr_single_at_time`/`wr_average_at_time` computed via PySpark non-equi join ✅
+- ComparisonResult redesigned: transposed table with TR-level row colours (You = primary, Champion = blue, WR = orange) ✅
+- Algorithm `line_break` field for controlled notation wrapping (`white-space: pre-wrap`) ✅
+- Section headers left-aligned on Notation, BGR, About pages; "What's in This App" section added to About ✅
+- PySpark export functions accept `dest_path` parameter; `APP_DATA_PATH` constant for direct-to-app export ✅
+- Production build verified, no TypeScript errors ✅
+
 **Feature 014 - Beat the Champion (Completed)**:
 - Competitive practice mode using real WCA competition scrambles (57 events: 36 WR + 21 championship) ✅
 - Mode toggle in timer controls row with MUI icons; competition name + tier badge inline in scramble header ✅

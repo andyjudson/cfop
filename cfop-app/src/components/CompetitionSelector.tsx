@@ -29,9 +29,7 @@ export function CompetitionSelector({ competitions, selectedId, onSelect, onCanc
             >
               <div className="competition-item-main">
                 <span className="competition-item-name">{competition.competition_name}</span>
-                <span className={`tier-badge tier-${competition.tier}`}>
-                  {competition.tier === 'wr' ? 'WR' : 'Champ'}
-                </span>
+                <span className="competition-item-meta">{competition.country} · {competition.year}</span>
               </div>
               <div className="competition-item-times">
                 <span className="competition-item-single">

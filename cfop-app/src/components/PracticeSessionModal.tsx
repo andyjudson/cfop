@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { MdPlayArrow, MdStop, MdShuffle, MdHistory, MdChangeCircle } from 'react-icons/md';
+import { MdPlayArrow, MdStop, MdShuffle, MdHistory, MdChangeCircle, MdEmojiEvents, MdGridOn } from 'react-icons/md';
 import { useSolveTimer } from '../hooks/useSolveTimer';
 import { useSolveStats } from '../hooks/useSolveStats';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
@@ -33,11 +33,12 @@ function computeOutcome(session: CompetitiveSession): ComparisonOutcome {
     userAverageMs,
     winnerSingleS: competition.winner_single,
     winnerAverageS: competition.winner_average,
-    wrSingleS: competition.wr_single ?? null,
-    wrAverageS: competition.wr_average ?? null,
+    wrSingleAtTimeS: competition.wr_single_at_time ?? null,
+    wrAverageAtTimeS: competition.wr_average_at_time ?? null,
     beatSingle,
     beatAverage,
     competitionName: competition.competition_name,
+    competitionYear: competition.year,
     winnerName: competition.winner_name,
   };
 }
@@ -231,15 +232,17 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                 className={`button is-small ${isCompetitive ? 'is-light' : 'is-link'}`}
                 onClick={() => handleToggleMode('standard')}
                 disabled={timer.state === 'running'}
+                aria-label="Standard mode"
               >
-                Standard
+                <MdGridOn size={16} />
               </button>
               <button
                 className={`button is-small ${isCompetitive ? 'is-link' : 'is-light'}`}
                 onClick={() => handleToggleMode('competitive')}
                 disabled={timer.state === 'running'}
+                aria-label="Competitive mode"
               >
-                Competitive
+                <MdEmojiEvents size={16} />
               </button>
             </div>
             <button className="delete" onClick={onClose} aria-label="close"></button>
@@ -366,12 +369,6 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     <span className="vs-champion-name">{competitiveSession.competition.winner_name}</span>
                     {' @ '}
                     {competitiveSession.competition.competition_name}
-                    {' '}
-                    <span className={`tier-badge tier-${competitiveSession.competition.tier}`}>
-                      {competitiveSession.competition.tier === 'wr'
-                        ? `WR ${competitiveSession.competition.wr_single?.toFixed(2) ?? ''}`
-                        : 'Champ'}
-                    </span>
                   </p>
                 </div>
               ) : (

@@ -13,13 +13,12 @@ interface GroupedAlgorithms {
 
 function F2LPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const loadAlgorithms = async () => {
       try {
-        const response = await fetch('/cubing.spec/data/algs-cfop-f2l.json');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/algs-cfop-f2l.json');
         if (!response.ok) {
           throw new Error(`Failed to load F2L algorithms: ${response.statusText}`);
         }
@@ -27,8 +26,6 @@ function F2LPage() {
         setAlgorithms(data);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Failed to load F2L algorithms'));
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -47,14 +44,6 @@ function F2LPage() {
 
   const groupIds = Object.keys(groupedAlgorithms);
   const { sectionState, toggleSection, expandAll, collapseAll } = useSectionToggle('f2l', groupIds);
-
-  if (loading) {
-    return (
-      <CfopPageLayout pageTitle="F2L" subtitle="First Two Layers - 41 cases">
-        <div className="loading has-text-centered">Loading F2L algorithms...</div>
-      </CfopPageLayout>
-    );
-  }
 
   if (error) {
     throw error;

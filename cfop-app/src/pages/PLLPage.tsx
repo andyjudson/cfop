@@ -13,13 +13,12 @@ interface GroupedAlgorithms {
 
 function PLLPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const loadAlgorithms = async () => {
       try {
-        const response = await fetch('/cubing.spec/data/algs-cfop-pll.json');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/algs-cfop-pll.json');
         if (!response.ok) {
           throw new Error(`Failed to load PLL algorithms: ${response.statusText}`);
         }
@@ -27,8 +26,6 @@ function PLLPage() {
         setAlgorithms(data);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Failed to load PLL algorithms'));
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -47,14 +44,6 @@ function PLLPage() {
 
   const groupIds = Object.keys(groupedAlgorithms);
   const { sectionState, toggleSection, expandAll, collapseAll } = useSectionToggle('pll', groupIds);
-
-  if (loading) {
-    return (
-          <CfopPageLayout pageTitle="PLL" subtitle="Permute Last Layer - 21 cases">
-        <div className="loading has-text-centered">Loading PLL algorithms...</div>
-      </CfopPageLayout>
-    );
-  }
 
   if (error) {
     throw error;

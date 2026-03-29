@@ -8,19 +8,16 @@ const essentialIds = ['oll_cross_line','oll_cross_hook','oll_sune', 'oll_antisun
 
 function BGRPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
-  const [loading, setLoading] = useState(true);
   const [notesAlg, setNotesAlg] = useState<CfopAlgorithm | null>(null);
 
   useEffect(() => {
     const loadAlgorithms = async () => {
       try {
-        const response = await fetch('/cubing.spec/data/algs-cfop-bgr.json');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/algs-cfop-bgr.json');
         const data = await response.json();
         setAlgorithms(data);
       } catch (error) {
         console.error('Failed to load algorithms:', error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -36,11 +33,7 @@ function BGRPage() {
     .filter((name): name is string => Boolean(name))
     .join(', ');
 
-  if (loading) {
-    return <div className="loading">Loading 2-look algorithms...</div>;
-  }
-
-  const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
+const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
     <section className="section">
       <h2 className="title is-4 section-title">{title}</h2>
       <div className="columns is-multiline">

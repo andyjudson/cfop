@@ -38,7 +38,6 @@ interface ChartPoint {
   averageRecord?: WrRecord; // only present at actual Average WR record dates
 }
 
-type LoadState = 'loading' | 'ready' | 'error';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -152,7 +151,7 @@ function WrTooltipContent({ active, payload }: TooltipContentProps) {
 export function WrEvolutionChart() {
   const [singleData, setSingleData] = useState<WrRecord[]>([]);
   const [averageData, setAverageData] = useState<WrRecord[]>([]);
-  const [loadState, setLoadState] = useState<LoadState>('loading');
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     fetch(import.meta.env.BASE_URL + 'data/wca-wr-evolution.json')
@@ -168,9 +167,8 @@ export function WrEvolutionChart() {
         if (!single.length && !average.length) throw new Error('No WR data parsed');
         setSingleData(single);
         setAverageData(average);
-        setLoadState('ready');
       })
-      .catch(() => setLoadState('error'));
+      .catch((err) => setError(err instanceof Error ? err : new Error('Failed to load WR data')));
   }, []);
 
   const colours = useMemo(() => ({
@@ -208,13 +206,7 @@ export function WrEvolutionChart() {
     return ticks;
   }, [chartData]);
 
-  if (loadState === 'loading') {
-    return <div className="wr-chart-loading">Loading WR data…</div>;
-  }
-
-  if (loadState === 'error') {
-    return <div className="wr-chart-error">World record data unavailable.</div>;
-  }
+  if (error) throw error;
 
   return (
     <div className="wr-chart-container">

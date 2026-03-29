@@ -121,22 +121,18 @@ export default function AboutPage() {
             cases, and 21 PLL cases, with case diagrams, notation, and notes for each.
           </li>
           <li>
-            <strong>Algorithm Visualiser</strong> — Enter any notation string and watch a 3D cube execute the
-            moves step by step, powered by the cubing.js engine. Useful for checking algorithms and exploring
-            new ones.
+            <strong>Algorithm Visualiser</strong> — Select any OLL or PLL algorithm and watch a 3D cube
+            execute the moves step by step, powered by the cubing.js engine. A useful companion to the
+            algorithm pages when you want to see exactly how a case plays out.
           </li>
           <li>
-            <strong>Practice Timer</strong> — A WCA-style scramble generator with a space-bar timer. Tracks
-            your last time, best time, and rolling average of last 5 solves.
-          </li>
-          <li>
-            <strong>Beat the Champion mode</strong> — Practise with the actual scrambles used in official WCA
-            competition finals. After completing the scramble set you see how your best single and average
-            compare against the event winner. For context, the historical world record at the time of that
-            competition is also shown — this is the WR that was standing on the day, not a WR that may have
-            been set at a different round or by a different competitor. This distinction matters: the finals
-            champion earns their title on their own solves, and the historical WR gives you a second benchmark
-            to aim for.
+            <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random
+            scrambles using unofficial but WCA-equivalent logic, with a space-bar timer and rolling stats
+            (last time, best time, average of last 5). <em>Beat the Champion mode</em> loads the actual
+            scrambles from an official WCA competition final — complete the set and see how your best single
+            and average stack up against the event winner. For added context, the historical world record
+            standing on the day of that competition is also shown; this is the WR at that point in time, not
+            necessarily set at the same event or by the same person as the winner.
           </li>
           <li>
             <strong>WCA Records Chart</strong> — A visualisation of how the 3×3 world record single and

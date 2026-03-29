@@ -80,14 +80,14 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
             )}
           </tr>
           <tr>
-            <td className="comparison-row-label">Champion</td>
+            <td className="comparison-row-label comparison-champ-label">Champion</td>
             <td className="comparison-champ-time">{fmtS(winnerSingleS)}</td>
             {winnerAverageS !== null && (
               <td className="comparison-champ-time">{fmtS(winnerAverageS)}</td>
             )}
           </tr>
           <tr>
-            <td className="comparison-row-label">Delta</td>
+            <td className="comparison-row-label comparison-champ-label">Delta</td>
             <td className={`comparison-delta ${singleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
               {fmtDelta(singleDeltaMs)}
             </td>
@@ -110,7 +110,7 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
           )}
           {wrSingleAtTimeS !== null && (
             <tr>
-              <td className="comparison-row-label comparison-wr-label">Delta WR</td>
+              <td className="comparison-row-label comparison-wr-label">Delta</td>
               <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
                 {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
               </td>

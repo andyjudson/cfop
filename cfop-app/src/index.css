@@ -23,7 +23,8 @@
   --color-accent-primary: #2563eb;
   --color-accent-dark: #3b4f87;
   --color-accent-warm: #e05c28;
-  
+  --color-accent-yellow: #b45309;
+
   --color-notation-symbol: #020617;
 
   --color-success: #15803d;
@@ -109,6 +110,7 @@
   --color-accent-primary: #60a5fa;
   --color-accent-dark: #93c5fd;
   --color-accent-warm: #fb923c;
+  --color-accent-yellow: #fbbf24;
 
   --color-notation-symbol: #f1f5f9;
 

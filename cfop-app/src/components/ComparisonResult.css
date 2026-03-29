@@ -44,7 +44,7 @@
 }
 
 .comparison-wr-col {
-  color: var(--color-accent-primary) !important;
+  color: var(--color-accent-warm) !important;
 }
 
 .comparison-table td {
@@ -75,16 +75,20 @@
 
 .comparison-champ-time {
   font-family: var(--font-mono);
-  color: var(--color-text-secondary);
+  color: var(--color-accent-yellow);
+}
+
+.comparison-champ-label {
+  color: var(--color-accent-yellow) !important;
 }
 
 .comparison-wr-label {
-  color: var(--color-accent-primary) !important;
+  color: var(--color-accent-warm) !important;
 }
 
 .comparison-wr-time {
   font-family: var(--font-mono);
-  color: var(--color-accent-primary);
+  color: var(--color-accent-warm);
   font-weight: 600;
 }
 

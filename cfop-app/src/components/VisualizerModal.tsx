@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Alg, Move } from 'cubing/alg';
 import { TwistyPlayer } from 'cubing/twisty';
-import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdShuffle } from 'react-icons/md';
+import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdShuffle, MdFilterCenterFocus } from 'react-icons/md';
 import type { CfopAlgorithm } from './AlgorithmCard';
 import './VisualizerModal.css';
 
@@ -219,6 +219,13 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
     setIsPlaying(false);
   };
 
+  const handleResetView = () => {
+    const player = playerRef.current;
+    if (!player) return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (player.experimentalModel as any).twistySceneModel.orbitCoordinatesRequest.set('auto');
+  };
+
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose();
   };
@@ -345,6 +352,13 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                   <MdAdd size={24} />
                 </button>
                 <span className="speed-indicator">×{speed.toFixed(1)}</span>
+                <button
+                  className="button is-light"
+                  onClick={handleResetView}
+                  title="Reset view"
+                >
+                  <MdFilterCenterFocus size={24} />
+                </button>
               </div>
             </div>
 

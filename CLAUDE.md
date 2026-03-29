@@ -82,6 +82,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 - No new persistence — competitive session is ephemeral (session only) (014-beat-the-champion)
 - TypeScript 5.9 / React 19 / Vite 7 + Bulma CSS 1.x, react-icons/md (existing — `MdDarkMode`, `MdLightMode`); no new dependencies (015-dark-mode)
 - `localStorage` key `cfop-theme` (`'light' | 'dark'`) (015-dark-mode)
+- TypeScript 5.9 + `@playwright/test` (new, dev-only); existing: Vite 7, React 19, react-router-dom 7 (HashRouter) (016-playwright-e2e-tests)
 
 ## Recent Changes
 - 011-about-page-nav: Added TypeScript / React 19 + Bulma CSS, react-router-dom (HashRouter), react-icons/md

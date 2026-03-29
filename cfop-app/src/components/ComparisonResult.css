@@ -26,9 +26,6 @@
   font-size: 0.9rem;
 }
 
-.comparison-table.has-wr {
-  font-size: 0.82rem;
-}
 
 .comparison-table th {
   padding: var(--space-xs) var(--space-sm);
@@ -41,10 +38,6 @@
   border-bottom: 1px solid var(--color-border-light);
 }
 
-.comparison-table.has-wr th {
-  padding: var(--space-xs) 4px;
-  font-size: 0.72rem;
-}
 
 .comparison-table th:first-child {
   text-align: left;
@@ -60,9 +53,6 @@
   border-bottom: 1px solid var(--color-border-light);
 }
 
-.comparison-table.has-wr td {
-  padding: var(--space-sm) 4px;
-}
 
 .comparison-row-label {
   text-align: left !important;

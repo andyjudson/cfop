@@ -68,54 +68,46 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr className="row-you">
             <td className="comparison-row-label">You</td>
-            <td className={`comparison-user-time${beatSingle ? ' is-beat' : ''}`}>
-              {formatElapsedMs(userBestSingleMs)}
-            </td>
+            <td className={beatSingle ? 'is-beat' : ''}>{formatElapsedMs(userBestSingleMs)}</td>
             {winnerAverageS !== null && (
-              <td className={`comparison-user-time${beatAverage === true ? ' is-beat' : ''}`}>
+              <td className={beatAverage === true ? 'is-beat' : ''}>
                 {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
               </td>
             )}
           </tr>
-          <tr>
-            <td className="comparison-row-label comparison-champ-label">Champion</td>
-            <td className="comparison-champ-time">{fmtS(winnerSingleS)}</td>
-            {winnerAverageS !== null && (
-              <td className="comparison-champ-time">{fmtS(winnerAverageS)}</td>
-            )}
+          <tr className="row-champ">
+            <td className="comparison-row-label">Champion</td>
+            <td>{fmtS(winnerSingleS)}</td>
+            {winnerAverageS !== null && <td>{fmtS(winnerAverageS)}</td>}
           </tr>
-          <tr>
-            <td className="comparison-row-label comparison-champ-label">Delta</td>
-            <td className={`comparison-delta ${singleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
-              {fmtDelta(singleDeltaMs)}
-            </td>
+          <tr className="row-champ">
+            <td className="comparison-row-label">Delta</td>
+            <td className={singleDeltaMs < 0 ? 'delta-ahead' : ''}>{fmtDelta(singleDeltaMs)}</td>
             {winnerAverageS !== null && (
-              <td className={`comparison-delta ${avgDeltaMs !== null && avgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+              <td className={avgDeltaMs !== null && avgDeltaMs < 0 ? 'delta-ahead' : ''}>
                 {avgDeltaMs !== null ? fmtDelta(avgDeltaMs) : '—'}
               </td>
             )}
           </tr>
           {wrSingleAtTimeS !== null && (
-            <tr>
-              <td className="comparison-row-label comparison-wr-label">WR ({competitionYear})</td>
-              <td className="comparison-wr-time">{fmtS(wrSingleAtTimeS)}</td>
+            <tr className="row-wr">
+              <td className="comparison-row-label">WR ({competitionYear})</td>
+              <td>{fmtS(wrSingleAtTimeS)}</td>
               {winnerAverageS !== null && (
-                <td className="comparison-wr-time">
-                  {wrAverageAtTimeS !== null ? fmtS(wrAverageAtTimeS) : '—'}
-                </td>
+                <td>{wrAverageAtTimeS !== null ? fmtS(wrAverageAtTimeS) : '—'}</td>
               )}
             </tr>
           )}
           {wrSingleAtTimeS !== null && (
-            <tr>
-              <td className="comparison-row-label comparison-wr-label">Delta</td>
-              <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+            <tr className="row-wr">
+              <td className="comparison-row-label">Delta</td>
+              <td className={wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : ''}>
                 {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
               </td>
               {winnerAverageS !== null && (
-                <td className={`comparison-delta ${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+                <td className={wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : ''}>
                   {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
                 </td>
               )}

@@ -63,47 +63,32 @@
   letter-spacing: 0.02em;
 }
 
-.comparison-user-time {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.comparison-user-time.is-beat {
-  color: var(--color-success);
-}
-
-.comparison-champ-time {
-  font-family: var(--font-mono);
-  color: var(--color-accent-yellow);
-}
-
-.comparison-champ-label {
-  color: var(--color-accent-yellow) !important;
-}
-
-.comparison-wr-label {
-  color: var(--color-accent-warm) !important;
-}
-
-.comparison-wr-time {
-  font-family: var(--font-mono);
-  color: var(--color-accent-warm);
-  font-weight: 600;
-}
-
-.comparison-delta {
+.comparison-table td {
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }
 
-.delta-ahead {
+.row-you td {
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.row-you td.is-beat {
   color: var(--color-success);
+}
+
+.row-champ td {
+  color: var(--color-accent-primary);
+}
+
+.row-wr td {
+  color: var(--color-accent-warm);
   font-weight: 600;
 }
 
-.delta-behind {
-  color: var(--color-text-secondary);
+.delta-ahead {
+  color: var(--color-success) !important;
+  font-weight: 600;
 }
 
 .comparison-verdict {

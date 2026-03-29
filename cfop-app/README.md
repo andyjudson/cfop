@@ -125,7 +125,7 @@ cfop-app/
 Algorithm entries support an optional `line_break` field to control notation wrapping on cards:
 
 ```json
-{ "id": "pll-3-1", "name": "T Perm", "notation": "(R U R' U') R' F (R2 U' R') U' (R U R' F')", "line_break": 9 }
+{ "id": "pll-3-1", "name": "T Perm", "notation": "(R U R' U') R' F (R2 U' R') U' (R U R' F')", "line_break": 9, "method": "pll", "group": "Adjacent Swap" }
 ```
 
 - Value is a **token index** (0-based), where each space-delimited chunk is one token

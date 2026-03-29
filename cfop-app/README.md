@@ -119,6 +119,20 @@ cfop-app/
 │   │   ├── algs-cfop-oll.json   # Full OLL (57 cases, 7 groups)
 │   │   └── algs-cfop-pll.json   # Full PLL (21 cases)
 │   └── assets/                  # Cube images (cfop_bgr, cfop_f2l, cfop_oll, cfop_pll)
+
+## Algorithm JSON — line_break field
+
+Algorithm entries support an optional `line_break` field to control notation wrapping on cards:
+
+```json
+{ "id": "pll-3-1", "name": "T Perm", "notation": "(R U R' U') R' F (R2 U' R') U' (R U R' F')", "line_break": 9 }
+```
+
+- Value is a **token index** (0-based), where each space-delimited chunk is one token
+- Brackets and modifiers (`'`, `2`, `f` wide moves) are part of the token they are attached to — e.g. `(R`, `U'`, `R')`, `D2` are each one token
+- `line_break: 9` inserts a newline before the token at index 9, so the first line is tokens 0–8 and the second line starts at token 9
+- Multiple breaks: `"line_break": [9, 15]` — values are token indices applied in order
+- Rendered with `white-space: pre-wrap` in `AlgorithmCard`
 ├── package.json
 ├── vite.config.ts
 └── tsconfig.json

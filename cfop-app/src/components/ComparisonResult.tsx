@@ -59,13 +59,15 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
         <div className="comparison-vs">vs {winnerName}</div>
       </div>
 
-      <table className="comparison-table">
+      <table className={`comparison-table${wrSingleAtTimeS !== null ? ' has-wr' : ''}`}>
         <thead>
           <tr>
             <th></th>
             <th>You</th>
-            <th>Target</th>
-            <th>Delta</th>
+            <th>Champion</th>
+            <th>Δ</th>
+            {wrSingleAtTimeS !== null && <th className="comparison-wr-col">WR ({competitionYear})</th>}
+            {wrSingleAtTimeS !== null && <th className="comparison-wr-col">Δ WR</th>}
           </tr>
         </thead>
         <tbody>
@@ -78,6 +80,14 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
             <td className={`comparison-delta ${singleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
               {fmtDelta(singleDeltaMs)}
             </td>
+            {wrSingleAtTimeS !== null && (
+              <td className="comparison-wr-time">{fmtS(wrSingleAtTimeS)}</td>
+            )}
+            {wrSingleAtTimeS !== null && (
+              <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+                {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
+              </td>
+            )}
           </tr>
           {winnerAverageS !== null && (
             <tr>
@@ -86,37 +96,19 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
                 {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
               </td>
               <td className="comparison-champ-time">{fmtS(winnerAverageS)}</td>
-              <td
-                className={`comparison-delta ${
-                  avgDeltaMs !== null && avgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'
-                }`}
-              >
+              <td className={`comparison-delta ${avgDeltaMs !== null && avgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
                 {avgDeltaMs !== null ? fmtDelta(avgDeltaMs) : '—'}
               </td>
-            </tr>
-          )}
-          {wrSingleAtTimeS !== null && (
-            <tr>
-              <td className="comparison-row-label comparison-wr-label">WR single ({competitionYear})</td>
-              <td className={`comparison-user-time${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? ' is-beat' : ''}`}>
-                {formatElapsedMs(userBestSingleMs)}
-              </td>
-              <td className="comparison-wr-time">{fmtS(wrSingleAtTimeS)}</td>
-              <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
-                {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
-              </td>
-            </tr>
-          )}
-          {wrAverageAtTimeS !== null && (
-            <tr>
-              <td className="comparison-row-label comparison-wr-label">WR average ({competitionYear})</td>
-              <td className={`comparison-user-time${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? ' is-beat' : ''}`}>
-                {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
-              </td>
-              <td className="comparison-wr-time">{fmtS(wrAverageAtTimeS)}</td>
-              <td className={`comparison-delta ${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
-                {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
-              </td>
+              {wrSingleAtTimeS !== null && (
+                <td className="comparison-wr-time">
+                  {wrAverageAtTimeS !== null ? fmtS(wrAverageAtTimeS) : '—'}
+                </td>
+              )}
+              {wrSingleAtTimeS !== null && (
+                <td className={`comparison-delta ${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
+                  {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
+                </td>
+              )}
             </tr>
           )}
         </tbody>

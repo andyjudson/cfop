@@ -5,12 +5,11 @@ export interface Competition {
   competition_name: string;
   year: number;
   country: string;
-  tier: 'wr' | 'championship';
   winner_name: string;
   winner_single: number;
   winner_average: number | null;
-  wr_single: number | null;
-  wr_average: number | null;
+  wr_single_at_time: number | null;
+  wr_average_at_time: number | null;
   scramble_groups: Record<string, string[]>;
 }
 
@@ -27,8 +26,8 @@ export interface ComparisonOutcome {
   userAverageMs: number | null;
   winnerSingleS: number;
   winnerAverageS: number | null;
-  wrSingleS: number | null;
-  wrAverageS: number | null;
+  wrSingleAtTimeS: number | null;
+  wrAverageAtTimeS: number | null;
   beatSingle: boolean;
   beatAverage: boolean | null;
   competitionName: string;

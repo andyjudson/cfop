@@ -31,8 +31,8 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
     userAverageMs,
     winnerSingleS,
     winnerAverageS,
-    wrSingleS,
-    wrAverageS,
+    wrSingleAtTimeS,
+    wrAverageAtTimeS,
     beatSingle,
     beatAverage,
     competitionName,
@@ -47,9 +47,9 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
       ? userAverageMs - winnerAverageS * 1000
       : null;
 
-  const wrSingleDeltaMs = wrSingleS !== null ? userBestSingleMs - wrSingleS * 1000 : null;
+  const wrSingleDeltaMs = wrSingleAtTimeS !== null ? userBestSingleMs - wrSingleAtTimeS * 1000 : null;
   const wrAvgDeltaMs =
-    wrAverageS !== null && userAverageMs !== null ? userAverageMs - wrAverageS * 1000 : null;
+    wrAverageAtTimeS !== null && userAverageMs !== null ? userAverageMs - wrAverageAtTimeS * 1000 : null;
 
   return (
     <div className="comparison-result">
@@ -94,25 +94,25 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
               </td>
             </tr>
           )}
-          {wrSingleS !== null && (
+          {wrSingleAtTimeS !== null && (
             <tr>
-              <td className="comparison-row-label comparison-wr-label">WR single</td>
+              <td className="comparison-row-label comparison-wr-label">WR at time</td>
               <td className={`comparison-user-time${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? ' is-beat' : ''}`}>
                 {formatElapsedMs(userBestSingleMs)}
               </td>
-              <td className="comparison-wr-time">{fmtS(wrSingleS)}</td>
+              <td className="comparison-wr-time">{fmtS(wrSingleAtTimeS)}</td>
               <td className={`comparison-delta ${wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
                 {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
               </td>
             </tr>
           )}
-          {wrAverageS !== null && (
+          {wrAverageAtTimeS !== null && (
             <tr>
-              <td className="comparison-row-label comparison-wr-label">WR average</td>
+              <td className="comparison-row-label comparison-wr-label">WR avg at time</td>
               <td className={`comparison-user-time${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? ' is-beat' : ''}`}>
                 {userAverageMs !== null ? formatElapsedMs(userAverageMs) : '—'}
               </td>
-              <td className="comparison-wr-time">{fmtS(wrAverageS)}</td>
+              <td className="comparison-wr-time">{fmtS(wrAverageAtTimeS)}</td>
               <td className={`comparison-delta ${wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : 'delta-behind'}`}>
                 {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
               </td>

@@ -7,10 +7,19 @@ export interface CfopAlgorithm {
   id: string;
   name: string;
   notation: string;
+  line_break?: number | number[];
   image: string;
   notes?: string;
   method?: string;
   group?: string;
+}
+
+function formatNotation(notation: string, lineBreak?: number | number[]): string {
+  if (!lineBreak) return notation;
+  const breaks = Array.isArray(lineBreak) ? [...lineBreak].sort((a, b) => a - b) : [lineBreak];
+  const moves = notation.split(' ');
+  breaks.reverse().forEach(pos => moves.splice(pos, 0, '\n'));
+  return moves.join(' ').replace(/ \n /g, '\n');
 }
 
 interface AlgorithmCardProps {
@@ -48,7 +57,7 @@ export function AlgorithmCard({
         </div>
         <h3 className="title is-5 mt-3">{algorithm.name}</h3>
         <div className="content">
-          <code className="notation">{algorithm.notation}</code>
+          <code className="notation">{formatNotation(algorithm.notation, algorithm.line_break)}</code>
         </div>
       </div>
     </div>

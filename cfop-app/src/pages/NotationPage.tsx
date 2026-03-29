@@ -261,7 +261,7 @@ function NotationPage() {
 
   return (
     <CfopPageLayout
-      pageTitle="Notation Reference"
+      pageTitle="Notation"
       subtitle="Quick reference for understanding cube notation - face turns, modifiers, slices, rotations, and triggers"
     >
       <>
@@ -273,7 +273,7 @@ function NotationPage() {
       ) : (
         sections.map((section) => (
             <div key={section.id} className="section notation-section">
-              <h2 className="title is-4 has-text-centered section-title">{section.title}</h2>
+              <h2 className="title is-4 section-title">{section.title}</h2>
               <p className="subtitle is-6">{section.description}</p>
               <div className="columns is-multiline">
                 {section.examples.map((example) => (
@@ -288,7 +288,7 @@ function NotationPage() {
 
         {triggers.length > 0 && (
           <div className="section notation-section">
-            <h2 className="title is-4 has-text-centered section-title">Common Triggers</h2>
+            <h2 className="title is-4 section-title">Common Triggers</h2>
             <p className="subtitle is-6">Triggers are short, repeatable sequences commonly used in algorithms (enclosed in brackets) to manipulate pieces efficiently.</p>
             <ul className="notation-trigger-list">
               {triggers.map(trigger => (

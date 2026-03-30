@@ -65,6 +65,30 @@ npm install
 npm run dev  # http://localhost:5173/
 ```
 
+## Testing (cfop-app)
+
+E2E tests use [Playwright](https://playwright.dev/) and run against the local dev server (Chromium only). Run manually before merging a feature branch to main.
+
+```bash
+cd cfop-app
+npx playwright test          # full suite (~10s)
+npx playwright test e2e/navigation.spec.ts   # single file
+```
+
+The dev server starts automatically via `playwright.config.ts` (`reuseExistingServer: true`). If a Vite process is already running on a different interface, kill it first to avoid port conflicts.
+
+**Test coverage** (16 tests across 5 spec files):
+
+| Spec | What it covers |
+|------|----------------|
+| `navigation.spec.ts` | All primary pages load; BGR cards always visible; PLL cards visible after expand-all; nav link routing |
+| `mobile-nav.spec.ts` | Icons and hamburger grouped on right at 393px; menu opens and closes |
+| `practice-timer.spec.ts` | Modal opens with scramble; spacebar timer records a time; last/best stats visible; champion mode loads competition and scrambles |
+| `visualiser-modal.spec.ts` | Modal opens with TwistyPlayer present; closes via close button |
+| `wr-chart.spec.ts` | Recharts renders on About page; no error state |
+
+For full design rationale and test scope, see [`specs/016-playwright-e2e-tests/`](specs/016-playwright-e2e-tests/).
+
 ## Acknowledgments
 
 Huge thanks to the cubing community educators who make this learning journey accessible, and to the cubing.js project for providing such a powerful toolkit for cube visualization and manipulation. This project wouldn't exist without their generous knowledge sharing.
@@ -84,8 +108,8 @@ cubing.spec/
 │   ├── 006-scramble-generator/
 │   ├── 007-cube-image-generator/
 │   ├── 008-full-cfop-grids/
-│   ├── 009-intuitive-methods/
-│   └── 010-notation-reference/
+│   ├── ...
+│   └── 016-playwright-e2e-tests/
 └── .specify/           # Spec-kit configuration
 ```
 
@@ -99,4 +123,4 @@ Note:
 
 ---
 
-**Status**: Active development • Features 001-010 complete
+**Status**: Active development • Features 001-016 complete

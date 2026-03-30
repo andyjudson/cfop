@@ -75,7 +75,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 
 ## Testing (cfop-app)
 
-- E2E only — Playwright (`@playwright/test`), Chromium, runs against local dev server
+- Regression/smoke tests via Playwright (`@playwright/test`), Chromium, runs against local dev server
 - Test files in `cfop-app/e2e/`, config in `cfop-app/playwright.config.ts`
 - Run: `cd cfop-app && npx playwright test`
 - `test-results/` and `playwright-report/` are gitignored (failure traces and HTML reports)

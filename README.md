@@ -67,7 +67,7 @@ npm run dev  # http://localhost:5173/
 
 ## Testing (cfop-app)
 
-Regression and smoke tests use [Playwright](https://playwright.dev/) and run against the local dev server (Chromium). Run manually before merging a feature branch to main.
+Smoke tests use [Playwright](https://playwright.dev/) and run against the local dev server (Chromium). Run manually before merging a feature branch to main.
 
 ```bash
 cd cfop-app

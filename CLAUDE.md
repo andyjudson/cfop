@@ -88,3 +88,13 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Visualisation**: cubing.js (TwistyPlayer), Recharts 3.x
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
+
+## Ecosystem Best Practices
+
+Andy is not a React/Node specialist — proactively flag and fix ecosystem hygiene issues rather than waiting to be asked:
+
+- **Node version**: pinned to 24 via `.nvmrc` and `deploy.yml`. If either drifts, align them.
+- **GitHub Actions**: keep action versions current (e.g. `actions/checkout`, `actions/setup-node`). Watch for deprecation warnings in CI output and bump versions promptly.
+- **npm packages**: flag any `npm audit` high/critical vulnerabilities when spotted. Minor version drift is fine; major version gaps on core packages (React, Vite, TypeScript) are worth a note.
+- **CI/CD**: `deploy.yml` only builds and deploys — it does not run tests. Smoke tests are manual pre-merge. If a CI test step is added in future, it needs `npx playwright install chromium` before the test run.
+- **Bundle size**: Vite warns when chunks exceed 500kB. The `cubing.js` 3D chunk (~511kB) and main bundle (~853kB) are known and acceptable for now — don't suppress the warning, but don't treat it as blocking.

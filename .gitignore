@@ -22,6 +22,10 @@ coverage/
 Thumbs.db
 .idea/
 
+# Playwright
+test-results/
+playwright-report/
+
 # Logs / temp
 *.log
 *.tmp

@@ -116,7 +116,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
           setCompetitions(loaded);
           setMode('competitive');
           setShowSelector(false);
-          initCompetitiveSession(loaded[0]);
+          initCompetitiveSession(loaded[Math.floor(Math.random() * loaded.length)]);
         } catch (error) {
           console.error('Failed to load competition data:', error);
           setStatusMessage('Competitive mode unavailable — using random scrambles.');

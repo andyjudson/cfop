@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–015 complete. 016 (Playwright E2E) in progress.
+Features 001–016 complete.
 
 ## CSS Standards
 
@@ -75,9 +75,10 @@ npm run dev -- --host 127.0.0.1 --port 5173
 
 ## Testing (cfop-app)
 
-- E2E only — Playwright (`@playwright/test`), Chromium, runs against local dev server
+- Smoke tests via Playwright (`@playwright/test`), Chromium, runs against local dev server
 - Test files in `cfop-app/e2e/`, config in `cfop-app/playwright.config.ts`
 - Run: `cd cfop-app && npx playwright test`
+- `test-results/` and `playwright-report/` are gitignored (failure traces and HTML reports)
 
 ## Active Technologies (cfop-app)
 

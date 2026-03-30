@@ -16,11 +16,11 @@
 
 **Purpose**: Install Playwright and create the config so the suite can run at all.
 
-- [ ] T001 Add `@playwright/test` to devDependencies in `cfop-app/package.json` and run `npm install`
-- [ ] T002 Run `npx playwright install chromium` inside `cfop-app/` to download the browser
-- [ ] T003 Create `cfop-app/playwright.config.ts` with baseURL `http://127.0.0.1:5173/cubing.spec/`, webServer config pointing to `npm run dev -- --host 127.0.0.1 --port 5173`, `reuseExistingServer: true`, testDir `./e2e`, and Chromium as the only browser project
-- [ ] T004 Add `"test:e2e": "playwright test"` script to `cfop-app/package.json`
-- [ ] T005 Create the `cfop-app/e2e/` directory
+- [X] T001 Add `@playwright/test` to devDependencies in `cfop-app/package.json` and run `npm install`
+- [X] T002 Run `npx playwright install chromium` inside `cfop-app/` to download the browser
+- [X] T003 Create `cfop-app/playwright.config.ts` with baseURL `http://127.0.0.1:5173/cubing.spec/`, webServer config pointing to `npm run dev -- --host 127.0.0.1 --port 5173`, `reuseExistingServer: true`, testDir `./e2e`, and Chromium as the only browser project
+- [X] T004 Add `"test:e2e": "playwright test"` script to `cfop-app/package.json`
+- [X] T005 Create the `cfop-app/e2e/` directory
 
 **Checkpoint**: Run `npx playwright test --list` from `cfop-app/` — should show 0 tests, no errors.
 
@@ -32,8 +32,8 @@
 
 **⚠️ CRITICAL**: Confirm this works before writing any spec files.
 
-- [ ] T006 Create a minimal smoke file `cfop-app/e2e/smoke.spec.ts` that navigates to `/` and asserts the page title is not empty, then run `npx playwright test` to confirm the webServer boots and the base URL resolves correctly
-- [ ] T007 Delete `cfop-app/e2e/smoke.spec.ts` once confirmed working
+- [X] T006 Create a minimal smoke file `cfop-app/e2e/smoke.spec.ts` that navigates to `/` and asserts the page title is not empty, then run `npx playwright test` to confirm the webServer boots and the base URL resolves correctly
+- [X] T007 Delete `cfop-app/e2e/smoke.spec.ts` once confirmed working
 
 **Checkpoint**: Playwright can start the dev server and load the app. Ready to write all story specs.
 
@@ -45,10 +45,10 @@
 
 **Independent Test**: `npx playwright test e2e/navigation.spec.ts` passes with all pages confirmed.
 
-- [ ] T008 [US1] Create `cfop-app/e2e/navigation.spec.ts` and add a test that navigates to `/#/about` and asserts the page heading and WR chart section container are visible
-- [ ] T009 [P] [US1] Add a test to `navigation.spec.ts` that navigates to `/#/oll`, `/#/pll`, and `/#/f2l` and asserts at least one algorithm card is rendered on each page
-- [ ] T010 [P] [US1] Add a test to `navigation.spec.ts` that navigates to `/#/notation` and `/#/intuitive` and asserts a section heading is visible on each
-- [ ] T011 [US1] Add a test to `navigation.spec.ts` that clicks a nav link from the expanded menu and asserts the correct page URL hash is active
+- [X] T008 [US1] Create `cfop-app/e2e/navigation.spec.ts` and add a test that navigates to `/#/about` and asserts the page heading and WR chart section container are visible
+- [X] T009 [P] [US1] Add a test to `navigation.spec.ts` that navigates to `/#/oll`, `/#/pll`, and `/#/f2l` and asserts at least one algorithm card is rendered on each page
+- [X] T010 [P] [US1] Add a test to `navigation.spec.ts` that navigates to `/#/notation` and `/#/intuitive` and asserts a section heading is visible on each
+- [X] T011 [US1] Add a test to `navigation.spec.ts` that clicks a nav link from the expanded menu and asserts the correct page URL hash is active
 
 **Checkpoint**: `npx playwright test e2e/navigation.spec.ts` — all tests green.
 
@@ -60,9 +60,9 @@
 
 **Independent Test**: `npx playwright test e2e/mobile-nav.spec.ts` passes at mobile viewport.
 
-- [ ] T012 [US2] Create `cfop-app/e2e/mobile-nav.spec.ts` with viewport set to `{ width: 393, height: 852 }` in the test or `use` block, and add a test asserting `.cfop-nav-icons` and `.navbar-burger` are both visible and positioned on the right side of the navbar
-- [ ] T013 [P] [US2] Add a test to `mobile-nav.spec.ts` that clicks the hamburger (`.navbar-burger`) and asserts the nav menu is visible with at least one nav link
-- [ ] T014 [P] [US2] Add a test to `mobile-nav.spec.ts` that opens the menu then clicks the hamburger again and asserts the menu is no longer visible
+- [X] T012 [US2] Create `cfop-app/e2e/mobile-nav.spec.ts` with viewport set to `{ width: 393, height: 852 }` in the test or `use` block, and add a test asserting `.cfop-nav-icons` and `.navbar-burger` are both visible and positioned on the right side of the navbar
+- [X] T013 [P] [US2] Add a test to `mobile-nav.spec.ts` that clicks the hamburger (`.navbar-burger`) and asserts the nav menu is visible with at least one nav link
+- [X] T014 [P] [US2] Add a test to `mobile-nav.spec.ts` that opens the menu then clicks the hamburger again and asserts the menu is no longer visible
 
 **Checkpoint**: `npx playwright test e2e/mobile-nav.spec.ts` — all tests green.
 
@@ -74,11 +74,11 @@
 
 **Independent Test**: `npx playwright test e2e/practice-timer.spec.ts` passes with both modes exercised.
 
-- [ ] T015 [US3] Create `cfop-app/e2e/practice-timer.spec.ts` and add a test that clicks the practice timer nav icon (`[aria-label="Open practice timer"]`), asserts the modal is visible, and asserts a scramble string is displayed
-- [ ] T016 [US3] Add a test to `practice-timer.spec.ts` that dispatches a spacebar `keydown` event to start the timer, waits 500ms, dispatches spacebar again to stop, then asserts a numeric time value appears in the stats area
-- [ ] T017 [US3] Add a test to `practice-timer.spec.ts` that verifies last time and best time labels are visible after one solve is recorded
-- [ ] T018 [P] [US4] Add a test to `practice-timer.spec.ts` that switches to champion mode, waits for a competition name to appear, and asserts it is non-empty
-- [ ] T019 [P] [US4] Add a test to `practice-timer.spec.ts` that in champion mode asserts at least one scramble string is visible in the solve set
+- [X] T015 [US3] Create `cfop-app/e2e/practice-timer.spec.ts` and add a test that clicks the practice timer nav icon (`[aria-label="Open practice timer"]`), asserts the modal is visible, and asserts a scramble string is displayed
+- [X] T016 [US3] Add a test to `practice-timer.spec.ts` that dispatches a spacebar `keydown` event to start the timer, waits 500ms, dispatches spacebar again to stop, then asserts a numeric time value appears in the stats area
+- [X] T017 [US3] Add a test to `practice-timer.spec.ts` that verifies last time and best time labels are visible after one solve is recorded
+- [X] T018 [P] [US4] Add a test to `practice-timer.spec.ts` that switches to champion mode, waits for a competition name to appear, and asserts it is non-empty
+- [X] T019 [P] [US4] Add a test to `practice-timer.spec.ts` that in champion mode asserts at least one scramble string is visible in the solve set
 
 **Checkpoint**: `npx playwright test e2e/practice-timer.spec.ts` — all tests green.
 
@@ -90,8 +90,8 @@
 
 **Independent Test**: `npx playwright test e2e/visualiser-modal.spec.ts` passes.
 
-- [ ] T020 [US5] Create `cfop-app/e2e/visualiser-modal.spec.ts` and add a test that clicks the visualiser nav icon (`[aria-label="Open algorithm visualizer"]`) and asserts the modal is visible and the player container element is present in the DOM
-- [ ] T021 [P] [US5] Add a test to `visualiser-modal.spec.ts` that opens the modal then triggers the close action (close button or backdrop click) and asserts the modal is no longer visible
+- [X] T020 [US5] Create `cfop-app/e2e/visualiser-modal.spec.ts` and add a test that clicks the visualiser nav icon (`[aria-label="Open algorithm visualizer"]`) and asserts the modal is visible and the player container element is present in the DOM
+- [X] T021 [P] [US5] Add a test to `visualiser-modal.spec.ts` that opens the modal then triggers the close action (close button or backdrop click) and asserts the modal is no longer visible
 
 **Checkpoint**: `npx playwright test e2e/visualiser-modal.spec.ts` — all tests green.
 
@@ -103,7 +103,7 @@
 
 **Independent Test**: `npx playwright test e2e/wr-chart.spec.ts` passes.
 
-- [ ] T022 [US6] Create `cfop-app/e2e/wr-chart.spec.ts` and add a test that navigates to `/#/about`, waits for the Recharts container (`.recharts-responsive-container` or `svg`) to be visible, and asserts no `.wr-chart-error` element is present
+- [X] T022 [US6] Create `cfop-app/e2e/wr-chart.spec.ts` and add a test that navigates to `/#/about`, waits for the Recharts container (`.recharts-responsive-container` or `svg`) to be visible, and asserts no `.wr-chart-error` element is present
 
 **Checkpoint**: `npx playwright test e2e/wr-chart.spec.ts` — test green.
 
@@ -111,9 +111,9 @@
 
 ## Phase 8: Polish
 
-- [ ] T023 Run the full suite with `npx playwright test` from `cfop-app/` and confirm all tests pass in a single run
-- [ ] T024 [P] Verify the full suite completes in under 60 seconds (check run time in Playwright output)
-- [ ] T025 [P] Update `quickstart.md` in `specs/016-playwright-e2e-tests/` if any run instructions differ from what was planned
+- [X] T023 Run the full suite with `npx playwright test` from `cfop-app/` and confirm all tests pass in a single run
+- [X] T024 [P] Verify the full suite completes in under 60 seconds (check run time in Playwright output)
+- [X] T025 [P] Update `quickstart.md` in `specs/016-playwright-e2e-tests/` if any run instructions differ from what was planned
 
 ---
 

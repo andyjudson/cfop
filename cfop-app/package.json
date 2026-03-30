@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "check:syntax": "npm run build",
-    "check:prepush": "npm run check:syntax"
+    "check:prepush": "npm run check:syntax",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "bulma": "^1.0.4",
@@ -20,6 +21,7 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.5",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",

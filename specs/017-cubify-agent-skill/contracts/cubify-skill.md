@@ -12,9 +12,11 @@
 
 | Flag | Description |
 |------|-------------|
-| `--2d` | Force 2D SVG output |
-| `--3d` | Force 3D PNG output |
+| `--2d` | Force 2D top-layer visualization (experimental-2D-LL) |
+| `--3d` | Force 3D perspective visualization (PG3D) |
 | `--setup <alg>` | Override setup algorithm |
+
+All output is PNG regardless of visualization mode.
 
 ---
 
@@ -61,14 +63,14 @@
 ### Single image (modes 1 & 2)
 
 ```
-✓ Image written: ~/.claude/tmp/cubify/oll_sune.svg
+✓ Image written: ~/.claude/tmp/cubify/oll_sune.png
 ```
 
 ### Batch (mode 3)
 
 ```
 ✓ Batch complete: 57/57 images written to ~/.claude/tmp/cubify/
-  oll_dot.svg, oll_sune.svg, ...
+  oll_dot.png, oll_sune.png, ...
 ```
 
 ### Error
@@ -108,6 +110,6 @@ node cubify-scripts/cubify.mjs [args]
 
 | Input | Output filename |
 |-------|----------------|
-| Raw alg | `cubify-<timestamp>.svg` or `cubify-<timestamp>.png` |
-| `--case oll_sune` | `oll_sune.svg` |
-| `--file algs-cfop-oll.json` | `<case-id>.svg` or `<case-id>.png` per case |
+| Raw alg | `cubify-<timestamp>.png` |
+| `--case oll_sune` | `oll_sune.png` |
+| `--file algs-cfop-oll.json` | `<case-id>.png` per case |

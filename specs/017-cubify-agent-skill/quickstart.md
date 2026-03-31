@@ -34,26 +34,26 @@ Produces: `~/.claude/tmp/cubify/cubify-<timestamp>.png` (3D, default)
 ```bash
 /cubify "F R U R' U' F'" --2d
 ```
-Produces: `~/.claude/tmp/cubify/cubify-<timestamp>.svg` (2D)
+Produces: `~/.claude/tmp/cubify/cubify-<timestamp>.png` (2D top-layer view)
 
 ### Generate image for a named case
 
 ```bash
 /cubify --case oll_sune
 ```
-Produces: `~/.claude/tmp/cubify/oll_sune.svg` (2D SVG, OLL mask auto-applied)
+Produces: `~/.claude/tmp/cubify/oll_sune.png` (2D view, OLL mask auto-applied)
 
 ```bash
-/cubify --case f2l_basic
+/cubify --case f2l-1-1
 ```
-Produces: `~/.claude/tmp/cubify/f2l_basic.png` (3D PNG, F2L mask auto-applied)
+Produces: `~/.claude/tmp/cubify/f2l-1-1.png` (3D view, F2L mask auto-applied)
 
 ### Batch generate all cases from a JSON file
 
 ```bash
 /cubify --file algs-cfop-oll.json
 ```
-Produces: `~/.claude/tmp/cubify/oll_*.svg` — one SVG per OLL case
+Produces: `~/.claude/tmp/cubify/oll-*.png` — one PNG per OLL case
 
 ---
 
@@ -78,8 +78,8 @@ All images are written to `~/.claude/tmp/cubify/`. The directory is created auto
 
 ```bash
 /cubify --file algs-cfop-oll.json
-# Output: 57 SVG files in ~/.claude/tmp/cubify/
-# Each named oll_<id>.svg with correct sticker mask applied
+# Output: 57 PNG files in ~/.claude/tmp/cubify/
+# Each named <case-id>.png with correct sticker mask applied
 ```
 
 Expected output:

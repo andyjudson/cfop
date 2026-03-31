@@ -12,8 +12,8 @@ Generate a cube state image from an algorithm, a named case, or a batch JSON fil
 
 ### Optional flags
 
-- `--2d` — force 2D SVG output
-- `--3d` — force 3D PNG output
+- `--2d` — force 2D top-layer visualization (experimental-2D-LL)
+- `--3d` — force 3D perspective visualization (PG3D)
 - `--setup <alg>` — apply setup moves before the algorithm
 
 ## How to run
@@ -54,6 +54,7 @@ If the script exits with code 1 (input error) or 2 (render error), show the erro
 
 ## Notes
 
-- View mode (2D/3D) and mask are auto-selected from case type: OLL/PLL → 2D SVG, F2L/Cross/BGR → 3D PNG
+- All output is PNG — Playwright screenshot only supports PNG format
+- View mode (2D/3D) and mask are auto-selected from case type: OLL/PLL → 2D top-layer view, F2L/Cross/BGR → 3D perspective view
 - Output files are written to `~/.claude/tmp/cubify/`
 - The renderer opens a visible Chromium window briefly — this is expected (WebGL requires headful mode on macOS)

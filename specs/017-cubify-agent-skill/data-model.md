@@ -42,8 +42,8 @@ Structure of each entry in `algs-cfop-*.json` files, used for case lookup.
 |-------|------|-------------|
 | `id` | `string` | Unique case identifier e.g. `oll_sune` |
 | `name` | `string` | Human-readable name |
-| `alg` | `string` | Algorithm notation |
-| `type` | `string` | Case type: `oll`, `pll`, `f2l`, `cross`, `bgr` |
+| `notation` | `string` | Algorithm notation (some files use `alg` — code handles both) |
+| `method` | `string` | Case type: `oll`, `pll`, `f2l`, `cross`, `bgr` (some files use `type` — code handles both) |
 | `setup` | `string \| undefined` | Optional setup moves |
 
 ---
@@ -81,9 +81,11 @@ Determines default `viewMode` and `mask` from case `type`.
 
 | Case type | View mode | Mask | Output format |
 |-----------|-----------|------|--------------|
-| `oll` | 2D | `oll` | SVG |
-| `pll` | 2D | `pll` | SVG |
+| `oll` | 2D | `oll` | PNG |
+| `pll` | 2D | `pll` | PNG |
 | `f2l` | 3D | `f2l` | PNG |
 | `cross` | 3D | `cross` | PNG |
 | `bgr` | 3D | `default` | PNG |
 | _(raw alg)_ | 3D | `default` | PNG |
+
+Note: all output is PNG. Playwright `page.screenshot()` only supports PNG; the 2D/3D distinction affects the TwistyPlayer visualization mode, not the file format.

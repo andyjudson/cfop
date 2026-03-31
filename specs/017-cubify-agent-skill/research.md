@@ -95,7 +95,7 @@ Surprises encountered during renderer implementation that future work should be 
 
 2. **1.8MB bundle cannot be inlined in HTML**: Embedding the esbuild output directly in a `<script>` tag silently kills page execution — no console output, TwistyPlayer constructor is defined but nothing renders. Serving as a separate HTTP endpoint fixes this.
 
-3. **Constructor properties break WebGL**: Passing `controlPanel: 'none'` (or `hintFacelets`, `experimentalDragInput`) in the TwistyPlayer constructor causes the WebGL canvas to go blank. Root cause unknown — likely a web component lifecycle race. Workaround: set `hintFacelets = 'none'` via `page.evaluate()` AFTER the 3s ready signal fires. `controlPanel` cannot be hidden this way (it's clipped via CSS instead).
+3. **Constructor properties break WebGL**: Passing `controlPanel: 'none'` (or `hintFacelets`, `experimentalDragInput`) in the TwistyPlayer constructor causes the WebGL canvas to go blank. Root cause unknown — likely a web component lifecycle race. Workaround: set `hintFacelets = 'none'` via `page.evaluate()` AFTER the 3s ready signal fires. `controlPanel` can only be excluded by clipping the screenshot to the visualization element, not by hiding it.
 
 4. **`sips -c` crops from centre, not top**: `sips -c 288 288 file.png` crops 24px from each edge of a 288×336 image, leaving the control panel partially in frame. Switched to Playwright `clip` option.
 
@@ -106,3 +106,11 @@ Surprises encountered during renderer implementation that future work should be 
 7. **SVG output not achievable via Playwright screenshot**: Playwright's `page.screenshot()` only supports PNG output — writing to a `.svg` path throws a MIME type error. True SVG extraction from TwistyPlayer's `experimental-2D-LL` mode would require accessing the internal `<svg>` element inside the closed shadow DOM (not practical). For v1, all output formats are PNG; OLL/PLL use `experimental-2D-LL` (2D flat view) but still output as `.png`.
 
 8. **JSON field names differ from data-model spec**: The `algs-cfop-*.json` files use `method` (not `type`) and `notation` (not `alg`). The code resolves both with `c.method || c.type` and `c.notation || c.alg` for forwards compatibility.
+
+9. **The breakthrough: inspect structure before manipulating it**: The control panel problem was solved only after writing a small debug script that printed the actual shadow DOM structure. This revealed that `twisty-2d-scene-wrapper` and `twisty-control-panel` are siblings inside the player's shadow root — not parent/child — and that `twisty-2d-scene-wrapper` exposes a bounding rect that exactly frames the visualization. The solution then became obvious: clip the screenshot to that element's rect, rather than trying to hide the panel.
+
+   The lesson: when automating a third-party web component you don't control, **inspect the actual element tree first** (one small Playwright script that dumps `shadowRoot` children, bounding rects, and tag names), then design the capture strategy. We lost significant time trying to manipulate TwistyPlayer's API based on assumptions about its internals rather than observing them first.
+
+   **The two Playwright techniques that made it work:**
+   - `page.addInitScript()` — runs before any page script, including the bundle load. This is the correct layer for intercepting `attachShadow` and `getContext`. Injecting the same intercept inside the HTML `<script>` tag fires too late — the bundle has already initialized by then.
+   - `getBoundingClientRect()` via `page.evaluate()` on intercepted shadow root elements — gives exact pixel coordinates usable as a Playwright `clip` option, without any CSS manipulation or CDP complexity.

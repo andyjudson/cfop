@@ -36,6 +36,18 @@ Standalone cube image generator for use in algorithm documentation with 3D PNG a
 
 **Directory:** `/cubify-app/` • [README](cubify-app/README.md)
 
+### cubify-scripts
+Claude Code agent skill (`/cubify`) that generates cube state images from algorithm inputs. Runs as a standalone Node.js script — no build step.
+
+**Usage:** Invoked via `/cubify` in Claude Code, or directly: `node cubify-scripts/cubify.mjs <args>`
+
+**Input modes:**
+- Raw algorithm: `/cubify R U R' U'`
+- Named case lookup: `/cubify --case oll_sune`
+- Batch JSON file: `/cubify --file algs-cfop-oll.json`
+
+**Directory:** `/cubify-scripts/`
+
 ## Built With
 
 - **Cubing knowledge** from [Milan Struyf](https://www.youtube.com/@CubeHead) (CubeHead) and [Dylan Wang](https://www.youtube.com/@JPerm) (JPerm)

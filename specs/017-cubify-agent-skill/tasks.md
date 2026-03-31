@@ -16,11 +16,11 @@
 
 **Purpose**: Create `cubify-scripts/` directory and install dependencies.
 
-- [ ] T001 Create `cubify-scripts/package.json` with `"type": "module"`, `playwright` dependency, and a `"cubify": "node cubify.mjs"` script entry
-- [ ] T002 Run `npm install` inside `cubify-scripts/` to install Playwright
-- [ ] T003 Create `cubify-scripts/lib/` directory and add `cubify-scripts/lib/masks.mjs` exporting the five mask preset constants (`default`, `cross`, `f2l`, `oll`, `pll`) ported from `cubify-app/src/utils/maskPresets.ts`
-- [ ] T004 Create `cubify-scripts/lib/lookup.mjs` exporting `lookupCase(caseId)` that reads from `cfop-app/public/data/algs-cfop-*.json` files and returns the matching `AlgorithmCase` object or throws with a list of available IDs
-- [ ] T005 Create the output directory helper in `cubify-scripts/lib/output.mjs` exporting `ensureOutputDir()` that creates `~/.claude/tmp/cubify/` if it does not exist and returns the absolute path
+- [X] T001 Create `cubify-scripts/package.json` with `"type": "module"`, `playwright` dependency, and a `"cubify": "node cubify.mjs"` script entry
+- [X] T002 Run `npm install` inside `cubify-scripts/` to install Playwright
+- [X] T003 Create `cubify-scripts/lib/` directory and add `cubify-scripts/lib/masks.mjs` exporting the five mask preset constants (`default`, `cross`, `f2l`, `oll`, `pll`) ported from `cubify-app/src/utils/maskPresets.ts`
+- [X] T004 Create `cubify-scripts/lib/lookup.mjs` exporting `lookupCase(caseId)` that reads from `cfop-app/public/data/algs-cfop-*.json` files and returns the matching `AlgorithmCase` object or throws with a list of available IDs
+- [X] T005 Create the output directory helper in `cubify-scripts/lib/output.mjs` exporting `ensureOutputDir()` that creates `~/.claude/tmp/cubify/` if it does not exist and returns the absolute path
 
 **Checkpoint**: `node -e "import('./cubify-scripts/lib/masks.mjs').then(m => console.log(Object.keys(m.MASKS)))"` prints the five mask names.
 
@@ -32,10 +32,10 @@
 
 **⚠️ CRITICAL**: Confirm renderer works before implementing story-specific features.
 
-- [ ] T006 Create `cubify-scripts/lib/renderer.mjs` that exports `renderCube(config)` — accepts a `RenderConfig` object (from `data-model.md`), writes a temp HTML file to `/tmp/cubify-render.html` that loads cubing.js from `cfop-app/node_modules/cubing` via `file://` URL, mounts a `TwistyPlayer` with the config properties, and waits for the player to be ready
-- [ ] T007 Extend `renderer.mjs` to handle 2D SVG output: after the player is ready, use `page.$eval` to extract `twisty-player`'s inner SVG element `outerHTML` and write it to the `outputPath` as a `.svg` file
-- [ ] T008 Extend `renderer.mjs` to handle 3D PNG output: use `page.screenshot` clipped to the `twisty-player` bounding box and write to the `outputPath`, then call `sips -Z 288 <outputPath>` via `child_process.execSync` to resize to 288px
-- [ ] T009 Add error handling to `renderer.mjs`: catch Playwright launch failures (Chromium not found), sips failures (non-macOS), and invalid algorithm errors; exit with code 2 and a human-readable message
+- [X] T006 Create `cubify-scripts/lib/renderer.mjs` that exports `renderCube(config)` — accepts a `RenderConfig` object (from `data-model.md`), spins up a local HTTP server serving the esbuild IIFE bundle and render HTML, launches Playwright headful (headless:false required on macOS for WebGL), mounts a `TwistyPlayer` with minimal config and waits for ready signal
+- [X] T007 Extend `renderer.mjs` to handle 2D SVG output: after the player is ready, use `page.$eval` to extract `twisty-player`'s inner SVG element `outerHTML` and write it to the `outputPath` as a `.svg` file
+- [X] T008 Extend `renderer.mjs` to handle 3D PNG output: use `page.screenshot` with `clip: {x:0,y:0,width:288,height:288}` on a 288×336 viewport (cube viz + control panel height) to capture only the cube area
+- [X] T009 Add error handling to `renderer.mjs`: catch Playwright launch failures (Chromium not found) and invalid algorithm errors; exit with code 2 and a human-readable message
 
 **Checkpoint**: Run `node -e "import('./cubify-scripts/lib/renderer.mjs').then(m => m.renderCube({alg:'R U R\\'  U\\'',setupAlg:'',visualization:'PG3D',mask:'',outputFormat:'png',outputPath:'/tmp/test-cubify.png'})).then(()=>console.log('ok'))"` — produces a PNG at `/tmp/test-cubify.png`.
 
@@ -47,10 +47,10 @@
 
 **Independent Test**: Run `node cubify-scripts/cubify.mjs "R U R' U'"` — a PNG appears in `~/.claude/tmp/cubify/` and the path is printed to stdout.
 
-- [ ] T010 [US1] Create `cubify-scripts/cubify.mjs` entry point that parses CLI arguments: detects `--case`, `--file`, `--2d`, `--3d`, and `--setup` flags; treats remaining tokens as the raw alg string; prints usage and exits 1 if no input is provided
-- [ ] T011 [US1] In `cubify-scripts/cubify.mjs`, implement the raw-alg path: resolve `viewMode` (default 3D unless `--2d` passed), select mask (`default`), build the `RenderConfig`, call `ensureOutputDir()` and `renderCube()`, then print the output path
-- [ ] T012 [US1] Add algorithm validation to the raw-alg path using cubing.js `Alg.fromString()` (imported from `cfop-app/node_modules/cubing/alg`); catch parse errors and exit 1 with a clear message
-- [ ] T013 [US1] Create `.claude/commands/cubify.md` skill definition: system prompt that reads the `/cubify` arguments, maps input modes per the contract in `specs/017-cubify-agent-skill/contracts/cubify-skill.md`, runs `node cubify-scripts/cubify.mjs [args]` via Bash, and reports the output path(s) to the user
+- [X] T010 [US1] Create `cubify-scripts/cubify.mjs` entry point that parses CLI arguments: detects `--case`, `--file`, `--2d`, `--3d`, and `--setup` flags; treats remaining tokens as the raw alg string; prints usage and exits 1 if no input is provided
+- [X] T011 [US1] In `cubify-scripts/cubify.mjs`, implement the raw-alg path: resolve `viewMode` (default 3D unless `--2d` passed), select mask (`default`), build the `RenderConfig`, call `ensureOutputDir()` and `renderCube()`, then print the output path
+- [X] T012 [US1] Add algorithm validation to the raw-alg path using cubing.js `Alg.fromString()` (imported from `cfop-app/node_modules/cubing/alg`); catch parse errors and exit 1 with a clear message
+- [X] T013 [US1] Create `.claude/commands/cubify.md` skill definition: system prompt that reads the `/cubify` arguments, maps input modes per the contract in `specs/017-cubify-agent-skill/contracts/cubify-skill.md`, runs `node cubify-scripts/cubify.mjs [args]` via Bash, and reports the output path(s) to the user
 
 **Checkpoint**: `node cubify-scripts/cubify.mjs "R U R' U'"` writes a 288px PNG and prints the path. `/cubify R U R' U'` in Claude Code works end-to-end.
 
@@ -62,8 +62,8 @@
 
 **Independent Test**: Run `node cubify-scripts/cubify.mjs --case oll_sune` — `oll_sune.svg` appears in `~/.claude/tmp/cubify/` with the OLL sticker mask applied.
 
-- [ ] T014 [US2] In `cubify-scripts/cubify.mjs`, implement the `--case` path: call `lookupCase(caseId)` from `lookup.mjs`, infer `viewMode` and `mask` from the case `type` field using the type→config mapping in `data-model.md`, set `outputPath` to `<outputDir>/<caseId>.<ext>`, and call `renderCube()`
-- [ ] T015 [US2] Handle unknown case ID in the `--case` path: catch the error from `lookupCase()` and exit 1 printing the error message (which includes available IDs)
+- [X] T014 [US2] In `cubify-scripts/cubify.mjs`, implement the `--case` path: call `lookupCase(caseId)` from `lookup.mjs`, infer `viewMode` and `mask` from the case `type` field using the type→config mapping in `data-model.md`, set `outputPath` to `<outputDir>/<caseId>.<ext>`, and call `renderCube()`
+- [X] T015 [US2] Handle unknown case ID in the `--case` path: catch the error from `lookupCase()` and exit 1 printing the error message (which includes available IDs)
 - [ ] T016 [P] [US2] Verify that `--2d` and `--3d` override flags work correctly in the `--case` path by testing `node cubify-scripts/cubify.mjs --case oll_sune --3d` produces a PNG instead of SVG
 
 **Checkpoint**: `node cubify-scripts/cubify.mjs --case oll_sune` → `~/.claude/tmp/cubify/oll_sune.svg`. `node cubify-scripts/cubify.mjs --case f2l_basic` → `~/.claude/tmp/cubify/f2l_basic.png`.
@@ -76,9 +76,9 @@
 
 **Independent Test**: Run `node cubify-scripts/cubify.mjs --file cfop-app/public/data/algs-cfop-oll.json` — one SVG per OLL case written to `~/.claude/tmp/cubify/`, summary printed.
 
-- [ ] T017 [US3] In `cubify-scripts/cubify.mjs`, implement the `--file` path: read and parse the JSON file, iterate over cases sequentially, call `renderCube()` per case using the same type→config logic as US2, collect successes and failures
-- [ ] T018 [US3] After batch completion, print a summary: `✓ Batch complete: N/M images written to <outputDir>/` followed by a list of written filenames and any failures with their error messages
-- [ ] T019 [US3] Handle missing or malformed JSON file: exit 1 with a clear error if the file path does not exist or cannot be parsed as a JSON array
+- [X] T017 [US3] In `cubify-scripts/cubify.mjs`, implement the `--file` path: read and parse the JSON file, iterate over cases sequentially, call `renderCube()` per case using the same type→config logic as US2, collect successes and failures
+- [X] T018 [US3] After batch completion, print a summary: `✓ Batch complete: N/M images written to <outputDir>/` followed by a list of written filenames and any failures with their error messages
+- [X] T019 [US3] Handle missing or malformed JSON file: exit 1 with a clear error if the file path does not exist or cannot be parsed as a JSON array
 
 **Checkpoint**: `node cubify-scripts/cubify.mjs --file cfop-app/public/data/algs-cfop-oll.json` completes all 57 OLL cases with no manual intervention.
 
@@ -86,10 +86,10 @@
 
 ## Phase 6: Polish
 
-- [ ] T020 Add `cubify-scripts/` to the root `.gitignore` `node_modules/` pattern (verify it is already covered or add explicitly)
-- [ ] T021 [P] Update `README.md` to mention `cubify-scripts/` in the Applications section alongside `cfop-app` and `cubify-app`, and reference the `/cubify` skill
-- [ ] T022 [P] Update `CLAUDE.md` Current Status to `Features 001–017 complete` and note the `/cubify` skill location in Active Technologies
-- [ ] T023 Run the full quickstart validation: raw alg, `--case oll_sune`, `--case f2l_basic`, and batch OLL — confirm all produce correct output
+- [X] T020 Add `cubify-scripts/` to the root `.gitignore` `node_modules/` pattern (already covered by top-level `node_modules/` entry)
+- [X] T021 [P] Update `README.md` to mention `cubify-scripts/` in the Applications section alongside `cfop-app` and `cubify-app`, and reference the `/cubify` skill
+- [X] T022 [P] Update `CLAUDE.md` Current Status to `Features 001–017 complete` and note the `/cubify` skill location in Active Technologies
+- [X] T023 Run the full quickstart validation: raw alg, `--case oll_sune`, `--case f2l_basic`, and batch OLL — confirm all produce correct output
 
 ---
 

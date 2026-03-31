@@ -27,13 +27,14 @@
 
 ## Decision 3: Playwright Usage Pattern
 
-**Decision**: The Node script creates a minimal in-memory HTML page as a `data:` URI or temp file, loads cubing.js from `node_modules`, mounts a TwistyPlayer, waits for it to settle, then extracts SVG content (2D) or takes a page screenshot clipped to the player element (3D PNG).
+**Decision**: The Node script spins up a minimal local HTTP server (Node `http.createServer`, random port) that serves two endpoints: `/` returns the render HTML, `/bundle.js` returns the esbuild IIFE bundle. Playwright navigates to `http://127.0.0.1:<port>/`.
 
-**Rationale**: No server needed; `data:` URIs allow loading arbitrary HTML. However, loading ES module scripts via `data:` URIs is subject to CORS restrictions in Chromium — a temp file written to `/tmp` is more reliable.
+**Rationale**: `data:` URIs fail for this use case — cubing.js bare specifier imports (Three.js etc.) are resolved at bundle time by esbuild into a single IIFE, but inlining 1.8MB of JS into the HTML kills page execution entirely (no console output, TwistyPlayer is function but nothing renders). Serving the bundle as a separate `/bundle.js` endpoint fixes this. A temp file at `file://` also fails because bare specifiers remain unresolved without bundling, and `file://` CORS blocks cross-origin module fetches.
 
 **Alternatives considered**:
-- Serve a local HTTP server: adds complexity and port management.
-- Use `page.evaluate()` to call `experimentalDownloadScreenshot`: downloads to browser's download folder (not controllable), not suitable for scripted output paths.
+- `data:` URI with inlined bundle: tried first; 1.8MB inline silently kills script execution.
+- `file://` temp HTML: bare specifier imports fail — Three.js uses `import 'three'` which Chromium cannot resolve from `file://`.
+- `page.evaluate()` to call `experimentalDownloadScreenshot`: downloads to browser's download folder (not controllable), not suitable for scripted output paths.
 
 ---
 
@@ -48,15 +49,18 @@
 
 ---
 
-## Decision 5: PNG Resizing
+## Decision 5: PNG Crop and Resize
 
-**Decision**: Use `sips -Z 288 <file>` after Playwright screenshot capture, called via Node's `child_process.execSync`.
+**Decision**: Use Playwright's built-in `clip` option (`{ x: 0, y: 0, width: 288, height: 288 }`) to capture only the cube visualisation area, excluding the TwistyPlayer control panel. No `sips` required for cropping.
 
-**Rationale**: `sips` is macOS-native, zero-dependency, and already the established pattern in `cubify-app`. The skill is explicitly macOS-only for v1 (per spec assumptions).
+**Rationale**: The TwistyPlayer renders the cube in the top portion of the player and appends a control panel strip (~48px) below it. Setting the viewport to 288×336 (viz + panel) and clipping the screenshot to the top 288px isolates just the cube. `sips -c` (crop) was tried first but crops from the centre of the image, leaving the control panel partially visible. Playwright `clip` from `(0,0)` is exact and needs no post-processing.
+
+**Why not hide the control panel via TwistyPlayer API**: `controlPanel: 'none'` passed in the constructor or set post-append breaks WebGL rendering entirely — the canvas goes blank. Root cause unknown; likely a timing issue in the web component lifecycle. The clip approach avoids touching TwistyPlayer config beyond the minimal working set (`puzzle`, `visualization`, `alg`, `background: 'none'`).
 
 **Alternatives considered**:
-- `sharp` npm package: cross-platform but an additional native dependency with compilation requirements.
-- Playwright `clip` option: Playwright can clip screenshots but cannot resize to exact pixel dimensions reliably across different viewport DPR settings.
+- `sips -c`: crops from centre, not top-left — leaves control panel in frame.
+- `sharp` npm package: unnecessary; clip handles the geometry, no resize needed since viewport is already 288px wide.
+- `controlPanel: 'none'` in constructor: breaks WebGL on macOS (blank output).
 
 ---
 
@@ -74,8 +78,31 @@
 
 ## Key Technical Constraints
 
-- macOS only (v1): `sips` dependency
+- macOS only (v1): `headless: false` required — headless Chromium blocks WebGL on macOS (`BindToCurrentSequence failed`)
 - Playwright Chromium must be installed: `npx playwright install chromium` from `cfop-app/`
-- cubing.js is loaded from `cfop-app/node_modules/cubing` — the script references it via relative path
+- cubing.js is bundled via esbuild IIFE into `/tmp/cubify-twisty-bundle.js` on first run; served via local HTTP server
+- esbuild entry file must be written inside `cfop-app/` so it resolves `node_modules/cubing` naturally
 - Output directory `~/.claude/tmp/cubify/` is created on first run
-- The temp HTML file used for rendering is written to `/tmp/cubify-render.html` and cleaned up after each run
+- TwistyPlayer constructor: use only `puzzle`, `visualization`, `alg`, `background: 'none'` — any additional properties (controlPanel, hintFacelets) cause WebGL to fail
+
+---
+
+## Implementation Learnings
+
+Surprises encountered during renderer implementation that future work should be aware of:
+
+1. **headless Chromium blocks WebGL on macOS**: `THREE.WebGLRenderer: A WebGL context could not be created. BindToCurrentSequence failed`. `--use-gl=swiftshader`, `--enable-webgl`, `--disable-gpu` all tried and failed. `headless: false` is the only working option.
+
+2. **1.8MB bundle cannot be inlined in HTML**: Embedding the esbuild output directly in a `<script>` tag silently kills page execution — no console output, TwistyPlayer constructor is defined but nothing renders. Serving as a separate HTTP endpoint fixes this.
+
+3. **Constructor properties break WebGL**: Passing `controlPanel: 'none'` (or `hintFacelets`, `experimentalDragInput`) in the TwistyPlayer constructor causes the WebGL canvas to go blank. Root cause unknown — likely a web component lifecycle race. Workaround: set `hintFacelets = 'none'` via `page.evaluate()` AFTER the 3s ready signal fires. `controlPanel` cannot be hidden this way (it's clipped via CSS instead).
+
+4. **`sips -c` crops from centre, not top**: `sips -c 288 288 file.png` crops 24px from each edge of a 288×336 image, leaving the control panel partially in frame. Switched to Playwright `clip` option.
+
+5. **GitHub Pages thin-app idea**: Considered deploying a URL-parameterised TwistyPlayer page to GitHub Pages so the script could navigate there instead of bundling. Would not help — `headless: false` is a macOS/Chromium constraint regardless of page origin. Still requires Playwright and adds network/latency dependency.
+
+6. **CSS clip-path removes control panel without shadow DOM access**: `clip-path: inset(0 0 64px 0)` applied to the `twisty-player` element in the HTML template visually clips its bottom 64px (the control panel strip) at the compositor level. This is applied in the CSS before the player renders and requires no shadow DOM access or TwistyPlayer API. The output is 288×288 with the top ~224px being the cube and the bottom 64px being the white page background.
+
+7. **SVG output not achievable via Playwright screenshot**: Playwright's `page.screenshot()` only supports PNG output — writing to a `.svg` path throws a MIME type error. True SVG extraction from TwistyPlayer's `experimental-2D-LL` mode would require accessing the internal `<svg>` element inside the closed shadow DOM (not practical). For v1, all output formats are PNG; OLL/PLL use `experimental-2D-LL` (2D flat view) but still output as `.png`.
+
+8. **JSON field names differ from data-model spec**: The `algs-cfop-*.json` files use `method` (not `type`) and `notation` (not `alg`). The code resolves both with `c.method || c.type` and `c.notation || c.alg` for forwards compatibility.

@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–016 complete.
+Features 001–017 complete.
 
 ## CSS Standards
 
@@ -88,3 +88,14 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Visualisation**: cubing.js (TwistyPlayer), Recharts 3.x
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
+
+## cubify-scripts (017)
+
+Standalone Node.js ESM skill for cube image generation. No build step.
+
+- **Entry**: `cubify-scripts/cubify.mjs` — run directly with `node`
+- **Skill**: `.claude/commands/cubify.md` — invoked as `/cubify` in Claude Code
+- **Renderer**: `cubify-scripts/lib/renderer.mjs` — Playwright headful Chromium + esbuild IIFE bundle
+- **Requires**: `headless: false` (WebGL blocked in headless Chromium on macOS); `npx playwright install chromium` from `cfop-app/`
+- **Output**: `~/.claude/tmp/cubify/` — PNG (3D) or SVG (2D)
+- **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session

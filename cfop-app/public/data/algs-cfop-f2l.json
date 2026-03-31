@@ -1,43 +1,330 @@
 [
-    { "id": "f2l-1-1", "name": "", "notation": "(U R U' R')", "method": "f2l", "group": "easy inserts", "image": "./assets/cfop_f2l/f2l-1-1.png" },
-    { "id": "f2l-1-2", "name": "", "notation": "y (U' L' U L)", "method": "f2l", "group": "easy inserts", "image": "./assets/cfop_f2l/f2l-1-2.png" },
-    { "id": "f2l-1-3", "name": "", "notation": "(R U R')", "method": "f2l", "group": "easy inserts", "image": "./assets/cfop_f2l/f2l-1-3.png" },
-    { "id": "f2l-1-4", "name": "", "notation": "(F' U' F)", "method": "f2l", "group": "easy inserts", "image": "./assets/cfop_f2l/f2l-1-4.png" },
-    { "id": "f2l-2-1", "name": "", "notation": "U' (R U R') (U2 R U' R')", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-1.png" },
-    { "id": "f2l-2-2", "name": "", "notation": "y U (L' U' L) (U2 L' U L)", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-2.png" },
-    { "id": "f2l-2-3", "name": "", "notation": "U' (R U2 R') (U2 R U' R')", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-3.png" },
-    { "id": "f2l-2-4", "name": "", "notation": "y U (L' U2 L) (U2 L' U L)", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-4.png" },
-    { "id": "f2l-2-5", "name": "", "notation": "U' (R U R') (U R U R')", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-5.png" },
-    { "id": "f2l-2-6", "name": "", "notation": "U' (R U' R') (U F' U' F)", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-6.png" },
-    { "id": "f2l-2-7", "name": "", "notation": "U (R U2 R') (U R U' R')", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-7.png" },
-    { "id": "f2l-2-8", "name": "", "notation": "y U' (L' U2 L) (U' L' U L)", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-8.png" },
-    { "id": "f2l-2-9", "name": "", "notation": "U2 (R U R') (U R U' R')", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-9.png" },
-    { "id": "f2l-2-10", "name": "", "notation": "y U2 (L' U' L) (U' L' U L)", "method": "f2l", "group": "disconnected pairs", "image": "./assets/cfop_f2l/f2l-2-10.png" },
-    { "id": "f2l-3-1", "name": "", "notation": "U' (R' F R F') (R U R')", "method": "f2l", "group": "corner in slot", "image": "./assets/cfop_f2l/f2l-3-1.png" },
-    { "id": "f2l-3-2", "name": "", "notation": "U (R U' R' U') (F' U F)", "method": "f2l", "group": "corner in slot", "image": "./assets/cfop_f2l/f2l-3-2.png" },
-    { "id": "f2l-3-3", "name": "", "notation": "(R U' R') (U R U' R')", "method": "f2l", "group": "corner in slot", "image": "./assets/cfop_f2l/f2l-3-3.png" },
-    { "id": "f2l-3-4", "name": "", "notation": "y (L' U L) (U' L' U L)", "method": "f2l", "group": "corner in slot", "image": "./assets/cfop_f2l/f2l-3-4.png" },
-    { "id": "f2l-3-5", "name": "", "notation": "(R U R' U') (R U R')", "method": "f2l", "group": "corner in slot", "image": "./assets/cfop_f2l/f2l-3-5.png" },
-    { "id": "f2l-3-6", "name": "", "notation": "y (L' U' L U) (L' U' L)", "method": "f2l", "group": "corner in slot", "image": "./assets/cfop_f2l/f2l-3-6.png" },
-    { "id": "f2l-4-1", "name": "", "notation": "(U R U' R')3", "method": "f2l", "group": "edge in slot", "image": "./assets/cfop_f2l/f2l-4-1.png" },
-    { "id": "f2l-4-2", "name": "", "notation": "U' (R' F R F') (R U' R')", "method": "f2l", "group": "edge in slot", "image": "./assets/cfop_f2l/f2l-4-2.png" },
-    { "id": "f2l-4-3", "name": "", "notation": "U' (R U' R') (U2 R U' R')", "method": "f2l", "group": "edge in slot", "image": "./assets/cfop_f2l/f2l-4-3.png" },
-    { "id": "f2l-4-4", "name": "", "notation": "U' (R U R') (U F' U' F)", "method": "f2l", "group": "edge in slot", "image": "./assets/cfop_f2l/f2l-4-4.png" },
-    { "id": "f2l-4-5", "name": "", "notation": "U (R U R') (U2 R U R')", "method": "f2l", "group": "edge in slot", "image": "./assets/cfop_f2l/f2l-4-5.png" },
-    { "id": "f2l-4-6", "name": "", "notation": "U (F' U' F) (U' R U R')", "method": "f2l", "group": "edge in slot", "image": "./assets/cfop_f2l/f2l-4-6.png" },
-    { "id": "f2l-5-1", "name": "", "notation": "R' U2 R2 U R2 U R", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-1.png" },
-    { "id": "f2l-5-2", "name": "", "notation": "U' (R U2 R') (U F' U' F)", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-2.png" },
-    { "id": "f2l-5-3", "name": "", "notation": "U' (R U' R') (U R U R')", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-3.png" },
-    { "id": "f2l-5-4", "name": "", "notation": "y (U L' U L) (U' L' U' L)", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-4.png" },
-    { "id": "f2l-5-5", "name": "", "notation": "R U R' U2 R U' R' (U R U' R')", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-5.png" },
-    { "id": "f2l-5-6", "name": "", "notation": "(R U' R') (U2 F' U' F)", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-6.png" },
-    { "id": "f2l-5-7", "name": "", "notation": "(R U2 R') U' R U R'", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-7.png" },
-    { "id": "f2l-5-8", "name": "", "notation": "y (L' U2 L) (U L' U' L)", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-8.png" },
-    { "id": "f2l-5-9", "name": "", "notation": "(U R U' R') U' (R U' R' U R U' R')", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-9.png" },
-    { "id": "f2l-5-10", "name": "", "notation": "F (U R U' R') F' (R U' R')", "method": "f2l", "group": "connected pairs", "image": "./assets/cfop_f2l/f2l-5-10.png" },
-    { "id": "f2l-6-1", "name": "", "notation": "(R U' R') U y' (R' U2 R) (U2 R' U R)", "method": "f2l", "group": "pair in slot", "image": "./assets/cfop_f2l/f2l-6-1.png" },
-    { "id": "f2l-6-2", "name": "", "notation": "R U' R' (U' R U R') (U2 R U' R')", "method": "f2l", "group": "pair in slot", "image": "./assets/cfop_f2l/f2l-6-2.png" },
-    { "id": "f2l-6-3", "name": "", "notation": "(R U' R') (U' R U' R') (U F' U' F)", "method": "f2l", "group": "pair in slot", "image": "./assets/cfop_f2l/f2l-6-3.png" },
-    { "id": "f2l-6-4", "name": "", "notation": "(R U' R') (U R U2 R') (U R U' R')", "method": "f2l", "group": "pair in slot", "image": "./assets/cfop_f2l/f2l-6-4.png" },
-    { "id": "f2l-6-5", "name": "", "notation": "(R U' R') y U2 (L' U' L) (U' L' U L)", "method": "f2l", "group": "pair in slot", "image": "./assets/cfop_f2l/f2l-6-5.png" }
+  {
+    "id": "f2l-1-1",
+    "name": "",
+    "notation": "(U R U' R')",
+    "method": "f2l",
+    "group": "easy inserts",
+    "image": "./assets/cfop_f2l/f2l-1-1.png"
+  },
+  {
+    "id": "f2l-1-2",
+    "name": "",
+    "notation": "y (U' L' U L)",
+    "method": "f2l",
+    "group": "easy inserts",
+    "image": "./assets/cfop_f2l/f2l-1-2.png"
+  },
+  {
+    "id": "f2l-1-3",
+    "name": "",
+    "notation": "(R U R')",
+    "method": "f2l",
+    "group": "easy inserts",
+    "image": "./assets/cfop_f2l/f2l-1-3.png"
+  },
+  {
+    "id": "f2l-1-4",
+    "name": "",
+    "notation": "(F' U' F)",
+    "method": "f2l",
+    "group": "easy inserts",
+    "image": "./assets/cfop_f2l/f2l-1-4.png"
+  },
+  {
+    "id": "f2l-2-1",
+    "name": "",
+    "notation": "U' (R U R') (U2 R U' R')",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-1.png"
+  },
+  {
+    "id": "f2l-2-2",
+    "name": "",
+    "notation": "y U (L' U' L) (U2 L' U L)",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-2.png"
+  },
+  {
+    "id": "f2l-2-3",
+    "name": "",
+    "notation": "U' (R U2 R') (U2 R U' R')",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-3.png"
+  },
+  {
+    "id": "f2l-2-4",
+    "name": "",
+    "notation": "y U (L' U2 L) (U2 L' U L)",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-4.png"
+  },
+  {
+    "id": "f2l-2-5",
+    "name": "",
+    "notation": "U' (R U R') (U R U R')",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-5.png"
+  },
+  {
+    "id": "f2l-2-6",
+    "name": "",
+    "notation": "U' (R U' R') (U F' U' F)",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-6.png"
+  },
+  {
+    "id": "f2l-2-7",
+    "name": "",
+    "notation": "U (R U2 R') (U R U' R')",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-7.png"
+  },
+  {
+    "id": "f2l-2-8",
+    "name": "",
+    "notation": "y U' (L' U2 L) (U' L' U L)",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-8.png"
+  },
+  {
+    "id": "f2l-2-9",
+    "name": "",
+    "notation": "U2 (R U R') (U R U' R')",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-9.png"
+  },
+  {
+    "id": "f2l-2-10",
+    "name": "",
+    "notation": "y U2 (L' U' L) (U' L' U L)",
+    "method": "f2l",
+    "group": "disconnected pairs",
+    "image": "./assets/cfop_f2l/f2l-2-10.png"
+  },
+  {
+    "id": "f2l-3-1",
+    "name": "",
+    "notation": "U' (R' F R F') (R U R')",
+    "method": "f2l",
+    "group": "corner in slot",
+    "image": "./assets/cfop_f2l/f2l-3-1.png"
+  },
+  {
+    "id": "f2l-3-2",
+    "name": "",
+    "notation": "U (R U' R' U') (F' U F)",
+    "method": "f2l",
+    "group": "corner in slot",
+    "image": "./assets/cfop_f2l/f2l-3-2.png"
+  },
+  {
+    "id": "f2l-3-3",
+    "name": "",
+    "notation": "(R U' R') (U R U' R')",
+    "method": "f2l",
+    "group": "corner in slot",
+    "image": "./assets/cfop_f2l/f2l-3-3.png"
+  },
+  {
+    "id": "f2l-3-4",
+    "name": "",
+    "notation": "y (L' U L) (U' L' U L)",
+    "method": "f2l",
+    "group": "corner in slot",
+    "image": "./assets/cfop_f2l/f2l-3-4.png"
+  },
+  {
+    "id": "f2l-3-5",
+    "name": "",
+    "notation": "(R U R' U') (R U R')",
+    "method": "f2l",
+    "group": "corner in slot",
+    "image": "./assets/cfop_f2l/f2l-3-5.png"
+  },
+  {
+    "id": "f2l-3-6",
+    "name": "",
+    "notation": "y (L' U' L U) (L' U' L)",
+    "method": "f2l",
+    "group": "corner in slot",
+    "image": "./assets/cfop_f2l/f2l-3-6.png"
+  },
+  {
+    "id": "f2l-4-1",
+    "name": "",
+    "notation": "(U R U' R')3",
+    "method": "f2l",
+    "group": "edge in slot",
+    "image": "./assets/cfop_f2l/f2l-4-1.png"
+  },
+  {
+    "id": "f2l-4-2",
+    "name": "",
+    "notation": "U' (R' F R F') (R U' R')",
+    "method": "f2l",
+    "group": "edge in slot",
+    "image": "./assets/cfop_f2l/f2l-4-2.png"
+  },
+  {
+    "id": "f2l-4-3",
+    "name": "",
+    "notation": "U' (R U' R') (U2 R U' R')",
+    "method": "f2l",
+    "group": "edge in slot",
+    "image": "./assets/cfop_f2l/f2l-4-3.png"
+  },
+  {
+    "id": "f2l-4-4",
+    "name": "",
+    "notation": "U' (R U R') (U F' U' F)",
+    "method": "f2l",
+    "group": "edge in slot",
+    "image": "./assets/cfop_f2l/f2l-4-4.png"
+  },
+  {
+    "id": "f2l-4-5",
+    "name": "",
+    "notation": "U (R U R') (U2 R U R')",
+    "method": "f2l",
+    "group": "edge in slot",
+    "image": "./assets/cfop_f2l/f2l-4-5.png"
+  },
+  {
+    "id": "f2l-4-6",
+    "name": "",
+    "notation": "U (F' U' F) (U' R U R')",
+    "method": "f2l",
+    "group": "edge in slot",
+    "image": "./assets/cfop_f2l/f2l-4-6.png"
+  },
+  {
+    "id": "f2l-5-1",
+    "name": "",
+    "notation": "R' U2 R2 U R2 U R",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-1.png"
+  },
+  {
+    "id": "f2l-5-2",
+    "name": "",
+    "notation": "U' (R U2 R') (U F' U' F)",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-2.png"
+  },
+  {
+    "id": "f2l-5-3",
+    "name": "",
+    "notation": "U' (R U' R') (U R U R')",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-3.png"
+  },
+  {
+    "id": "f2l-5-4",
+    "name": "",
+    "notation": "y (U L' U L) (U' L' U' L)",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-4.png"
+  },
+  {
+    "id": "f2l-5-5",
+    "name": "",
+    "notation": "R U R' U2 R U' R' (U R U' R')",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-5.png"
+  },
+  {
+    "id": "f2l-5-6",
+    "name": "",
+    "notation": "(R U' R') (U2 F' U' F)",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-6.png"
+  },
+  {
+    "id": "f2l-5-7",
+    "name": "",
+    "notation": "(R U2 R') U' R U R'",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-7.png"
+  },
+  {
+    "id": "f2l-5-8",
+    "name": "",
+    "notation": "y (L' U2 L) (U L' U' L)",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-8.png"
+  },
+  {
+    "id": "f2l-5-9",
+    "name": "",
+    "notation": "(U R U' R') U' (R U' R' U R U' R')",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-9.png"
+  },
+  {
+    "id": "f2l-5-10",
+    "name": "",
+    "notation": "F (U R U' R') F' (R U' R')",
+    "method": "f2l",
+    "group": "connected pairs",
+    "image": "./assets/cfop_f2l/f2l-5-10.png"
+  },
+  {
+    "id": "f2l-6-1",
+    "name": "",
+    "notation": "(R U' R') U y' (R' U2 R) (U2 R' U R)",
+    "method": "f2l",
+    "group": "pair in slot",
+    "image": "./assets/cfop_f2l/f2l-6-1.png"
+  },
+  {
+    "id": "f2l-6-2",
+    "name": "",
+    "notation": "R U' R' (U' R U R') (U2 R U' R')",
+    "method": "f2l",
+    "group": "pair in slot",
+    "image": "./assets/cfop_f2l/f2l-6-2.png"
+  },
+  {
+    "id": "f2l-6-3",
+    "name": "",
+    "notation": "(R U' R') (U' R U' R') (U F' U' F)",
+    "method": "f2l",
+    "group": "pair in slot",
+    "image": "./assets/cfop_f2l/f2l-6-3.png"
+  },
+  {
+    "id": "f2l-6-4",
+    "name": "",
+    "notation": "(R U' R') (U R U2 R') (U R U' R')",
+    "method": "f2l",
+    "group": "pair in slot",
+    "image": "./assets/cfop_f2l/f2l-6-4.png"
+  },
+  {
+    "id": "f2l-6-5",
+    "name": "",
+    "notation": "(R U' R') y U2 (L' U' L) (U' L' U L)",
+    "method": "f2l",
+    "group": "pair in slot",
+    "image": "./assets/cfop_f2l/f2l-6-5.png"
+  }
 ]

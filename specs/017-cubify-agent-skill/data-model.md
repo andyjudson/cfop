@@ -42,8 +42,8 @@ Structure of each entry in `algs-cfop-*.json` files, used for case lookup.
 |-------|------|-------------|
 | `id` | `string` | Unique case identifier e.g. `oll_sune` |
 | `name` | `string` | Human-readable name |
-| `notation` | `string` | Algorithm notation (some files use `alg` — code handles both) |
-| `method` | `string` | Case type: `oll`, `pll`, `f2l`, `cross`, `bgr` (some files use `type` — code handles both) |
+| `notation` | `string` | Algorithm notation |
+| `method` | `string` | Case type: `oll`, `pll`, `f2l`, `cross`, `bgr` |
 | `setup` | `string \| undefined` | Optional setup moves |
 
 ---

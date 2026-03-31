@@ -105,7 +105,7 @@ Surprises encountered during renderer implementation that future work should be 
 
 7. **SVG output not achievable via Playwright screenshot**: Playwright's `page.screenshot()` only supports PNG output — writing to a `.svg` path throws a MIME type error. True SVG extraction from TwistyPlayer's `experimental-2D-LL` mode would require accessing the internal `<svg>` element inside the closed shadow DOM (not practical). For v1, all output formats are PNG; OLL/PLL use `experimental-2D-LL` (2D flat view) but still output as `.png`.
 
-8. **JSON field names differ from data-model spec**: The `algs-cfop-*.json` files use `method` (not `type`) and `notation` (not `alg`). The code resolves both with `c.method || c.type` and `c.notation || c.alg` for forwards compatibility.
+8. **JSON field names differ from initial data-model spec**: The `algs-cfop-*.json` files consistently use `method` and `notation` (not `type`/`alg` as originally specced). All four files are consistent — no defensive fallback needed. Matches the `CfopAlgorithm` interface in `AlgorithmCard.tsx`.
 
 9. **The breakthrough: inspect structure before manipulating it**: The control panel problem was solved only after writing a small debug script that printed the actual shadow DOM structure. This revealed that `twisty-2d-scene-wrapper` and `twisty-control-panel` are siblings inside the player's shadow root — not parent/child — and that `twisty-2d-scene-wrapper` exposes a bounding rect that exactly frames the visualization. The solution then became obvious: clip the screenshot to that element's rect, rather than trying to hide the panel.
 

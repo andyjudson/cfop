@@ -89,6 +89,17 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
 
+## Playwright / Web Component Automation
+
+When automating or screenshotting a third-party web component (e.g. TwistyPlayer):
+
+1. **Inspect structure first** — write a small throwaway script that dumps shadow root children, tag names, and bounding rects before attempting any manipulation. The solution is usually obvious once you can see the actual DOM tree.
+2. **Clip to the visualization element, don't hide the chrome** — find the exact element that renders the content (canvas, SVG wrapper, etc.) and use `page.screenshot({ clip: rect })`. Trying to hide controls via API or CSS is fragile.
+3. **Use `page.addInitScript()` for intercepts** — this runs before any page script including bundle load. Injecting intercepts inside the HTML `<script>` tag fires too late.
+4. **`headless: false` required for WebGL on macOS** — headless Chromium blocks WebGL regardless of flags. This is a macOS+Chromium constraint, not a page issue.
+
+See `specs/017-cubify-agent-skill/research.md` (learnings 1–9) for the full record of what was tried and why.
+
 ## cubify-scripts (017)
 
 Standalone Node.js ESM skill for cube image generation. No build step.

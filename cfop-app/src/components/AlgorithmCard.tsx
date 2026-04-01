@@ -12,6 +12,7 @@ export interface CfopAlgorithm {
   notes?: string;
   method?: string;
   group?: string;
+  mask?: 'edge' | 'corner';
 }
 
 function formatNotation(notation: string, lineBreak?: number | number[]): string {

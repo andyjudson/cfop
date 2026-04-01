@@ -64,11 +64,43 @@
 
 ---
 
-## Decision 6: Case ID Lookup and Data Source
+## Decision 6: Stickering Mask Approach
 
-**Decision**: Case lookup reads from `cfop-app/public/data/algs-cfop-*.json` directly (relative to the script location). View mode (2D/3D) and mask are inferred from the case type field in the JSON (`type: "oll"`, `type: "pll"`, `type: "f2l"`, etc.).
+**Decision**: Use `experimentalSetupAlg: 'z2'` + `experimentalSetupAnchor: 'end'` for OLL/PLL orientation, combined with `experimentalStickeringMaskOrbits` string using only `-` (normal) and `I` (ignored) characters. The `mask` field in each JSON case entry (`"edge"` | `"corner"` | absent) drives per-case mask selection.
 
-**Rationale**: The JSON files are the canonical algorithm data source for the whole project. Reading them directly avoids duplication. The `type` field already distinguishes OLL/PLL (2D) from F2L/Cross/BGR (3D).
+**Rationale**: For a CFOP tutorial, the recognition orientation — yellow on top — is a deliberate pedagogical choice, not an implementation detail to be abstracted away. `z2` is the standard solver hold and is self-documenting. The orbit string (`EDGES:----OOOO----,CORNERS:----IIII`) is trivially readable: top 4 slots visible, bottom 8 hidden. No per-piece enumeration needed.
+
+**Why not `PuzzleAppearance` JSON (Lucas's suggested approach)**: `PuzzleAppearance` defines stickerings as a per-piece, per-facelet configuration object — 12 edges × 2 facelets + 8 corners × 3 facelets + 6 centers = ~62 individual facelet declarations. It's designed to be orientation-agnostic: you can express "this exact corner should be oriented" without specifying which face is up. For a general library, that separation of concerns is correct. For CFOP tutorials, it's over-engineering: the orientation *is* part of the appearance, `z2` encodes that intent in one token, and the mask string is 50 characters vs ~62 JSON declarations.
+
+**Why not use semantic mask characters (`O`, `P`, `D`) instead of `I`**: The `experimentalStickeringMaskOrbits` format supports 8 characters with distinct semantic meanings:
+- `-` normal (needs solving)
+- `D` dimmed
+- `I` ignored/grey
+- `P` permute
+- `O` orient
+- `o` oriented with known primary sticker
+- `?` oriented, unknown primary sticker
+- `X` invisible
+
+Lucas designed this system and naturally gravitates toward semantic usage — `O` for "must orient", `P` for "must permute". Using `I` (ignored) where you mean "grey out this piece so it doesn't distract" is technically imprecise. However, for static recognition images the expressiveness is wasted: `O` vs `I` produces identical visual output, and `I` maps more naturally to the mental model of "I don't care about this piece right now." The semantic richness only matters if cubing.js ever acts on those distinctions programmatically (e.g. auto-detecting whether an OLL is solved).
+
+**References**:
+- cubing.js issue that surfaced the need: cubing/cubing.js#324
+- Mask orbit documentation (buried in a release commit): cubing/cubing.js@668179c
+- `PuzzleAppearance` approach: cubing/cubing.js#224 (comment by Lucas Garron, Oct 2022)
+
+**Alternatives considered**:
+- `PuzzleAppearance` JSON: correct for a general library, impractical for CFOP tutorials.
+- Semantic mask characters (`O`, `P`): no visual difference for static images; `I` is more readable for "grey out / don't care."
+- Manual alg inversion (`z2 <inv(notation)>` as setup, anchor=start): works but is redundant — `anchor: 'end'` + `z2` lets cubing.js handle the inversion.
+
+---
+
+## Decision 7: Case ID Lookup and Data Source
+
+**Decision**: Case lookup reads from `cfop-app/public/data/algs-cfop-*.json` directly (relative to the script location). View mode (2D/3D) and mask orbits are driven by `method` + the explicit `mask` field in each JSON case (`"edge"` | `"corner"` | absent).
+
+**Rationale**: The JSON files are the canonical algorithm data source for the whole project. Reading them directly avoids duplication. The `method` field distinguishes OLL/PLL (2D) from F2L/Cross/BGR (3D); the `mask` field explicitly encodes the stickering variant rather than inferring it from `group` (which is a UI organisational concern).
 
 **Alternatives considered**:
 - A separate algorithm registry in `cubify-scripts/`: duplicates data, adds maintenance burden.

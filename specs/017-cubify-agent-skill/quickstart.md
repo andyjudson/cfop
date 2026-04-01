@@ -70,7 +70,7 @@ node cubify.mjs --file ../cfop-app/public/data/algs-cfop-oll.json
 
 ## Output location
 
-All images are written to `~/.claude/tmp/cubify/`. The directory is created automatically on first run.
+All images are written to `.claude/tmp/cubify/` within the repo root. The directory is created automatically on first run.
 
 ---
 

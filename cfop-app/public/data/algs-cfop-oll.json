@@ -141,6 +141,7 @@
     "notation": "(r U2 R') U' R U' r'",
     "method": "oll",
     "group": "Block & Edge Setup",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-3-1.svg"
   },
   {
@@ -149,6 +150,7 @@
     "notation": "(r' U2 R) U R' U r",
     "method": "oll",
     "group": "Block & Edge Setup",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-3-2.svg"
   },
   {
@@ -157,6 +159,7 @@
     "notation": "(r U R' U') M (U R U' R')",
     "method": "oll",
     "group": "Block & Edge Setup",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-4-1.svg"
   },
   {
@@ -165,6 +168,7 @@
     "notation": "(R U R' U') M' (U R U' r')",
     "method": "oll",
     "group": "Block & Edge Setup",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-4-2.svg"
   },
   {
@@ -333,6 +337,7 @@
     "notation": "F (U R U' R') (U R U' R') F'",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-11-1.svg"
   },
   {
@@ -341,6 +346,7 @@
     "notation": "R' (F' U' F U') R U R' U R",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-11-2.svg"
   },
   {
@@ -349,6 +355,7 @@
     "notation": "r U r' (U R U' R') (U R U' R') r U' r'",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-11-3.svg"
   },
   {
@@ -357,6 +364,7 @@
     "notation": "R' F (R U R U') R2 F' (R2 U' R') U (R U R')",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-11-4.svg"
   },
   {
@@ -365,6 +373,7 @@
     "notation": "r U r' (R U R' U') r U' r'",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-12-2.svg"
   },
   {
@@ -373,6 +382,7 @@
     "notation": "R' F' R (L' U' L U) R' F R",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-12-1.svg"
   },
   {
@@ -381,6 +391,7 @@
     "notation": "(F U R U') R2 F' R (U R U' R')",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-12-3.svg"
   },
   {
@@ -389,6 +400,7 @@
     "notation": "R' F (R U R') F' R (F U' F')",
     "method": "oll",
     "group": "Line & L Shapes",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-12-4.svg"
   },
   {
@@ -397,6 +409,7 @@
     "notation": "R U2 (R2 F R F') U2 (R' F R F')",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-1.svg"
   },
   {
@@ -405,6 +418,7 @@
     "notation": "f (U R U' R') S' (U R U' R') F'",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-2.svg"
   },
   {
@@ -413,6 +427,7 @@
     "notation": "(F R' F' R) U S' (R U' R') S",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-3.svg"
   },
   {
@@ -421,6 +436,7 @@
     "notation": "S R' U' (R U) (R U) R U' R' S'",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-4.svg"
   },
   {
@@ -429,6 +445,7 @@
     "notation": "S' (R U R') S U' (R' F R F')",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-5.svg"
   },
   {
@@ -437,6 +454,7 @@
     "notation": "(r U R' U R U2 r') (r' U' R U' R' U2 r)",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-6.svg"
   },
   {
@@ -445,6 +463,7 @@
     "notation": "(R' F2 R2 U2 R') F' (R U2 R2 F2 R)",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-7.svg"
   },
   {
@@ -453,6 +472,7 @@
     "notation": "(R' F2 R2 U2 R') F' (R U2 R2 F2 R)",
     "method": "oll",
     "group": "Dot Patterns",
+    "mask": "edge",
     "image": "./assets/cfop_oll/oll-14-8.svg"
   }
 ]

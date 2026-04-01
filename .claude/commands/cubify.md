@@ -56,5 +56,5 @@ If the script exits with code 1 (input error) or 2 (render error), show the erro
 
 - All output is PNG — Playwright screenshot only supports PNG format
 - View mode (2D/3D) and mask are auto-selected from case type: OLL/PLL → 2D top-layer view, F2L/Cross/BGR → 3D perspective view
-- Output files are written to `~/.claude/tmp/cubify/`
+- Output files are written to `.claude/tmp/cubify/` within the repo
 - The renderer opens a visible Chromium window briefly — this is expected (WebGL requires headful mode on macOS)

@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–016 complete.
+Features 001–017 complete.
 
 ## CSS Standards
 
@@ -98,3 +98,25 @@ Andy is not a React/Node specialist — proactively flag and fix ecosystem hygie
 - **npm packages**: flag any `npm audit` high/critical vulnerabilities when spotted. Minor version drift is fine; major version gaps on core packages (React, Vite, TypeScript) are worth a note.
 - **CI/CD**: `deploy.yml` only builds and deploys — it does not run tests. Smoke tests are manual pre-merge. If a CI test step is added in future, it needs `npx playwright install chromium` before the test run.
 - **Bundle size**: Vite warns when chunks exceed 500kB. The `cubing.js` 3D chunk (~511kB) and main bundle (~853kB) are known and acceptable for now — don't suppress the warning, but don't treat it as blocking.
+
+## Playwright / Web Component Automation
+
+When automating or screenshotting a third-party web component (e.g. TwistyPlayer):
+
+1. **Inspect structure first** — write a small throwaway script that dumps shadow root children, tag names, and bounding rects before attempting any manipulation. The solution is usually obvious once you can see the actual DOM tree.
+2. **Clip to the visualization element, don't hide the chrome** — find the exact element that renders the content (canvas, SVG wrapper, etc.) and use `page.screenshot({ clip: rect })`. Trying to hide controls via API or CSS is fragile.
+3. **Use `page.addInitScript()` for intercepts** — this runs before any page script including bundle load. Injecting intercepts inside the HTML `<script>` tag fires too late.
+4. **`headless: false` required for WebGL on macOS** — headless Chromium blocks WebGL regardless of flags. This is a macOS+Chromium constraint, not a page issue.
+
+See `specs/017-cubify-agent-skill/research.md` (learnings 1–9) for the full record of what was tried and why.
+
+## cubify-scripts (017)
+
+Standalone Node.js ESM skill for cube image generation. No build step.
+
+- **Entry**: `cubify-scripts/cubify.mjs` — run directly with `node`
+- **Skill**: `.claude/commands/cubify.md` — invoked as `/cubify` in Claude Code
+- **Renderer**: `cubify-scripts/lib/renderer.mjs` — Playwright headful Chromium + esbuild IIFE bundle
+- **Requires**: `headless: false` (WebGL blocked in headless Chromium on macOS); `npx playwright install chromium` from `cfop-app/`
+- **Output**: `.claude/tmp/cubify/` within the repo (gitignored)
+- **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session

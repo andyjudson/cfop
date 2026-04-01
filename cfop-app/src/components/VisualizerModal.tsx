@@ -33,15 +33,16 @@ function pickRandom(pool: CfopAlgorithm[]): CfopAlgorithm {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-const getMask = (method?: string, group?: string): string => {
-  if (method === 'oll' && group === 'edge') {
-    return 'EDGES:----OOOO----,CORNERS:----IIII,CENTERS:------';
-  }
+const getMask = (method?: string, mask?: string): string => {
   if (method === 'oll') {
-    return 'EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------';
+    return mask === 'edge'
+      ? 'EDGES:----OOOO----,CORNERS:----IIII,CENTERS:------'  // cross not yet formed: hide top corners
+      : 'EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------'; // cross formed: show top corners
   }
-  if (method === 'pll' && group === 'corner') {
-    return 'EDGES:----OOOO----,CORNERS:--------,CENTERS:------';
+  if (method === 'pll') {
+    return mask === 'corner'
+      ? 'EDGES:----OOOO----,CORNERS:--------,CENTERS:------'  // corner-swap PLL: highlight edges as reference
+      : 'EDGES:------------,CORNERS:--------,CENTERS:------'; // edge-swap PLL: show all stickers
   }
   return 'EDGES:------------,CORNERS:--------,CENTERS:------';
 };
@@ -108,7 +109,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   );
 
   const mask = useMemo(
-    () => getMask(currentAlg?.method?.toLowerCase(), currentAlg?.group?.toLowerCase()),
+    () => getMask(currentAlg?.method?.toLowerCase(), currentAlg?.mask),
     [currentAlg],
   );
 

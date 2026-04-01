@@ -1,18 +1,152 @@
 [
-    { "id": "oll_cross_line", "name": "Line", "notation": "F (R U R' U') F'", "method": "oll", "group": "edge", "image": "./assets/cfop_bgr/oll_case_edge_line.svg", "notes": "Create yellow cross. Hold the cube so the oriented edges form a horizontal line. Algorithm uses front rotation and the sexy trigger." },
-    { "id": "oll_cross_hook", "name": "Hook", "notation": "f (R U R' U') f'", "method": "oll", "group": "edge", "image": "./assets/cfop_bgr/oll_case_edge_hook.svg", "notes": "Create yellow cross. Hold the cube with so the oriented edges form a hook shape in the front-right position. Algorithm uses wide rotation and sexy trigger" },
-    { "id": "oll_cross_dot", "name": "Dot", "notation": "F (R U R' U') F' f (R U R' U') f'", "method": "oll", "group": "edge", "image": "./assets/cfop_bgr/oll_case_edge_dot.svg", "notes": "Create yellow cross. Hold the cube in any orientation. Algorithm is the combination of line + hook cases." },
-    { "id": "oll_sune", "name": "Sune", "notation": "R U R' U (R U2 R')", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_sune.svg", "notes": "Solve yellow face. Hold the cube with an oriented yellow corner in the front-left and a unorientated corner in the front-right, facing forward. Setup a standard one-corner case with: A). If two corners are oriented, position a unorientated corner front-left, facing forward; or B). If zero corners are oriented, position a unorientated corner front-left, facing outward."},
-    { "id": "oll_antisune", "name": "AntiSune", "notation": "(R U2 R') U' R U' R'", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_antisune.svg", "notes": "Solve yellow face. Hold the cube with an oriented yellow corner in the back-right and a unorientated corner in the front-left, facing forward." },
-    { "id": "oll_shape_h", "name": "H shape", "notation": "R U R' U (R U' R' U) R U2 R'", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_h.svg", "notes": "Solve yellow face. Hold the cube so the headlights are facing outward." },
-    { "id": "oll_shape_pi", "name": "Pi shape", "notation": "R U2 (R2 U') (R2 U') R2 U2 R", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_pi.svg", "notes": "Solve yellow face. Hold the cube so the headlights are on the left." },
-    { "id": "oll_shape_t", "name": "T shape", "notation": "(r U R' U') (r' F R) F'", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_t.svg", "notes": "Solve yellow face. Hold the cube so the yellow block is on the right. Algorithm uses wide rotations." },
-    { "id": "oll_shape_l", "name": "L shape", "notation": "F' (r U R' U') (r' F R)", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_l.svg", "notes": "Solve yellow face. Hold the cube so that two unorientated corners are on the front-right and back-left. Algorithm uses wide rotations." },
-    { "id": "oll_shape_u", "name": "U shape", "notation": "R2 D (R' U2 R) D' (R' U2 R')", "method": "oll", "group": "corner", "image": "./assets/cfop_bgr/oll_case_corner_u.svg", "notes": "Solve yellow face. Hold the cube so the yellow block is at the back, with the headlights at the front." },
-    { "id": "pll_t", "name": "T Perm", "notation": "(R U R' U') R' F (R2 U' R') U' (R U R' F')", "line_break": 9, "method": "pll", "group": "corner", "image": "./assets/cfop_bgr/pll_tperm.svg", "notes": "Position last layer corners. If there are any headlights, hold the cube with them on the left. Algorithm swaps adjacent corners." },
-    { "id": "pll_y", "name": "Y Perm", "notation": "F (R U' R' U') R U R' F' (R U R' U') R' F R F'", "method": "pll", "group": "corner", "image": "./assets/cfop_bgr/pll_yperm.svg", "notes": "Position last layer corners. If there are no headlights, hold the cube in any orientation. Algorithm swaps opposite corners." },
-    { "id": "pll_ua", "name": "Ua Perm", "notation": "(R2 U' R') U' R (U R) (U R) U' R" , "method": "pll", "group": "edge", "image": "./assets/cfop_bgr/pll_uaperm.svg", "notes": "Position last layer edges. Hold the cube with the block in the front, and the left edge opposite to its corners. If there are no headlights or left edge is not opposite, hold the cube in any orientation to setup a standard case. Algorithm cycles three edges counterclockwise." },
-    { "id": "pll_ub", "name": "Ub Perm", "notation": "R' U (R' U') (R' U') R' U (R U R2)" , "method": "pll", "group": "edge", "image": "./assets/cfop_bgr/pll_ubperm.svg", "notes": "Position last layer edges. Hold the cube with the block in the front, and the right edge opposite to its corners. Algorithm cycles three edges clockwise." },
-    { "id": "pll_h", "name": "H Perm", "notation": "M2 U' (M2 U2 M2) U' M2", "method": "pll", "group": "edge", "image": "./assets/cfop_bgr/pll_hperm.svg", "notes": "Position last layer edges. If there is a checkerboard pattern and edges are opposite to their corners, hold cube in any orientation. Algorithm uses slice moves." },
-    { "id": "pll_z", "name": "Z Perm", "notation": "M' U' (M2 U') (M2 U') M' U2 M2", "method": "pll", "group": "edge", "image": "./assets/cfop_bgr/pll_zperm.svg", "notes": "Position last layer edges. If there is a checkerboard pattern but the edges are adjacent to their corners, hold cube so the edges to swap are in the front-right slots. Algorithm uses slice moves." }
+  {
+    "id": "oll_cross_line",
+    "name": "Line",
+    "notation": "F (R U R' U') F'",
+    "method": "oll",
+    "group": "edge",
+    "mask": "edge",
+    "image": "./assets/cfop_bgr/oll_case_edge_line.svg",
+    "notes": "Create yellow cross. Hold the cube so the oriented edges form a horizontal line. Algorithm uses front rotation and the sexy trigger."
+  },
+  {
+    "id": "oll_cross_hook",
+    "name": "Hook",
+    "notation": "f (R U R' U') f'",
+    "method": "oll",
+    "group": "edge",
+    "mask": "edge",
+    "image": "./assets/cfop_bgr/oll_case_edge_hook.svg",
+    "notes": "Create yellow cross. Hold the cube with so the oriented edges form a hook shape in the front-right position. Algorithm uses wide rotation and sexy trigger"
+  },
+  {
+    "id": "oll_cross_dot",
+    "name": "Dot",
+    "notation": "F (R U R' U') F' f (R U R' U') f'",
+    "method": "oll",
+    "group": "edge",
+    "mask": "edge",
+    "image": "./assets/cfop_bgr/oll_case_edge_dot.svg",
+    "notes": "Create yellow cross. Hold the cube in any orientation. Algorithm is the combination of line + hook cases."
+  },
+  {
+    "id": "oll_sune",
+    "name": "Sune",
+    "notation": "R U R' U (R U2 R')",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_sune.svg",
+    "notes": "Solve yellow face. Hold the cube with an oriented yellow corner in the front-left and a unorientated corner in the front-right, facing forward. Setup a standard one-corner case with: A). If two corners are oriented, position a unorientated corner front-left, facing forward; or B). If zero corners are oriented, position a unorientated corner front-left, facing outward."
+  },
+  {
+    "id": "oll_antisune",
+    "name": "AntiSune",
+    "notation": "(R U2 R') U' R U' R'",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_antisune.svg",
+    "notes": "Solve yellow face. Hold the cube with an oriented yellow corner in the back-right and a unorientated corner in the front-left, facing forward."
+  },
+  {
+    "id": "oll_shape_h",
+    "name": "H shape",
+    "notation": "R U R' U (R U' R' U) R U2 R'",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_h.svg",
+    "notes": "Solve yellow face. Hold the cube so the headlights are facing outward."
+  },
+  {
+    "id": "oll_shape_pi",
+    "name": "Pi shape",
+    "notation": "R U2 (R2 U') (R2 U') R2 U2 R",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_pi.svg",
+    "notes": "Solve yellow face. Hold the cube so the headlights are on the left."
+  },
+  {
+    "id": "oll_shape_t",
+    "name": "T shape",
+    "notation": "(r U R' U') (r' F R) F'",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_t.svg",
+    "notes": "Solve yellow face. Hold the cube so the yellow block is on the right. Algorithm uses wide rotations."
+  },
+  {
+    "id": "oll_shape_l",
+    "name": "L shape",
+    "notation": "F' (r U R' U') (r' F R)",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_l.svg",
+    "notes": "Solve yellow face. Hold the cube so that two unorientated corners are on the front-right and back-left. Algorithm uses wide rotations."
+  },
+  {
+    "id": "oll_shape_u",
+    "name": "U shape",
+    "notation": "R2 D (R' U2 R) D' (R' U2 R')",
+    "method": "oll",
+    "group": "corner",
+    "image": "./assets/cfop_bgr/oll_case_corner_u.svg",
+    "notes": "Solve yellow face. Hold the cube so the yellow block is at the back, with the headlights at the front."
+  },
+  {
+    "id": "pll_t",
+    "name": "T Perm",
+    "notation": "(R U R' U') R' F (R2 U' R') U' (R U R' F')",
+    "line_break": 9,
+    "method": "pll",
+    "group": "corner",
+    "mask": "corner",
+    "image": "./assets/cfop_bgr/pll_tperm.svg",
+    "notes": "Position last layer corners. If there are any headlights, hold the cube with them on the left. Algorithm swaps adjacent corners."
+  },
+  {
+    "id": "pll_y",
+    "name": "Y Perm",
+    "notation": "F (R U' R' U') R U R' F' (R U R' U') R' F R F'",
+    "method": "pll",
+    "group": "corner",
+    "mask": "corner",
+    "image": "./assets/cfop_bgr/pll_yperm.svg",
+    "notes": "Position last layer corners. If there are no headlights, hold the cube in any orientation. Algorithm swaps opposite corners."
+  },
+  {
+    "id": "pll_ua",
+    "name": "Ua Perm",
+    "notation": "(R2 U' R') U' R (U R) (U R) U' R",
+    "method": "pll",
+    "group": "edge",
+    "image": "./assets/cfop_bgr/pll_uaperm.svg",
+    "notes": "Position last layer edges. Hold the cube with the block in the front, and the left edge opposite to its corners. If there are no headlights or left edge is not opposite, hold the cube in any orientation to setup a standard case. Algorithm cycles three edges counterclockwise."
+  },
+  {
+    "id": "pll_ub",
+    "name": "Ub Perm",
+    "notation": "R' U (R' U') (R' U') R' U (R U R2)",
+    "method": "pll",
+    "group": "edge",
+    "image": "./assets/cfop_bgr/pll_ubperm.svg",
+    "notes": "Position last layer edges. Hold the cube with the block in the front, and the right edge opposite to its corners. Algorithm cycles three edges clockwise."
+  },
+  {
+    "id": "pll_h",
+    "name": "H Perm",
+    "notation": "M2 U' (M2 U2 M2) U' M2",
+    "method": "pll",
+    "group": "edge",
+    "image": "./assets/cfop_bgr/pll_hperm.svg",
+    "notes": "Position last layer edges. If there is a checkerboard pattern and edges are opposite to their corners, hold cube in any orientation. Algorithm uses slice moves."
+  },
+  {
+    "id": "pll_z",
+    "name": "Z Perm",
+    "notation": "M' U' (M2 U') (M2 U') M' U2 M2",
+    "method": "pll",
+    "group": "edge",
+    "image": "./assets/cfop_bgr/pll_zperm.svg",
+    "notes": "Position last layer edges. If there is a checkerboard pattern but the edges are adjacent to their corners, hold cube so the edges to swap are in the front-right slots. Algorithm uses slice moves."
+  }
 ]

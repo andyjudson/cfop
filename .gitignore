@@ -4,6 +4,7 @@ SCRATCH.md
 
 # Claude settings
 .claude/settings.local.json
+.claude/tmp/
 
 # Dependencies
 node_modules/

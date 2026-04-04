@@ -54,8 +54,11 @@ If the script exits with code 1 (input error) or 2 (render error), show the erro
 
 ## Notes
 
-- All output is PNG — Playwright screenshot only supports PNG format
+- All output is transparent PNG — `omitBackground: true` on Playwright screenshot; images blend with any app theme
 - View mode (2D/3D) and mask are auto-selected from case type: OLL/PLL → 2D top-layer view, F2L/Cross/BGR → 3D perspective view
 - OLL masking: no `mask` field = 1-look (show all top edges + corners); `mask: "edge"` = 2-look edge stage (corners hidden)
+- F2L setup: `z2` applied automatically; y-prefixed algs get `z2 y` to normalise to FR slot; mid-alg rotations need explicit `setup` field in JSON
+- PLL/BGR setup: `z2` orients yellow on top; add `y`/`y2`/`y'` to setup to put green front — verify empirically per case
 - Output files are written to `.claude/tmp/cubify/` within the repo
 - The renderer opens a visible Chromium window briefly — this is expected (WebGL requires headful mode on macOS)
+- After any batch regeneration, copy outputs to `cfop-app/public/assets/cfop_<method>/` to update the app

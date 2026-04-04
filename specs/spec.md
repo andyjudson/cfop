@@ -597,7 +597,7 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Active case highlighted and scrolled into view; synced with dropdown state ✅
 - Mobile: toggle and carousel hidden, dropdowns always shown ✅
 
-**Feature 020 - cubify.js (Planned)**:
+**Feature 020 - cubify-poc (Planned)**:
 - Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
 - No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
 - Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
@@ -619,4 +619,4 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 **Feature 023 - Alt Algs UI (Planned)**:
 - Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
 - Toggle between primary and alternative alg for a case ✅ (planned)
-- Solver-generated alts once cubify.js solver integration is available ✅ (planned)
+- Solver-generated alts once cubify-poc solver integration is available ✅ (planned)

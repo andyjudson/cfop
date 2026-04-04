@@ -105,7 +105,7 @@
   },
   {
     "id": "oll-2-7",
-    "name": "Seein Headlights",
+    "name": "Seeing Headlights",
     "notation": "R' U' (R' F R F') U R",
     "method": "oll",
     "group": "Small Patterns",
@@ -313,7 +313,7 @@
   },
   {
     "id": "oll-5-7",
-    "name": "Dalmation",
+    "name": "Dalmatian",
     "notation": "(R U R' U R U2 R') F (R U R' U') F'",
     "method": "oll",
     "group": "Fish & Awkward",
@@ -321,7 +321,7 @@
   },
   {
     "id": "oll-5-8",
-    "name": "Anti-Dalmation",
+    "name": "Anti-Dalmatian",
     "notation": "R' U' F2 u' (R U R') D R2 B",
     "method": "oll",
     "group": "Fish & Awkward",

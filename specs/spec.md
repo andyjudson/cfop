@@ -605,18 +605,24 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
 - CSS custom property tokens for full theming ✅ (planned)
 - MIT licensed, reusable beyond this project ✅ (planned)
-**Feature 021 - PWA & Bundle Optimisation (Planned)**:
+**Feature 021 - cubify-poc Integration (Planned)**:
+- Migrate cfop-app and cubify-scripts from cubing.js/TwistyPlayer to cubify-poc ✅ (planned)
+- Replace VisualizerModal and ScrambleCubePreview TwistyPlayer usage ✅ (planned)
+- Replace cubify agent skill Playwright renderer with CubeExporter ✅ (planned)
+- Remove IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
+
+**Feature 022 - PWA & Bundle Optimisation (Planned)**:
 - Service worker for offline support — app usable at a cube without connectivity ✅ (planned)
 - Asset caching strategy for algorithm JSON, PNGs, and app shell ✅ (planned)
-- Address known 500kB+ chunk warnings: cubing.js dynamic import / code splitting ✅ (planned)
+- Address known 500kB+ chunk warnings: resolved by cubify-poc replacing cubing.js ✅ (planned)
 
-**Feature 022 - Personalisation & Learning Progress (Planned)**:
+**Feature 023 - Personalisation & Learning Progress (Planned)**:
 - Per-case practice tracking — record which OLL/PLL cases have been practiced ✅ (planned)
 - Case bookmarking / favourites — flag cases for focused practice ✅ (planned)
 - Algorithm notation preference — wide moves (Rw) vs slice moves (M/S) ✅ (planned)
 - Persisted via versioned localStorage envelope, consistent with existing prefs pattern ✅ (planned)
 
-**Feature 023 - Alt Algs UI (Planned)**:
+**Feature 024 - Alt Algs UI (Planned)**:
 - Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
 - Toggle between primary and alternative alg for a case ✅ (planned)
 - Solver-generated alts once cubify-poc solver integration is available ✅ (planned)

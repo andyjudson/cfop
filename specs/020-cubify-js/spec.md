@@ -151,9 +151,35 @@ Pure SVG generation — no canvas, no WebGL. Isometric projection or flat net. T
 
 ---
 
+## Dependency Decision Record
+
+### What we import from cubing.js
+
+| Module | Why |
+|--------|-----|
+| `Alg`, `Move` (cubing/alg) | WCA-compliant notation parsing, well-tested, not worth reinventing |
+| `experimentalLeafMoves()` | Move sequence iteration for animation engine |
+
+Everything else — rendering, animation, stickering, export — is built fresh. This is dependency use, not derivation. Equivalent to using a date library for date parsing.
+
+### What we build fresh
+
+- WebGL/canvas rendering (Three.js)
+- SVG flat net renderer
+- Animation engine and player API
+- Stickering presets
+- Static export / headless path
+- CSS token theming layer
+
+### Attribution
+
+`cubing.js` credited in README and package.json. Implementation authored under direction of the project owner; AI-assisted development noted transparently.
+
+---
+
 ## Licensing
 
-- `cubing.js` is MIT licensed — we can study its approach and reuse small utilities with attribution
+- `cubing.js` is MIT licensed — imported as a dependency with attribution
 - `cubify.js` will also be MIT licensed
 - Three.js is MIT licensed
 - Nothing GPL or LGPL in the dependency chain

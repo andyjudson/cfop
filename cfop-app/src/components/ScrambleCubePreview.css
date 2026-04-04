@@ -68,4 +68,14 @@
   .scramble-cube-hint {
     font-size: 0;  /* hide text, keep icon only */
   }
+
+  /* Expanded on mobile: stack text above cube */
+  .scramble-row--expanded {
+    flex-direction: column;
+  }
+
+  .scramble-row--expanded .scramble-cube-panel {
+    width: 100%;
+    align-items: center;
+  }
 }

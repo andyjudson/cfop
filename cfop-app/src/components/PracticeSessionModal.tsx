@@ -283,7 +283,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                 {(() => {
                   const scrambleValue = isCompetitive ? compScramble : scramble?.value;
                   return (
-                    <div className="scramble-row">
+                    <div className={`scramble-row${cubeExpanded ? ' scramble-row--expanded' : ''}`}>
                       <div className="scramble-text-panel">
                         <span className="scramble-text">{scrambleValue ?? 'No scramble available yet.'}</span>
                       </div>

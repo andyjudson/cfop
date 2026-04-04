@@ -361,16 +361,16 @@
   },
   {
     "id": "oll-6-5",
-    "name": "Squeegee",
-    "notation": "r U r' (R U R' U') r U' r'",
+    "name": "Anti-Squeegee",
+    "notation": "R' F' R (L' U' L U) R' F R",
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-5.png"
   },
   {
     "id": "oll-6-6",
-    "name": "Anti-Squeegee",
-    "notation": "R' F' R (L' U' L U) R' F R",
+    "name": "Squeegee",
+    "notation": "r U r' (R U R' U') r U' r'",
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-6.png"
@@ -450,7 +450,7 @@
   {
     "id": "oll-7-8",
     "name": "Anti-Mouse",
-    "notation": "(R' F2 R2 U2 R') F' (R U2 R2 F2 R)",
+    "notation": "(R' F2 R2 U2 R') F (R U2 R2 F2 R)",
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-8.png"

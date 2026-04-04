@@ -69,9 +69,12 @@ Copied from `cubify-app/src/utils/maskPresets.ts` into `cubify-scripts/lib/masks
 |--------|-------|-------------|
 | `default` | All stickers visible | `EDGES:------------,CORNERS:--------,CENTERS:------` |
 | `cross` | Bottom cross focus | `EDGES:----IIIIIIII,CORNERS:IIIIIIII,CENTERS:------` |
-| `f2l` | F2L pairs focus | `EDGES:----IIII----,CORNERS:----IIII,CENTERS:------` |
-| `oll` | Top face orientation | `EDGES:----OOOO----,CORNERS:----IIII,CENTERS:------` |
-| `pll` | Top layer permutation | `EDGES:----OOOO----,CORNERS:--------,CENTERS:------` |
+| `f2l` | F2L pairs focus | `EDGES:----IIII----,CORNERS:----IIII,CENTERS:-----I` |
+| `oll_1look` | 1-look OLL: show all top edges + corners | `EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------` |
+| `oll_2look` | 2-look OLL edge stage: hide corners | `EDGES:----OOOO----,CORNERS:----IIII,CENTERS:------` |
+| `pll_corner` | Corner-swap PLL: highlight edges as reference | `EDGES:----OOOO----,CORNERS:--------,CENTERS:------` |
+
+OLL masking rule: no `mask` field in JSON → `oll_1look` (default); `mask: "edge"` → `oll_2look`.
 
 ---
 

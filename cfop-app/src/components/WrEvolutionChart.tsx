@@ -90,7 +90,9 @@ function resolveTokenColour(token: string): string {
 
 /**
  * Merge two WrRecord series into a single date-sorted ChartPoint array.
- * connectNulls on each <Line> handles the gaps visually as step-after.
+ * Each series is forward-filled at every date from the other series so that
+ * stepAfter lines hold their value horizontally across gaps instead of
+ * interpolating diagonally (which connectNulls would otherwise produce).
  */
 function buildChartData(singleData: WrRecord[], averageData: WrRecord[]): ChartPoint[] {
   const map = new Map<number, ChartPoint>();
@@ -109,7 +111,21 @@ function buildChartData(singleData: WrRecord[], averageData: WrRecord[]): ChartP
     map.set(r.date, pt);
   }
 
-  return Array.from(map.values()).sort((a, b) => a.date - b.date);
+  const sorted = Array.from(map.values()).sort((a, b) => a.date - b.date);
+
+  // Forward-fill: propagate the last known value for each series at every point
+  // so stepAfter lines stay flat across gaps rather than interpolating diagonally.
+  let lastSingle: number | undefined;
+  let lastAverage: number | undefined;
+  for (const pt of sorted) {
+    if (pt.singleTime !== undefined) lastSingle = pt.singleTime;
+    else if (lastSingle !== undefined) pt.singleTime = lastSingle;
+
+    if (pt.averageTime !== undefined) lastAverage = pt.averageTime;
+    else if (lastAverage !== undefined) pt.averageTime = lastAverage;
+  }
+
+  return sorted;
 }
 
 // ── Tooltip ───────────────────────────────────────────────────────────────────
@@ -242,7 +258,7 @@ export function WrEvolutionChart() {
             strokeWidth={2}
             dot={{ r: 3, fill: colours.single, strokeWidth: 0 }}
             activeDot={{ r: 5 }}
-            connectNulls
+
           />
           <Line
             type="stepAfter"
@@ -252,7 +268,7 @@ export function WrEvolutionChart() {
             strokeWidth={2}
             dot={{ r: 3, fill: colours.average, strokeWidth: 0 }}
             activeDot={{ r: 5 }}
-            connectNulls
+
           />
         </LineChart>
       </ResponsiveContainer>

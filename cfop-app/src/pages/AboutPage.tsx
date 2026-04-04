@@ -145,7 +145,10 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 section-title">Video Resources</h2>
         <p>
-          These tutorials from CubeHead<img src={`${import.meta.env.BASE_URL}assets/cubehead.png`} alt="CubeHead" className="logo-inline" /> are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves. These are a great starting point for learning CFOP, and the intuitive methods are especially helpful for building a strong foundation before diving into algorithm memorisation. The videos are well-structured and beginner-friendly, making them an excellent resource for cubers at all levels.
+          These tutorials from CubeHead are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves. These are a great starting point for learning CFOP, and the intuitive methods are especially helpful for building a strong foundation before diving into algorithm memorisation. The videos are well-structured and beginner-friendly, making them an excellent resource for cubers at all levels.
+        </p>
+        <p className="mt-3">
+          Last year he launched his own cubing web app - <a href="https://www.cube.academy" target="_blank" rel="noreferrer">Cube Academy</a>. With a background in software and design (ex-Apple), he's built something clean and content-rich. The paywall wasn't for me but he's been sharing great content for free for years, and he deserves to be recognized for it. From what he's been sharing lately, the <a href="https://www.youtube.com/live/HtMHywhjqro" target="_blank" rel="noreferrer">roadmap</a> looks genuinely exciting — timers, learning progression, and a polished user experience that will be worth following.
         </p>
         <div className="columns mt-3">
           <div className="column">

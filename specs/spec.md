@@ -565,3 +565,26 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - README.md (root): Motivation, CFOP Primer, Recommended Videos, Practice Strategies removed ✅
 - cfop-app/README.md: CFOP Method Overview and Practice Strategies sections removed ✅
 - Production build verified: no errors ✅
+
+**Feature 016 - Algorithm Image Generation (Completed)**:
+- All 135 CFOP case images generated as transparent PNGs via cubify-app (Playwright + cubing.js TwistyPlayer) ✅
+- OLL: 57 cases, 2D view, no masking (1-look app), z2 setup, yellow top ✅
+- PLL: 21 cases, 2D view, no masking, z2 + y-compensation for green front ✅
+- F2L: 41 cases, 3D view, FR slot normalised via z2 + y-prefix detection ✅
+- BGR: 16 cases, mixed OLL/PLL subset for intuitive/beginner pages ✅
+- Transparent PNG output: `background: transparent` + `omitBackground: true` + no white pad ✅
+
+**Feature 017 - Cubify Agent Skill (Completed)**:
+- `cubify-scripts/cubify.mjs` CLI for on-demand cube image generation ✅
+- `.claude/commands/cubify.md` Claude Code skill invokable as `/cubify` ✅
+- Playwright headful Chromium + esbuild IIFE bundle served via local HTTP server ✅
+- Case lookup from `algs-cfop-*.json`; setup/mask derived from `method` + `mask` field ✅
+- Auto y-prefix detection for F2L slot normalisation; explicit `setup` field for exceptions ✅
+- Output to `.claude/tmp/cubify/` (gitignored) ✅
+- Production batch run: all 135 CFOP cases regenerated as transparent PNGs ✅
+
+**Feature 018 - Scramble Cube Preview (In Progress)**:
+- Live 3D cube visualisation in Practice Timer modal showing scrambled state ✅ (planned)
+- Compact inline view; tap to expand full-modal view hiding all timer controls ✅ (planned)
+- TwistyPlayer `PG3D`, green front / white top, `controlPanel: 'none'`, `background: 'none'` ✅ (planned)
+- Reactive update on new scramble (Standard and Champion modes) ✅ (planned)

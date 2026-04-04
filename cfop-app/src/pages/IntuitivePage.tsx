@@ -16,21 +16,27 @@ interface ExampleCase {
 
 const CROSS_CASES: ExampleCase[] = [
   {
+    id: 'cross-solved',
+    label: 'cross solved',
+    image: `${BASE}assets/cfop_bgr/cross_case1.png`,
+    alt: 'Cross solved: all four white edges in place.',
+  },
+  {
     id: 'cross-positioned-not-oriented',
     label: 'positioned not oriented',
-    image: '/cubing.spec/assets/cfop_bgr/cross_case2.png',
+    image: `${BASE}assets/cfop_bgr/cross_case2.png`,
     alt: 'Cross case: white edge positioned but not oriented.',
   },
   {
     id: 'cross-oriented-not-positioned',
     label: 'oriented not positioned',
-    image: '/cubing.spec/assets/cfop_bgr/cross_case3.png',
+    image: `${BASE}assets/cfop_bgr/cross_case3.png`,
     alt: 'Cross case: white edge oriented but in the wrong slot.',
   },
   {
     id: 'cross-flipped',
     label: 'flipped',
-    image: '/cubing.spec/assets/cfop_bgr/cross_case4.png',
+    image: `${BASE}assets/cfop_bgr/cross_case4.png`,
     alt: 'Cross case: white edge flipped and needs extraction and reinsertion.',
   },
 ];
@@ -179,7 +185,7 @@ export default function IntuitivePage() {
             If a <strong>white edge is flipped</strong>, take it out, open the target slot, then insert into the target slot.
           </li>
         </ul>
-        <CaseCards cases={CROSS_CASES} columnsClass="column is-one-third-desktop is-half-tablet" />
+        <CaseCards cases={CROSS_CASES} columnsClass="column is-one-quarter-desktop is-half-tablet" />
       </section>
 
       <section className="section intuitive-section">

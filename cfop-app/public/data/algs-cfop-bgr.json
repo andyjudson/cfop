@@ -110,7 +110,8 @@
     "method": "pll",
     "group": "corner",
     "image": "./assets/cfop_bgr/pll_t.png",
-    "notes": "Position last layer corners. If there are any headlights, hold the cube with them on the left. Algorithm swaps adjacent corners."
+    "notes": "Position last layer corners. If there are any headlights, hold the cube with them on the left. Algorithm swaps adjacent corners.",
+    "setup": "z2"
   },
   {
     "id": "pll_y",
@@ -119,7 +120,8 @@
     "method": "pll",
     "group": "corner",
     "image": "./assets/cfop_bgr/pll_y.png",
-    "notes": "Position last layer corners. If there are no headlights, hold the cube in any orientation. Algorithm swaps opposite corners."
+    "notes": "Position last layer corners. If there are no headlights, hold the cube in any orientation. Algorithm swaps opposite corners.",
+    "setup": "z2"
   },
   {
     "id": "pll_ua",
@@ -138,7 +140,8 @@
     "method": "pll",
     "group": "edge",
     "image": "./assets/cfop_bgr/pll_ub.png",
-    "notes": "Position last layer edges. Hold the cube with the block in the front, and the right edge opposite to its corners. Algorithm cycles three edges clockwise."
+    "notes": "Position last layer edges. Hold the cube with the block in the front, and the right edge opposite to its corners. Algorithm cycles three edges clockwise.",
+    "setup": "z2"
   },
   {
     "id": "pll_h",

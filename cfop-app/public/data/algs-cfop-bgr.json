@@ -6,7 +6,7 @@
     "method": "oll",
     "group": "edge",
     "mask": "edge",
-    "image": "./assets/cfop_bgr/oll_case_edge_line.svg",
+    "image": "./assets/cfop_bgr/oll_cross_line.png",
     "notes": "Create yellow cross. Hold the cube so the oriented edges form a horizontal line. Algorithm uses front rotation and the sexy trigger."
   },
   {
@@ -16,7 +16,7 @@
     "method": "oll",
     "group": "edge",
     "mask": "edge",
-    "image": "./assets/cfop_bgr/oll_case_edge_hook.svg",
+    "image": "./assets/cfop_bgr/oll_cross_hook.png",
     "notes": "Create yellow cross. Hold the cube with so the oriented edges form a hook shape in the front-right position. Algorithm uses wide rotation and sexy trigger"
   },
   {
@@ -26,7 +26,7 @@
     "method": "oll",
     "group": "edge",
     "mask": "edge",
-    "image": "./assets/cfop_bgr/oll_case_edge_dot.svg",
+    "image": "./assets/cfop_bgr/oll_cross_dot.png",
     "notes": "Create yellow cross. Hold the cube in any orientation. Algorithm is the combination of line + hook cases."
   },
   {
@@ -35,7 +35,7 @@
     "notation": "R U R' U (R U2 R')",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_sune.svg",
+    "image": "./assets/cfop_bgr/oll_sune.png",
     "notes": "Solve yellow face. Hold the cube with an oriented yellow corner in the front-left and a unorientated corner in the front-right, facing forward. Setup a standard one-corner case with: A). If two corners are oriented, position a unorientated corner front-left, facing forward; or B). If zero corners are oriented, position a unorientated corner front-left, facing outward."
   },
   {
@@ -44,7 +44,7 @@
     "notation": "(R U2 R') U' R U' R'",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_antisune.svg",
+    "image": "./assets/cfop_bgr/oll_antisune.png",
     "notes": "Solve yellow face. Hold the cube with an oriented yellow corner in the back-right and a unorientated corner in the front-left, facing forward."
   },
   {
@@ -53,7 +53,7 @@
     "notation": "R U R' U (R U' R' U) R U2 R'",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_h.svg",
+    "image": "./assets/cfop_bgr/oll_shape_h.png",
     "notes": "Solve yellow face. Hold the cube so the headlights are facing outward."
   },
   {
@@ -62,7 +62,7 @@
     "notation": "R U2 (R2 U') (R2 U') R2 U2 R",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_pi.svg",
+    "image": "./assets/cfop_bgr/oll_shape_pi.png",
     "notes": "Solve yellow face. Hold the cube so the headlights are on the left."
   },
   {
@@ -71,7 +71,7 @@
     "notation": "(r U R' U') (r' F R) F'",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_t.svg",
+    "image": "./assets/cfop_bgr/oll_shape_t.png",
     "notes": "Solve yellow face. Hold the cube so the yellow block is on the right. Algorithm uses wide rotations."
   },
   {
@@ -80,7 +80,7 @@
     "notation": "F' (r U R' U') (r' F R)",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_l.svg",
+    "image": "./assets/cfop_bgr/oll_shape_l.png",
     "notes": "Solve yellow face. Hold the cube so that two unorientated corners are on the front-right and back-left. Algorithm uses wide rotations."
   },
   {
@@ -89,7 +89,7 @@
     "notation": "R2 D (R' U2 R) D' (R' U2 R')",
     "method": "oll",
     "group": "corner",
-    "image": "./assets/cfop_bgr/oll_case_corner_u.svg",
+    "image": "./assets/cfop_bgr/oll_shape_u.png",
     "notes": "Solve yellow face. Hold the cube so the yellow block is at the back, with the headlights at the front."
   },
   {
@@ -100,7 +100,7 @@
     "method": "pll",
     "group": "corner",
     "mask": "corner",
-    "image": "./assets/cfop_bgr/pll_tperm.svg",
+    "image": "./assets/cfop_bgr/pll_t.png",
     "notes": "Position last layer corners. If there are any headlights, hold the cube with them on the left. Algorithm swaps adjacent corners."
   },
   {
@@ -110,7 +110,7 @@
     "method": "pll",
     "group": "corner",
     "mask": "corner",
-    "image": "./assets/cfop_bgr/pll_yperm.svg",
+    "image": "./assets/cfop_bgr/pll_y.png",
     "notes": "Position last layer corners. If there are no headlights, hold the cube in any orientation. Algorithm swaps opposite corners."
   },
   {
@@ -119,7 +119,7 @@
     "notation": "(R2 U' R') U' R (U R) (U R) U' R",
     "method": "pll",
     "group": "edge",
-    "image": "./assets/cfop_bgr/pll_uaperm.svg",
+    "image": "./assets/cfop_bgr/pll_ua.png",
     "notes": "Position last layer edges. Hold the cube with the block in the front, and the left edge opposite to its corners. If there are no headlights or left edge is not opposite, hold the cube in any orientation to setup a standard case. Algorithm cycles three edges counterclockwise."
   },
   {
@@ -128,7 +128,7 @@
     "notation": "R' U (R' U') (R' U') R' U (R U R2)",
     "method": "pll",
     "group": "edge",
-    "image": "./assets/cfop_bgr/pll_ubperm.svg",
+    "image": "./assets/cfop_bgr/pll_ub.png",
     "notes": "Position last layer edges. Hold the cube with the block in the front, and the right edge opposite to its corners. Algorithm cycles three edges clockwise."
   },
   {
@@ -137,7 +137,7 @@
     "notation": "M2 U' (M2 U2 M2) U' M2",
     "method": "pll",
     "group": "edge",
-    "image": "./assets/cfop_bgr/pll_hperm.svg",
+    "image": "./assets/cfop_bgr/pll_h.png",
     "notes": "Position last layer edges. If there is a checkerboard pattern and edges are opposite to their corners, hold cube in any orientation. Algorithm uses slice moves."
   },
   {
@@ -146,7 +146,7 @@
     "notation": "M' U' (M2 U') (M2 U') M' U2 M2",
     "method": "pll",
     "group": "edge",
-    "image": "./assets/cfop_bgr/pll_zperm.svg",
+    "image": "./assets/cfop_bgr/pll_z.png",
     "notes": "Position last layer edges. If there is a checkerboard pattern but the edges are adjacent to their corners, hold cube so the edges to swap are in the front-right slots. Algorithm uses slice moves."
   }
 ]

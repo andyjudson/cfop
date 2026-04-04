@@ -9,6 +9,7 @@ import { loadCompetitions, pickRandomGroup } from '../utils/competitionData';
 import { formatElapsedMs } from '../utils/timeFormat';
 import { ComparisonResult } from './ComparisonResult';
 import { CompetitionSelector } from './CompetitionSelector';
+import { ScrambleCubePreview } from './ScrambleCubePreview';
 import './PracticeSessionModal.css';
 
 interface PracticeSessionModalProps {
@@ -59,6 +60,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
   const [compOutcome, setCompOutcome] = useState<ComparisonOutcome | null>(null);
   const [showSelector, setShowSelector] = useState(false);
   const [competitions, setCompetitions] = useState<Competition[]>([]);
+  const [cubeExpanded, setCubeExpanded] = useState(false);
 
   const loadScramble = useCallback(async (source: ScrambleSource) => {
     const requestId = ++requestIdRef.current;
@@ -92,6 +94,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
     setCompetitiveSession(null);
     setCompOutcome(null);
     setShowSelector(false);
+    setCubeExpanded(false);
     loadScramble('initial');
   }, [clearTransientState, isOpen, loadScramble, reset]);
 
@@ -275,16 +278,29 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                   <h3 className="title is-6">Scramble</h3>
                 </div>
 
-                <div className="scramble-display" aria-live="polite">
-                  <span className="scramble-text">
-                    {isCompetitive ? (compScramble ?? 'Loading…') : (scramble?.value ?? 'No scramble available yet.')}
-                  </span>
-                </div>
                 {scrambleError && <p className="practice-error">{scrambleError}</p>}
+
+                {(() => {
+                  const scrambleValue = isCompetitive ? compScramble : scramble?.value;
+                  return (
+                    <div className="scramble-row">
+                      <div className="scramble-text-panel">
+                        <span className="scramble-text">{scrambleValue ?? 'No scramble available yet.'}</span>
+                      </div>
+                      {scrambleValue && (
+                        <ScrambleCubePreview
+                          scramble={scrambleValue}
+                          expanded={cubeExpanded}
+                          onToggleExpand={() => setCubeExpanded(e => !e)}
+                        />
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
 
-              {/* Timer block */}
-              <div className="practice-block">
+              {/* Timer block — hidden when cube is expanded */}
+              {!cubeExpanded && <div className="practice-block">
                 <div className="practice-block-header">
                   <h3 className="title is-6">Timer</h3>
                   {isCompetitive && competitiveSession ? (
@@ -327,15 +343,15 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     </button>
                   )}
                 </div>
-              </div>
+              </div>}
 
-              {/* Stats block: running comparison in competitive, standard stats otherwise */}
-              {isCompetitive && competitiveSession ? (
+              {/* Stats block — hidden when cube is expanded */}
+              {!cubeExpanded && (isCompetitive && competitiveSession ? (  /* stats block */
                 <div className="practice-block">
                   <div className="practice-block-header">
                     <h3 className="title is-6">vs Champion</h3>
                     <button
-                      className="button is-small"
+                      className="button is-small is-light"
                       onClick={() => setShowSelector(true)}
                       disabled={timer.state === 'running'}
                     >
@@ -376,7 +392,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                   <div className="practice-block-header">
                     <h3 className="title is-6">Statistics</h3>
                     <button
-                      className="button is-small"
+                      className="button is-small is-light"
                       onClick={resetStats}
                     >
                       <span className="icon is-small"><MdHistory /></span>
@@ -407,7 +423,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     </div>
                   </div>
                 </div>
-              )}
+              ))}
 
               {statusMessage && <p className="practice-status">{statusMessage}</p>}
             </>

@@ -14,7 +14,7 @@ export function ExpandCollapseControls({
   return (
     <div className="buttons has-addons is-centered mb-5">
       <button
-        className="button is-small"
+        className="button is-small is-light"
         onClick={onExpandAll}
         disabled={disabled}
         aria-label="Expand all algorithm sections"
@@ -23,7 +23,7 @@ export function ExpandCollapseControls({
         Expand All
       </button>
       <button
-        className="button is-small"
+        className="button is-small is-light"
         onClick={onCollapseAll}
         disabled={disabled}
         aria-label="Collapse all algorithm sections"

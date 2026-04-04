@@ -1,0 +1,358 @@
+{
+  "pll": [
+    {
+      "ref_id": "pll-1-1",
+      "alts": [
+        "M2 U M U2 M' U M2",
+        "R U' R U R U R U' R' U' R2"
+      ]
+    },
+    {
+      "ref_id": "pll-1-2",
+      "alts": [
+        "M2 U' M U2 M' U' M2",
+        "R2 U R U R' U' R' U' R' U R'"
+      ]
+    },
+    {
+      "ref_id": "pll-1-3",
+      "alts": [
+        "M2 U M2 U2 M2 U M2"
+      ]
+    },
+    {
+      "ref_id": "pll-1-4",
+      "alts": [
+        "M U M2 U M2 U M U2 M2"
+      ]
+    },
+    {
+      "ref_id": "pll-2-1",
+      "alts": [
+        "l' U R' D2 R U' R' D2 R2 x'",
+        "R' F R' B2 R F' R' B2 R2"
+      ]
+    },
+    {
+      "ref_id": "pll-2-2",
+      "alts": [
+        "l U' R D2 R' U R D2 R2 x'",
+        "R2 B2 R F R' B2 R F' R"
+      ]
+    },
+    {
+      "ref_id": "pll-2-3",
+      "alts": [
+        "z U2 R2 F (R U R' U') (R U R' U') F' R2 U2 z'"
+      ]
+    },
+    {
+      "ref_id": "pll-3-1",
+      "alts": [
+        "R U R' U' R' F R2 U' R' U' R U R' F'"
+      ]
+    },
+    {
+      "ref_id": "pll-3-2",
+      "alts": [
+        "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"
+      ]
+    },
+    {
+      "ref_id": "pll-3-3",
+      "alts": [
+        "(R' U L' U2 R U' R' U2 R L)",
+        "B' U F' U2 B U' B' U2 B F"
+      ]
+    },
+    {
+      "ref_id": "pll-3-4",
+      "alts": [
+        "R' U L' U2 R U' R' U2 R L U'",
+        "L' U' L F L' U' L U L F' L2 U L"
+      ]
+    },
+    {
+      "ref_id": "pll-3-5",
+      "alts": [
+        "L U2 L' U2 L F' L' U' L U L F L2"
+      ]
+    },
+    {
+      "ref_id": "pll-3-6",
+      "alts": [
+        "R' U' R U' R U R U' R' U R U R2 U' R'",
+        "R2 F R U R U' R' F' R U2 R' U2 R"
+      ]
+    },
+    {
+      "ref_id": "pll-4-1",
+      "alts": [
+        "F (R U' R' U) R U R' F' (R U R' U') R' F R F'"
+      ]
+    },
+    {
+      "ref_id": "pll-4-2",
+      "alts": [
+        "z U R' U R2 D' R U' R' D R2 U' R U' z'"
+      ]
+    },
+    {
+      "ref_id": "pll-4-3",
+      "alts": [
+        "R' U L U' R U L' U' R' U L U' R U L'"
+      ]
+    },
+    {
+      "ref_id": "pll-4-4",
+      "alts": [
+        "R' U R U' R' f' U' F U R' F R f R U' R'",
+        "R' U R' U' B' R' B2 U' B' U B' R B R"
+      ]
+    },
+    {
+      "ref_id": "pll-5-1",
+      "alts": [
+        "R U R' U' R' U R U2 R' U' R U' R' U2 R U' R'"
+      ]
+    },
+    {
+      "ref_id": "pll-5-2",
+      "alts": [
+        "F' U' F R2 u R' U R U' R u' R2"
+      ]
+    },
+    {
+      "ref_id": "pll-5-3",
+      "alts": [
+        "R U R' F2 u' R U' R' U R' u F2"
+      ]
+    },
+    {
+      "ref_id": "pll-5-4",
+      "alts": [
+        "R U' R F2 u R' U R U' R u' F2 R'"
+      ]
+    }
+  ],
+  "oll": [
+    {
+      "ref_id": "oll-1-1",
+      "alts": [
+        "R U2 R' U' R U' R'",
+        "r U R' U R U2 r'"
+      ]
+    },
+    {
+      "ref_id": "oll-1-2",
+      "alts": [
+        "R U R' U R U2 R'",
+        "r' U' R U' R' U2 r"
+      ]
+    },
+    {
+      "ref_id": "oll-1-3",
+      "alts": [
+        "R U2 R2 U' R2 U' R2 U2 R"
+      ]
+    },
+    {
+      "ref_id": "oll-1-4",
+      "alts": [
+        "f (R U R' U') (R U R' U') f'"
+      ]
+    },
+    {
+      "ref_id": "oll-1-5",
+      "alts": [
+        "r' U2 R U R' U r"
+      ]
+    },
+    {
+      "ref_id": "oll-1-6",
+      "alts": [
+        "r U2 R' U' R U' r'"
+      ]
+    },
+    {
+      "ref_id": "oll-1-7",
+      "alts": [
+        "r' U' r U' R' U R U' R' U R r' U r"
+      ]
+    },
+    {
+      "ref_id": "oll-2-1",
+      "alts": [
+        "F R U R' U' F'"
+      ]
+    },
+    {
+      "ref_id": "oll-2-2",
+      "alts": [
+        "r' U' r (R' U' R U) r' U r"
+      ]
+    },
+    {
+      "ref_id": "oll-2-3",
+      "alts": [
+        "R' U' R' F R F' U R"
+      ]
+    },
+    {
+      "ref_id": "oll-2-4",
+      "alts": [
+        "L U L F' L' F U' L'"
+      ]
+    },
+    {
+      "ref_id": "oll-2-5",
+      "alts": [
+        "y' R U R' U' R' F R F'"
+      ]
+    },
+    {
+      "ref_id": "oll-2-6",
+      "alts": [
+        "r' U' r (R' U' R U) r' U r"
+      ]
+    },
+    {
+      "ref_id": "oll-2-7",
+      "alts": [
+        "L F' L' U' L U F U' L'"
+      ]
+    },
+    {
+      "ref_id": "oll-2-8",
+      "alts": [
+        "F R U R' U' R U R' U' F'"
+      ]
+    },
+    {
+      "ref_id": "oll-2-9",
+      "alts": [
+        "r U R' U' r' R U R U' R'"
+      ]
+    },
+    {
+      "ref_id": "oll-2-10",
+      "alts": [
+        "r' U' R U r R' U' R' U R"
+      ]
+    },
+    {
+      "ref_id": "oll-3-1",
+      "alts": [
+        "r' U' r U' R' U2 r' U2 r U R"
+      ]
+    },
+    {
+      "ref_id": "oll-3-2",
+      "alts": [
+        "r U r' U R U2 r U2 r' U' R'"
+      ]
+    },
+    {
+      "ref_id": "oll-3-3",
+      "alts": [
+        "r U R' U' r' U R U' R'"
+      ]
+    },
+    {
+      "ref_id": "oll-3-4",
+      "alts": [
+        "r' U' R U r U' R' U R"
+      ]
+    },
+    {
+      "ref_id": "oll-4-1",
+      "alts": [
+        "F U R U2 R' U R U' F'"
+      ]
+    },
+    {
+      "ref_id": "oll-4-2",
+      "alts": [
+        "r' U2 R U R' U r"
+      ]
+    },
+    {
+      "ref_id": "oll-4-3",
+      "alts": [
+        "r U R' U R U2 r' R' U' R U' R' U2 R"
+      ]
+    },
+    {
+      "ref_id": "oll-4-4",
+      "alts": [
+        "r' U' R U' R' U2 r R U R' U R U2 R'"
+      ]
+    },
+    {
+      "ref_id": "oll-4-7",
+      "alts": [
+        "R' F' (R U R' F) (R F U' F')"
+      ]
+    },
+    {
+      "ref_id": "oll-4-8",
+      "alts": [
+        "F (R U R' U') F' f (R U R' U') f'"
+      ]
+    },
+    {
+      "ref_id": "oll-4-9",
+      "alts": [
+        "L' U' L U' L' U2 L (F R U R' U' F')"
+      ]
+    },
+    {
+      "ref_id": "oll-4-10",
+      "alts": [
+        "R U R' U R U2 R' (F R U R' U' F')"
+      ]
+    },
+    {
+      "ref_id": "oll-5-1",
+      "alts": [
+        "r' U' R U' R' U R U' R' U2 r"
+      ]
+    },
+    {
+      "ref_id": "oll-5-2",
+      "alts": [
+        "r' U2 R (U R' U' R U R' U) r"
+      ]
+    },
+    {
+      "ref_id": "oll-5-3",
+      "alts": [
+        "r' U' r (U' R' U R) r' U r"
+      ]
+    },
+    {
+      "ref_id": "oll-5-4",
+      "alts": [
+        "r U r' (U R U' R') r U' r'"
+      ]
+    },
+    {
+      "ref_id": "oll-6-1",
+      "alts": [
+        "f (R U R' U') (R U R' U') f'"
+      ]
+    },
+    {
+      "ref_id": "oll-6-6",
+      "alts": [
+        "R U R' U' M' U R U' r'"
+      ]
+    },
+    {
+      "ref_id": "oll-7-6",
+      "alts": [
+        "R U2 R' U' R U R' U' R U' R'"
+      ]
+    }
+  ]
+}

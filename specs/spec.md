@@ -589,8 +589,10 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Mobile-optimised: compact horizontal cube panel, full-width button row ✅
 - Key fix: TwistyPlayer requires explicit px container dimensions for IntersectionObserver to fire ✅
 
-**Feature 019 - Visual Case Carousel (Planned)**:
-- Horizontal scrollable carousel of case images in the Visualizer modal ✅ (planned)
-- Tap a case image to load it into the player — recognition-first navigation ✅ (planned)
-- Existing dropdown selectors retained as alternative navigation path ✅ (planned)
-- Active case highlighted and scrolled into view; synced with dropdown state ✅ (planned)
+**Feature 019 - Visual Case Carousel (Completed)**:
+- Horizontal scrollable carousel of case images in the Visualizer modal ✅
+- Tap a case image to load it into the player — recognition-first navigation ✅
+- Arrow key (←/→) navigation through cases in browse mode ✅
+- Single toggle button switches Browse/Select modes; group selector on same row ✅
+- Active case highlighted and scrolled into view; synced with dropdown state ✅
+- Mobile: toggle and carousel hidden, dropdowns always shown ✅

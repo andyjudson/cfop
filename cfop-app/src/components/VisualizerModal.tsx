@@ -1,8 +1,9 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Alg, Move } from 'cubing/alg';
 import { TwistyPlayer } from 'cubing/twisty';
-import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdShuffle, MdFilterCenterFocus } from 'react-icons/md';
+import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdShuffle, MdFilterCenterFocus, MdGridView, MdTune } from 'react-icons/md';
 import type { CfopAlgorithm } from './AlgorithmCard';
+import { CaseCarousel } from './CaseCarousel';
 import './VisualizerModal.css';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -70,6 +71,8 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   const [selectedSet, setSelectedSet] = useState<'OLL' | 'PLL'>('PLL');
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [currentAlg, setCurrentAlg] = useState<CfopAlgorithm | null>(null);
+
+  const [navMode, setNavMode] = useState<'browse' | 'select'>('browse');
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(-1);
@@ -263,7 +266,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
 
         {loadState === 'ready' && (
           <>
-            <div className="visualizer-selector-row">
+            <div className="visualizer-nav-toggle">
               <div className="select">
                 <select
                   value={selectedSet}
@@ -285,8 +288,25 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                   ))}
                 </select>
               </div>
+              <button
+                className={`button ${navMode === 'browse' ? 'is-link' : 'is-light'} visualizer-nav-mode`}
+                onClick={() => setNavMode(navMode === 'browse' ? 'select' : 'browse')}
+                title={navMode === 'browse' ? 'Switch to select mode' : 'Switch to browse mode'}
+              >
+                {navMode === 'browse' ? <MdGridView size={16} /> : <MdTune size={16} />}
+                <span>{navMode === 'browse' ? 'Browse' : 'Select'}</span>
+              </button>
             </div>
-            <div className="visualizer-alg-row">
+
+            {navMode === 'browse' && (
+              <CaseCarousel
+                algorithms={activeData}
+                activeId={currentAlg?.id ?? ''}
+                onSelect={(alg) => setCurrentAlg(alg)}
+              />
+            )}
+
+            <div className={`visualizer-alg-row${navMode === 'browse' ? ' is-hidden-carousel' : ''}`}>
               <div className="select visualizer-alg-select">
                 <select
                   value={currentAlg?.id ?? ''}

@@ -67,9 +67,9 @@ When the modal opens or the active case changes, the carousel scrolls to bring t
 
 ## Acceptance Criteria
 
-- [ ] Carousel visible and scrollable for both OLL (57 cases) and PLL (21 cases)
-- [ ] Tapping a case loads it into the player identically to dropdown selection
-- [ ] Active case highlighted and scrolled into view on load and on change
-- [ ] Dropdown navigation remains fully functional alongside carousel
-- [ ] Toggle between Browse/Select modes is clear and persistent within the session
-- [ ] No visual regression on desktop or mobile (iPhone 16 baseline)
+- [x] Carousel visible and scrollable for both OLL (57 cases) and PLL (21 cases)
+- [x] Tapping a case loads it into the player identically to dropdown selection
+- [x] Active case highlighted and scrolled into view on load and on change
+- [x] Dropdown navigation remains fully functional alongside carousel
+- [x] Toggle between Browse/Select modes is clear and persistent within the session
+- [x] No visual regression on desktop or mobile (iPhone 16 baseline)

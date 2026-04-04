@@ -59,7 +59,6 @@ export function ScrambleCubePreview({ scramble, expanded, onToggleExpand }: Scra
       />
       <span className="scramble-cube-hint">
         {expanded ? <MdFullscreenExit size={14} /> : <MdFullscreen size={14} />}
-        {expanded ? 'Collapse' : 'Expand'}
       </span>
     </div>
   );

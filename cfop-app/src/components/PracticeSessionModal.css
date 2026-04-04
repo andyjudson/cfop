@@ -150,6 +150,10 @@
   gap: 0.5rem;
 }
 
+.timer-controls .button {
+  min-width: 7rem;
+}
+
 .timer-controls .button:hover {
   filter: none;
   opacity: 0.92;
@@ -259,30 +263,14 @@
     padding: 0.7rem;
   }
 
-  /* Timer: display left, buttons right — same row height */
-  .timer-body {
-    flex-direction: row;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
   .timer-display {
-    flex: 1;
     font-size: 1.6rem;
     padding: 0.5rem 0.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .timer-controls {
-    flex-direction: column;
-    justify-content: stretch;
-    gap: 0.4rem;
-  }
-
-  .timer-controls .button {
-    flex: 1;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .stat-label {

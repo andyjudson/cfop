@@ -307,9 +307,9 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     <span className="solve-count-pill">
                       Scramble: {Math.min(competitiveSession.currentIndex + 1, competitiveSession.scrambles.length)} of {competitiveSession.scrambles.length}
                     </span>
-                  ) : stats.solveCount > 0 ? (
+                  ) : (
                     <span className="solve-count-pill">Solve: {stats.solveCount}</span>
-                  ) : null}
+                  )}
                 </div>
                 <div className="timer-body">
                   <div className="timer-display" aria-live="polite">{timerDisplay}</div>
@@ -343,6 +343,25 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                         <span>Start</span>
                       </button>
                     )}
+                    {isCompetitive ? (
+                      <button
+                        className="button is-small is-light"
+                        onClick={() => setShowSelector(true)}
+                        disabled={timer.state === 'running'}
+                      >
+                        <span className="icon is-small"><MdChangeCircle /></span>
+                        <span>Change</span>
+                      </button>
+                    ) : (
+                      <button
+                        className="button is-small is-light"
+                        onClick={resetStats}
+                        disabled={timer.state === 'running'}
+                      >
+                        <span className="icon is-small"><MdHistory /></span>
+                        <span>Reset</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>}
@@ -352,14 +371,6 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                 <div className="practice-block">
                   <div className="practice-block-header">
                     <h3 className="title is-6">vs Champion</h3>
-                    <button
-                      className="button is-small is-light"
-                      onClick={() => setShowSelector(true)}
-                      disabled={timer.state === 'running'}
-                    >
-                      <span className="icon is-small"><MdChangeCircle /></span>
-                      <span>Change</span>
-                    </button>
                   </div>
                   <div className="stats-display">
                     <div className="stat-item">
@@ -393,13 +404,6 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                 <div className="practice-block">
                   <div className="practice-block-header">
                     <h3 className="title is-6">Statistics</h3>
-                    <button
-                      className="button is-small is-light"
-                      onClick={resetStats}
-                    >
-                      <span className="icon is-small"><MdHistory /></span>
-                      <span>Reset</span>
-                    </button>
                   </div>
                   <div className="stats-display">
                     <div className="stat-item">

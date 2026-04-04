@@ -201,6 +201,7 @@
 .visualizer-alg-select {
   flex: 1;
   min-width: 0;
+  display: flex;
 }
 
 .visualizer-alg-select select {
@@ -210,6 +211,10 @@
   color: var(--color-text-primary);
 }
 
+.visualizer-alg-row.is-hidden-carousel {
+  display: none;
+}
+
 .visualizer-shuffle-btn {
   display: flex;
   align-items: center;
@@ -217,6 +222,38 @@
   font-size: 0.85rem;
   font-weight: 600;
   white-space: nowrap;
+}
+
+/* ── Nav toggle row (set selector + Browse/Select pill) ──────────────────────── */
+
+.visualizer-nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.visualizer-nav-toggle .select {
+  flex: 1;
+  min-width: 0;
+}
+
+.visualizer-nav-toggle .select select {
+  width: 100%;
+}
+
+.visualizer-nav-toggle .select select {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-medium);
+  color: var(--color-text-primary);
+}
+
+.visualizer-nav-mode {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
 }
 
 /* ── Mobile ──────────────────────────────────────────────────────────────────── */
@@ -261,5 +298,18 @@
 
   .visualizer-selector-row .select {
     flex: 1 1 calc(50% - 0.25rem);
+  }
+
+  /* On mobile: hide toggle and carousel — always use dropdowns */
+  .visualizer-nav-mode {
+    display: none;
+  }
+
+  .case-carousel {
+    display: none;
+  }
+
+  .visualizer-alg-row.is-hidden-carousel {
+    display: flex;
   }
 }

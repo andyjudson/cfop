@@ -151,7 +151,7 @@
 }
 
 .timer-controls .button {
-  min-width: 7rem;
+  flex: 1;
 }
 
 .timer-controls .button:hover {

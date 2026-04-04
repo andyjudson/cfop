@@ -583,8 +583,14 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Output to `.claude/tmp/cubify/` (gitignored) ✅
 - Production batch run: all 135 CFOP cases regenerated as transparent PNGs ✅
 
-**Feature 018 - Scramble Cube Preview (In Progress)**:
-- Live 3D cube visualisation in Practice Timer modal showing scrambled state ✅ (planned)
-- Compact inline view; tap to expand full-modal view hiding all timer controls ✅ (planned)
-- TwistyPlayer `PG3D`, green front / white top, `controlPanel: 'none'`, `background: 'none'` ✅ (planned)
-- Reactive update on new scramble (Standard and Champion modes) ✅ (planned)
+**Feature 018 - Scramble Cube Preview (Completed)**:
+- Live 3D TwistyPlayer cube in Practice Timer modal showing scrambled state ✅
+- Two-panel row layout: scramble text left, cube right; tap cube to expand hiding timer/stats ✅
+- Mobile-optimised: compact horizontal cube panel, full-width button row ✅
+- Key fix: TwistyPlayer requires explicit px container dimensions for IntersectionObserver to fire ✅
+
+**Feature 019 - Visual Case Carousel (Planned)**:
+- Horizontal scrollable carousel of case images in the Visualizer modal ✅ (planned)
+- Tap a case image to load it into the player — recognition-first navigation ✅ (planned)
+- Existing dropdown selectors retained as alternative navigation path ✅ (planned)
+- Active case highlighted and scrolled into view; synced with dropdown state ✅ (planned)

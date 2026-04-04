@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–017 complete.
+Features 001–018 complete.
 
 ## CSS Standards
 
@@ -98,6 +98,15 @@ Andy is not a React/Node specialist — proactively flag and fix ecosystem hygie
 - **npm packages**: flag any `npm audit` high/critical vulnerabilities when spotted. Minor version drift is fine; major version gaps on core packages (React, Vite, TypeScript) are worth a note.
 - **CI/CD**: `deploy.yml` only builds and deploys — it does not run tests. Smoke tests are manual pre-merge. If a CI test step is added in future, it needs `npx playwright install chromium` before the test run.
 - **Bundle size**: Vite warns when chunks exceed 500kB. The `cubing.js` 3D chunk (~511kB) and main bundle (~853kB) are known and acceptable for now — don't suppress the warning, but don't treat it as blocking.
+
+## TwistyPlayer In-Browser Usage
+
+TwistyPlayer gates canvas initialisation behind an `IntersectionObserver` — the 3D scene will not render unless `intersectionRect.height > 0` at mount time.
+
+- **Always set explicit `width` and `height` px on the container** before or at the same time as appending the player. Without them the container has zero height, the intersection rect is empty, and the canvas never initialises. Use inline styles or fixed CSS `height` — flex/auto sizing alone is not enough.
+- **Append directly, no delays** — `setTimeout` workarounds and body-append-then-move approaches do not reliably fix the intersection issue. Direct append to a sized container is the correct pattern (`VisualizerModal` is the reference implementation).
+- **`overflow: auto/hidden` on ancestors** can affect intersection reporting — if a player appears blank inside a scrollable container, verify the container has explicit dimensions.
+- **Bulma default `button` (no variant) renders black in dark mode** — always add `is-light` to unstyled buttons so they pick up `--bulma-light-*` overrides from `index.css`.
 
 ## Playwright / Web Component Automation
 

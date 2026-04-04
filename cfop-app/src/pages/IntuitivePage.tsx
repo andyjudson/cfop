@@ -4,6 +4,8 @@ import 'bulma/css/bulma.min.css';
 import '../App.css';
 import { useMemo } from 'react';
 
+const BASE = import.meta.env.BASE_URL;
+
 interface ExampleCase {
   id: string;
   label: string;
@@ -37,28 +39,28 @@ const F2L_STEP1_CASES: ExampleCase[] = [
   {
     id: 'f2l-step1-connected-right',
     label: 'connected right pair',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case1_insert1.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case1_insert1.png`,
     alt: 'F2L easy insert: connected right pair.',
     moveHint: "U R U' R'",
   },
   {
     id: 'f2l-step1-connected-left',
     label: 'connected left pair',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case1_insert2.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case1_insert2.png`,
     alt: 'F2L easy insert: connected left pair.',
     moveHint: "U' L' U L",
   },
   {
     id: 'f2l-step1-disconnected-right',
     label: 'disconnected right pair',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case1_insert3.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case1_insert3.png`,
     alt: 'F2L easy insert: disconnected right pair.',
     moveHint: "R U R'",
   },
   {
     id: 'f2l-step1-disconnected-left',
     label: 'disconnected left pair',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case1_insert4.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case1_insert4.png`,
     alt: 'F2L easy insert: disconnected left pair.',
     moveHint: "L' U' L",
   },
@@ -68,28 +70,28 @@ const F2L_STEP2_CASES: ExampleCase[] = [
   {
     id: 'f2l-step2-edge-in-slot-corner-in-layer',
     label: 'edge in slot + corner in layer',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case2_stuck1.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case2_stuck1.png`,
     alt: 'F2L setup: edge in slot and corner in top layer.',
     moveHint: "R U R' ...",
   },
   {
     id: 'f2l-step2-corner-in-slot-edge-in-layer',
     label: 'corner in slot + edge in layer',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case2_stuck2.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case2_stuck2.png`,
     alt: 'F2L setup: corner in slot and edge in top layer.',
     moveHint: "R U R' ...",
   },
   {
     id: 'f2l-step2-pair-misaligned-in-slot',
     label: 'pair misaligned in slot',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case2_stuck3.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case2_stuck3.png`,
     alt: 'F2L setup: pair misaligned in slot.',
     moveHint: "R U' R' ...",
   },
   {
     id: 'f2l-step2-pair-misaligned-in-layer',
     label: 'pair misaligned in layer',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case2_stuck4.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case2_stuck4.png`,
     alt: 'F2L setup: pair misaligned in top layer.',
     moveHint: "R U2 R' ...",
   },
@@ -99,19 +101,19 @@ const F2L_STEP3_CASES: ExampleCase[] = [
   {
     id: 'f2l-step3-white-side-colours-match',
     label: 'white to side + colours matched',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case3_setup1.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case3_setup1.png`,
     alt: 'F2L insert setup: white to side and colours matched.',
   },
   {
     id: 'f2l-step3-white-side-colours-not-match',
     label: 'white to side + colours unmatched',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case3_setup2.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case3_setup2.png`,
     alt: 'F2L insert setup: white to side and colours unmatched.',
   },
   {
     id: 'f2l-step3-white-up',
     label: 'white is up',
-    image: '/cubing.spec/assets/cfop_bgr/f2l_case3_setup3.png',
+    image: `${BASE}assets/cfop_bgr/f2l_case3_setup3.png`,
     alt: 'F2L insert setup: white sticker facing up.',
   },
 ];

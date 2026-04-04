@@ -596,3 +596,12 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Single toggle button switches Browse/Select modes; group selector on same row ✅
 - Active case highlighted and scrolled into view; synced with dropdown state ✅
 - Mobile: toggle and carousel hidden, dropdowns always shown ✅
+
+**Feature 020 - cubify.js (Planned)**:
+- Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
+- No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
+- Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
+- Static PNG/SVG export without headed browser (replaces Playwright in cubify agent skill) ✅ (planned)
+- Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
+- CSS custom property tokens for full theming ✅ (planned)
+- MIT licensed, reusable beyond this project ✅ (planned)

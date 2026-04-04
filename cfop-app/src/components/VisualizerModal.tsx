@@ -73,7 +73,9 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(-1);
-  const [speed, setSpeed] = useState(1);
+  const SPEED_STEPS = [0.5, 1, 1.5, 2, 3, 4, 6];
+  const [speedIndex, setSpeedIndex] = useState(1); // default ×1
+  const speed = SPEED_STEPS[speedIndex];
   const [playerError, setPlayerError] = useState<string | null>(null);
 
   const twistyRef = useRef<HTMLDivElement>(null);
@@ -338,16 +340,16 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 )}
                 <button
                   className="button is-light"
-                  onClick={() => setSpeed(p => Math.max(p - 0.5, 0.5))}
-                  disabled={speed <= 0.5}
+                  onClick={() => setSpeedIndex(i => Math.max(i - 1, 0))}
+                  disabled={speedIndex === 0}
                   title="Slow down"
                 >
                   <MdRemove size={24} />
                 </button>
                 <button
                   className="button is-light"
-                  onClick={() => setSpeed(p => Math.min(p + 0.5, 3))}
-                  disabled={speed >= 3}
+                  onClick={() => setSpeedIndex(i => Math.min(i + 1, SPEED_STEPS.length - 1))}
+                  disabled={speedIndex === SPEED_STEPS.length - 1}
                   title="Speed up"
                 >
                   <MdAdd size={24} />

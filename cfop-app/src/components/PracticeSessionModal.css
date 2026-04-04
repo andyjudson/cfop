@@ -127,6 +127,12 @@
   text-wrap: balance;
 }
 
+.timer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
 .timer-display {
   text-align: center;
   font-size: 2rem;
@@ -139,7 +145,6 @@
 }
 
 .timer-controls {
-  margin-top: 0.65rem;
   display: flex;
   justify-content: center;
   gap: 0.5rem;
@@ -254,9 +259,30 @@
     padding: 0.7rem;
   }
 
+  /* Timer: display left, buttons right — same row height */
+  .timer-body {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
   .timer-display {
-    font-size: 1.45rem;
-    padding: 0.55rem;
+    flex: 1;
+    font-size: 1.6rem;
+    padding: 0.5rem 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .timer-controls {
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 0.4rem;
+  }
+
+  .timer-controls .button {
+    flex: 1;
   }
 
   .stat-label {

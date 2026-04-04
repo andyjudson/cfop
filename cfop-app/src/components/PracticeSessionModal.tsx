@@ -311,37 +311,39 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     <span className="solve-count-pill">Solve: {stats.solveCount}</span>
                   ) : null}
                 </div>
-                <div className="timer-display" aria-live="polite">{timerDisplay}</div>
-                <div className="timer-controls">
-                  {!isCompetitive && (
-                    <button
-                      className="button is-warning is-small"
-                      onClick={handleNewScramble}
-                      disabled={isScrambleLoading}
-                    >
-                      <span className="icon is-small"><MdShuffle /></span>
-                      <span>Scramble</span>
-                    </button>
-                  )}
-                  {timer.state === 'running' ? (
-                    <button
-                      className="button is-danger is-small"
-                      onClick={handleStop}
-                      disabled={!canStop}
-                    >
-                      <span className="icon is-small"><MdStop /></span>
-                      <span>Stop</span>
-                    </button>
-                  ) : (
-                    <button
-                      className="button is-primary is-small"
-                      onClick={handleStart}
-                      disabled={!canStart || (!isCompetitive && isScrambleLoading)}
-                    >
-                      <span className="icon is-small"><MdPlayArrow /></span>
-                      <span>Start</span>
-                    </button>
-                  )}
+                <div className="timer-body">
+                  <div className="timer-display" aria-live="polite">{timerDisplay}</div>
+                  <div className="timer-controls">
+                    {!isCompetitive && (
+                      <button
+                        className="button is-warning is-small"
+                        onClick={handleNewScramble}
+                        disabled={isScrambleLoading}
+                      >
+                        <span className="icon is-small"><MdShuffle /></span>
+                        <span>Scramble</span>
+                      </button>
+                    )}
+                    {timer.state === 'running' ? (
+                      <button
+                        className="button is-danger is-small"
+                        onClick={handleStop}
+                        disabled={!canStop}
+                      >
+                        <span className="icon is-small"><MdStop /></span>
+                        <span>Stop</span>
+                      </button>
+                    ) : (
+                      <button
+                        className="button is-primary is-small"
+                        onClick={handleStart}
+                        disabled={!canStart || (!isCompetitive && isScrambleLoading)}
+                      >
+                        <span className="icon is-small"><MdPlayArrow /></span>
+                        <span>Start</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>}
 

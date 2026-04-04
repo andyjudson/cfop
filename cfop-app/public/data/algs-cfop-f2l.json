@@ -292,6 +292,7 @@
     "name": "",
     "notation": "(R U' R') U y' (R' U2 R) (U2 R' U R)",
     "method": "f2l",
+    "setup": "z2 y'",
     "group": "pair in slot",
     "image": "./assets/cfop_f2l/f2l-6-1.png"
   },
@@ -324,6 +325,7 @@
     "name": "",
     "notation": "(R U' R') y U2 (L' U' L) (U' L' U L)",
     "method": "f2l",
+    "setup": "z2 y",
     "group": "pair in slot",
     "image": "./assets/cfop_f2l/f2l-6-5.png"
   }

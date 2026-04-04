@@ -146,3 +146,23 @@ Surprises encountered during renderer implementation that future work should be 
    **The two Playwright techniques that made it work:**
    - `page.addInitScript()` — runs before any page script, including the bundle load. This is the correct layer for intercepting `attachShadow` and `getContext`. Injecting the same intercept inside the HTML `<script>` tag fires too late — the bundle has already initialized by then.
    - `getBoundingClientRect()` via `page.evaluate()` on intercepted shadow root elements — gives exact pixel coordinates usable as a Playwright `clip` option, without any CSS manipulation or CDP complexity.
+
+---
+
+## Production Use Learnings (post-initial implementation)
+
+Learnings from the first full batch generation of all CFOP case images:
+
+10. **Transparent PNG requires both HTML background and omitBackground**: Setting `background: transparent` in the HTML CSS alone is insufficient — Playwright composites a white background by default. `omitBackground: true` on `page.screenshot()` is also required. Removing the `sips --padColor FFFFFF` pad call is then necessary to avoid re-introducing white. All three changes must be made together.
+
+11. **z2 setup for F2L is correct; y-prefix compensation is derivable from notation**: F2L cases starting with `y` target the FL slot (mirror of FR). Adding `y` to the z2 setup (`z2 y`) normalises them all to FR for display. This is mechanical — detectable by regex on the alg string — so no JSON `setup` field is needed for these. Exception: mid-alg y rotations (`f2l-6-1`, `f2l-6-5`) are not at the start and do need explicit `setup` fields since they can't be mechanically detected.
+
+12. **OLL masking: 1-look vs 2-look is the right split, not group-based**: The original mask field assignments were based on OLL groups (`Block & Edge Setup`, `Line & L Shapes`, etc.) which don't map cleanly to recognition requirements. The correct rule is simpler: 1-look OLL shows all top edges + corners with no masking; 2-look edge stage hides corners. For a 1-look-only app, no OLL cases need masking at all.
+
+13. **PLL recognition anchors on the green center, not corners**: Centers never move. Rendering all PLL cases with green consistently in front makes patterns immediately comparable. Cases with net cube rotations in the alg (e.g. Ua perm variants, G perms) need `setup` fields to compensate — detected empirically by checking which face is front in the output, not by analysing the notation.
+
+14. **BGR cases use different algorithm variants than the full PLL set**: The `pll_ua` BGR case uses a notation variant that has no net rotation, so its setup is plain `z2`. The equivalent full-PLL case (`pll-1-1`) uses a different notation that produces blue front with `z2`, requiring `z2 y2`. Always verify BGR setups independently — don't assume they match the full set.
+
+15. **Algorithm correctness matters for anti-cases**: `oll-7-8` (Anti-Mouse) had an identical notation to `oll-7-7` (Mouse) — a data error. y-rotation workarounds failed because the pattern has rotational symmetry. The fix was finding the correct algorithm (`F` not `F'` in one position) from an authoritative reference (Cube Academy). When y-rotation attempts all produce the same visual result, the alg itself is wrong.
+
+16. **White background PNG in dark mode**: Images rendered with a white HTML background look correct in light mode but create harsh white boxes in dark mode. The fix (transparent background + `omitBackground: true` + no white pad) produces PNGs that blend naturally with any theme. This should be the default for all future batch generations.

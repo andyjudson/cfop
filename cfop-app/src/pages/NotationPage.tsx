@@ -165,8 +165,8 @@ function NotationPage() {
       ]
     },
     {
-      id: 'slice-moves',
-      title: 'Slice Moves',
+      id: 'slice-rotations',
+      title: 'Slice Rotations',
       description: 'Turn only the middle layer between two opposite faces. Each slice follows the same direction as its corresponding face turn.',
       examples: [
         {

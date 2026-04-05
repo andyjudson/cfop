@@ -26,7 +26,7 @@
     "method": "oll",
     "group": "Cross Solved",
     "image": "./assets/cfop_oll/oll-1-3.png",
-    "wca_id": 23,
+    "wca_id": 21,
     "prob": "1/108"
   },
   {
@@ -46,7 +46,7 @@
     "method": "oll",
     "group": "Cross Solved",
     "image": "./assets/cfop_oll/oll-1-5.png",
-    "wca_id": 25,
+    "wca_id": 24,
     "prob": "1/54"
   },
   {
@@ -56,7 +56,7 @@
     "method": "oll",
     "group": "Cross Solved",
     "image": "./assets/cfop_oll/oll-1-6.png",
-    "wca_id": 24,
+    "wca_id": 25,
     "prob": "1/54"
   },
   {
@@ -66,7 +66,7 @@
     "method": "oll",
     "group": "Cross Solved",
     "image": "./assets/cfop_oll/oll-1-7.png",
-    "wca_id": 21,
+    "wca_id": 23,
     "prob": "1/54"
   },
   {
@@ -76,7 +76,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-1.png",
-    "wca_id": 29,
+    "wca_id": 45,
     "prob": "1/54"
   },
   {
@@ -86,7 +86,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-2.png",
-    "wca_id": 30,
+    "wca_id": 33,
     "prob": "1/54"
   },
   {
@@ -96,7 +96,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-3.png",
-    "wca_id": 28,
+    "wca_id": 44,
     "prob": "1/54"
   },
   {
@@ -106,7 +106,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-4.png",
-    "wca_id": 40,
+    "wca_id": 43,
     "prob": "1/54"
   },
   {
@@ -126,7 +126,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-6.png",
-    "wca_id": 43,
+    "wca_id": 32,
     "prob": "1/54"
   },
   {
@@ -136,7 +136,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-7.png",
-    "wca_id": 32,
+    "wca_id": 46,
     "prob": "1/54"
   },
   {
@@ -146,7 +146,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-8.png",
-    "wca_id": 44,
+    "wca_id": 34,
     "prob": "1/54"
   },
   {
@@ -156,7 +156,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-9.png",
-    "wca_id": 33,
+    "wca_id": 38,
     "prob": "1/54"
   },
   {
@@ -166,7 +166,7 @@
     "method": "oll",
     "group": "Small Patterns",
     "image": "./assets/cfop_oll/oll-2-10.png",
-    "wca_id": 34,
+    "wca_id": 36,
     "prob": "1/54"
   },
   {
@@ -176,7 +176,7 @@
     "method": "oll",
     "group": "Block & Edge Setup",
     "image": "./assets/cfop_oll/oll-3-1.png",
-    "wca_id": 53,
+    "wca_id": 6,
     "prob": "1/54"
   },
   {
@@ -186,7 +186,7 @@
     "method": "oll",
     "group": "Block & Edge Setup",
     "image": "./assets/cfop_oll/oll-3-2.png",
-    "wca_id": 54,
+    "wca_id": 5,
     "prob": "1/54"
   },
   {
@@ -196,7 +196,7 @@
     "method": "oll",
     "group": "Block & Edge Setup",
     "image": "./assets/cfop_oll/oll-3-3.png",
-    "wca_id": 47,
+    "wca_id": 28,
     "prob": "1/54"
   },
   {
@@ -206,8 +206,8 @@
     "method": "oll",
     "group": "Block & Edge Setup",
     "image": "./assets/cfop_oll/oll-3-4.png",
-    "wca_id": 48,
-    "prob": "1/54"
+    "wca_id": 57,
+    "prob": "1/108"
   },
   {
     "id": "oll-4-1",
@@ -216,7 +216,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-1.png",
-    "wca_id": 51,
+    "wca_id": 7,
     "prob": "1/54"
   },
   {
@@ -226,7 +226,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-2.png",
-    "wca_id": 52,
+    "wca_id": 8,
     "prob": "1/54"
   },
   {
@@ -236,7 +236,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-3.png",
-    "wca_id": 55,
+    "wca_id": 11,
     "prob": "1/54"
   },
   {
@@ -246,7 +246,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-4.png",
-    "wca_id": 56,
+    "wca_id": 12,
     "prob": "1/54"
   },
   {
@@ -256,8 +256,8 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-5.png",
-    "wca_id": 57,
-    "prob": "1/108"
+    "wca_id": 40,
+    "prob": "1/54"
   },
   {
     "id": "oll-4-6",
@@ -266,9 +266,8 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-6.png",
-    "wca_id": 57,
-    "prob": "1/108",
-    "notes": "OLL 57 has C2 symmetry — Fung and Anti-Fung are rotations of the same case (U-face rotation). Both map to WCA 57."
+    "wca_id": 39,
+    "prob": "1/54"
   },
   {
     "id": "oll-4-7",
@@ -277,7 +276,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-7.png",
-    "wca_id": 45,
+    "wca_id": 48,
     "prob": "1/54"
   },
   {
@@ -287,7 +286,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-8.png",
-    "wca_id": 46,
+    "wca_id": 47,
     "prob": "1/54"
   },
   {
@@ -297,7 +296,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-9.png",
-    "wca_id": 35,
+    "wca_id": 53,
     "prob": "1/54"
   },
   {
@@ -307,7 +306,7 @@
     "method": "oll",
     "group": "Lightning & Hooks",
     "image": "./assets/cfop_oll/oll-4-10.png",
-    "wca_id": 36,
+    "wca_id": 54,
     "prob": "1/54"
   },
   {
@@ -347,7 +346,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-2.png",
-    "wca_id": 41,
+    "wca_id": 35,
     "prob": "1/54"
   },
   {
@@ -357,7 +356,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-3.png",
-    "wca_id": 38,
+    "wca_id": 9,
     "prob": "1/54"
   },
   {
@@ -367,7 +366,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-4.png",
-    "wca_id": 42,
+    "wca_id": 10,
     "prob": "1/54"
   },
   {
@@ -377,7 +376,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-5.png",
-    "wca_id": 17,
+    "wca_id": 29,
     "prob": "1/54"
   },
   {
@@ -387,7 +386,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-6.png",
-    "wca_id": 18,
+    "wca_id": 30,
     "prob": "1/54"
   },
   {
@@ -397,7 +396,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-7.png",
-    "wca_id": 19,
+    "wca_id": 41,
     "prob": "1/54"
   },
   {
@@ -407,7 +406,7 @@
     "method": "oll",
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-8.png",
-    "wca_id": 39,
+    "wca_id": 42,
     "prob": "1/54"
   },
   {
@@ -417,7 +416,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-1.png",
-    "wca_id": 16,
+    "wca_id": 51,
     "prob": "1/108"
   },
   {
@@ -427,7 +426,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-2.png",
-    "wca_id": 10,
+    "wca_id": 52,
     "prob": "1/54"
   },
   {
@@ -437,7 +436,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-3.png",
-    "wca_id": 9,
+    "wca_id": 56,
     "prob": "1/54"
   },
   {
@@ -447,7 +446,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-4.png",
-    "wca_id": 11,
+    "wca_id": 55,
     "prob": "1/54"
   },
   {
@@ -457,7 +456,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-5.png",
-    "wca_id": 12,
+    "wca_id": 16,
     "prob": "1/54"
   },
   {
@@ -467,7 +466,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-6.png",
-    "wca_id": 13,
+    "wca_id": 15,
     "prob": "1/54"
   },
   {
@@ -477,7 +476,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-7.png",
-    "wca_id": 14,
+    "wca_id": 13,
     "prob": "1/54"
   },
   {
@@ -487,7 +486,7 @@
     "method": "oll",
     "group": "Line & L Shapes",
     "image": "./assets/cfop_oll/oll-6-8.png",
-    "wca_id": 15,
+    "wca_id": 14,
     "prob": "1/54"
   },
   {
@@ -497,7 +496,7 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-1.png",
-    "wca_id": 6,
+    "wca_id": 1,
     "prob": "1/54"
   },
   {
@@ -517,7 +516,7 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-3.png",
-    "wca_id": 3,
+    "wca_id": 17,
     "prob": "1/54"
   },
   {
@@ -527,8 +526,8 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-4.png",
-    "wca_id": 4,
-    "prob": "1/54"
+    "wca_id": 20,
+    "prob": "1/216"
   },
   {
     "id": "oll-7-5",
@@ -537,7 +536,7 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-5.png",
-    "wca_id": 5,
+    "wca_id": 19,
     "prob": "1/54"
   },
   {
@@ -547,8 +546,8 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-6.png",
-    "wca_id": 1,
-    "prob": "1/216"
+    "wca_id": 18,
+    "prob": "1/54"
   },
   {
     "id": "oll-7-7",
@@ -557,7 +556,7 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-7.png",
-    "wca_id": 7,
+    "wca_id": 4,
     "prob": "1/54"
   },
   {
@@ -567,7 +566,7 @@
     "method": "oll",
     "group": "Dot Patterns",
     "image": "./assets/cfop_oll/oll-7-8.png",
-    "wca_id": 8,
+    "wca_id": 3,
     "prob": "1/54"
   }
 ]

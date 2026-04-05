@@ -7,7 +7,9 @@
     "method": "pll",
     "group": "Edges Only",
     "image": "./assets/cfop_pll/pll-1-1.png",
-    "setup": "z2 y2"
+    "setup": "z2 y2",
+    "wca_id": "Ua",
+    "prob": "1/18"
   },
   {
     "id": "pll-1-2",
@@ -16,7 +18,9 @@
     "line_break": 8,
     "method": "pll",
     "group": "Edges Only",
-    "image": "./assets/cfop_pll/pll-1-2.png"
+    "image": "./assets/cfop_pll/pll-1-2.png",
+    "wca_id": "Ub",
+    "prob": "1/18"
   },
   {
     "id": "pll-1-3",
@@ -25,7 +29,9 @@
     "method": "pll",
     "group": "Edges Only",
     "image": "./assets/cfop_pll/pll-1-3.png",
-    "setup": "z2 y2"
+    "setup": "z2 y2",
+    "wca_id": "H",
+    "prob": "1/72"
   },
   {
     "id": "pll-1-4",
@@ -34,7 +40,9 @@
     "method": "pll",
     "group": "Edges Only",
     "image": "./assets/cfop_pll/pll-1-4.png",
-    "setup": "z2 y2"
+    "setup": "z2 y2",
+    "wca_id": "Z",
+    "prob": "1/36"
   },
   {
     "id": "pll-2-1",
@@ -42,7 +50,9 @@
     "notation": "x (R' U R') D2 (R U' R') D2 R2 x'",
     "method": "pll",
     "group": "Corners Only",
-    "image": "./assets/cfop_pll/pll-2-1.png"
+    "image": "./assets/cfop_pll/pll-2-1.png",
+    "wca_id": "Aa",
+    "prob": "1/18"
   },
   {
     "id": "pll-2-2",
@@ -50,7 +60,9 @@
     "notation": "x R2 D2 (R U R') D2 (R U' R) x'",
     "method": "pll",
     "group": "Corners Only",
-    "image": "./assets/cfop_pll/pll-2-2.png"
+    "image": "./assets/cfop_pll/pll-2-2.png",
+    "wca_id": "Ab",
+    "prob": "1/18"
   },
   {
     "id": "pll-2-3",
@@ -59,7 +71,9 @@
     "line_break": 8,
     "method": "pll",
     "group": "Corners Only",
-    "image": "./assets/cfop_pll/pll-2-3.png"
+    "image": "./assets/cfop_pll/pll-2-3.png",
+    "wca_id": "E",
+    "prob": "1/36"
   },
   {
     "id": "pll-3-1",
@@ -68,7 +82,9 @@
     "line_break": 9,
     "method": "pll",
     "group": "Adjacent Swap",
-    "image": "./assets/cfop_pll/pll-3-1.png"
+    "image": "./assets/cfop_pll/pll-3-1.png",
+    "wca_id": "T",
+    "prob": "1/18"
   },
   {
     "id": "pll-3-2",
@@ -78,7 +94,9 @@
     "method": "pll",
     "group": "Adjacent Swap",
     "image": "./assets/cfop_pll/pll-3-2.png",
-    "setup": "z2 y2"
+    "setup": "z2 y2",
+    "wca_id": "F",
+    "prob": "1/18"
   },
   {
     "id": "pll-3-3",
@@ -87,7 +105,9 @@
     "line_break": 8,
     "method": "pll",
     "group": "Adjacent Swap",
-    "image": "./assets/cfop_pll/pll-3-3.png"
+    "image": "./assets/cfop_pll/pll-3-3.png",
+    "wca_id": "Jb",
+    "prob": "1/18"
   },
   {
     "id": "pll-3-4",
@@ -96,7 +116,9 @@
     "line_break": 7,
     "method": "pll",
     "group": "Adjacent Swap",
-    "image": "./assets/cfop_pll/pll-3-4.png"
+    "image": "./assets/cfop_pll/pll-3-4.png",
+    "wca_id": "Ja",
+    "prob": "1/18"
   },
   {
     "id": "pll-3-5",
@@ -106,7 +128,9 @@
     "method": "pll",
     "group": "Adjacent Swap",
     "image": "./assets/cfop_pll/pll-3-5.png",
-    "setup": "z2 y"
+    "setup": "z2 y",
+    "wca_id": "Ra",
+    "prob": "1/18"
   },
   {
     "id": "pll-3-6",
@@ -115,7 +139,9 @@
     "line_break": 10,
     "method": "pll",
     "group": "Adjacent Swap",
-    "image": "./assets/cfop_pll/pll-3-6.png"
+    "image": "./assets/cfop_pll/pll-3-6.png",
+    "wca_id": "Rb",
+    "prob": "1/18"
   },
   {
     "id": "pll-4-1",
@@ -124,7 +150,9 @@
     "line_break": 9,
     "method": "pll",
     "group": "Diagonal Swap",
-    "image": "./assets/cfop_pll/pll-4-1.png"
+    "image": "./assets/cfop_pll/pll-4-1.png",
+    "wca_id": "Y",
+    "prob": "1/18"
   },
   {
     "id": "pll-4-2",
@@ -133,7 +161,9 @@
     "line_break": 12,
     "method": "pll",
     "group": "Diagonal Swap",
-    "image": "./assets/cfop_pll/pll-4-2.png"
+    "image": "./assets/cfop_pll/pll-4-2.png",
+    "wca_id": "Na",
+    "prob": "1/72"
   },
   {
     "id": "pll-4-3",
@@ -142,7 +172,9 @@
     "line_break": 8,
     "method": "pll",
     "group": "Diagonal Swap",
-    "image": "./assets/cfop_pll/pll-4-3.png"
+    "image": "./assets/cfop_pll/pll-4-3.png",
+    "wca_id": "Nb",
+    "prob": "1/72"
   },
   {
     "id": "pll-4-4",
@@ -151,7 +183,9 @@
     "line_break": 9,
     "method": "pll",
     "group": "Diagonal Swap",
-    "image": "./assets/cfop_pll/pll-4-4.png"
+    "image": "./assets/cfop_pll/pll-4-4.png",
+    "wca_id": "V",
+    "prob": "1/18"
   },
   {
     "id": "pll-5-1",
@@ -161,7 +195,9 @@
     "method": "pll",
     "group": "G Perms",
     "image": "./assets/cfop_pll/pll-5-1.png",
-    "setup": "z2 y'"
+    "setup": "z2 y'",
+    "wca_id": "Ga",
+    "prob": "1/18"
   },
   {
     "id": "pll-5-2",
@@ -171,7 +207,9 @@
     "method": "pll",
     "group": "G Perms",
     "image": "./assets/cfop_pll/pll-5-2.png",
-    "setup": "z2 y2"
+    "setup": "z2 y2",
+    "wca_id": "Gb",
+    "prob": "1/18"
   },
   {
     "id": "pll-5-3",
@@ -181,7 +219,9 @@
     "method": "pll",
     "group": "G Perms",
     "image": "./assets/cfop_pll/pll-5-3.png",
-    "setup": "z2 y2"
+    "setup": "z2 y2",
+    "wca_id": "Gc",
+    "prob": "1/18"
   },
   {
     "id": "pll-5-4",
@@ -191,6 +231,8 @@
     "method": "pll",
     "group": "G Perms",
     "image": "./assets/cfop_pll/pll-5-4.png",
-    "setup": "z2 y"
+    "setup": "z2 y",
+    "wca_id": "Gd",
+    "prob": "1/18"
   }
 ]

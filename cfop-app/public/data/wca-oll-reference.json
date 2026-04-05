@@ -1,0 +1,419 @@
+[
+  {
+    "wca_id": 1,
+    "app_id": "oll-7-6",
+    "name": "Crown",
+    "edge_pattern": "dot",
+    "confidence": "certain",
+    "notes": "All edges unoriented, all corners twisted — C4 symmetry (rarest OLL)"
+  },
+  {
+    "wca_id": 2,
+    "app_id": "oll-7-2",
+    "name": "Zamboni",
+    "edge_pattern": "dot",
+    "confidence": "likely",
+    "notes": "Dot pattern; exact numbering within dot group uncertain"
+  },
+  {
+    "wca_id": 3,
+    "app_id": "oll-7-3",
+    "name": "Slash",
+    "edge_pattern": "dot",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 4,
+    "app_id": "oll-7-4",
+    "name": "Checkers",
+    "edge_pattern": "dot",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 5,
+    "app_id": "oll-7-5",
+    "name": "Bunny",
+    "edge_pattern": "dot",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 6,
+    "app_id": "oll-7-1",
+    "name": "Runway",
+    "edge_pattern": "dot",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 7,
+    "app_id": "oll-7-7",
+    "name": "Mouse",
+    "edge_pattern": "dot",
+    "confidence": "likely",
+    "notes": "One of the two Mouse/Anti-Mouse dot cases"
+  },
+  {
+    "wca_id": 8,
+    "app_id": "oll-7-8",
+    "name": "Anti-Mouse",
+    "edge_pattern": "dot",
+    "confidence": "likely",
+    "notes": "One of the two Mouse/Anti-Mouse dot cases"
+  },
+  {
+    "wca_id": 9,
+    "app_id": "oll-6-3",
+    "name": "Dead Man",
+    "edge_pattern": "line",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 10,
+    "app_id": "oll-6-2",
+    "name": "Rice Cooker",
+    "edge_pattern": "line",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 11,
+    "app_id": "oll-6-4",
+    "name": "Freeway",
+    "edge_pattern": "line",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 12,
+    "app_id": "oll-6-5",
+    "name": "Anti-Squeegee",
+    "edge_pattern": "line",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 13,
+    "app_id": "oll-6-6",
+    "name": "Squeegee",
+    "edge_pattern": "line",
+    "confidence": "likely",
+    "notes": "CFOP OLL 13 — Squeegee"
+  },
+  {
+    "wca_id": 14,
+    "app_id": "oll-6-7",
+    "name": "Gun",
+    "edge_pattern": "line",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 15,
+    "app_id": "oll-6-8",
+    "name": "Anti-Gun",
+    "edge_pattern": "line",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 16,
+    "app_id": "oll-6-1",
+    "name": "Bottlecap",
+    "edge_pattern": "line",
+    "confidence": "likely",
+    "notes": "C2-symmetric line case"
+  },
+  {
+    "wca_id": 17,
+    "app_id": "oll-5-5",
+    "name": "Spotted Chameleon",
+    "edge_pattern": "l-shape",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 18,
+    "app_id": "oll-5-6",
+    "name": "Anti-Spotted Chameleon",
+    "edge_pattern": "l-shape",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 19,
+    "app_id": "oll-5-7",
+    "name": "Dalmatian",
+    "edge_pattern": "l-shape",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 20,
+    "app_id": null,
+    "name": "OLL Skip",
+    "edge_pattern": "cross",
+    "confidence": "certain",
+    "notes": "Cross formed AND all corners oriented — OLL skip (solved top layer)"
+  },
+  {
+    "wca_id": 21,
+    "app_id": "oll-1-7",
+    "name": "U Shape",
+    "edge_pattern": "cross",
+    "confidence": "likely",
+    "notes": "Cross formed; two adjacent corners both twisted anti-clockwise"
+  },
+  {
+    "wca_id": 22,
+    "app_id": "oll-1-4",
+    "name": "Pi Shape",
+    "edge_pattern": "cross",
+    "confidence": "likely",
+    "notes": "Cross formed; all 4 corners twisted (alternating cw/ccw)"
+  },
+  {
+    "wca_id": 23,
+    "app_id": "oll-1-3",
+    "name": "H Shape",
+    "edge_pattern": "cross",
+    "confidence": "likely",
+    "notes": "Cross formed; 2 corners cw, 2 corners ccw in H-like arrangement"
+  },
+  {
+    "wca_id": 24,
+    "app_id": "oll-1-6",
+    "name": "L Shape",
+    "edge_pattern": "cross",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 25,
+    "app_id": "oll-1-5",
+    "name": "T Shape",
+    "edge_pattern": "cross",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 26,
+    "app_id": "oll-1-2",
+    "name": "Anti-Sune",
+    "edge_pattern": "cross",
+    "confidence": "certain",
+    "notes": "Cross formed; 3 corners need Anti-Sune trigger"
+  },
+  {
+    "wca_id": 27,
+    "app_id": "oll-1-1",
+    "name": "Sune",
+    "edge_pattern": "cross",
+    "confidence": "certain",
+    "notes": "Cross formed; 3 corners need Sune trigger — the most iconic OLL"
+  },
+  {
+    "wca_id": 28,
+    "app_id": "oll-2-3",
+    "name": "P Shape",
+    "edge_pattern": "small-l",
+    "confidence": "likely",
+    "notes": "One edge oriented adjacent to the cross — P shape on top"
+  },
+  {
+    "wca_id": 29,
+    "app_id": "oll-2-1",
+    "name": "Suit Up",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 30,
+    "app_id": "oll-2-2",
+    "name": "Tying Shoelaces",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 31,
+    "app_id": "oll-2-5",
+    "name": "Couch",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 32,
+    "app_id": "oll-2-7",
+    "name": "Seeing Headlights",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 33,
+    "app_id": "oll-2-9",
+    "name": "Moustache",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 34,
+    "app_id": "oll-2-10",
+    "name": "Anti-Moustache",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 35,
+    "app_id": "oll-4-9",
+    "name": "Frying Pan",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 36,
+    "app_id": "oll-4-10",
+    "name": "Anti-Frying Pan",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 37,
+    "app_id": "oll-5-1",
+    "name": "Mounted Fish",
+    "edge_pattern": "small-l",
+    "confidence": "likely",
+    "notes": "OLL 37 is commonly called Mounted Fish"
+  },
+  {
+    "wca_id": 38,
+    "app_id": "oll-5-3",
+    "name": "Kite",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 39,
+    "app_id": "oll-5-8",
+    "name": "Anti-Dalmatian",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 40,
+    "app_id": "oll-2-4",
+    "name": "Anti-P Shape",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 41,
+    "app_id": "oll-5-2",
+    "name": "Fish Salad",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 42,
+    "app_id": "oll-5-4",
+    "name": "Anti-Kite",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 43,
+    "app_id": "oll-2-6",
+    "name": "Anti-Couch",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 44,
+    "app_id": "oll-2-8",
+    "name": "City",
+    "edge_pattern": "small-l",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 45,
+    "app_id": "oll-4-7",
+    "name": "Breakneck",
+    "edge_pattern": "cross-minus",
+    "confidence": "likely",
+    "notes": "OLL 45 — two opposite edges unoriented"
+  },
+  {
+    "wca_id": 46,
+    "app_id": "oll-4-8",
+    "name": "Anti-Breakneck",
+    "edge_pattern": "cross-minus",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 47,
+    "app_id": "oll-3-3",
+    "name": "Stealth",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 48,
+    "app_id": "oll-3-4",
+    "name": "Mummy",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 49,
+    "app_id": "oll-4-11",
+    "name": "Right Back Squeezy",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 50,
+    "app_id": "oll-4-12",
+    "name": "Right Front Squeezy",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 51,
+    "app_id": "oll-4-1",
+    "name": "Lightning",
+    "edge_pattern": "two-adjacent",
+    "confidence": "certain",
+    "notes": "OLL 51 — canonical Lightning (r U R' U R U2 r' style)"
+  },
+  {
+    "wca_id": 52,
+    "app_id": "oll-4-2",
+    "name": "Reverse Lightning",
+    "edge_pattern": "two-adjacent",
+    "confidence": "certain",
+    "notes": "OLL 52 — mirror of Lightning"
+  },
+  {
+    "wca_id": 53,
+    "app_id": "oll-3-1",
+    "name": "Righty Square",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 54,
+    "app_id": "oll-3-2",
+    "name": "Lefty Square",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 55,
+    "app_id": "oll-4-3",
+    "name": "Downstairs",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 56,
+    "app_id": "oll-4-4",
+    "name": "Upstairs",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely"
+  },
+  {
+    "wca_id": 57,
+    "app_id": "oll-4-5",
+    "name": "Anti-Fung",
+    "edge_pattern": "two-adjacent",
+    "confidence": "likely",
+    "notes": "OLL 57 — the last case; with Anti-Fung/Fung sharing this slot depending on orientation. Fung (oll-4-6) may map here or be a rotation of the same case."
+  }
+]

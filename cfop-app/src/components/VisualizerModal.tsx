@@ -168,7 +168,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
           hintFacelets: 'none',
           controlPanel: 'none',
           tempoScale: speed,
-          experimentalSetupAlg: 'z2',
+          experimentalSetupAlg: currentAlg.setup ?? 'z2',
           experimentalSetupAnchor: 'end',
           experimentalStickeringMaskOrbits: mask,
           experimentalDragInput: 'auto',
@@ -258,7 +258,9 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
               {loadState === 'loading' ? 'Loading…' : (currentAlg?.name ?? '—')}
             </h2>
             {currentAlg?.group && (
-              <p className="visualizer-group-label">{selectedSet} · {currentAlg.group}</p>
+              <p className="visualizer-group-label">
+                {selectedSet} · {currentAlg.group}{currentAlg.prob ? ` · ${currentAlg.prob}` : ''}
+              </p>
             )}
           </div>
           <button className="delete" onClick={onClose} aria-label="close" />

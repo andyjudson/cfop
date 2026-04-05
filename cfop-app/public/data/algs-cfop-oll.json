@@ -407,7 +407,8 @@
     "group": "Fish & Awkward",
     "image": "./assets/cfop_oll/oll-5-8.png",
     "wca_id": 42,
-    "prob": "1/54"
+    "prob": "1/54",
+    "setup": "z2 y'"
   },
   {
     "id": "oll-6-1",

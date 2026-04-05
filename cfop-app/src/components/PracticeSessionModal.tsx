@@ -355,7 +355,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                     ) : (
                       <button
                         className="button is-small is-light"
-                        onClick={resetStats}
+                        onClick={() => { resetStats(); reset(); }}
                         disabled={timer.state === 'running'}
                       >
                         <span className="icon is-small"><MdHistory /></span>

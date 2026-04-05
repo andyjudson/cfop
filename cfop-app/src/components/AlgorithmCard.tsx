@@ -13,6 +13,9 @@ export interface CfopAlgorithm {
   method?: string;
   group?: string;
   mask?: 'edge' | 'corner';
+  wca_id?: number | string;
+  prob?: string;
+  setup?: string;
 }
 
 function formatNotation(notation: string, lineBreak?: number | number[]): string {

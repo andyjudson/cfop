@@ -611,24 +611,31 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Surface probabilities in the Visualizer modal (case header area) ✅ (planned)
 - Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅ (planned)
 
-**Feature 022 - cubify-poc Integration (Planned)**:
+**Feature 022 - WR Legends Panel (Planned)**:
+- Side-by-side panel in About page WCA section: 1/3 legends table, 2/3 evolution chart ✅ (planned)
+- Table derived from existing wca-wr-evolution.json — no new fetch ✅ (planned)
+- Sortable by name, WR count, single, average; current record holders highlighted ✅ (planned)
+- Expand/collapse toggle to go chart-only ✅ (planned)
+- PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅ (planned)
+
+**Feature 023 - cubify-poc Integration (Planned)**:
 - Migrate cfop-app and cubify-scripts from cubing.js/TwistyPlayer to cubify-poc ✅ (planned)
 - Replace VisualizerModal and ScrambleCubePreview TwistyPlayer usage ✅ (planned)
 - Replace cubify agent skill Playwright renderer with CubeExporter ✅ (planned)
 - Remove IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
 
-**Feature 023 - PWA & Bundle Optimisation (Planned)**:
+**Feature 024 - PWA & Bundle Optimisation (Planned)**:
 - Service worker for offline support — app usable at a cube without connectivity ✅ (planned)
 - Asset caching strategy for algorithm JSON, PNGs, and app shell ✅ (planned)
 - Address known 500kB+ chunk warnings: resolved by cubify-poc replacing cubing.js ✅ (planned)
 
-**Feature 024 - Personalisation & Learning Progress (Planned)**:
+**Feature 025 - Personalisation & Learning Progress (Planned)**:
 - Per-case practice tracking — record which OLL/PLL cases have been practiced ✅ (planned)
 - Case bookmarking / favourites — flag cases for focused practice ✅ (planned)
 - Algorithm notation preference — wide moves (Rw) vs slice moves (M/S) ✅ (planned)
 - Persisted via versioned localStorage envelope, consistent with existing prefs pattern ✅ (planned)
 
-**Feature 025 - Alt Algs UI (Planned)**:
+**Feature 026 - Alt Algs UI (Planned)**:
 - Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
 - Toggle between primary and alternative alg for a case ✅ (planned)
 - Solver-generated alts once cubify-poc solver integration is available ✅ (planned)

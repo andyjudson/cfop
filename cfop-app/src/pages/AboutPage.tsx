@@ -13,15 +13,12 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 section-title">Cubing Background</h2>
         <p>
-          The Rubik's Cube <img src={`${import.meta.env.BASE_URL}assets/cubing-64.png`} alt="CFOP app" className="logo-inline" />  was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since
-          the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of
-          competitors and insane world record times of sub-5 seconds for single and average solves in recent years.
+          The Rubik's Cube <img src={`${import.meta.env.BASE_URL}assets/cubing-64.png`} alt="CFOP app" className="logo-inline" />  was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of competitors and insane world record times of sub-5 seconds for single and average solves in recent years.
         </p>
         <p className="mt-3">I was only 2 years old when the cube was invented and I never learnt how to solve it (legitimately) as a child. A few years ago, I was on holiday with my family, and my daughter bought me a cube (traditional, clunky design), and I was determined to learn to solve it. I found the beginner method online from JPerm and after watching that repeatedly for a few hours, I'd achieved my first solve 🤪 and was hooked. I then wanted to understand more and see if I could push times reliably in the 1 to 2 minute range. I started learning CFOP, and it's been a fun journey since, I may have upgraded to a Gan cube along the way 🤓. The methodical nature of CFOP, with its clear stages and algorithmic patterns, makes it a great fit for my learning style. The 2-look CFOP is a sweet spot for me where I can achieve good times without needing to memorise a huge number of algorithms.
         </p>
         <p className="mt-3">
-          I developed this app to reinforce my learning and sharpen my engineering skills. The YouTube videos are invaluable for technique and strategy, but focusing on specific algorithms needs targeted repetition. Other sites were ugly or polluted with ads and trackers. I wanted a clean, modern, mobile-friendly space to focus on learning, and hopefully it serves others to.
-          Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
+          I developed this app to reinforce my learning and sharpen my engineering skills. The YouTube videos are invaluable for technique and strategy, but focusing on specific algorithms needs targeted repetition. Other sites were ugly or polluted with ads and trackers. I wanted a clean, modern, mobile-friendly space to focus on learning, and hopefully it serves others to. Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
         </p>
         <p className="mt-3">
           The app is open source — you can find the code on <a href="https://github.com/andyjudson/cubing.spec" target="_blank" rel="noreferrer">GitHub</a>. If you spot a bug, have a suggestion, or want to see a new feature, feel free to open an issue there.
@@ -65,8 +62,7 @@ export default function AboutPage() {
             algorithms. Achievable in 1–2 minutes per solve, with the probability of repetition.
           </li>
           <li>
-            <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn all 57 OLL and 21 PLL cases plus algorithmic F2L for
-            maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery.
+            <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn PLL cases, then OLL cases, and lastly algorithmic F2L cases for maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery. I'm not never going to get here, but it's fun to watch the pros!
           </li>
         </ul>
       </section>
@@ -120,7 +116,7 @@ export default function AboutPage() {
           </li>
           <li>
             <strong>Full F2L / OLL / PLL</strong> — The complete algorithm libraries: 41 F2L cases, 57 OLL
-            cases, and 21 PLL cases, with case diagrams and notation.
+            cases, and 21 PLL cases, with case diagrams and notation. Stored as JSON data in the app for easy reference and reuse.
           </li>
           <li>
             <strong>Algorithm Visualiser</strong> — Select any OLL or PLL algorithm and watch a 3D cube
@@ -130,10 +126,10 @@ export default function AboutPage() {
           <li>
             <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random
             scrambles with a space-bar timer and rolling stats (last time, best time, ao5).{' '}
-            <em>Champion mode</em> (just for fun) loads the actual scrambles from a real WCA
+            <em>Champion mode</em> loads the actual scrambles from a real WCA
             competition final. Complete the set of 5 scrambles and see how your times compare to the event winner 
             and the world record at the time (not necessarily set at that event or by the winner).
-            WCA events with scrambles go back to 2015 with over 50 international competition finals available to you.
+            WCA have the event data with scrambles back to 2015, so you'll have access to over 50 international competition finals.
           </li>
           <li>
             <strong>WCA Records Chart</strong> — A visualisation of how the 3×3 world record single and
@@ -148,7 +144,7 @@ export default function AboutPage() {
           These tutorials from CubeHead are the recommended companion videos to the content in this app. They cover intuitive methods, 2-look and 1-look OLL and PLL, and useful tips for improving your solves. These are a great starting point for learning CFOP, and the intuitive methods are especially helpful for building a strong foundation before diving into algorithm memorisation. The videos are well-structured and beginner-friendly, making them an excellent resource for cubers at all levels.
         </p>
         <p className="mt-3">
-          Last year he launched his own cubing web app - <a href="https://www.cube.academy" target="_blank" rel="noreferrer">Cube Academy</a>. With a background in software and design (ex-Apple), he's built something clean and content-rich. The paywall wasn't for me but he's been sharing great content for free for years, and he deserves to be recognized for it. From what he's been sharing lately, the <a href="https://www.youtube.com/live/HtMHywhjqro" target="_blank" rel="noreferrer">roadmap</a> looks genuinely exciting — timers, learning progression, and a polished user experience that will be worth following.
+          Last year he also launched his own cubing web app - <a href="https://www.cube.academy" target="_blank" rel="noreferrer">Cube Academy</a>. With a background in software and design (ex-Apple), he's built something clean and content-rich. The paywall wasn't for me but he's been sharing great content for free for years, and he deserves to be recognized for it. From what he's been discussing lately, the <a href="https://www.youtube.com/live/HtMHywhjqro" target="_blank" rel="noreferrer">roadmap</a> looks very cool — timers and stats, learning progression, and a polished user experience that will be worth following.
         </p>
         <div className="columns mt-3">
           <div className="column">

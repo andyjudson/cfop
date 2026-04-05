@@ -272,6 +272,10 @@
   color: var(--color-accent-primary);
 }
 
+.wca-subheading {
+  margin-top: var(--space-lg) !important;
+}
+
 .logo-inline {
   height: 1.2em;
   width: auto;

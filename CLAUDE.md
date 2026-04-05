@@ -129,3 +129,6 @@ Standalone Node.js ESM skill for cube image generation. No build step.
 - **Requires**: `headless: false` (WebGL blocked in headless Chromium on macOS); `npx playwright install chromium` from `cfop-app/`
 - **Output**: `.claude/tmp/cubify/` within the repo (gitignored)
 - **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
+
+## Recent Changes
+- 022-wr-legends-panel: Added TypeScript 5.9, React 19 + Bulma CSS 1.x, react-icons 5.x (for star icon and sort indicators)

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
@@ -7,7 +7,7 @@ import './WrEvolutionChart.css';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-interface WrRawRecord {
+export interface WrRawRecord {
   competition_date: number;
   competition_id: string;
   competition_name: string;
@@ -57,7 +57,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
 
-function parseNdjson(text: string): WrRawRecord[] {
+export function parseNdjson(text: string): WrRawRecord[] {
   return text
     .split('\n')
     .filter(line => line.trim().length > 0)
@@ -164,28 +164,19 @@ function WrTooltipContent({ active, payload }: TooltipContentProps) {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export function WrEvolutionChart() {
-  const [singleData, setSingleData] = useState<WrRecord[]>([]);
-  const [averageData, setAverageData] = useState<WrRecord[]>([]);
-  const [error, setError] = useState<Error | null>(null);
+interface WrEvolutionChartProps {
+  records: WrRawRecord[];
+}
 
-  useEffect(() => {
-    fetch(import.meta.env.BASE_URL + 'data/wca-wr-evolution.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load WR data');
-        return res.text();
-      })
-      .then(text => {
-        if (text.trimStart().startsWith('<')) throw new Error('Data file not found');
-        const records = parseNdjson(text);
-        const single = records.filter(r => r.type === 'Single WR').map(normaliseRecord);
-        const average = records.filter(r => r.type === 'Average WR').map(normaliseRecord);
-        if (!single.length && !average.length) throw new Error('No WR data parsed');
-        setSingleData(single);
-        setAverageData(average);
-      })
-      .catch((err) => setError(err instanceof Error ? err : new Error('Failed to load WR data')));
-  }, []);
+export function WrEvolutionChart({ records }: WrEvolutionChartProps) {
+  const singleData = useMemo(
+    () => records.filter(r => r.type === 'Single WR').map(normaliseRecord),
+    [records],
+  );
+  const averageData = useMemo(
+    () => records.filter(r => r.type === 'Average WR').map(normaliseRecord),
+    [records],
+  );
 
   const colours = useMemo(() => ({
     single: resolveTokenColour('--color-accent-primary'),
@@ -221,8 +212,6 @@ export function WrEvolutionChart() {
     }
     return ticks;
   }, [chartData]);
-
-  if (error) throw error;
 
   return (
     <div className="wr-chart-container">

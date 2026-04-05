@@ -1,0 +1,94 @@
+.wr-legends-table-wrap {
+  overflow-x: auto;
+}
+
+.wr-legends-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.wr-legends-table thead tr {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.wr-legends-table th {
+  padding: var(--space-xs) var(--space-sm);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.wr-th-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.wr-th-sortable:hover {
+  color: var(--color-text-primary);
+}
+
+.wr-th-active {
+  color: var(--color-accent-primary);
+}
+
+.wr-sort-indicator {
+  font-size: 0.65rem;
+  margin-left: 2px;
+  color: var(--color-accent-primary);
+}
+
+.wr-sort-inactive {
+  color: var(--color-text-muted);
+}
+
+.wr-legends-table tbody tr {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.wr-legends-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.wr-legends-table td {
+  padding: var(--space-xs) var(--space-sm);
+  vertical-align: middle;
+}
+
+.wr-td-name {
+  font-weight: 600;
+}
+
+.wr-td-country {
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.wr-td-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.wr-td-current {
+  color: var(--color-accent-warm);
+  font-weight: 600;
+}
+
+.wr-td-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wr-star {
+  font-size: 0.75rem;
+  color: var(--color-accent-warm);
+  flex-shrink: 0;
+}
+
+.wr-td-date {
+  color: var(--color-text-secondary);
+}

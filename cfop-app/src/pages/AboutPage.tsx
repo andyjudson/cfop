@@ -1,10 +1,49 @@
+import { useState, useEffect } from 'react';
 import { CfopPageLayout } from '../components/CfopPageLayout';
-import { WrEvolutionChart } from '../components/WrEvolutionChart';
+import { WrEvolutionChart, parseNdjson } from '../components/WrEvolutionChart';
+import type { WrRawRecord } from '../components/WrEvolutionChart';
+import { WrLegendsTable } from '../components/WrLegendsTable';
+import type { WrLegend } from '../components/WrLegendsTable';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 
 export default function AboutPage() {
+  const [wrRecords, setWrRecords] = useState<WrRawRecord[]>([]);
+  const [legends, setLegends] = useState<WrLegend[]>([]);
+  const [wrError, setWrError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    fetch(import.meta.env.BASE_URL + 'data/wca-wr-evolution.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load WR data');
+        return res.text();
+      })
+      .then(text => {
+        if (text.trimStart().startsWith('<')) throw new Error('Data file not found');
+        const records = parseNdjson(text);
+        if (!records.length) throw new Error('No WR data parsed');
+        setWrRecords(records);
+      })
+      .catch(err => setWrError(err instanceof Error ? err : new Error('Failed to load WR data')));
+
+    fetch(import.meta.env.BASE_URL + 'data/wca-wr-legends.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load WR legends');
+        return res.text();
+      })
+      .then(text => {
+        if (text.trimStart().startsWith('<')) throw new Error('Legends file not found');
+        const rows = text.trim().split('\n').flatMap(line => {
+          try { return [JSON.parse(line) as WrLegend]; } catch { return []; }
+        });
+        setLegends(rows);
+      })
+      .catch(err => setWrError(err instanceof Error ? err : new Error('Failed to load WR legends')));
+  }, []);
+
+  if (wrError) throw wrError;
+
   return (
     <CfopPageLayout
       pageTitle="About"
@@ -103,15 +142,15 @@ export default function AboutPage() {
         </p>
         <ul className="about-list mt-3">
           <li>
-            <strong>Notation</strong> — A reference for standard cube notation (face moves, modifiers, slice or wide moves, cube rotations) 
+            <strong>Notation</strong> — A reference for standard cube notation (face moves, modifiers, slice or wide moves, cube rotations)
             with visual examples so you can read any algorithm you encounter.
           </li>
           <li>
-            <strong>Intuitive Cross and F2L</strong> — The core logic for Cross and the F2L patterns explained without algorithms, 
+            <strong>Intuitive Cross and F2L</strong> — The core logic for Cross and the F2L patterns explained without algorithms,
             building spatial reasoning that underpins faster solves at any level.
           </li>
           <li>
-            <strong>Beginner 2-Look</strong> — The minimal algorithm set for solving OLL and PLL in two passes 
+            <strong>Beginner 2-Look</strong> — The minimal algorithm set for solving OLL and PLL in two passes
             with consistent sub-2-minute solves, covering the 10 OLL cases and 6 PLL cases, with notes for each.
           </li>
           <li>
@@ -127,13 +166,13 @@ export default function AboutPage() {
             <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random
             scrambles with a space-bar timer and rolling stats (last time, best time, ao5).{' '}
             <em>Champion mode</em> loads the actual scrambles from a real WCA
-            competition final. Complete the set of 5 scrambles and see how your times compare to the event winner 
+            competition final. Complete the set of 5 scrambles and see how your times compare to the event winner
             and the world record at the time (not necessarily set at that event or by the winner).
             WCA have the event data with scrambles back to 2015, so you'll have access to over 50 international competition finals.
           </li>
           <li>
-            <strong>WCA Records Chart</strong> — A visualisation of how the 3×3 world record single and
-            average times have evolved since the WCA was founded, sourced from official WCA data.
+            <strong>WCA Records</strong> — A visualisation of how the 3×3 world record single and
+            average times have evolved since the WCA was founded, alongside the legends who set them.
           </li>
         </ul>
       </section>
@@ -173,8 +212,11 @@ export default function AboutPage() {
         <h2 className="title is-4 section-title">World Cube Association</h2>
         <p className="mt-3">
           The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages - 🤯 just incredible!! CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency, the skill of its practitioners, and the shifts in cube engineering.
-        </p>        
-        <ErrorBoundary><WrEvolutionChart /></ErrorBoundary>
+        </p>
+        <h4 className="title is-5 wca-subheading">WR Legends</h4>
+        <ErrorBoundary><WrLegendsTable legends={legends} /></ErrorBoundary>
+        <h4 className="title is-5 wca-subheading">WR Evolution</h4>
+        <ErrorBoundary><WrEvolutionChart records={wrRecords} /></ErrorBoundary>
       </section>
 
     </CfopPageLayout>

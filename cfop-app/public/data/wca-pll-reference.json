@@ -1,128 +1,23 @@
 [
-  {
-    "wca_id": "Ua",
-    "app_id": "pll-1-1",
-    "name": "Ua Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Ub",
-    "app_id": "pll-1-2",
-    "name": "Ub Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "H",
-    "app_id": "pll-1-3",
-    "name": "H Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Z",
-    "app_id": "pll-1-4",
-    "name": "Z Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Aa",
-    "app_id": "pll-2-1",
-    "name": "Aa Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Ab",
-    "app_id": "pll-2-2",
-    "name": "Ab Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "E",
-    "app_id": "pll-2-3",
-    "name": "E Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "T",
-    "app_id": "pll-3-1",
-    "name": "T Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "F",
-    "app_id": "pll-3-2",
-    "name": "F Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Jb",
-    "app_id": "pll-3-3",
-    "name": "Jb Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Ja",
-    "app_id": "pll-3-4",
-    "name": "Ja Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Ra",
-    "app_id": "pll-3-5",
-    "name": "Ra Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Rb",
-    "app_id": "pll-3-6",
-    "name": "Rb Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Y",
-    "app_id": "pll-4-1",
-    "name": "Y Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Na",
-    "app_id": "pll-4-2",
-    "name": "Na Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Nb",
-    "app_id": "pll-4-3",
-    "name": "Nb Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "V",
-    "app_id": "pll-4-4",
-    "name": "V Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Ga",
-    "app_id": "pll-5-1",
-    "name": "Ga Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Gb",
-    "app_id": "pll-5-2",
-    "name": "Gb Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Gc",
-    "app_id": "pll-5-3",
-    "name": "Gc Perm",
-    "confidence": "certain"
-  },
-  {
-    "wca_id": "Gd",
-    "app_id": "pll-5-4",
-    "name": "Gd Perm",
-    "confidence": "certain"
-  }
+  { "wca_id": "Ua", "app_id": "pll-1-1", "names": ["Ua Perm"] },
+  { "wca_id": "Ub", "app_id": "pll-1-2", "names": ["Ub Perm"] },
+  { "wca_id": "H",  "app_id": "pll-1-3", "names": ["H Perm"] },
+  { "wca_id": "Z",  "app_id": "pll-1-4", "names": ["Z Perm"] },
+  { "wca_id": "Aa", "app_id": "pll-2-1", "names": ["Aa Perm"] },
+  { "wca_id": "Ab", "app_id": "pll-2-2", "names": ["Ab Perm"] },
+  { "wca_id": "E",  "app_id": "pll-2-3", "names": ["E Perm"] },
+  { "wca_id": "T",  "app_id": "pll-3-1", "names": ["T Perm"] },
+  { "wca_id": "F",  "app_id": "pll-3-2", "names": ["F Perm"] },
+  { "wca_id": "Jb", "app_id": "pll-3-3", "names": ["Jb Perm"] },
+  { "wca_id": "Ja", "app_id": "pll-3-4", "names": ["Ja Perm"] },
+  { "wca_id": "Ra", "app_id": "pll-3-5", "names": ["Ra Perm"] },
+  { "wca_id": "Rb", "app_id": "pll-3-6", "names": ["Rb Perm"] },
+  { "wca_id": "Y",  "app_id": "pll-4-1", "names": ["Y Perm"] },
+  { "wca_id": "Na", "app_id": "pll-4-2", "names": ["Na Perm"] },
+  { "wca_id": "Nb", "app_id": "pll-4-3", "names": ["Nb Perm"] },
+  { "wca_id": "V",  "app_id": "pll-4-4", "names": ["V Perm"] },
+  { "wca_id": "Ga", "app_id": "pll-5-1", "names": ["Ga Perm"] },
+  { "wca_id": "Gb", "app_id": "pll-5-2", "names": ["Gb Perm"] },
+  { "wca_id": "Gc", "app_id": "pll-5-3", "names": ["Gc Perm"] },
+  { "wca_id": "Gd", "app_id": "pll-5-4", "names": ["Gd Perm"] }
 ]

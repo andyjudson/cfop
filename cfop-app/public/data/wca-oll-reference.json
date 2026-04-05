@@ -1,459 +1,59 @@
 [
-  {
-    "wca_id": 1,
-    "app_id": "oll-7-1",
-    "name": "Runway",
-    "alt_names": ["Blank"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 2,
-    "app_id": "oll-7-2",
-    "name": "Zamboni",
-    "alt_names": [],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 3,
-    "app_id": "oll-7-8",
-    "name": "Anti-Mouse",
-    "alt_names": ["Anti-Pinwheel"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 4,
-    "app_id": "oll-7-7",
-    "name": "Mouse",
-    "alt_names": ["Pinwheel"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 5,
-    "app_id": "oll-3-2",
-    "name": "Lefty Square",
-    "alt_names": ["Right Back Wide"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 6,
-    "app_id": "oll-3-1",
-    "name": "Righty Square",
-    "alt_names": ["Right Front Wide"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 7,
-    "app_id": "oll-4-1",
-    "name": "Lightning",
-    "alt_names": ["Wide Sune"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 8,
-    "app_id": "oll-4-2",
-    "name": "Reverse Lightning",
-    "alt_names": ["Wide Anti-Sune"],
-    "edge_pattern": "dot",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 9,
-    "app_id": "oll-5-3",
-    "name": "Kite",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 10,
-    "app_id": "oll-5-4",
-    "name": "Anti-Kite",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 11,
-    "app_id": "oll-4-3",
-    "name": "Downstairs",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 12,
-    "app_id": "oll-4-4",
-    "name": "Upstairs",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 13,
-    "app_id": "oll-6-7",
-    "name": "Gun",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 14,
-    "app_id": "oll-6-8",
-    "name": "Anti-Gun",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 15,
-    "app_id": "oll-6-6",
-    "name": "Squeegee",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 16,
-    "app_id": "oll-6-5",
-    "name": "Anti-Squeegee",
-    "alt_names": [],
-    "edge_pattern": "line",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 17,
-    "app_id": "oll-7-3",
-    "name": "Slash",
-    "alt_names": ["Diagonal"],
-    "edge_pattern": "l-shape",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 18,
-    "app_id": "oll-7-6",
-    "name": "Crown",
-    "alt_names": [],
-    "edge_pattern": "l-shape",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 19,
-    "app_id": "oll-7-5",
-    "name": "Bunny",
-    "alt_names": [],
-    "edge_pattern": "l-shape",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 20,
-    "app_id": "oll-7-4",
-    "name": "Checkers",
-    "alt_names": ["X"],
-    "edge_pattern": "cross",
-    "confidence": "verified",
-    "notes": "OLL skip — top face already fully oriented. Checkers/X refers to the sticker pattern on the sides."
-  },
-  {
-    "wca_id": 21,
-    "app_id": "oll-1-3",
-    "name": "H Shape",
-    "alt_names": ["Headlights", "Superman", "U"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 22,
-    "app_id": "oll-1-4",
-    "name": "Pi Shape",
-    "alt_names": ["Pi", "Bruno", "Wheel", "T-shirt", "Antarctica"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 23,
-    "app_id": "oll-1-7",
-    "name": "U Shape",
-    "alt_names": ["H", "Double Sune", "Flip", "Cross"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 24,
-    "app_id": "oll-1-5",
-    "name": "T Shape",
-    "alt_names": ["Chameleon", "Shark", "Hammerhead", "Little Horse", "Stingray"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 25,
-    "app_id": "oll-1-6",
-    "name": "L Shape",
-    "alt_names": ["Bowtie", "Triple-Sune", "Sidewinder", "Diagonals", "Spaceship"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 26,
-    "app_id": "oll-1-2",
-    "name": "Anti-Sune",
-    "alt_names": ["AS", "S-", "Swimming Right"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 27,
-    "app_id": "oll-1-1",
-    "name": "Sune",
-    "alt_names": ["S", "Swimming Left"],
-    "edge_pattern": "cross",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 28,
-    "app_id": "oll-3-3",
-    "name": "Stealth",
-    "alt_names": ["Arrow", "Arrowhead", "Fish"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 29,
-    "app_id": "oll-5-5",
-    "name": "Spotted Chameleon",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 30,
-    "app_id": "oll-5-6",
-    "name": "Anti-Spotted Chameleon",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 31,
-    "app_id": "oll-2-5",
-    "name": "Couch",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 32,
-    "app_id": "oll-2-6",
-    "name": "Anti-Couch",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 33,
-    "app_id": "oll-2-2",
-    "name": "Tying Shoelaces",
-    "alt_names": ["Key"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 34,
-    "app_id": "oll-2-8",
-    "name": "City",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 35,
-    "app_id": "oll-5-2",
-    "name": "Fish Salad",
-    "alt_names": ["Awkward Fish"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 36,
-    "app_id": "oll-2-10",
-    "name": "Anti-Moustache",
-    "alt_names": ["Sea-Mew", "Wario"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 37,
-    "app_id": "oll-5-1",
-    "name": "Mounted Fish",
-    "alt_names": ["Untying Shoelaces"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 38,
-    "app_id": "oll-2-9",
-    "name": "Moustache",
-    "alt_names": ["Mario"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 39,
-    "app_id": "oll-4-6",
-    "name": "Fung",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 40,
-    "app_id": "oll-4-5",
-    "name": "Anti-Fung",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 41,
-    "app_id": "oll-5-7",
-    "name": "Dalmatian",
-    "alt_names": ["Awkward Fish"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 42,
-    "app_id": "oll-5-8",
-    "name": "Anti-Dalmatian",
-    "alt_names": ["Lefty Awkward Fish"],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 43,
-    "app_id": "oll-2-4",
-    "name": "Anti-P Shape",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 44,
-    "app_id": "oll-2-3",
-    "name": "P Shape",
-    "alt_names": [],
-    "edge_pattern": "small-l",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 45,
-    "app_id": "oll-2-1",
-    "name": "Suit Up",
-    "alt_names": [],
-    "edge_pattern": "cross-minus",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 46,
-    "app_id": "oll-2-7",
-    "name": "Seeing Headlights",
-    "alt_names": [],
-    "edge_pattern": "cross-minus",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 47,
-    "app_id": "oll-4-8",
-    "name": "Anti-Breakneck",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 48,
-    "app_id": "oll-4-7",
-    "name": "Breakneck",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 49,
-    "app_id": "oll-4-11",
-    "name": "Right Back Squeezy",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 50,
-    "app_id": "oll-4-12",
-    "name": "Right Front Squeezy",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 51,
-    "app_id": "oll-6-1",
-    "name": "Bottlecap",
-    "alt_names": ["Ant"],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 52,
-    "app_id": "oll-6-2",
-    "name": "Rice Cooker",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 53,
-    "app_id": "oll-4-9",
-    "name": "Frying Pan",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 54,
-    "app_id": "oll-4-10",
-    "name": "Anti-Frying Pan",
-    "alt_names": [],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 55,
-    "app_id": "oll-6-4",
-    "name": "Freeway",
-    "alt_names": ["Highway"],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 56,
-    "app_id": "oll-6-3",
-    "name": "Dead Man",
-    "alt_names": ["Streetlights"],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  },
-  {
-    "wca_id": 57,
-    "app_id": "oll-3-4",
-    "name": "Mummy",
-    "alt_names": ["H", "I", "Brick"],
-    "edge_pattern": "two-adjacent",
-    "confidence": "verified"
-  }
+  { "wca_id": 1,  "app_id": "oll-7-1", "names": ["Runway", "Blank"] },
+  { "wca_id": 2,  "app_id": "oll-7-2", "names": ["Zamboni"] },
+  { "wca_id": 3,  "app_id": "oll-7-8", "names": ["Anti-Mouse", "Anti-Pinwheel"] },
+  { "wca_id": 4,  "app_id": "oll-7-7", "names": ["Mouse", "Pinwheel"] },
+  { "wca_id": 5,  "app_id": "oll-3-2", "names": ["Lefty Square", "Right Back Wide"] },
+  { "wca_id": 6,  "app_id": "oll-3-1", "names": ["Righty Square", "Right Front Wide"] },
+  { "wca_id": 7,  "app_id": "oll-4-1", "names": ["Lightning", "Wide Sune"] },
+  { "wca_id": 8,  "app_id": "oll-4-2", "names": ["Reverse Lightning", "Wide Anti-Sune"] },
+  { "wca_id": 9,  "app_id": "oll-5-3", "names": ["Kite"] },
+  { "wca_id": 10, "app_id": "oll-5-4", "names": ["Anti-Kite"] },
+  { "wca_id": 11, "app_id": "oll-4-3", "names": ["Downstairs"] },
+  { "wca_id": 12, "app_id": "oll-4-4", "names": ["Upstairs"] },
+  { "wca_id": 13, "app_id": "oll-6-7", "names": ["Gun"] },
+  { "wca_id": 14, "app_id": "oll-6-8", "names": ["Anti-Gun"] },
+  { "wca_id": 15, "app_id": "oll-6-6", "names": ["Squeegee"] },
+  { "wca_id": 16, "app_id": "oll-6-5", "names": ["Anti-Squeegee"] },
+  { "wca_id": 17, "app_id": "oll-7-3", "names": ["Slash", "Diagonal"] },
+  { "wca_id": 18, "app_id": "oll-7-6", "names": ["Crown"] },
+  { "wca_id": 19, "app_id": "oll-7-5", "names": ["Bunny"] },
+  { "wca_id": 20, "app_id": "oll-7-4", "names": ["Checkers", "X"] },
+  { "wca_id": 21, "app_id": "oll-1-3", "names": ["H Shape", "Headlights", "Superman"] },
+  { "wca_id": 22, "app_id": "oll-1-4", "names": ["Pi Shape", "Pi", "Bruno", "Wheel", "T-shirt", "Antarctica"] },
+  { "wca_id": 23, "app_id": "oll-1-7", "names": ["U Shape", "Double Sune", "Flip", "Cross"] },
+  { "wca_id": 24, "app_id": "oll-1-5", "names": ["T Shape", "Chameleon", "Shark", "Hammerhead", "Little Horse", "Stingray"] },
+  { "wca_id": 25, "app_id": "oll-1-6", "names": ["L Shape", "Bowtie", "Triple-Sune", "Sidewinder", "Diagonals", "Spaceship"] },
+  { "wca_id": 26, "app_id": "oll-1-2", "names": ["Anti-Sune", "AS", "S-", "Swimming Right"] },
+  { "wca_id": 27, "app_id": "oll-1-1", "names": ["Sune", "S", "Swimming Left"] },
+  { "wca_id": 28, "app_id": "oll-3-3", "names": ["Stealth", "Arrow", "Arrowhead", "Fish"] },
+  { "wca_id": 29, "app_id": "oll-5-5", "names": ["Spotted Chameleon"] },
+  { "wca_id": 30, "app_id": "oll-5-6", "names": ["Anti-Spotted Chameleon"] },
+  { "wca_id": 31, "app_id": "oll-2-5", "names": ["Couch"] },
+  { "wca_id": 32, "app_id": "oll-2-6", "names": ["Anti-Couch"] },
+  { "wca_id": 33, "app_id": "oll-2-2", "names": ["Tying Shoelaces", "Key"] },
+  { "wca_id": 34, "app_id": "oll-2-8", "names": ["City"] },
+  { "wca_id": 35, "app_id": "oll-5-2", "names": ["Fish Salad", "Awkward Fish"] },
+  { "wca_id": 36, "app_id": "oll-2-10", "names": ["Anti-Moustache", "Sea-Mew", "Wario"] },
+  { "wca_id": 37, "app_id": "oll-5-1", "names": ["Mounted Fish", "Untying Shoelaces"] },
+  { "wca_id": 38, "app_id": "oll-2-9", "names": ["Moustache", "Mario"] },
+  { "wca_id": 39, "app_id": "oll-4-6", "names": ["Fung"] },
+  { "wca_id": 40, "app_id": "oll-4-5", "names": ["Anti-Fung"] },
+  { "wca_id": 41, "app_id": "oll-5-7", "names": ["Dalmatian", "Awkward Fish"] },
+  { "wca_id": 42, "app_id": "oll-5-8", "names": ["Anti-Dalmatian", "Lefty Awkward Fish"] },
+  { "wca_id": 43, "app_id": "oll-2-4", "names": ["Anti-P Shape"] },
+  { "wca_id": 44, "app_id": "oll-2-3", "names": ["P Shape"] },
+  { "wca_id": 45, "app_id": "oll-2-1", "names": ["Suit Up"] },
+  { "wca_id": 46, "app_id": "oll-2-7", "names": ["Seeing Headlights"] },
+  { "wca_id": 47, "app_id": "oll-4-8", "names": ["Anti-Breakneck"] },
+  { "wca_id": 48, "app_id": "oll-4-7", "names": ["Breakneck"] },
+  { "wca_id": 49, "app_id": "oll-4-11", "names": ["Right Back Squeezy"] },
+  { "wca_id": 50, "app_id": "oll-4-12", "names": ["Right Front Squeezy"] },
+  { "wca_id": 51, "app_id": "oll-6-1", "names": ["Bottlecap", "Ant"] },
+  { "wca_id": 52, "app_id": "oll-6-2", "names": ["Rice Cooker"] },
+  { "wca_id": 53, "app_id": "oll-4-9", "names": ["Frying Pan"] },
+  { "wca_id": 54, "app_id": "oll-4-10", "names": ["Anti-Frying Pan"] },
+  { "wca_id": 55, "app_id": "oll-6-4", "names": ["Freeway", "Highway"] },
+  { "wca_id": 56, "app_id": "oll-6-3", "names": ["Dead Man", "Streetlights"] },
+  { "wca_id": 57, "app_id": "oll-3-4", "names": ["Mummy", "H", "I", "Brick"] }
 ]

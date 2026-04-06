@@ -302,7 +302,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
 
             {navMode === 'browse' && (
               <CaseCarousel
-                algorithms={activeData}
+                algorithms={shufflePool}
                 activeId={currentAlg?.id ?? ''}
                 onSelect={(alg) => setCurrentAlg(alg)}
               />

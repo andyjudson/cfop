@@ -8,15 +8,13 @@
 
 There is no single official WCA document enumerating OLL/PLL cases. The canonical references are:
 
-- **WCA OLL 1–57 numbering**: established by Lars Vandenbergh, lives on [SpeedSolving.com wiki](https://www.speedsolving.com/wiki/index.php/OLL) and [algdb.net/OLL](https://algdb.net/puzzle/333/oll)
+- **WCA OLL 1–57 numbering**: established by Lars Vandenbergh, lives on [SpeedSolving.com wiki](https://www.speedsolving.com/wiki/index.php/OLL)
 - **PLL letter codes** (Ua, T, F, Ja, etc.): fully canonical — the names *are* the WCA identifiers, universally agreed
 - **Best matching key**: edge/corner orientation pattern, not algorithm text (many equivalent algs per case) and not name (community names vary)
 
 Local reference files kept in `cfop-app/public/data/`:
 - `wca-oll-reference.json` — WCA 1–57 → `app_id` mapping, all entries `"confidence": "verified"` after manual cross-check against SpeedSolving.com wiki. Includes `alt_names` from the wiki.
 - `wca-pll-reference.json` — PLL letter code → `app_id` (all `"certain"`)
-
-Note: algdb.net has been offline for years. SpeedSolving.com/wiki is the active canonical reference for OLL/PLL case images and numbering.
 
 ---
 
@@ -98,6 +96,5 @@ The "1/42" for a single slot is a community figure (appears on SpeedSolving wiki
 ## Notes for Future Features
 
 - **Probability display** (e.g. Feature 021 or later): The `prob` field is already in the JSON as a fraction string (`"1/54"`). A component can render this directly — no calculation needed.
-- **cubing.js solver for alt algs**: The solver can enumerate solutions for a given cube state up to N moves. This could generate guaranteed-correct alt algs for all 57 OLL and 21 PLL cases, replacing the hand-curated `algs-cfop-alt.json`. See `project_future_ideas.md` memory entry.
 - **WCA ID display**: `wca_id` is in the JSON. OLL IDs are integers (1–57); PLL IDs are strings ("Ua", "T", etc.). A display component should handle both types.
 - **OLL 57 duplicate**: Fung (oll-4-5) and Anti-Fung (oll-4-6) both have `wca_id: 57`. This is correct — they are orientations of the same case. If displaying "OLL 57" in the UI, decide whether to show both or just one.

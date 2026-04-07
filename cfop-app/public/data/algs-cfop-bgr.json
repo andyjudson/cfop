@@ -39,7 +39,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_sune.png",
-    "notes": "Hold the cube with an oriented yellow corner in the front-left and a unorientated corner in the front-right, facing forward. Lift the front-right corner up out of its slot. Swing the top layer left to move it away. Drop the corner back down, then swing the top left again. Lift the corner up high, swing the top right twice to reposition, then drop it back in — now oriented yellow on top. Setup a standard one-corner case with ... A). If two corners are oriented, position a unorientated corner front-left, facing forward; or B). If zero corners are oriented, position a unorientated corner front-left, facing outward.",
+    "notes": "Hold the cube with an oriented yellow corner in the front-left and a unorientated corner in the front-right. Lift the front-right corner up out of its slot. Swing the top layer left to move it away. Drop the corner back down, then swing the top left again. Lift the corner up high, swing the top right twice to reposition, then drop it back in — now oriented yellow on top. Setup a standard one-corner case with ... A). If two corners are oriented, position a unorientated corner front-left; or B). If zero corners are oriented, position a unorientated corner left-front.",
     "setup": "z2"
   },
   {
@@ -49,7 +49,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_antisune.png",
-    "notes": "Hold the cube with an oriented yellow corner in the back-right and a unorientated corner in the front-left, facing forward. Lift the front-right corner up high with a double turn. Swing the top layer right to move it away. Drop the corner back, swing the top right once more to reposition, then drop it in — the mirror image of Sune.",
+    "notes": "Hold the cube with an oriented yellow corner in the back-right and a unorientated corner in the front-left. Lift the front-right corner up high with a double turn. Swing the top layer right to move it away. Drop the corner back, swing the top right once more to reposition, then drop it in — the mirror image of Sune.",
     "setup": "z2"
   },
   {
@@ -59,7 +59,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_shape_h.png",
-    "notes": "Hold the cube so the headlights are facing outward. Lift the corner, swing left, drop, swing left — then swing right to park a second corner, lift again with a double turn, and drop in. Orients two opposite corners in one pass.",
+    "notes": "Hold the cube so the headlights are on left and right. Lift the corner, swing left, drop, swing left — then swing right to park a second corner, lift again with a double turn, and drop in. Orients two opposite corners in one pass.",
     "setup": "z2"
   },
   {

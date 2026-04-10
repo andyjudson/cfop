@@ -1,4 +1,4 @@
-# Research: cubify-poc (Feature 020)
+# Research: cubify-harness (Feature 020)
 
 ## Decision: Three.js for 3D rendering
 
@@ -26,7 +26,7 @@
 
 ## Decision: cubing/alg as peer dependency
 
-**Decision**: Import `Alg` and `experimentalLeafMoves()` from `cubing/alg`. Listed as `peerDependencies` in `cubify-poc/package.json` — not bundled.
+**Decision**: Import `Alg` and `experimentalLeafMoves()` from `cubing/alg`. Listed as `peerDependencies` in `cubify-harness/package.json` — not bundled.
 **Rationale**: WCA-compliant notation parsing is well-tested and not worth reinventing. Confirmed importable standalone with zero TwistyPlayer pull-in.
 **Alternative rejected**: Custom parser — regexp-based WCA notation parsing is error-prone for wide moves, rotations, and nested groupings.
 

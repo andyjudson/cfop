@@ -1,8 +1,19 @@
-# Feature 020 — cubify-poc
+# Feature 020 — cubify-harness
+
+## Artifacts
+
+- [spec.md](spec.md) — this file
+- [plan.md](plan.md) — implementation plan
+- [tasks.md](tasks.md) — task checklist
+- [research.md](research.md) — architectural decisions
+- [data-model.md](data-model.md) — data model
+- [cube-mapping-lessons.md](cube-mapping-lessons.md) — **cubing.js internals, orientation formulas, rendering architecture** (foundational reference)
+
+---
 
 ## Summary
 
-Design and build `cubify-poc` — a focused, modern JavaScript library for 3×3 Rubik's cube visualisation, animation, and algorithm tooling. It replaces direct use of `cubing.js` / TwistyPlayer within this project and is architected to be reusable as a standalone open-source library.
+Design and build `cubify-harness` — a focused, modern JavaScript library for 3×3 Rubik's cube visualisation, animation, and algorithm tooling. It replaces direct use of `cubing.js` / TwistyPlayer within this project and is architected to be reusable as a standalone open-source library.
 
 This feature is scoped to **architecture + proof of concept**: a working implementation of the hardest sub-problems (WebGL rendering without DOM constraints, clean mount API, CFOP stickering presets) that validates the approach before full library build-out.
 
@@ -25,7 +36,7 @@ A clean-room library designed around these pain points specifically would elimin
 
 ## Name
 
-**`cubify-poc`** — consistent with the existing `cubify-scripts/` agent skill and `cubify-app/` utility. Not "twisty" anything.
+**`cubify-harness`** — consistent with the existing `cubify-scripts/` agent skill and `cubify-app/` utility. Not "twisty" anything.
 
 ---
 
@@ -65,7 +76,7 @@ As a developer, I want to build my own playback controls using exposed methods (
 ### Module Structure
 
 ```
-cubify-poc/
+cubify-harness/
 ├── src/
 │   ├── CubeState.js       — pure maths: face state, move application, validation
 │   ├── AlgParser.js       — notation parsing, move sequence, WCA move set
@@ -180,7 +191,7 @@ Everything else — rendering, animation, stickering, export — is built fresh.
 ## Licensing
 
 - `cubing.js` is MIT licensed — imported as a dependency with attribution
-- `cubify-poc` will also be MIT licensed
+- `cubify-harness` will also be MIT licensed
 - Three.js is MIT licensed
 - Nothing GPL or LGPL in the dependency chain
 
@@ -188,9 +199,9 @@ Everything else — rendering, animation, stickering, export — is built fresh.
 
 ## Relationship to This Project
 
-- Lives in a new top-level directory `cubify-poc/` within this repo initially
+- Lives in a new top-level directory `cubify-harness/` within this repo initially
 - Once stable, could be extracted to its own GitHub repository and published to npm
-- `cfop-app` and `cubify-scripts` migrate to use `cubify-poc` in place of `cubing.js`/TwistyPlayer in a subsequent feature
+- `cfop-app` and `cubify-scripts` migrate to use `cubify-harness` in place of `cubing.js`/TwistyPlayer in a subsequent feature
 
 ---
 
@@ -200,7 +211,7 @@ Everything else — rendering, animation, stickering, export — is built fresh.
 - **COLL/ZBLL alg sets** — solver-generated, not hand-curated
 - **Full animation engine** — easing, sticker colour transitions, slow-motion replay
 - **Scramble generator** — migrate from `cubingjs`-dependent implementation
-- **npm package** — publish as `cubify-poc` once API is stable
+- **npm package** — publish as `cubify-harness` once API is stable
 
 ---
 

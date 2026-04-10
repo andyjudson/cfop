@@ -1,17 +1,17 @@
-# Implementation Plan: cubify-poc (Feature 020)
+# Implementation Plan: cubify-harness (Feature 020)
 
-**Branch**: `020-cubify-poc` | **Date**: 2026-04-05 | **Spec**: [spec.md](spec.md)
-**Input**: Feature specification from `/specs/020-cubify-poc/spec.md`
+**Branch**: `020-cubify-harness` | **Date**: 2026-04-05 | **Spec**: [spec.md](spec.md)
+**Input**: Feature specification from `/specs/020-cubify-harness/spec.md`
 
 ## Summary
 
-Build `cubify-poc/` — a focused JS library for 3×3 Rubik's cube visualisation and static export, eliminating TwistyPlayer's IntersectionObserver, shadow DOM, and headless Chromium constraints. Scoped to PoC: working 3D renderer (Three.js), CFOP stickering presets, SVG 2D renderer, and static PNG/SVG export. Animation engine and full player controls are deferred to the next feature.
+Build `cubify-harness/` — a focused JS library for 3×3 Rubik's cube visualisation and static export, eliminating TwistyPlayer's IntersectionObserver, shadow DOM, and headless Chromium constraints. Scoped to PoC: working 3D renderer (Three.js), CFOP stickering presets, SVG 2D renderer, and static PNG/SVG export. Animation engine and full player controls are deferred to the next feature.
 
 ## Technical Context
 
 **Language/Version**: JavaScript ESM (no TypeScript — standalone library, not part of cfop-app's TS build)
 **Primary Dependencies**:
-- `three` v0.170.0 — already in cfop-app's node_modules (transitive via cubing.js); install directly in cubify-poc
+- `three` v0.170.0 — already in cfop-app's node_modules (transitive via cubing.js); install directly in cubify-harness
 - `cubing/alg` — imported from cfop-app's cubing.js for WCA notation parsing only; no TwistyPlayer
 - `node-canvas` v3.x — for Node.js headless PNG export (OffscreenCanvas not available in Node natively)
 
@@ -43,7 +43,7 @@ No violations.
 ### Documentation (this feature)
 
 ```text
-specs/020-cubify-poc/
+specs/020-cubify-harness/
 ├── plan.md              # This file
 ├── research.md          # Phase 0 output
 ├── data-model.md        # Phase 1 output
@@ -53,7 +53,7 @@ specs/020-cubify-poc/
 ### Source Code
 
 ```text
-cubify-poc/
+cubify-harness/
 ├── src/
 │   ├── CubeState.js       — pure cube state: face array, move application, WCA move set
 │   ├── AlgParser.js       — thin wrapper around cubing/alg; parses notation → move list
@@ -140,7 +140,7 @@ const alg = new Alg("R U R' U'");
 const moves = [...alg.experimentalLeafMoves()]; // → ['R', 'U', "R'", "U'"]
 ```
 
-`AlgParser.js` wraps this. `cubify-poc/package.json` lists `cubing` as a peer dependency (not bundled).
+`AlgParser.js` wraps this. `cubify-harness/package.json` lists `cubing` as a peer dependency (not bundled).
 
 ### CubeState — move application
 

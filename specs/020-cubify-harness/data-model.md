@@ -1,4 +1,4 @@
-# Data Model: cubify-poc (Feature 020)
+# Data Model: cubify-harness (Feature 020)
 
 ## CubeState
 
@@ -142,7 +142,7 @@ class CubeExporter {
 
 ## Colour Token Map
 
-CSS custom properties for theming (defined in `cubify-poc/css/cubify.css`):
+CSS custom properties for theming (defined in `cubify-harness/css/cubify.css`):
 
 ```css
 --cubify-U: #ffffff;   /* white */

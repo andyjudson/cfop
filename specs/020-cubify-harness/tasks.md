@@ -1,6 +1,6 @@
-# Tasks: cubify-poc (Feature 020)
+# Tasks: cubify-harness (Feature 020)
 
-**Input**: Design documents from `/specs/020-cubify-poc/`
+**Input**: Design documents from `/specs/020-cubify-harness/`
 **Prerequisites**: plan.md ✅, spec.md ✅, research.md ✅, data-model.md ✅
 
 **Organization**: Tasks grouped by user story to enable independent implementation and testing.
@@ -17,11 +17,11 @@
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Create the `cubify-poc/` package skeleton with correct ESM config and dependencies.
+**Purpose**: Create the `cubify-harness/` package skeleton with correct ESM config and dependencies.
 
-- [x] T001 Create `cubify-poc/` directory structure per plan.md: `src/`, `demo/`, `css/`
-- [x] T002 Create `cubify-poc/package.json` — ESM module (`"type": "module"`), MIT license, `three` as dependency, `cubing` as peerDependency, `node-canvas` as optional devDependency
-- [x] T003 [P] Create `cubify-poc/css/cubify.css` with `--cubify-*` colour token custom properties (U/R/F/D/L/B face colours, `--cubify-hidden`, `--cubify-bg`)
+- [x] T001 Create `cubify-harness/` directory structure per plan.md: `src/`, `demo/`, `css/`
+- [x] T002 Create `cubify-harness/package.json` — ESM module (`"type": "module"`), MIT license, `three` as dependency, `cubing` as peerDependency, `node-canvas` as optional devDependency
+- [x] T003 [P] Create `cubify-harness/css/cubify.css` with `--cubify-*` colour token custom properties (U/R/F/D/L/B face colours, `--cubify-hidden`, `--cubify-bg`)
 
 **Checkpoint**: Package skeleton in place — `src/` ready for module files
 
@@ -33,9 +33,9 @@
 
 **⚠️ CRITICAL**: No user story work can begin until `CubeState.js` is complete.
 
-- [x] T004 Implement `cubify-poc/src/CubeState.js` — wraps cubing.js KPattern; `static solved()`, `applyMove()`, `applyAlg()`, `toFaceArray()`, `clone()` (delegating move logic to cubing.js)
+- [x] T004 Implement `cubify-harness/src/CubeState.js` — wraps cubing.js KPattern; `static solved()`, `applyMove()`, `applyAlg()`, `toFaceArray()`, `clone()` (delegating move logic to cubing.js)
 - [x] T005 Implement `toFaceArray()` in `CubeState.js` — converts KPattern piece/orientation data to 6×9 sticker colour array using corner/edge position lookup tables
-- [x] T006 [P] Implement `cubify-poc/src/AlgParser.js` — built-in regex parser for WCA notation; optional `parseWith(cubing/alg)` path
+- [x] T006 [P] Implement `cubify-harness/src/AlgParser.js` — built-in regex parser for WCA notation; optional `parseWith(cubing/alg)` path
 
 **Checkpoint**: `CubeState` + `AlgParser` complete — all user story phases can begin
 
@@ -47,13 +47,13 @@
 
 **Independent Test**: Open `demo/index.html` in browser; verify 3D cube renders in a container with no explicit height set. Resize browser window — cube should reflow correctly.
 
-- [x] T007 [US1] Implement `cubify-poc/src/CubeRenderer3D.js` — `constructor({ theme, gap })`, internal `_scene`, `_camera`, `_renderer`, `_cubelets[26]` scaffolding
+- [x] T007 [US1] Implement `cubify-harness/src/CubeRenderer3D.js` — `constructor({ theme, gap })`, internal `_scene`, `_camera`, `_renderer`, `_cubelets[26]` scaffolding
 - [x] T008 [US1] Implement cubelet geometry in `CubeRenderer3D.js` — 26 `THREE.BoxGeometry` cubelets at `(-1,0,1)` grid positions, each with `THREE.MeshStandardMaterial[6]` (one per face); inner faces black, sticker faces use colour map
 - [x] T009 [US1] Implement `mount(container)` in `CubeRenderer3D.js` — appends `WebGLRenderer` canvas, synchronous initial render if container has dimensions, `ResizeObserver` for subsequent resize events per plan.md pattern
 - [x] T010 [US1] Implement `unmount()` in `CubeRenderer3D.js` — removes canvas from DOM, disconnects `ResizeObserver`, disposes Three.js renderer
 - [x] T011 [US1] Implement `setState(state)` and `render()` in `CubeRenderer3D.js` — calls `state.toFaceArray()`, maps colour values to `material.color` on each cubelet face, calls `renderer.render()`
 - [x] T012 [US1] Add scene lighting to `CubeRenderer3D.js` — `AmbientLight` + `DirectionalLight` for clear sticker visibility; `PerspectiveCamera` at isometric-style angle (45°/35° elevation, looking at cube centre)
-- [x] T013 [US1] Create `cubify-poc/demo/index.html` — importmap for three+cubing; alg selector (Sune, T-Perm, Sexy×4, etc.); debug panel with on-page event log and face state view; step-through controls
+- [x] T013 [US1] Create `cubify-harness/demo/index.html` — importmap for three+cubing; alg selector (Sune, T-Perm, Sexy×4, etc.); debug panel with on-page event log and face state view; step-through controls
 
 **Checkpoint**: `demo/index.html` opens in browser and shows a rendered 3D cube for each named alg; face state visible in debug panel; no IntersectionObserver errors in devtools
 
@@ -65,7 +65,7 @@
 
 **Independent Test**: In `demo/index.html`, call `renderer.setStickering('oll')` — U face and top-layer edges on RFLB faces should show colour; all other stickers should show `--cubify-hidden` grey.
 
-- [ ] T014 [US2] Implement `cubify-poc/src/CubeStickering.js` — `static forPreset(name)` returns a `Map<cubeletIndex, faceVisibility[6]>` (boolean per Three.js face slot) for presets: `full`, `oll`, `pll`, `f2l`, `cross`, `oll-edges`, `pll-corners`
+- [ ] T014 [US2] Implement `cubify-harness/src/CubeStickering.js` — `static forPreset(name)` returns a `Map<cubeletIndex, faceVisibility[6]>` (boolean per Three.js face slot) for presets: `full`, `oll`, `pll`, `f2l`, `cross`, `oll-edges`, `pll-corners`
 - [ ] T015 [US2] Define cubelet index layout in `CubeStickering.js` — map 26 cubelet positions (corners, edges, centres) to their face slot indices matching the `CubeRenderer3D` geometry ordering
 - [ ] T016 [US2] Implement `setStickering(preset)` in `CubeRenderer3D.js` — calls `CubeStickering.forPreset()`, applies `faceVisibility` to each cubelet's `MeshStandardMaterial[6]` (hidden stickers → `--cubify-hidden` colour), re-renders
 - [ ] T017 [US2] Extend `demo/index.html` stickering section — add preset buttons (`full` / `oll` / `pll` / `f2l` / `cross`); log active preset + cubelet visibility counts to the debug panel on each change; combine with the Sune/T-Perm alg selector to visually validate correct mask per case (e.g. Sune + `oll` preset should show coloured U face + top-layer sides)
@@ -80,12 +80,12 @@
 
 **Independent Test**: Call `CubeExporter.toSVG('R U R\' U\'', { stickering: 'oll' })` from a Node.js script — should return a valid SVG string with 54 coloured rectangles. Call `CubeExporter.toPNG(...)` in browser — should return a Blob that renders as a cube image.
 
-- [ ] T018 [US3] Implement `cubify-poc/src/CubeRenderer2D.js` — `static toSVG(state, { stickering, size, theme })` returns SVG string; standard cube net layout (cross: U top, LFRB middle row, D bottom); each sticker as `<rect>` with fill from colour token map
+- [ ] T018 [US3] Implement `cubify-harness/src/CubeRenderer2D.js` — `static toSVG(state, { stickering, size, theme })` returns SVG string; standard cube net layout (cross: U top, LFRB middle row, D bottom); each sticker as `<rect>` with fill from colour token map
 - [ ] T019 [US3] Implement stickering application in `CubeRenderer2D.js` — applies `CubeStickering.forPreset()` to set hidden stickers to `--cubify-hidden` fill value in the SVG output
-- [ ] T020 [US3] Implement `cubify-poc/src/CubeExporter.js` — `static toSVG(algOrState, { stickering, setupAlg, size })` — resolves `algOrState` to a `CubeState` (parsing + applying alg/setupAlg), delegates to `CubeRenderer2D.toSVG()`
+- [ ] T020 [US3] Implement `cubify-harness/src/CubeExporter.js` — `static toSVG(algOrState, { stickering, setupAlg, size })` — resolves `algOrState` to a `CubeState` (parsing + applying alg/setupAlg), delegates to `CubeRenderer2D.toSVG()`
 - [ ] T021 [US3] Implement `static async toPNG(algOrState, { stickering, setupAlg, size, theme })` in `CubeExporter.js` — browser path using `OffscreenCanvas` + `THREE.WebGLRenderer`; returns `Blob`; guards with `typeof OffscreenCanvas !== 'undefined'`
 - [ ] T022 [US3] Implement `setupAlg` resolution in `CubeExporter.js` — if `setupAlg` provided, display state = `solved.applyAlg(inv(alg)).applyAlg(setupAlg)` (matches `experimentalSetupAnchor: 'end'` behaviour)
-- [ ] T023 [US3] Create `cubify-poc/demo/export-test.mjs` — Node.js ESM script that calls `CubeExporter.toSVG('R U R\' U\'', { stickering: 'oll' })` and writes output to `/tmp/cubify-test.svg`; validates SVG is non-empty
+- [ ] T023 [US3] Create `cubify-harness/demo/export-test.mjs` — Node.js ESM script that calls `CubeExporter.toSVG('R U R\' U\'', { stickering: 'oll' })` and writes output to `/tmp/cubify-test.svg`; validates SVG is non-empty
 - [ ] T024 [US3] Extend `demo/index.html` with export buttons — "Export SVG" (downloads file) and "Export PNG" (downloads blob); validates browser export path
 
 **Checkpoint**: `node demo/export-test.mjs` produces a valid SVG; PNG export works in browser demo
@@ -100,7 +100,7 @@
 
 *Note: US-004 is the most complex story and deferred in PoC scope per spec. Stub the API surface only — animation engine internals are out of scope for 020.*
 
-- [ ] T025 [US4] Create `cubify-poc/src/CubePlayer.js` — constructor accepts `(container, options)`; internally creates `CubeRenderer3D`, `CubeState`; exposes stub methods: `loadAlg(alg)`, `play()`, `pause()`, `jumpTo(index)`, `setSpeed(scale)`, `reset()`, `setStickering(preset)`, `on(event, cb)`
+- [ ] T025 [US4] Create `cubify-harness/src/CubePlayer.js` — constructor accepts `(container, options)`; internally creates `CubeRenderer3D`, `CubeState`; exposes stub methods: `loadAlg(alg)`, `play()`, `pause()`, `jumpTo(index)`, `setSpeed(scale)`, `reset()`, `setStickering(preset)`, `on(event, cb)`
 - [ ] T026 [US4] Implement `loadAlg(alg)` in `CubePlayer.js` — parses alg via `AlgParser`, stores move sequence, resets to `CubeState.solved()`, renders initial state
 - [ ] T027 [US4] Implement `jumpTo(index)` in `CubePlayer.js` — re-applies moves 0..index-1 from solved state and re-renders; validates index bounds
 - [ ] T028 [US4] Implement event emitter in `CubePlayer.js` — simple `on(event, cb)` / `emit(event, data)` pattern; emit `{ index, move }` on each move advance; emit `{}` on `complete`
@@ -114,9 +114,9 @@
 
 **Purpose**: Documentation, README, and demo completeness.
 
-- [ ] T030 [P] Create `cubify-poc/README.md` — quick start (mount 3D cube, export SVG), API surface summary, dependency attribution for Three.js and cubing.js, MIT license notice
+- [ ] T030 [P] Create `cubify-harness/README.md` — quick start (mount 3D cube, export SVG), API surface summary, dependency attribution for Three.js and cubing.js, MIT license notice
 - [ ] T031 [P] Add JSDoc comments to all public methods in `CubeState.js`, `AlgParser.js`, `CubeStickering.js`, `CubeExporter.js` — param types and return types for IDE completion
-- [ ] T032 Validate acceptance criteria from spec.md against implemented demo — document results in `specs/020-cubify-poc/implementation-summary.md`
+- [ ] T032 Validate acceptance criteria from spec.md against implemented demo — document results in `specs/020-cubify-harness/implementation-summary.md`
 - [ ] T033 Note test coverage gaps in `implementation-summary.md` — flag `CubeState.applyMove()` adjacency table and `CubeStickering.forPreset()` slot mappings as priority targets for unit tests in the full library feature
 
 ---

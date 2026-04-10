@@ -597,7 +597,7 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Active case highlighted and scrolled into view; synced with dropdown state ✅
 - Mobile: toggle and carousel hidden, dropdowns always shown ✅
 
-**Feature 020 - cubify-poc (Planned)**:
+**Feature 020 - cubify-harness (Planned)**:
 - Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
 - No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
 - Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
@@ -618,8 +618,8 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Expand/collapse toggle to go chart-only ✅ (planned)
 - PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅ (planned)
 
-**Feature 023 - cubify-poc Integration (Planned)**:
-- Migrate cfop-app and cubify-scripts from cubing.js/TwistyPlayer to cubify-poc ✅ (planned)
+**Feature 023 - cubify-harness Integration (Planned)**:
+- Migrate cfop-app and cubify-scripts from cubing.js/TwistyPlayer to cubify-harness ✅ (planned)
 - Replace VisualizerModal and ScrambleCubePreview TwistyPlayer usage ✅ (planned)
 - Replace cubify agent skill Playwright renderer with CubeExporter ✅ (planned)
 - Remove IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
@@ -627,7 +627,7 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 **Feature 024 - PWA & Bundle Optimisation (Planned)**:
 - Service worker for offline support — app usable at a cube without connectivity ✅ (planned)
 - Asset caching strategy for algorithm JSON, PNGs, and app shell ✅ (planned)
-- Address known 500kB+ chunk warnings: resolved by cubify-poc replacing cubing.js ✅ (planned)
+- Address known 500kB+ chunk warnings: resolved by cubify-harness replacing cubing.js ✅ (planned)
 
 **Feature 025 - Personalisation & Learning Progress (Planned)**:
 - Per-case practice tracking — record which OLL/PLL cases have been practiced ✅ (planned)
@@ -638,4 +638,4 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 **Feature 026 - Alt Algs UI (Planned)**:
 - Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
 - Toggle between primary and alternative alg for a case ✅ (planned)
-- Solver-generated alts once cubify-poc solver integration is available ✅ (planned)
+- Solver-generated alts once cubify-harness solver integration is available ✅ (planned)

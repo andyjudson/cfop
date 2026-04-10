@@ -52,7 +52,7 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 section-title">Cubing Background</h2>
         <p>
-          The Rubik's Cube <img src={`${import.meta.env.BASE_URL}assets/cubing-64.png`} alt="CFOP app" className="logo-inline" />  was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of competitors and insane world record times of sub-5 seconds for single and average solves in recent years.
+          The Rubik's Cube <img src={`${import.meta.env.BASE_URL}assets/cubing-64.png`} alt="CFOP app" className="logo-inline" />  was invented in 1974 by Hungarian sculptor and professor Ernő Rubik. Since the 1980s, competitive speedcubing has grown into a global sport with tens of thousands of competitors and insane world record times of sub-5 seconds for single and average solves in recent years. A scrambled cube can reach any of 43 quintillion possible positions, yet every one can be solved in 20 moves or less — a remarkable result proved in 2010 known as God's Number.
         </p>
         <p className="mt-3">I was only 2 years old when the cube was invented and I never learnt how to solve it (legitimately) as a child. A few years ago, I was on holiday with my family, and my daughter bought me a cube (traditional, clunky design), and I was determined to learn to solve it. I found the beginner method online from JPerm and after watching that repeatedly for a few hours, I'd achieved my first solve 🤪 and was hooked. I then wanted to understand more and see if I could push times reliably in the 1 to 2 minute range. I started learning CFOP, and it's been a fun journey since, I may have upgraded to a Gan cube along the way 🤓. The methodical nature of CFOP, with its clear stages and algorithmic patterns, makes it a great fit for my learning style. The 2-look CFOP is a sweet spot for me where I can achieve good times without needing to memorise a huge number of algorithms.
         </p>
@@ -97,8 +97,8 @@ export default function AboutPage() {
             memorising algorithms, using pattern recognition and logical thinking.
           </li>
           <li>
-            <strong>2-Look CFOP</strong> — The recommended starting point for the last layer. Uses 2-Look OLL and PLL with only 9 - 12
-            algorithms. Achievable in 1 - 2 minutes per solve, with the probability of repetition.
+            <strong>2-Look CFOP</strong> — The recommended starting point for the last layer. Uses 2-Look OLL and PLL with only 9-12
+            algorithms. Achievable in 1-2 minutes per solve, with the probability of repetition.
           </li>
           <li>
             <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn PLL cases, then OLL cases, and lastly algorithmic F2L cases for maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery. I'm never going to reach this level, but it's fun to watch the pros!
@@ -180,7 +180,7 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 section-title">Video Resources</h2>
         <p>
-          The below tutorials from CubeHead are great resources alongside what's in this app. They cover intuitive methods, 2-look and 1-look OLL/PLL, and lots of practical tips for improving your solves. His explanation of intuitive F2L was a bit of a game changer for me — it's one of those things that just clicks, and makes the rest of CFOP much easier to build on. If you're learning, or even refining, they're well worth checking out.</p>
+          The below tutorials from CubeHead are great resources alongside what's in this app. They cover intuitive methods, 2-look and 1-look OLL/PLL, and lots of practical tips for improving your solves. His explanation of intuitive F2L was a bit of a game changer for me — it's one of those things that just clicks, and makes the rest of CFOP much easier to build on. If you're learning, they're well worth checking out.</p>
         <p className="mt-3">He's also launched his own cubing app, <a href="https://www.cube.academy" target="_blank" rel="noreferrer">Cube Academy</a>. With a background in software and design, it's a clean, content-rich platform. From what he's been sharing, the roadmap looks really interesting too — timers, stats, and more structured learning.
         </p>
         <div className="columns mt-3">

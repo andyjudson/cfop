@@ -219,9 +219,10 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.85rem;
   font-weight: 600;
   white-space: nowrap;
+  width: 7rem;
+  justify-content: center;
 }
 
 /* ── Nav toggle row (set selector + Browse/Select pill) ──────────────────────── */
@@ -254,6 +255,8 @@
   align-items: center;
   gap: 0.3rem;
   flex-shrink: 0;
+  width: 7rem;
+  justify-content: center;
 }
 
 /* ── Mobile ──────────────────────────────────────────────────────────────────── */
@@ -298,18 +301,5 @@
 
   .visualizer-selector-row .select {
     flex: 1 1 calc(50% - 0.25rem);
-  }
-
-  /* On mobile: hide toggle and carousel — always use dropdowns */
-  .visualizer-nav-mode {
-    display: none;
-  }
-
-  .case-carousel {
-    display: none;
-  }
-
-  .visualizer-alg-row.is-hidden-carousel {
-    display: flex;
   }
 }

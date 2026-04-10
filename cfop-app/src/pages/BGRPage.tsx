@@ -33,9 +33,10 @@ function BGRPage() {
     .filter((name): name is string => Boolean(name))
     .join(', ');
 
-const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
+const renderAlgorithmSection = (title: string, description: string, algs: CfopAlgorithm[]) => (
     <section className="section">
       <h2 className="title is-4 section-title">{title}</h2>
+      <p className="mt-0 mb-4 ml-4 section-description">{description}</p>
       <div className="columns is-multiline">
         {algs.map(alg => (
           <div key={alg.id} className="column is-one-third-desktop is-half-tablet">
@@ -71,10 +72,10 @@ const renderAlgorithmSection = (title: string, algs: CfopAlgorithm[]) => (
       }
     >
       <main>
-        {renderAlgorithmSection("OLL Edge Cases", ollEdges)}
-        {renderAlgorithmSection("OLL Corner Cases", ollCorners)}
-        {renderAlgorithmSection("PLL Corner Cases", pllCorners)}
-        {renderAlgorithmSection("PLL Edge Cases", pllEdges)}
+        {renderAlgorithmSection("OLL Edge Cases", "Stage 1 of 4: create yellow cross.", ollEdges)}        
+        {renderAlgorithmSection("OLL Corner Cases", "Stage 2 of 4: orientate yellow corners, forming the layer.", ollCorners)}
+        {renderAlgorithmSection("PLL Corner Cases", "Stage 3 of 4: perumtate corner cubelets.", pllCorners)}
+        {renderAlgorithmSection("PLL Edge Cases", "Stage 4 of 4: permutate edge cubelets, solving the cube!", pllEdges)}
       </main>
 
       <AlgorithmNotesSheet algorithm={notesAlg} onClose={() => setNotesAlg(null)} />

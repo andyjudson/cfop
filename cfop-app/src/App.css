@@ -122,6 +122,10 @@
   box-shadow: var(--shadow-sm);
 }
 
+.section-description {
+  color: var(--color-text-secondary);
+}
+
 .cfop-navbar {
   border-bottom: 1px solid var(--color-border-light);
   position: relative;

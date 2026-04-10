@@ -55,7 +55,9 @@ export function WrLegendsTable({ legends }: WrLegendsTableProps) {
   }
 
   const sorted = useMemo(() => {
-    return [...legends].sort((a, b) => {
+    const since2004 = new Date('2004-01-01').getTime();
+    const since2015 = new Date('2015-01-01').getTime();
+    return [...legends].filter(l => l.last_wr_date >= since2015).sort((a, b) => {
       const dir = sortDir === 'asc' ? 1 : -1;
       if (sortKey === 'name') {
         return dir * a.person_name.localeCompare(b.person_name);

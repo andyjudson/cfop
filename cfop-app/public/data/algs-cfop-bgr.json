@@ -7,7 +7,7 @@
     "group": "edge",
     "mask": "edge",
     "image": "./assets/cfop_bgr/oll_cross_line.png",
-    "notes": "Hold the cube so the oriented edges form a horizontal line. Open the front face. Lift the front-right edge up, swing the top layer left, drop the edge back, swing the top right — that's the sexy move. Close the front face, flipping both line edges up to yellow.",
+    "notes": "Hold with the oriented edges as a horizontal line across the front. Open the front face. Pull the front-right edge out, move the top layer left, push it back, move the top layer right. Close the front face — both line edges flip to yellow.",
     "setup": "z2"
   },
   {
@@ -18,7 +18,7 @@
     "group": "edge",
     "mask": "edge",
     "image": "./assets/cfop_bgr/oll_cross_hook.png",
-    "notes": "Hold the cube with so the oriented edges form a hook shape in the front-right position. Open the front face and middle slice together (wide f). Run the sexy move to cycle the front-right edge. Close both layers back, flipping the two hook edges up to yellow.",
+    "notes": "Hold with the oriented edges as a hook in the front-right. Open the front face and middle slice together. Pull the front-right edge out, move the top layer left, push it back, move the top layer right. Close both layers back — the two hook edges flip to yellow.",
     "setup": "z2"
   },
   {
@@ -29,7 +29,7 @@
     "group": "edge",
     "mask": "edge",
     "image": "./assets/cfop_bgr/oll_cross_dot.png",
-    "notes": "Hold the cube in any orientation. Run the Line case to orient two edges, creating a hook shape. Then immediately run the Hook case on that result to orient the remaining two edges. Two steps, all four edges done.",
+    "notes": "Hold in any orientation. Run the Line case to orient two edges into a hook shape, then immediately run the Hook case on the result — all four edges flip to yellow in two passes.",
     "setup": "z2"
   },
   {
@@ -39,7 +39,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_sune.png",
-    "notes": "Hold the cube with an oriented yellow corner in the front-left and a unorientated corner in the front-right. Lift the front-right corner up out of its slot. Swing the top layer left to move it away. Drop the corner back down, then swing the top left again. Lift the corner up high, swing the top right twice to reposition, then drop it back in — now oriented yellow on top. Setup a standard one-corner case with ... A). If two corners are oriented, position a unorientated corner front-left; or B). If zero corners are oriented, position a unorientated corner left-front.",
+    "notes": "Hold with an oriented corner front-left and an unoriented corner front-right. Pull the front-right corner out, move the top layer left, push it back, move the top layer left again. Pull the corner out twice as far, move the top layer right twice, push it back in — yellow on top. To set up: if two corners are oriented, place an unoriented corner front-right; if none are oriented, place one front-right.",
     "setup": "z2"
   },
   {
@@ -49,7 +49,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_antisune.png",
-    "notes": "Hold the cube with an oriented yellow corner in the back-right and a unorientated corner in the front-left. Lift the front-right corner up high with a double turn. Swing the top layer right to move it away. Drop the corner back, swing the top right once more to reposition, then drop it in — the mirror image of Sune.",
+    "notes": "Hold with an oriented corner back-right and an unoriented corner front-left. Pull the front-right corner out twice as far, move the top layer right, push it back, move the top layer right again, pull it out — the mirror of Sune.",
     "setup": "z2"
   },
   {
@@ -59,7 +59,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_shape_h.png",
-    "notes": "Hold the cube so the headlights are on left and right. Lift the corner, swing left, drop, swing left — then swing right to park a second corner, lift again with a double turn, and drop in. Orients two opposite corners in one pass.",
+    "notes": "Hold with headlights on both left and right. Pull the front-right corner out, move the top layer left, push it back, move left — then move right to bring the next corner into position, pull it out twice as far, push it back in. Both opposite corners orient in one pass.",
     "setup": "z2"
   },
   {
@@ -69,7 +69,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_shape_pi.png",
-    "notes": "Hold the cube so the headlights are on the left. Lift the right column up high, tumble three R2 double turns through the top layer with U' gaps between them to cycle all four corners through, then lift the right column back up high to finish.",
+    "notes": "Hold with headlights on the left. Pull the right column out twice as far. Move the top layer left, flip the column through, move left, flip through, move left, flip through. Pull the right column out twice as far to finish — all four corners orient in one pass.",
     "setup": "z2"
   },
   {
@@ -79,7 +79,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_shape_t.png",
-    "notes": "Hold the cube so the yellow block is on the right. Wide-lift the right column and middle slice together, run a sexy move to cycle the front-right corner, then close the wide layer back. Open the front face, lift the corner back up, and close — flipping the two remaining corners to yellow.",
+    "notes": "Hold with the yellow block on the right. Pull the right column and middle slice out together. Move the top layer left, push the right column back, move right. Push the wide column back. Open the front face, push the right column in, close — the two remaining corners flip to yellow.",
     "setup": "z2"
   },
   {
@@ -89,7 +89,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_shape_l.png",
-    "notes": "Hold the cube so that two unorientated corners are on the front-right and back-left. Open the front face inward. Wide-lift the right column with the middle slice, run a sexy move to cycle the corner, then close the wide layer and front face together — the mirror of T shape.",
+    "notes": "Hold with the two unoriented corners at front-right and back-left. Open the front face inward. Pull the right column and middle slice out together. Move the top layer left, push the right column back, move right. Push the wide column and front face closed together — the mirror of T shape.",
     "setup": "z2"
   },
   {
@@ -99,7 +99,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_shape_u.png",
-    "notes": "Hold the cube so the yellow block is at the back, with the headlights at the front. Double-flip the right column down through the cube. Drop the bottom layer right to bring a corner into position. Lift and drop the right column twice through the top to reorient it. Restore the bottom layer, then lift and drop once more to finish.",
+    "notes": "Hold with the yellow block at the back and headlights at the front. Flip the right column through the cube twice. Turn the bottom layer right to bring a corner into position. Pull the right column out twice, push it back twice. Restore the bottom layer. Pull the column out twice, push it back — all four corners orient.",
     "setup": "z2"
   },
   {
@@ -109,8 +109,9 @@
     "line_break": 9,
     "method": "pll",
     "group": "corner",
+    "mask": "corner",
     "image": "./assets/cfop_bgr/pll_t.png",
-    "notes": "If there are headlights, hold the cube with them on the left. Algorithm swaps adjacent corners. Run a sexy move to break apart the front-right corner slot. Swing the front face open to expose the back corners, cycle them through with a double turn, then close the front face to lock the swap in place.",
+    "notes": "Hold with headlights on the left. Run the sexy move to pull the front-right corner out of its slot. Open the front face, flip the right column through twice, push the column back, move the top layer left, push the column back again. Close the front face to lock the swap — adjacent corners swap.",
     "setup": "z2"
   },
   {
@@ -119,8 +120,9 @@
     "notation": "F (R U' R' U') R U R' F' (R U R' U') R' F R F'",
     "method": "pll",
     "group": "corner",
+    "mask": "corner",
     "image": "./assets/cfop_bgr/pll_y.png",
-    "notes": "If there are no headlights, hold the cube in any orientation. Algorithm swaps opposite corners. Open the front face, run a modified sexy move to disrupt the corner positions, then close the front face. Follow with another sexy move and open-close of the front face to lock the diagonal swap in place.",
+    "notes": "Hold in any orientation — no headlights. Open the front face. Pull the right column out, move the top layer right, push it back, move right — pull it back out, move left, push it back. Close the front face. Run the sexy move. Open the front face, push the column in, close — opposite corners swap diagonally.",
     "setup": "z2"
   },
   {
@@ -130,7 +132,7 @@
     "method": "pll",
     "group": "edge",
     "image": "./assets/cfop_bgr/pll_ua.png",
-    "notes": "Hold the cube with the block in the front, and the left edge opposite to its corners. Algorithm cycles three edges counterclockwise. Double-flip the right column to pull an edge out of the top. Swing the top right, lift the column, swing right — repeating to walk three edges around the top layer counterclockwise before dropping the column back in. If there are no headlights or left edge is not opposite, hold the cube in any orientation to setup a standard case.",
+    "notes": "Hold with the solved edge block at the front and the left edge sitting opposite its centre. Flip the right column through twice to pull an edge out. Move the top layer right, pull the column back out, move right — repeat twice more, walking three edges counterclockwise around the top. Push the column back in. If there is no block or the left edge is not opposite its centre, try any orientation to find the standard case.",
     "setup": "z2"
   },
   {
@@ -140,7 +142,7 @@
     "method": "pll",
     "group": "edge",
     "image": "./assets/cfop_bgr/pll_ub.png",
-    "notes": "Hold the cube with the block in the front, and the right edge opposite to its corners. Algorithm cycles three edges clockwise. Pull the right column back and down. Swing the top left, drop the column, swing left — repeating to walk three edges around the top layer clockwise before dropping the column back in.",
+    "notes": "Hold with the solved edge block at the front and the right edge sitting opposite its centre. Pull the right column back in. Move the top layer left, pull the column back, move left — repeat twice more, walking three edges clockwise around the top. Push the column back out twice to finish.",
     "setup": "z2"
   },
   {
@@ -150,7 +152,7 @@
     "method": "pll",
     "group": "edge",
     "image": "./assets/cfop_bgr/pll_h.png",
-    "notes": "If there is a checkerboard pattern and edges are opposite to their corners, hold cube in any orientation. Algorithm uses slice moves. Double-slice through the middle to swap front and back edges. Rotate the top layer right, double-slice again to swap left and right edges, rotate twice more, then final double-slice to restore — swapping all four edges in pairs.",
+    "notes": "Hold in any orientation — all four edges swap in pairs. Flip the middle slice through twice. Move the top layer left, flip twice, move the top right twice, flip twice, move the top left, flip twice — front/back and left/right edges swap together.",
     "setup": "z2 y2"
   },
   {
@@ -160,7 +162,7 @@
     "method": "pll",
     "group": "edge",
     "image": "./assets/cfop_bgr/pll_z.png",
-    "notes": "If there is a checkerboard pattern but the edges are adjacent to their corners, hold cube so the edges to swap are in the front-right slots. Algorithm uses slice moves. Single-slice the middle layer, then three double-slices with left top-layer turns between them to walk adjacent edges around, finishing with a double-slice to lock everything in — swapping two pairs of adjacent edges diagonally.",
+    "notes": "Hold with the two edges to swap at front-right. Pull the middle slice back. Flip twice, move the top left, flip twice, move left, flip twice, move left. Pull the middle slice back, move the top right twice, flip twice — two pairs of adjacent edges swap diagonally.",
     "setup": "z2 y2"
   }
 ]

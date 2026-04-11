@@ -14,6 +14,14 @@ Migrating scrambles to `cubify-harness` completes the decoupling.
 
 ---
 
+## Existing Implementation
+
+`cfop-app/src/utils/scrambleGenerator.ts` is already a custom pure-logic scrambler:
+- 20-move output, no consecutive same-face, no opposite-face A-B-A patterns
+- Only cubing.js touch: `Alg.fromString` used for validation — easily replaced with `AlgParser.parse()`
+
+This is a migration, not a rewrite.
+
 ## Scope
 
 ### CubeScramble module
@@ -21,23 +29,20 @@ Migrating scrambles to `cubify-harness` completes the decoupling.
 ```js
 import { CubeScramble } from 'cubify';
 
-const scramble = await CubeScramble.random();      // WCA-standard random state scramble
-const moves = CubeScramble.parse(scramble);         // string[] of move tokens
-const state = await CubeState.fromAlg(scramble);   // apply scramble to get state
+const scramble = CubeScramble.random();   // string — 20-move scramble notation
+const moves = CubeScramble.parse(scramble); // string[] of move tokens
 ```
 
-### Implementation options (in priority order)
-
-1. **Delegate to cubing.js `randomScrambleForEvent`** — keep cubing.js as internal dep, expose clean API. Lowest risk, simplest migration.
-2. **Pure JS random move scramble** — 20-move random state approximation. Not WCA-standard but sufficient for practice use.
-3. **Kociemba-based optimal scramble** — requires solver integration (separate future spec).
-
-Option 1 is the right call for this feature — the goal is API decoupling, not reimplementing the scrambler.
+Migration steps:
+1. Move `scrambleGenerator.ts` logic into `cubify-harness/src/CubeScramble.js`
+2. Replace `Alg.fromString` validation with `AlgParser.parse()` check
+3. cfop-app imports from cubify wrapper instead of local util
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] `CubeScramble.random()` returns a valid WCA scramble string
-- [ ] cfop-app imports `CubeScramble` from cubify, not directly from cubing.js
-- [ ] No direct cubing.js imports remain in cfop-app source
+- [ ] `CubeScramble.random()` returns consistent quality scrambles (same constraints as current)
+- [ ] No cubing.js import in the scramble module
+- [ ] cfop-app `scrambleGenerator.ts` replaced by cubify import
+- [ ] Existing scramble quality constraints preserved (no same-face, no A-B-A)

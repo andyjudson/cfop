@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–020 complete (019 visual carousel, 020 WR Legends Panel). Feature 022 cubify-harness in progress.
+Features 001–021 complete (019 visual carousel, 020 WR Legends Panel, 021 probability scoring). Feature 022 cubify-harness in progress.
 
 ## CSS Standards
 

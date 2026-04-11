@@ -604,11 +604,11 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Expand/collapse toggle to go chart-only ✅
 - PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅
 
-**Feature 021 - Probability Scoring (Planned)**:
-- Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅ (planned)
-- Show WCA case number alongside the case name ✅ (planned)
-- Surface probabilities in the Visualizer modal (case header area) ✅ (planned)
-- Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅ (planned)
+**Feature 021 - Probability Scoring (Completed)**:
+- Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅
+- Show WCA case number alongside the case name ✅
+- Surface probabilities in the Visualizer modal (case header area) ✅
+- Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅
 
 **Feature 022 - cubify-harness (Planned)**:
 - Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)

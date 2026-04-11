@@ -21,6 +21,23 @@ CFOP learning companion with algorithm reference grids, interactive visualizatio
 
 **Directory:** `/cfop-app/` • [README](cfop-app/README.md)
 
+### cubify-harness
+Clean-room 3×3 cube visualisation and logic library, built to replace cubing.js TwistyPlayer in this project. Used as a test harness for iterating on rendering, stickering, and animation ideas before promoting to the main app.
+
+**Usage:** Open `cubify-harness/index.html` directly in a browser (no build step).
+
+**What's built:**
+- `CubeState` — wraps cubing.js KPattern; `applyMove/applyAlg`, `toFaceArray()`, `invertAlg()`
+- `CubeRenderer3D` — Three.js 3D cube renderer; `setState()`, `animateMove()`, `animateAlg()`, `setSpeed()`
+- `CubeStickering` — CFOP stickering presets (full, cross, f2l, oll, oll-2look, pll, pll-2look)
+- `AlgParser` — WCA notation parser (face turns, wide moves, slices, rotations)
+- `verify-perms.mjs` — 18-test permutation cross-check suite against cubing.js ground truth
+- `cube-mapping-lessons.md` — hard-won reference for cube state mapping, orientation formulas, and animation sequencing
+
+**Design goals:** No IntersectionObserver constraints, no shadow DOM, no baked-in controls — clean public API, CSS custom property theming, MIT licensed.
+
+**Directory:** `/cubify-harness/`
+
 ### cubify-app
 Standalone cube image generator for use in algorithm documentation with 3D PNG and 2D SVG export capabilities.
 
@@ -110,18 +127,14 @@ Huge thanks to the cubing community educators who make this learning journey acc
 ```
 cubing.spec/
 ├── cfop-app/           # CFOP learning companion (main app)
+├── cubify-harness/     # Cube visualisation library + test harness (in progress)
 ├── cubify-app/         # Cube image generator (utility)
-├── specs/              # Feature specifications
-│   ├── 001-beginner-grid/
-│   ├── 002-tooltips/
-│   ├── 003-visualization-modal/
-│   ├── 004-practice-timer/
-│   ├── 005-stats-persistence/
-│   ├── 006-scramble-generator/
-│   ├── 007-cube-image-generator/
-│   ├── 008-full-cfop-grids/
+├── cubify-scripts/     # /cubify agent skill (Node.js, no build)
+├── specs/              # Feature specifications (001–031+)
+│   ├── 022-cubify-harness/
+│   ├── 023-cubify-stickering/
 │   ├── ...
-│   └── 016-playwright-e2e-tests/
+│   └── spec.md         # Canonical feature ledger
 └── .specify/           # Spec-kit configuration
 ```
 
@@ -135,4 +148,4 @@ Note:
 
 ---
 
-**Status**: Active development • Features 001-016 complete
+**Status**: Active development • Features 001–022 complete • cubify library series (023–031) in planning

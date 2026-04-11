@@ -610,10 +610,10 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Surface probabilities in the Visualizer modal (case header area) ✅
 - Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅
 
-**Feature 022 - cubify-harness (In Progress)**:
+**Feature 022 - cubify-harness (Completed)**:
 - `CubeState` — wraps cubing.js KPattern; `applyMove/applyAlg`, `toFaceArray()`, `invertAlg()` ✅
 - `CubeRenderer3D` — Three.js 3D cube; `setState()`, `animateMove()`, `animateAlg()`; `setSpeed()` / `isAnimating` public API ✅
-- `CubeStickering` — CFOP stickering presets: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅
+- `CubeStickering` — hardcoded CFOP preset maps: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅
 - `AlgParser` — WCA notation parser; handles wide moves, slice moves, x/y/z rotations ✅
 - Interactive harness (`index.html`) — algorithm selector, play/step/speed controls, event log / face state / KPattern debug panels ✅
 - `verify-perms.mjs` — 18-test cross-check suite; CubeState ground truth + physical facts ✅
@@ -621,10 +621,10 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - cubing.js U/D direction convention documented and animation-only fix applied ✅
 
 **Feature 023 - cubify-stickering (Planned)**:
-- `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)
-- Named CFOP presets: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅ (planned)
-- Stickering controls in harness demo; iamthecu.be-style cubelet group toggles ✅ (planned)
-- masks.mjs orbit strings usable directly — single source of truth ✅ (planned)
+- Replace hardcoded preset maps with `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)
+- masks.mjs orbit strings as single source of truth for all CFOP presets ✅ (planned)
+- Stickering controls in harness demo; live preset switching ✅ (planned)
+- iamthecu.be-style cubelet group toggles for fine-grained control ✅ (planned)
 
 **Feature 024 - cubify-animation / CubePlayer Engine (Planned)**:
 - Full move timeline: play, pause, jumpTo, setSpeed, reset ✅ (planned)

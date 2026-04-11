@@ -619,49 +619,64 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Expand/collapse toggle to go chart-only ✅ (planned)
 - PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅ (planned)
 
-**Feature 023 - cubify-harness Integration (Planned)**:
-- Migrate cfop-app and cubify-scripts from cubing.js/TwistyPlayer to cubify-harness ✅ (planned)
-- Replace VisualizerModal and ScrambleCubePreview TwistyPlayer usage ✅ (planned)
-- Replace cubify agent skill Playwright renderer with CubeExporter ✅ (planned)
-- Remove IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
-
-**Feature 024 - PWA & Bundle Optimisation (Planned)**:
-- Service worker for offline support — app usable at a cube without connectivity ✅ (planned)
-- Asset caching strategy for algorithm JSON, PNGs, and app shell ✅ (planned)
-- Address known 500kB+ chunk warnings: resolved by cubify-harness replacing cubing.js ✅ (planned)
-
-**Feature 025 - Personalisation & Learning Progress (Planned)**:
-- Per-case practice tracking — record which OLL/PLL cases have been practiced ✅ (planned)
-- Case bookmarking / favourites — flag cases for focused practice ✅ (planned)
-- Algorithm notation preference — wide moves (Rw) vs slice moves (M/S) ✅ (planned)
-- Persisted via versioned localStorage envelope, consistent with existing prefs pattern ✅ (planned)
-
-**Feature 026 - Alt Algs UI (Planned)**:
-- Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
-- Toggle between primary and alternative alg for a case ✅ (planned)
-- Solver-generated alts once cubify-harness solver integration is available ✅ (planned)
-
-**Feature 027 - cubify-theming (Planned)**:
-- Named cube themes: Rubik's classic, modern/Twisty-style, speed cube (GAN), minimal white ✅ (planned)
-- Theme dimensions: sticker colours, plastic colour, gap size, bevel radius, surface finish ✅ (planned)
-- Live theme controls in harness demo — sliders for gap, roundedness, plastic colour ✅ (planned)
-- Per-face colour pickers and palette presets; export theme as JSON ✅ (planned)
-
-**Feature 028 - cubify-2d-export (Planned)**:
-- `CubeRenderer2D.toSVG()` — SVG cube net with correct sticker colours, stickering mask support ✅ (planned)
-- `CubeExporter.toSVG/toPNG()` — headless-capable, no browser dependency for SVG path ✅ (planned)
-- Replace Playwright/headful Chromium in cubify-scripts with direct CubeExporter call ✅ (planned)
-- Node.js validation script; PNG via OffscreenCanvas in browser ✅ (planned)
-
-**Feature 029 - cubify-stickering (Planned)**:
+**Feature 023 - cubify-stickering (Planned)**:
 - `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)
-- Named CFOP presets via orbit strings: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅ (planned)
-- Stickering controls in harness demo with iamthecu.be-style cubelet group toggles ✅ (planned)
-- masks.mjs strings usable directly — single source of truth across harness and scripts ✅ (planned)
+- Named CFOP presets: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅ (planned)
+- Stickering controls in harness demo; iamthecu.be-style cubelet group toggles ✅ (planned)
+- masks.mjs orbit strings usable directly — single source of truth ✅ (planned)
 
-**Feature 030 - cubify.js Library (Planned)**:
-- Extract and consolidate cubify-harness core into a clean standalone library ✅ (planned)
-- Public API design covering all consumers: cfop-app, cubify-scripts, cubify-app, harness ✅ (planned)
-- CubePlayer fully implemented (play/pause/jumpTo/setSpeed/on) ✅ (planned)
-- Migrate cfop-app off TwistyPlayer; cubify-scripts off Playwright ✅ (planned)
-- Prerequisites: Features 027 (theming), 028 (2D export), 029 (stickering) ✅ (planned)
+**Feature 024 - cubify-animation / CubePlayer Engine (Planned)**:
+- Full move timeline: play, pause, jumpTo, setSpeed, reset ✅ (planned)
+- Event emitter: move { index, move, state }, complete, reset ✅ (planned)
+- Configurable inter-move gap; correct onDone callback chaining (no setTimeout racing) ✅ (planned)
+- Harness demo rewired to CubePlayer ✅ (planned)
+
+**Feature 025 - cubify-theming (Planned)**:
+- Named themes: Rubik's classic, modern/Twisty-style, speed cube, minimal white ✅ (planned)
+- Theme dimensions: sticker colours, plastic colour, gap size, bevel radius, surface finish ✅ (planned)
+- Live controls in harness demo; per-face colour pickers; export theme as JSON ✅ (planned)
+
+**Feature 026 - cubify-2d-export (Planned)**:
+- `CubeRenderer2D.toSVG()` — SVG cube net, stickering mask support, headless-capable ✅ (planned)
+- `CubeExporter.toSVG/toPNG()` — no browser dependency for SVG; OffscreenCanvas for PNG ✅ (planned)
+- Replace Playwright/headful Chromium in cubify-scripts with direct CubeExporter call ✅ (planned)
+- Node.js validation script ✅ (planned)
+
+**Feature 027 - cubify-tests (Planned)**:
+- Vitest unit suite for CubeState: all cube-mapping-lessons verification tests ✅ (planned)
+- CubeStickering orbit string parsing tests ✅ (planned)
+- stickerIndex formula and MOVE_AXIS direction tests ✅ (planned)
+- Runs in CI, no headed browser required ✅ (planned)
+
+**Feature 028 - cubify.js Library API (Planned)**:
+- Extract cubify-harness core into clean standalone library with documented public API ✅ (planned)
+- Remove internal `_` properties from public surface; wrap speed/animating in methods ✅ (planned)
+- `CubeRenderer3D.setStickering()` accepts preset name or raw orbit string ✅ (planned)
+- Prerequisites: 023 stickering, 024 animation, 025 theming, 026 2D export ✅ (planned)
+
+**Feature 029 - cubify-react (Planned)**:
+- `<CubePlayer>` React component: playing/stepIndex/alg/stickering props, onMove/onComplete ✅ (planned)
+- `<CubeState>` display-only component: no animation, mount + setState ✅ (planned)
+- TypeScript-typed; manages mount/unmount lifecycle, no boilerplate in consumers ✅ (planned)
+
+**Feature 030 - cubify-scramble (Planned)**:
+- `CubeScramble.random()` wrapping cubing.js scramble generator behind clean API ✅ (planned)
+- Removes last direct cubing.js import from cfop-app ✅ (planned)
+
+**Feature 031 - cubify-cfop-migration (Planned)**:
+- Replace TwistyPlayer in VisualizerModal with `<CubePlayer>` ✅ (planned)
+- Replace TwistyPlayer in ScrambleCubePreview with `<CubeState>` ✅ (planned)
+- Remove all IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
+- Production bundle size reduction: cubing.js 3D chunk removed ✅ (planned)
+- Prerequisites: 024 animation, 025 theming, 029 React wrapper, 030 scramble ✅ (planned)
+
+**Feature 032 - PWA & Bundle Optimisation (Deferred)**:
+- Service worker for offline support ✅ (planned)
+- Asset caching strategy for algorithm JSON, PNGs, and app shell ✅ (planned)
+
+**Feature 033 - Personalisation & Learning Progress (Deferred)**:
+- Per-case practice tracking, bookmarking, algorithm notation preference ✅ (planned)
+
+**Feature 034 - Alt Algs UI (Deferred)**:
+- Surface alternative algorithms in Visualizer modal ✅ (planned)
+- Toggle between primary and alternative alg for a case ✅ (planned)

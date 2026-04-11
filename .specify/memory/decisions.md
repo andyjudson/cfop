@@ -20,7 +20,7 @@ Cross-cutting decisions for the cubing.spec project. Each entry captures what wa
 
 ### ADR-003 — CSS custom property tokens for all theming
 **Decision**: All colours, shadows, spacing, radii defined as `--color-*`, `--shadow-*`, `--space-*`, `--radius-*` tokens in `index.css`. No hardcoded hex or rgba values in component CSS.
-**Rationale**: Single source of truth for the design system. Dark mode, future retheming, and the cubify-poc library all benefit from token-based styling.
+**Rationale**: Single source of truth for the design system. Dark mode, future retheming, and the cubify-harness library all benefit from token-based styling.
 **Rejected**: Hardcoded values per component (impossible to maintain at scale); Bulma's built-in dark mode (insufficient control over the palette).
 **Spec**: Feature 015 (dark mode); enforced throughout
 
@@ -61,7 +61,7 @@ Cross-cutting decisions for the cubing.spec project. Each entry captures what wa
 **Rationale**: TwistyPlayer gates canvas initialisation behind an `IntersectionObserver` that only fires when `intersectionRect.height > 0`. Zero-height containers at mount time produce a permanently blank canvas with no error. This constraint is undocumented in cubing.js.
 **Rejected**: `setTimeout` workarounds (unreliable timing); body-append-then-move approach (doesn't fix the intersection issue).
 **Spec**: Feature 018; documented in CLAUDE.md
-**Superseded by**: ADR-020 (cubify-poc removes this constraint entirely)
+**Superseded by**: ADR-020 (cubify-harness removes this constraint entirely)
 
 ### ADR-009 — Bulma bare `button` requires `is-light` in dark mode
 **Decision**: All unstyled Bulma buttons (no variant class) must have `is-light` added explicitly.
@@ -80,7 +80,7 @@ Cross-cutting decisions for the cubing.spec project. Each entry captures what wa
 **Rationale**: Headless Chromium on macOS blocks WebGL regardless of flags. This is a macOS+Chromium platform constraint, not a page issue. `headless: false` launches a visible browser window which supports WebGL fully.
 **Rejected**: All headless flags and WebGL software renderer attempts (none work reliably on macOS).
 **Spec**: Feature 017; documented in CLAUDE.md
-**Superseded by**: ADR-020 (cubify-poc CubeExporter uses OffscreenCanvas, no browser required)
+**Superseded by**: ADR-020 (cubify-harness CubeExporter uses OffscreenCanvas, no browser required)
 
 ### ADR-012 — Conditional rendering over CSS visibility toggling
 **Decision**: Show/hide UI panels (carousel vs. dropdowns in VisualizerModal) via React conditional rendering, not CSS `display: none` / visibility classes.
@@ -92,20 +92,20 @@ Cross-cutting decisions for the cubing.spec project. Each entry captures what wa
 
 ## Library
 
-### ADR-013 — cubing.js used for notation parsing only; rendering built fresh (cubify-poc)
-**Decision**: `cubing.js` is retained as a dependency for `Alg`, `Move`, and `experimentalLeafMoves()` — WCA-compliant notation parsing. All rendering, animation, stickering, and export are built fresh in cubify-poc.
+### ADR-013 — cubing.js used for notation parsing only; rendering built fresh (cubify-harness)
+**Decision**: `cubing.js` is retained as a dependency for `Alg`, `Move`, and `experimentalLeafMoves()` — WCA-compliant notation parsing. All rendering, animation, stickering, and export are built fresh in cubify-harness.
 **Rationale**: The notation parsing in cubing.js is well-tested and WCA-compliant — not worth reinventing. The rendering layer (TwistyPlayer web component) is the source of all integration pain and is replaced entirely.
 **Rejected**: Full cubing.js replacement including notation (high risk, low reward); keeping TwistyPlayer (perpetuates all documented integration constraints).
 **Spec**: Feature 020
 
-### ADR-014 — Three.js as the WebGL abstraction for cubify-poc
-**Decision**: Three.js for 3D cube rendering in cubify-poc (subject to PoC validation).
+### ADR-014 — Three.js as the WebGL abstraction for cubify-harness
+**Decision**: Three.js for 3D cube rendering in cubify-harness (subject to PoC validation).
 **Rationale**: Well-maintained, excellent WebGL abstraction, OffscreenCanvas support for headless export, large community. Cube geometry (26 cubelets, 54 stickers) is simple enough that Three.js is appropriate, not overkill.
 **Rejected**: Raw WebGL (significant implementation cost for geometry, normals, lighting); Babylon.js (larger bundle, less community).
 **Spec**: Feature 020
 
 ### ADR-015 — Named CFOP stickering presets replace orbit mask strings
-**Decision**: cubify-poc exposes `setStickering('oll' | 'pll' | 'f2l' | 'cross' | 'full')`. Orbit mask strings are an internal implementation detail.
+**Decision**: cubify-harness exposes `setStickering('oll' | 'pll' | 'f2l' | 'cross' | 'full')`. Orbit mask strings are an internal implementation detail.
 **Rationale**: cubing.js stickering requires opaque strings like `EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------` with no documentation. These were reverse-engineered for each use. Named presets encode the intent, not the mechanism.
 **Rejected**: Exposing orbit strings in the public API (perpetuates the undocumented format; forces every consumer to understand it).
 **Spec**: Feature 020

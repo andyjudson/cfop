@@ -11,7 +11,7 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–018 complete.
+Features 001–021 complete (019 visual carousel, 020 WR Legends Panel, 021 probability scoring). Feature 022 cubify-harness in progress.
 
 ## CSS Standards
 
@@ -131,5 +131,5 @@ Standalone Node.js ESM skill for cube image generation. No build step.
 - **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
 
 ## Recent Changes
-- 020-cubify-poc: Added JavaScript ESM (no TypeScript — standalone library, not part of cfop-app's TS build)
+- 020-cubify-harness: cubify-poc renamed to cubify-harness — evolving into a long-term test harness and library
 - 022-wr-legends-panel: Added TypeScript 5.9, React 19 + Bulma CSS 1.x, react-icons 5.x (for star icon and sort indicators)

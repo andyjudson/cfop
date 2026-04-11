@@ -597,7 +597,20 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Active case highlighted and scrolled into view; synced with dropdown state ✅
 - Mobile: toggle and carousel hidden, dropdowns always shown ✅
 
-**Feature 020 - cubify-poc (Planned)**:
+**Feature 020 - WR Legends Panel (Completed)**:
+- Side-by-side panel in About page WCA section: 1/3 legends table, 2/3 evolution chart ✅
+- Table derived from existing wca-wr-evolution.json — no new fetch ✅
+- Sortable by name, WR count, single, average; current record holders highlighted ✅
+- Expand/collapse toggle to go chart-only ✅
+- PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅
+
+**Feature 021 - Probability Scoring (Completed)**:
+- Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅
+- Show WCA case number alongside the case name ✅
+- Surface probabilities in the Visualizer modal (case header area) ✅
+- Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅
+
+**Feature 022 - cubify-harness (Planned)**:
 - Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
 - No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
 - Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
@@ -605,37 +618,65 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
 - CSS custom property tokens for full theming ✅ (planned)
 - MIT licensed, reusable beyond this project ✅ (planned)
-**Feature 021 - Probability Scoring (Planned)**:
-- Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅ (planned)
-- Show WCA case number alongside the case name ✅ (planned)
-- Surface probabilities in the Visualizer modal (case header area) ✅ (planned)
-- Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅ (planned)
 
-**Feature 022 - WR Legends Panel (Planned)**:
-- Side-by-side panel in About page WCA section: 1/3 legends table, 2/3 evolution chart ✅ (planned)
-- Table derived from existing wca-wr-evolution.json — no new fetch ✅ (planned)
-- Sortable by name, WR count, single, average; current record holders highlighted ✅ (planned)
-- Expand/collapse toggle to go chart-only ✅ (planned)
-- PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅ (planned)
+**Feature 023 - cubify-stickering (Planned)**:
+- `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)
+- Named CFOP presets: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅ (planned)
+- Stickering controls in harness demo; iamthecu.be-style cubelet group toggles ✅ (planned)
+- masks.mjs orbit strings usable directly — single source of truth ✅ (planned)
 
-**Feature 023 - cubify-poc Integration (Planned)**:
-- Migrate cfop-app and cubify-scripts from cubing.js/TwistyPlayer to cubify-poc ✅ (planned)
-- Replace VisualizerModal and ScrambleCubePreview TwistyPlayer usage ✅ (planned)
-- Replace cubify agent skill Playwright renderer with CubeExporter ✅ (planned)
-- Remove IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
+**Feature 024 - cubify-animation / CubePlayer Engine (Planned)**:
+- Full move timeline: play, pause, jumpTo, setSpeed, reset ✅ (planned)
+- Event emitter: move { index, move, state }, complete, reset ✅ (planned)
+- Configurable inter-move gap; correct onDone callback chaining (no setTimeout racing) ✅ (planned)
+- Harness demo rewired to CubePlayer ✅ (planned)
 
-**Feature 024 - PWA & Bundle Optimisation (Planned)**:
-- Service worker for offline support — app usable at a cube without connectivity ✅ (planned)
+**Feature 025 - cubify-theming (Planned)**:
+- Named themes: Rubik's classic, modern/Twisty-style, speed cube, minimal white ✅ (planned)
+- Theme dimensions: sticker colours, plastic colour, gap size, bevel radius, surface finish ✅ (planned)
+- Live controls in harness demo; per-face colour pickers; export theme as JSON ✅ (planned)
+
+**Feature 026 - cubify-image-export (Planned)**:
+- `CubeRenderer2D.toSVG()` + `CubeExporter.toPNG(style: 2d|3d)` — 2D net or 3D rendered ✅ (planned)
+- `CubeExporter.toSVG/toPNG()` — no browser dependency for SVG; OffscreenCanvas for PNG ✅ (planned)
+- Visual parity with existing cubing.js OLL/PLL images; 3D style for cross/F2L ✅ (planned)
+- Node.js validation script ✅ (planned)
+
+**Feature 027 - cubify-tests (Planned)**:
+- Vitest unit suite for CubeState: all cube-mapping-lessons verification tests ✅ (planned)
+- CubeStickering orbit string parsing tests ✅ (planned)
+- stickerIndex formula and MOVE_AXIS direction tests ✅ (planned)
+- Runs in CI, no headed browser required ✅ (planned)
+
+**Feature 028 - cubify.js Library API (Planned)**:
+- Extract cubify-harness core into clean standalone library with documented public API ✅ (planned)
+- Remove internal `_` properties from public surface; wrap speed/animating in methods ✅ (planned)
+- `CubeRenderer3D.setStickering()` accepts preset name or raw orbit string ✅ (planned)
+- Prerequisites: 023 stickering, 024 animation, 025 theming, 026 2D export ✅ (planned)
+
+**Feature 029 - cubify-react (Planned)**:
+- `<CubePlayer>` React component: playing/stepIndex/alg/stickering props, onMove/onComplete ✅ (planned)
+- `<CubeState>` display-only component: no animation, mount + setState ✅ (planned)
+- TypeScript-typed; manages mount/unmount lifecycle, no boilerplate in consumers ✅ (planned)
+
+**Feature 030 - cubify-decouple (Planned)**:
+- Remove all direct cubing.js imports from cfop-app (Alg/Move in scramble, VisualizerModal) ✅ (planned)
+- cubing.js remains internal to cubify-harness (KPattern); zero imports in cfop-app source ✅ (planned)
+
+**Feature 031 - cubify-cfop-migration (Planned)**:
+- Replace TwistyPlayer in VisualizerModal with `<CubePlayer>` ✅ (planned)
+- Replace TwistyPlayer in ScrambleCubePreview with `<CubeState>` ✅ (planned)
+- Remove all IntersectionObserver workarounds and explicit px dimension hacks ✅ (planned)
+- Production bundle size reduction: cubing.js 3D chunk removed ✅ (planned)
+- Prerequisites: 024 animation, 025 theming, 029 React wrapper, 030 scramble ✅ (planned)
+
+**Feature 032 - PWA & Bundle Optimisation (Deferred)**:
+- Service worker for offline support ✅ (planned)
 - Asset caching strategy for algorithm JSON, PNGs, and app shell ✅ (planned)
-- Address known 500kB+ chunk warnings: resolved by cubify-poc replacing cubing.js ✅ (planned)
 
-**Feature 025 - Personalisation & Learning Progress (Planned)**:
-- Per-case practice tracking — record which OLL/PLL cases have been practiced ✅ (planned)
-- Case bookmarking / favourites — flag cases for focused practice ✅ (planned)
-- Algorithm notation preference — wide moves (Rw) vs slice moves (M/S) ✅ (planned)
-- Persisted via versioned localStorage envelope, consistent with existing prefs pattern ✅ (planned)
+**Feature 033 - Personalisation & Learning Progress (Deferred)**:
+- Per-case practice tracking, bookmarking, algorithm notation preference ✅ (planned)
 
-**Feature 026 - Alt Algs UI (Planned)**:
-- Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
+**Feature 034 - Alt Algs UI (Deferred)**:
+- Surface alternative algorithms in Visualizer modal ✅ (planned)
 - Toggle between primary and alternative alg for a case ✅ (planned)
-- Solver-generated alts once cubify-poc solver integration is available ✅ (planned)

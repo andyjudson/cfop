@@ -636,10 +636,10 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Theme dimensions: sticker colours, plastic colour, gap size, bevel radius, surface finish ✅ (planned)
 - Live controls in harness demo; per-face colour pickers; export theme as JSON ✅ (planned)
 
-**Feature 026 - cubify-2d-export (Planned)**:
-- `CubeRenderer2D.toSVG()` — SVG cube net, stickering mask support, headless-capable ✅ (planned)
+**Feature 026 - cubify-image-export (Planned)**:
+- `CubeRenderer2D.toSVG()` + `CubeExporter.toPNG(style: 2d|3d)` — 2D net or 3D rendered ✅ (planned)
 - `CubeExporter.toSVG/toPNG()` — no browser dependency for SVG; OffscreenCanvas for PNG ✅ (planned)
-- Replace Playwright/headful Chromium in cubify-scripts with direct CubeExporter call ✅ (planned)
+- Visual parity with existing cubing.js OLL/PLL images; 3D style for cross/F2L ✅ (planned)
 - Node.js validation script ✅ (planned)
 
 **Feature 027 - cubify-tests (Planned)**:

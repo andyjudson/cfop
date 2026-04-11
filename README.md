@@ -13,11 +13,11 @@ CFOP learning companion with algorithm reference grids, interactive visualizatio
 - Full CFOP navigation (Intuitive, Notation, Beginner/2LK, F2L, OLL, PLL)
 - Notation reference page covering face turns, modifiers, slices, rotations, and common triggers
 - Expandable/collapsible algorithm sections with session persistence
-- Interactive tooltips with algorithm notes (2LK page only)
-- Solve visualization modal with cubing.js TwistyPlayer (2LK page only)
-- Practice timer with fallback scramble generator (2LK page only)
-- Persistent solve time tracking via localStorage
-- OLL consolidated from 14→7 balanced groups for improved scanability
+- OLL consolidated from 14→7 balanced groups; OLL and PLL probability scores ("1/54") and WCA case numbers on every card
+- Solve visualization modal with cubing.js TwistyPlayer and scramble cube preview
+- Practice timer with scramble generator; persistent solve time tracking via localStorage
+- About page with WCA world record evolution chart (Recharts) and sortable WR Legends table
+- Dark mode with localStorage persistence; mobile-responsive layout (iPhone 16 baseline)
 
 **Directory:** `/cfop-app/` • [README](cfop-app/README.md)
 
@@ -129,7 +129,7 @@ cubing.spec/
 ├── cfop-app/           # CFOP learning companion (main app)
 ├── cubify-harness/     # Cube visualisation library + test harness (in progress)
 ├── cubify-app/         # Cube image generator (utility)
-├── cubify-scripts/     # /cubify agent skill (Node.js, no build)
+├── cubify-scripts/     # Agent skill (Node.js, no build)
 ├── specs/              # Feature specifications (001–031+)
 │   ├── 022-cubify-harness/
 │   ├── 023-cubify-stickering/

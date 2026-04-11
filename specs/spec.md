@@ -610,14 +610,15 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Surface probabilities in the Visualizer modal (case header area) ✅
 - Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅
 
-**Feature 022 - cubify-harness (Planned)**:
-- Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
-- No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
-- Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
-- Static PNG/SVG export without headed browser (replaces Playwright in cubify agent skill) ✅ (planned)
-- Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
-- CSS custom property tokens for full theming ✅ (planned)
-- MIT licensed, reusable beyond this project ✅ (planned)
+**Feature 022 - cubify-harness (In Progress)**:
+- `CubeState` — wraps cubing.js KPattern; `applyMove/applyAlg`, `toFaceArray()`, `invertAlg()` ✅
+- `CubeRenderer3D` — Three.js 3D cube; `setState()`, `animateMove()`, `animateAlg()`; `setSpeed()` / `isAnimating` public API ✅
+- `CubeStickering` — CFOP stickering presets: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅
+- `AlgParser` — WCA notation parser; handles wide moves, slice moves, x/y/z rotations ✅
+- Interactive harness (`index.html`) — algorithm selector, play/step/speed controls, event log / face state / KPattern debug panels ✅
+- `verify-perms.mjs` — 18-test cross-check suite; CubeState ground truth + physical facts ✅
+- Hard-won cube-mapping-lessons.md — corner/edge slot ordering, orientation formula, animation sequencing, stickerIndex formulas ✅
+- cubing.js U/D direction convention documented and animation-only fix applied ✅
 
 **Feature 023 - cubify-stickering (Planned)**:
 - `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)

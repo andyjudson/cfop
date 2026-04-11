@@ -11,7 +11,21 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–021 complete (019 visual carousel, 020 WR Legends Panel, 021 probability scoring). Feature 022 cubify-harness in progress.
+Features 001–022 complete. Cubify library series (023–031) in planning.
+
+## cubify-harness — Ground Truth Reference
+
+**Before writing any cube state, rendering, or animation code, read [`specs/022-cubify-harness/cube-mapping-lessons.md`](specs/022-cubify-harness/cube-mapping-lessons.md).**
+
+It documents hard-won facts that took significant debugging to establish:
+
+- cubing.js KPattern corner/edge slot ordering (§1–2) — the documented order is wrong; verified order is 0=URF
+- Orientation formula: `(s - orientation + 3) % 3` for corners — NOT `(s + orientation) % 3` (§3)
+- `stickerIndex` formulas for all 6 faces — U and D are easy to swap (§6)
+- cubing.js `U`/`D` = WCA `U'`/`D'` — animation-only fix, do not translate state (§5)
+- `faceCW` cycle direction trap — `[off,off+6,off+8,off+2]` is CCW, not CW (§9)
+- Animation sequencing — never call `onDone` synchronously from inside the render tick (§7)
+- Physical rendering architecture — bake colours once at `setState()`, never reassign after animation (§8)
 
 ## CSS Standards
 
@@ -131,5 +145,5 @@ Standalone Node.js ESM skill for cube image generation. No build step.
 - **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
 
 ## Recent Changes
-- 020-cubify-harness: cubify-poc renamed to cubify-harness — evolving into a long-term test harness and library
-- 022-wr-legends-panel: Added TypeScript 5.9, React 19 + Bulma CSS 1.x, react-icons 5.x (for star icon and sort indicators)
+- 022-cubify-harness: completed — CubeState, CubeRenderer3D, CubeStickering, AlgParser, interactive harness, verify-perms suite
+- 020-wr-legends-panel: Added TypeScript 5.9, React 19 + Bulma CSS 1.x, react-icons 5.x (for star icon and sort indicators)

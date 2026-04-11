@@ -639,3 +639,21 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Surface alternative algorithms from algs-cfop-alt.json in the Visualizer modal ✅ (planned)
 - Toggle between primary and alternative alg for a case ✅ (planned)
 - Solver-generated alts once cubify-harness solver integration is available ✅ (planned)
+
+**Feature 027 - cubify-theming (Planned)**:
+- Named cube themes: Rubik's classic, modern/Twisty-style, speed cube (GAN), minimal white ✅ (planned)
+- Theme dimensions: sticker colours, plastic colour, gap size, bevel radius, surface finish ✅ (planned)
+- Live theme controls in harness demo — sliders for gap, roundedness, plastic colour ✅ (planned)
+- Per-face colour pickers and palette presets; export theme as JSON ✅ (planned)
+
+**Feature 028 - cubify-2d-export (Planned)**:
+- `CubeRenderer2D.toSVG()` — SVG cube net with correct sticker colours, stickering mask support ✅ (planned)
+- `CubeExporter.toSVG/toPNG()` — headless-capable, no browser dependency for SVG path ✅ (planned)
+- Replace Playwright/headful Chromium in cubify-scripts with direct CubeExporter call ✅ (planned)
+- Node.js validation script; PNG via OffscreenCanvas in browser ✅ (planned)
+
+**Feature 029 - cubify-stickering (Planned)**:
+- `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)
+- Named CFOP presets via orbit strings: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅ (planned)
+- Stickering controls in harness demo with iamthecu.be-style cubelet group toggles ✅ (planned)
+- masks.mjs strings usable directly — single source of truth across harness and scripts ✅ (planned)

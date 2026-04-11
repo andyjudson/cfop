@@ -100,13 +100,19 @@ A correct `toFaceArray()` implementation must pass all of these:
 
 ## 5. cubing.js move direction convention
 
-**cubing.js `U` = WCA `U'`** (counter-clockwise from above).
+**cubing.js `U` = WCA `U'`** (counter-clockwise from above). Same for `D`.
 
-After cubing.js `U`: F top row goes to L face (not R). This is a cubing.js convention, not a bug. It is internally consistent — all moves follow the same convention.
+**Only U and D are affected.** R, L, F, B, M, S, E all match WCA direction. Verified by manually testing all 7 move pairs in the demo (CW = looking directly at the face).
 
-**Practical implication**: when displaying algorithm notation sourced from cubing.js move objects, the visual result will differ from a standard WCA player. If you need WCA-direction moves, apply the inverse.
+**The correct fix is animation-only.** Do NOT translate moves in `CubeState.applyMove()` or `applyAlg()`. The internal state representation must stay in cubing.js-native convention throughout — `toFaceArray()`, case setup (inverse alg), and step-through all depend on it being consistent. Translating state breaks case setup.
 
-This does not affect `toFaceArray()` correctness — the face array correctly reflects whatever state cubing.js produces.
+**Only fix**: flip the Three.js animation `dir` for U and D in `CubeRenderer3D.js`:
+```js
+U: { axis: new THREE.Vector3(0, 1, 0), dir: -1, ... }  // was +1
+D: { axis: new THREE.Vector3(0, 1, 0), dir: +1, ... }  // was -1
+```
+
+**Verified**: all named algs (Sune, T-Perm, Ua-Perm, H-Perm) set up correct case states and solve completely.
 
 ---
 

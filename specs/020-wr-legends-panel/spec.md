@@ -1,4 +1,4 @@
-# Feature 022 — WR Legends Panel
+# Feature 020 — WR Legends Panel
 
 ## Summary
 

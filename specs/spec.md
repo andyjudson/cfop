@@ -597,14 +597,12 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Active case highlighted and scrolled into view; synced with dropdown state ✅
 - Mobile: toggle and carousel hidden, dropdowns always shown ✅
 
-**Feature 020 - cubify-harness (Planned)**:
-- Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
-- No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
-- Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
-- Static PNG/SVG export without headed browser (replaces Playwright in cubify agent skill) ✅ (planned)
-- Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
-- CSS custom property tokens for full theming ✅ (planned)
-- MIT licensed, reusable beyond this project ✅ (planned)
+**Feature 020 - WR Legends Panel (Completed)**:
+- Side-by-side panel in About page WCA section: 1/3 legends table, 2/3 evolution chart ✅
+- Table derived from existing wca-wr-evolution.json — no new fetch ✅
+- Sortable by name, WR count, single, average; current record holders highlighted ✅
+- Expand/collapse toggle to go chart-only ✅
+- PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅
 
 **Feature 021 - Probability Scoring (Planned)**:
 - Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅ (planned)
@@ -612,12 +610,14 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Surface probabilities in the Visualizer modal (case header area) ✅ (planned)
 - Data already injected into algs-cfop-oll.json and algs-cfop-pll.json ✅ (planned)
 
-**Feature 022 - WR Legends Panel (Planned)**:
-- Side-by-side panel in About page WCA section: 1/3 legends table, 2/3 evolution chart ✅ (planned)
-- Table derived from existing wca-wr-evolution.json — no new fetch ✅ (planned)
-- Sortable by name, WR count, single, average; current record holders highlighted ✅ (planned)
-- Expand/collapse toggle to go chart-only ✅ (planned)
-- PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅ (planned)
+**Feature 022 - cubify-harness (Planned)**:
+- Clean-room 3×3 cube visualisation library replacing TwistyPlayer in this project ✅ (planned)
+- No IntersectionObserver constraints, no shadow DOM, no baked-in controls ✅ (planned)
+- Named CFOP stickering presets: oll, pll, f2l, cross ✅ (planned)
+- Static PNG/SVG export without headed browser (replaces Playwright in cubify agent skill) ✅ (planned)
+- Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
+- CSS custom property tokens for full theming ✅ (planned)
+- MIT licensed, reusable beyond this project ✅ (planned)
 
 **Feature 023 - cubify-stickering (Planned)**:
 - `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)

@@ -146,7 +146,21 @@ case 5: return idx(-x, -y);  // -Z = B face
 
 ---
 
-## 7. Physical rendering architecture (critical)
+## 7. Animation sequencing — never call onDone from inside the render tick
+
+`animateMove()` drives animation via `_animTick`, which is called each frame from the render loop. When `t >= 1`, the move is complete and `_animating = false`.
+
+**The problem**: calling `onDone()` synchronously from inside `_animTick` means the next `animateMove()` call (starting a new sequence) sets `_animTick` while still executing the old one. The new tick gets overwritten on return from the old call.
+
+**The fix**: `setTimeout(() => onDone?.(), 0)` — defers `onDone` to the next event loop turn, after the current frame has fully settled.
+
+**Sequencing moves**: to animate a sequence, use `renderer.animateAlg(moves, onStep, onComplete)`. Do not chain `animateMove` calls manually via callbacks — `animateAlg` handles this correctly.
+
+**The trap**: per-move chaining with `onDone → next()` looks correct but races with the render loop. It worked for single buttons (no chain) but broke for text input sequences. Using `animateAlg` directly is the reliable path.
+
+---
+
+## 8. Physical rendering architecture (critical)
 
 **The fundamental principle**: each cubelet is a physical piece. Its sticker colours are fixed — they never change. Only position and orientation change.
 

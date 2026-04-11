@@ -1,16 +1,22 @@
-# Feature 030 — cubify-scramble (Scramble Generator Migration)
+# Feature 030 — cubify-decouple (Remove cubing.js from cfop-app)
 
 ## Summary
 
-Migrate the scramble generator in `cfop-app` off `cubing.js` and into `cubify-harness`, eliminating the remaining direct cubing.js dependency from the app.
+Remove all direct `cubing.js` imports from `cfop-app`. TwistyPlayer is handled in Feature 031; this feature covers the three remaining `Alg`/`Move` import sites and moves the scramble generator into `cubify-harness`.
 
 ---
 
 ## Motivation
 
-cfop-app currently calls cubing.js directly for scramble generation (`randomScrambleForEvent`). This is one of two remaining cubing.js dependencies after TwistyPlayer is replaced (the other being `Alg`/`Move` parsing, already wrapped in `AlgParser`).
+After Feature 031 removes TwistyPlayer, three cubing.js import sites remain in cfop-app:
 
-Migrating scrambles to `cubify-harness` completes the decoupling.
+| File | Import | Replacement |
+|------|--------|-------------|
+| `scrambleGenerator.ts` | `Alg` (validation only) | `AlgParser.parse()` check |
+| `scramble.ts` | `Alg` | `AlgParser.parse()` |
+| `VisualizerModal.tsx` | `Alg`, `Move` | `AlgParser.parse()` (TwistyPlayer already gone) |
+
+`cubify-harness` keeps cubing.js as an **internal** dependency for `KPattern` move application — that stays. The goal is zero direct cubing.js imports in cfop-app source.
 
 ---
 
@@ -42,7 +48,8 @@ Migration steps:
 
 ## Acceptance Criteria
 
-- [ ] `CubeScramble.random()` returns consistent quality scrambles (same constraints as current)
-- [ ] No cubing.js import in the scramble module
-- [ ] cfop-app `scrambleGenerator.ts` replaced by cubify import
-- [ ] Existing scramble quality constraints preserved (no same-face, no A-B-A)
+- [ ] `CubeScramble.random()` in cubify-harness, no cubing.js import
+- [ ] `scrambleGenerator.ts` and `scramble.ts` — `Alg` import replaced with `AlgParser.parse()`
+- [ ] `VisualizerModal.tsx` — `Alg`/`Move` imports removed (TwistyPlayer already gone via 031)
+- [ ] `grep -r "from 'cubing" cfop-app/src` returns no matches
+- [ ] Scramble quality constraints unchanged (20 moves, no same-face, no A-B-A)

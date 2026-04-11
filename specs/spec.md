@@ -659,9 +659,9 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - `<CubeState>` display-only component: no animation, mount + setState ✅ (planned)
 - TypeScript-typed; manages mount/unmount lifecycle, no boilerplate in consumers ✅ (planned)
 
-**Feature 030 - cubify-scramble (Planned)**:
-- `CubeScramble.random()` wrapping cubing.js scramble generator behind clean API ✅ (planned)
-- Removes last direct cubing.js import from cfop-app ✅ (planned)
+**Feature 030 - cubify-decouple (Planned)**:
+- Remove all direct cubing.js imports from cfop-app (Alg/Move in scramble, VisualizerModal) ✅ (planned)
+- cubing.js remains internal to cubify-harness (KPattern); zero imports in cfop-app source ✅ (planned)
 
 **Feature 031 - cubify-cfop-migration (Planned)**:
 - Replace TwistyPlayer in VisualizerModal with `<CubePlayer>` ✅ (planned)

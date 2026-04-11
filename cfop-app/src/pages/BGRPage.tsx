@@ -72,10 +72,10 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
       }
     >
       <main>
-        {renderAlgorithmSection("OLL Edge Cases", "Step 1 of 4: create yellow cross.", ollEdges)}        
-        {renderAlgorithmSection("OLL Corner Cases", "Step 2 of 4: orientate corners cubelets, solving the yellow face.", ollCorners)}
+        {renderAlgorithmSection("OLL Edge Cases", "Step 1 of 4: orientate edge cubelets to form the yellow cross.", ollEdges)}        
+        {renderAlgorithmSection("OLL Corner Cases", "Step 2 of 4: orientate corner cubelets to solve the yellow face.", ollCorners)}
         {renderAlgorithmSection("PLL Corner Cases", "Step 3 of 4: permute corner cubelets.", pllCorners)}
-        {renderAlgorithmSection("PLL Edge Cases", "Step 4 of 4: permute edge cubelets, solving the cube!", pllEdges)}
+        {renderAlgorithmSection("PLL Edge Cases", "Step 4 of 4: permute edge cubelets to solve the cube!!", pllEdges)}
       </main>
 
       <AlgorithmNotesSheet algorithm={notesAlg} onClose={() => setNotesAlg(null)} />

@@ -605,6 +605,7 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Clean public API: mount(), play(), pause(), jumpTo(), setSpeed(), on('move') ✅ (planned)
 - CSS custom property tokens for full theming ✅ (planned)
 - MIT licensed, reusable beyond this project ✅ (planned)
+
 **Feature 021 - Probability Scoring (Planned)**:
 - Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅ (planned)
 - Show WCA case number alongside the case name ✅ (planned)
@@ -657,3 +658,10 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Named CFOP presets via orbit strings: full, cross, f2l, oll, oll-2look, pll, pll-2look ✅ (planned)
 - Stickering controls in harness demo with iamthecu.be-style cubelet group toggles ✅ (planned)
 - masks.mjs strings usable directly — single source of truth across harness and scripts ✅ (planned)
+
+**Feature 030 - cubify.js Library (Planned)**:
+- Extract and consolidate cubify-harness core into a clean standalone library ✅ (planned)
+- Public API design covering all consumers: cfop-app, cubify-scripts, cubify-app, harness ✅ (planned)
+- CubePlayer fully implemented (play/pause/jumpTo/setSpeed/on) ✅ (planned)
+- Migrate cfop-app off TwistyPlayer; cubify-scripts off Playwright ✅ (planned)
+- Prerequisites: Features 027 (theming), 028 (2D export), 029 (stickering) ✅ (planned)

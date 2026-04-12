@@ -146,7 +146,7 @@ Standalone Node.js ESM skill for cube image generation. No build step.
 - **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
 
 ## Recent Changes
+- 023-cubify-stickering: Added ES module JavaScript (Node 24 / browser) + Three.js (via CubeRenderer3D), cubing.js (via CubeState) — neither changes
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
 - 021-probability-scoring: `prob` field (e.g. "1/54") and WCA case number surfaced on OLL/PLL cards and in the Visualizer modal
-- 022-cubify-harness: completed — CubeState, CubeRenderer3D, CubeStickering, AlgParser, interactive harness, verify-perms suite
 

@@ -63,7 +63,7 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
           <p className="mb-0">
             Beginner <strong>2-look</strong> methods simplify the last layer by splitting OLL and PLL
             into 4 steps — orient edges, orient corners, permute corners, permute edges — reducing
-            the total algorithm count to as few as 7 essential cases, or 16 in total.
+            the algorithm count to as few as 7 essential cases, or 16 in total.
             Learn these to solve reliably in 1-2 minutes, then progress to full OLL or PLL.
           </p>
           <p className="mt-2 mb-0">

@@ -15,7 +15,8 @@ Features 001–022 complete. Cubify library series (023–031) in planning.
 
 ## cubify-harness — Ground Truth Reference
 
-**Before writing any cube state, rendering, or animation code, read [`specs/022-cubify-harness/cube-mapping-lessons.md`](specs/022-cubify-harness/cube-mapping-lessons.md).**
+**Before writing any cube state, rendering, or animation code, read [`specs/cube-mapping-lessons.md`](specs/cube-mapping-lessons.md).**
+For an explanation of face state and KPattern concepts, see [`specs/cube-concepts.md`](specs/cube-concepts.md).
 
 It documents hard-won facts that took significant debugging to establish:
 

@@ -61,9 +61,9 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
       introContent={
         <>
           <p className="mb-0">
-            Beginner <strong>2-look</strong> methods simplify the last layer by breaking OLL and PLL into smaller subsets 
-            - solve edges and corners separately per stage, reducing the algorithm count to around 5 to 12 cases, but require repetition.
-            Learn these first to solve reliably around 1 to 2 minutes, then expand to full OLL/PLL, and lastly full F2L.
+            Beginner <strong>2-look</strong> methods simplify the last layer by breaking OLL and PLL into 4 steps 
+            - solve edges and corners separately for orientation and permutation, reducing the algorithm count to a minimum of 7 cases or 16 in total, but require repetition.
+            Learn these first to solve reliably around 1-2 minutes, then expand to full OLL/PLL, and lastly full F2L.
           </p>
           <p className="mt-2 mb-0">
             <strong>Minimum to solve any last layer:</strong> {essentialsSummary}
@@ -72,10 +72,10 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
       }
     >
       <main>
-        {renderAlgorithmSection("OLL Edge Cases", "Step 1 of 4: orientate edge cubelets to create the yellow cross.", ollEdges)}        
-        {renderAlgorithmSection("OLL Corner Cases", "Step 2 of 4: orientate corner cubelets to solve the yellow face.", ollCorners)}
-        {renderAlgorithmSection("PLL Corner Cases", "Step 3 of 4: permute corner cubelets to match the side faces.", pllCorners)}
-        {renderAlgorithmSection("PLL Edge Cases", "Step 4 of 4: permute edge cubelets to solve the cube!!", pllEdges)}
+        {renderAlgorithmSection("OLL Edge Cases", "Step 1: orientate edge cubelets to create the yellow cross.", ollEdges)}        
+        {renderAlgorithmSection("OLL Corner Cases", "Step 2: orientate corner cubelets to solve the yellow face.", ollCorners)}
+        {renderAlgorithmSection("PLL Corner Cases", "Step 3: permute corner cubelets to match the side faces.", pllCorners)}
+        {renderAlgorithmSection("PLL Edge Cases", "Step 4: permute edge cubelets to solve the cube!!", pllEdges)}
       </main>
 
       <AlgorithmNotesSheet algorithm={notesAlg} onClose={() => setNotesAlg(null)} />

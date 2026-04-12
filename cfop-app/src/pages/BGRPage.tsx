@@ -55,15 +55,16 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
   return (
     <CfopPageLayout
       pageTitle="Beginner Methods"
-      subtitle="Learn to solve last layer with just 9 essential OLL and PLL algorithms and 2-look methods"
+      subtitle="Learn to solve last layer with a subset of essential OLL and PLL algorithms and 2-look methods"
       introImageSrc="/cubing.spec/assets/cfop_solved.png"
       introImageAlt="Solved cube overview for CFOP 2-look intro"
       introContent={
         <>
           <p className="mb-0">
-            Beginner <strong>2-look</strong> methods simplify the last layer by breaking OLL and PLL into 4 steps 
-            - solve edges and corners separately for orientation and permutation, reducing the algorithm count to a minimum of 7 cases or 16 in total, but require repetition.
-            Learn these first to solve reliably around 1-2 minutes, then expand to full OLL/PLL, and lastly full F2L.
+            Beginner <strong>2-look</strong> methods simplify the last layer by splitting OLL and PLL
+            into 4 steps — orient edges, orient corners, permute corners, permute edges — reducing
+            the total algorithm count to as few as 7 essential cases, or 16 in full.
+            Learn these to solve reliably in 1–2 minutes, then progress to full OLL and PLL.
           </p>
           <p className="mt-2 mb-0">
             <strong>Minimum to solve any last layer:</strong> {essentialsSummary}

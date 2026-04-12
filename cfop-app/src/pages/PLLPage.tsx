@@ -52,12 +52,12 @@ function PLLPage() {
   return (
     <CfopPageLayout
       pageTitle="PLL Algorithms"
-      subtitle="Permute Last Layer - 21 cases across 5 groups"
+      subtitle="Permutation of Last Layer - 21 cases across 5 groups"
       introImageSrc="/cubing.spec/assets/cfop_pll.png"
       introImageAlt="PLL stage illustration"
       introContent={
         <p className="mb-0">
-          <strong>PLL</strong> (Permute Last Layer) - The goal of the fourth step is to solve the cube by
+          <strong>PLL</strong> (Permutation of Last Layer) - The goal of the fourth step is to solve the cube by
           repositioning last-layer pieces. There are 21 total cases, or 6 when using 2-look method.
         </p>
       }

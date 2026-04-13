@@ -29,7 +29,7 @@ Clean-room 3×3 cube visualisation and logic library, built to replace cubing.js
 **What's built:**
 - `CubeState` — wraps cubing.js KPattern; `applyMove/applyAlg`, `toFaceArray()`, `invertAlg()`
 - `CubeRenderer3D` — Three.js 3D cube renderer; `setState()`, `animateMove()`, `animateAlg()`, `setSpeed()`
-- `CubeStickering` — CFOP stickering presets (full, cross, f2l, oll, oll-2look, pll, pll-2look)
+- `CubeStickering` — CFOP stickering and masking (work in progress)
 - `AlgParser` — WCA notation parser (face turns, wide moves, slices, rotations)
 - `verify-perms.mjs` — 18-test permutation cross-check suite against cubing.js ground truth
 - `cube-mapping-lessons.md` — hard-won reference for cube state mapping, orientation formulas, and animation sequencing

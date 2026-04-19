@@ -47,7 +47,7 @@ export default function AboutPage() {
   return (
     <CfopPageLayout
       pageTitle="About"
-      subtitle="Descriptive background on Cubing, the CFOP method and this app"
+      subtitle="Background to Cubing, the CFOP method, and this app"
     >
       <section className="section about-section">
         <h2 className="title is-4 section-title">Cubing Background</h2>
@@ -57,10 +57,10 @@ export default function AboutPage() {
         <p className="mt-3">I was only 2 years old when the cube was invented and I never learnt how to solve it (legitimately) as a child. A few years ago, I was on holiday with my family, and my daughter bought me a cube (traditional, clunky design), and I was determined to learn to solve it. I found the beginner method online from JPerm and after watching that repeatedly for a few hours, I'd achieved my first solve 🤪 and was hooked. I then wanted to understand more and see if I could push times reliably in the 1 to 2 minute range. I started learning CFOP, and it's been a fun journey since, I may have upgraded to a Gan cube along the way 🤓. The methodical nature of CFOP, with its clear stages and algorithmic patterns, makes it a great fit for my learning style. The 2-look CFOP is a sweet spot for me where I can achieve good times without needing to memorise a huge number of algorithms.
         </p>
         <p className="mt-3">
-          I developed this app to reinforce my learning and sharpen my engineering skills. The YouTube videos are invaluable for technique and strategy, but focusing on specific algorithms needs targeted repetition. Other sites were ugly or polluted with ads and trackers. I wanted a clean, modern, mobile-friendly space to focus on learning, and hopefully it serves others too. Cubing knowledge here is drawn from the excellent YouTube tutorials by <a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a> (Milan Struyf) and <a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a> (Dylan Wang).
+          I developed this app to reinforce my learning and sharpen my engineering skills. While YouTube videos are invaluable for technique and strategy, learning specific algorithms really comes down to targeted repetition. Many existing sites felt cluttered, dated, or overloaded with ads and trackers, so I wanted to create a clean, modern, mobile-friendly space focused purely on learning — hopefully something others will find useful too. The cubing knowledge here is drawn from the excellent tutorials by Milan Struyf (<a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a>) and Dylan Wang (<a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a>). The cubing.js framework by Lucas Garron powers the cube and algorithm visualisations, and I've been experimenting with customising and extending it as a related side project.
         </p>
         <p className="mt-3">
-          The app is open source — you can find the code on <a href="https://github.com/andyjudson/cubing.spec" target="_blank" rel="noreferrer">GitHub</a>. If you spot a bug, have a suggestion, or want to see a new feature, feel free to open an issue there.
+          This app is open source — you can find the code and assets on <a href="https://github.com/andyjudson/cubing.spec" target="_blank" rel="noreferrer">GitHub</a>, including the algorithm sets defined in JSON with accompanying PNG images. If you spot a bug, have a suggestion, or would like to see a new feature, feel free to open an issue.
         </p>
       </section>
 
@@ -159,8 +159,8 @@ export default function AboutPage() {
           </li>
           <li>
             <strong>Algorithm Visualiser</strong> — Select any OLL or PLL algorithm and watch a 3D cube
-            execute the moves step by step, powered by the cubing.js engine. A useful companion to the
-            algorithm pages when you want to see exactly how a case plays out.
+            animate the moves step by step, at a speed you can control or replay. 
+            A useful companion to the algorithm pages when you want to see exactly how a case plays out.
           </li>
           <li>
             <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random

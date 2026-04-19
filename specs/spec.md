@@ -620,11 +620,11 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Hard-won cube-mapping-lessons.md — corner/edge slot ordering, orientation formula, animation sequencing, stickerIndex formulas ✅
 - cubing.js U/D direction convention documented and animation-only fix applied ✅
 
-**Feature 023 - cubify-stickering (Planned)**:
-- Replace hardcoded preset maps with `CubeStickering.fromOrbitString()` — parses masks.mjs orbit strings into visibility map ✅ (planned)
-- masks.mjs orbit strings as single source of truth for all CFOP presets ✅ (planned)
-- Stickering controls in harness demo; live preset switching ✅ (planned)
-- iamthecu.be-style cubelet group toggles for fine-grained control ✅ (planned)
+**Feature 023 - cubify-stickering (Complete ✅)**:
+- `CubeStickering.fromOrbitStringWithState()` parses orbit strings into `Map<homePos, vis[6]>` — chars -/I/D/O/S/P ✅
+- `MASK_PRESETS` (15 presets: basic/OLL/PLL groups with dim variants) as reusable export from CubeStickering.js ✅
+- Harness stickering panel with live preset switching, orbit string input, cubelet count logging ✅
+- Mask materials baked on Three.js mesh at `applyStickering()`, travel naturally through moves — never reapplied in callbacks ✅
 
 **Feature 024 - cubify-animation / CubePlayer Engine (Planned)**:
 - Full move timeline: play, pause, jumpTo, setSpeed, reset ✅ (planned)
@@ -637,11 +637,12 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 - Theme dimensions: sticker colours, plastic colour, gap size, bevel radius, surface finish ✅ (planned)
 - Live controls in harness demo; per-face colour pickers; export theme as JSON ✅ (planned)
 
-**Feature 026 - cubify-image-export (Planned)**:
-- `CubeRenderer2D.toSVG()` + `CubeExporter.toPNG(style: 2d|3d)` — 2D net or 3D rendered ✅ (planned)
-- `CubeExporter.toSVG/toPNG()` — no browser dependency for SVG; OffscreenCanvas for PNG ✅ (planned)
-- Visual parity with existing cubing.js OLL/PLL images; 3D style for cross/F2L ✅ (planned)
-- Node.js validation script ✅ (planned)
+**Feature 026 - cubify-image-export (Complete ✅)**:
+- `CubeRenderer2D` — top-down canvas/SVG view: U face + 4 side strips + corner quads; `transparent` option for PNG export ✅
+- `CubeExporter.toPNG(alg, { style: '2d'|'3d' })` — 2D via canvas, 3D via CubeRenderer3D with alpha+preserveDrawingBuffer ✅
+- `demo/export-test.mjs` — Node.js sharp-based validation (3/3 cases: Sune OLL, T-Perm PLL, solved) ✅
+- Harness Export 2D / Export 3D buttons (288px, transparent background, stickering-aware) ✅
+- cubify-scripts Playwright migration deferred (requires Node.js WebGL path) ⏳
 
 **Feature 027 - cubify-tests (Planned)**:
 - Vitest unit suite for CubeState: all cube-mapping-lessons verification tests ✅ (planned)

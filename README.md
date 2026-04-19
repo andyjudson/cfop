@@ -28,11 +28,13 @@ Clean-room 3×3 cube visualisation and logic library, built to replace cubing.js
 
 **What's built:**
 - `CubeState` — wraps cubing.js KPattern; `applyMove/applyAlg`, `toFaceArray()`, `invertAlg()`
-- `CubeRenderer3D` — Three.js 3D cube renderer; `setState()`, `animateMove()`, `animateAlg()`, `setSpeed()`
-- `CubeStickering` — CFOP stickering and masking (work in progress)
+- `CubeRenderer3D` — Three.js 3D cube renderer; `setState()`, `animateMove()`, `animateAlg()`, `setSpeed()`; alpha + preserveDrawingBuffer for PNG export
+- `CubeRenderer2D` — Canvas 2D top-down view (U face + side strips + corner quads); SVG output for Node.js; transparent background option
+- `CubeStickering` — CFOP orbit-string masking; `fromOrbitStringWithState()` with full char set (-/I/D/O/S/P); `MASK_PRESETS` (15 presets)
+- `CubeExporter` — `toPNG(alg, { style: '2d'|'3d' })` PNG export; harness Export 2D / Export 3D buttons
 - `AlgParser` — WCA notation parser (face turns, wide moves, slices, rotations)
 - `verify-perms.mjs` — 18-test permutation cross-check suite against cubing.js ground truth
-- `cube-mapping-lessons.md` — hard-won reference for cube state mapping, orientation formulas, and animation sequencing
+- `demo/export-test.mjs` — Node.js sharp-based PNG validation (Sune OLL, T-Perm PLL, solved)
 
 **Design goals:** No IntersectionObserver constraints, no shadow DOM, no baked-in controls — clean public API, CSS custom property theming, MIT licensed.
 
@@ -148,4 +150,4 @@ Note:
 
 ---
 
-**Status**: Active development • Features 001–022 complete • cubify library series (023–031) in planning
+**Status**: Active development • Features 001–023 complete • 026 complete • cubify library series (024–031) in progress

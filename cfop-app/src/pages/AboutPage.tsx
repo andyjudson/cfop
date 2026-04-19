@@ -47,7 +47,7 @@ export default function AboutPage() {
   return (
     <CfopPageLayout
       pageTitle="About"
-      subtitle="Background on speedcubing, CFOP, and how to use this app to learn"
+      subtitle="Descriptive background on Cubing, the CFOP method and this app"
     >
       <section className="section about-section">
         <h2 className="title is-4 section-title">Cubing Background</h2>

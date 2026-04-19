@@ -53,6 +53,17 @@ export function useSolveStats() {
   }, []);
 
   /**
+   * Remove the most recent solve and recompute stats
+   */
+  const deleteLastSolve = useCallback(() => {
+    const store = loadSolveHistory();
+    if (store.solves.length === 0) return;
+    const updatedStore = { ...store, solves: store.solves.slice(0, -1) };
+    saveSolveHistory(updatedStore);
+    setStats(computeStats(updatedStore.solves));
+  }, []);
+
+  /**
    * Clear all solve history and reset stats
    */
   const resetStats = useCallback(() => {
@@ -65,7 +76,7 @@ export function useSolveStats() {
     });
   }, []);
 
-  return { stats, saveSolve, resetStats };
+  return { stats, saveSolve, deleteLastSolve, resetStats };
 }
 
 /**

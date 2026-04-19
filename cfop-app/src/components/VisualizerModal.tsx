@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Alg, Move } from 'cubing/alg';
 import { TwistyPlayer } from 'cubing/twisty';
-import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdShuffle, MdFilterCenterFocus, MdGridView, MdTune } from 'react-icons/md';
+import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdFilterCenterFocus } from 'react-icons/md';
 import type { CfopAlgorithm } from './AlgorithmCard';
 import { CaseCarousel } from './CaseCarousel';
 import './VisualizerModal.css';
@@ -30,9 +30,6 @@ function getGroups(algorithms: CfopAlgorithm[]): string[] {
   return ['all', ...unique];
 }
 
-function pickRandom(pool: CfopAlgorithm[]): CfopAlgorithm {
-  return pool[Math.floor(Math.random() * pool.length)];
-}
 
 const getMask = (method?: string, mask?: string): string => {
   if (method === 'oll') {
@@ -72,8 +69,6 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [currentAlg, setCurrentAlg] = useState<CfopAlgorithm | null>(null);
 
-  const [navMode, setNavMode] = useState<'browse' | 'select'>('browse');
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(-1);
   const SPEED_STEPS = [0.5, 1, 1.5, 2, 3, 4, 6];
@@ -91,7 +86,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
         setOllData(oll);
         setPllData(pll);
         setLoadState('ready');
-        setCurrentAlg(pickRandom(pll));
+        setCurrentAlg(pll[0] ?? null);
       })
       .catch(() => setLoadState('error'));
   }, []);
@@ -118,22 +113,17 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
     [currentAlg],
   );
 
-  const handleShuffle = () => {
-    if (shufflePool.length === 0) return;
-    setCurrentAlg(pickRandom(shufflePool));
-  };
-
   const handleSetChange = (set: 'OLL' | 'PLL') => {
     setSelectedSet(set);
     setSelectedGroup('all');
     const data = set === 'OLL' ? ollData : pllData;
-    if (data.length > 0) setCurrentAlg(pickRandom(data));
+    setCurrentAlg(data[0] ?? null);
   };
 
   const handleGroupChange = (group: string) => {
     setSelectedGroup(group);
     const pool = group === 'all' ? activeData : activeData.filter(a => a.group === group);
-    if (pool.length > 0) setCurrentAlg(pickRandom(pool));
+    setCurrentAlg(pool[0] ?? null);
   };
 
   // TwistyPlayer lifecycle — re-init when currentAlg changes
@@ -290,48 +280,13 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                   ))}
                 </select>
               </div>
-              <button
-                className={`button ${navMode === 'browse' ? 'is-link' : 'is-light'} visualizer-nav-mode`}
-                onClick={() => setNavMode(navMode === 'browse' ? 'select' : 'browse')}
-                title={navMode === 'browse' ? 'Switch to select mode' : 'Switch to browse mode'}
-              >
-                {navMode === 'browse' ? <MdGridView size={16} /> : <MdTune size={16} />}
-                <span>{navMode === 'browse' ? 'Browse' : 'Select'}</span>
-              </button>
             </div>
 
-            {navMode === 'browse' && (
-              <CaseCarousel
-                algorithms={shufflePool}
-                activeId={currentAlg?.id ?? ''}
-                onSelect={(alg) => setCurrentAlg(alg)}
-              />
-            )}
-
-            <div className={`visualizer-alg-row${navMode === 'browse' ? ' is-hidden-carousel' : ''}`}>
-              <div className="select visualizer-alg-select">
-                <select
-                  value={currentAlg?.id ?? ''}
-                  onChange={e => {
-                    const alg = shufflePool.find(a => a.id === e.target.value);
-                    if (alg) setCurrentAlg(alg);
-                  }}
-                  aria-label="Algorithm"
-                >
-                  {shufflePool.map(a => (
-                    <option key={a.id} value={a.id}>{a.name}</option>
-                  ))}
-                </select>
-              </div>
-              <button
-                className="button is-link is-light visualizer-shuffle-btn"
-                onClick={handleShuffle}
-                title="Shuffle"
-              >
-                <MdShuffle size={18} />
-                <span>Shuffle</span>
-              </button>
-            </div>
+            <CaseCarousel
+              algorithms={shufflePool}
+              activeId={currentAlg?.id ?? ''}
+              onSelect={(alg) => setCurrentAlg(alg)}
+            />
           </>
         )}
 

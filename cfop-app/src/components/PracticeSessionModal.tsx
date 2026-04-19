@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { MdPlayArrow, MdStop, MdShuffle, MdHistory, MdChangeCircle, MdEmojiEvents, MdGridOn } from 'react-icons/md';
+import { MdPlayArrow, MdStop, MdShuffle, MdHistory, MdChangeCircle, MdEmojiEvents, MdGridOn, MdUndo } from 'react-icons/md';
 import { useSolveTimer } from '../hooks/useSolveTimer';
 import { useSolveStats } from '../hooks/useSolveStats';
 import type { ScrambleSource, ScrambleState } from '../types/practice';
@@ -52,7 +52,7 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const requestIdRef = useRef(0);
   const { timer, start, stop, reset, canStart, canStop } = useSolveTimer();
-  const { stats, saveSolve, resetStats } = useSolveStats();
+  const { stats, saveSolve, deleteLastSolve, resetStats } = useSolveStats();
 
   // Competitive mode state
   const [mode, setMode] = useState<PracticeMode>('standard');
@@ -353,14 +353,26 @@ export function PracticeSessionModal({ isOpen, onClose }: PracticeSessionModalPr
                         <span>Change</span>
                       </button>
                     ) : (
-                      <button
-                        className="button is-small is-light"
-                        onClick={() => { resetStats(); reset(); }}
-                        disabled={timer.state === 'running'}
-                      >
-                        <span className="icon is-small"><MdHistory /></span>
-                        <span>Reset</span>
-                      </button>
+                      <>
+                        <button
+                          className="button is-small is-light"
+                          onClick={deleteLastSolve}
+                          disabled={timer.state === 'running' || stats.solveCount === 0}
+                          title="Delete last result"
+                          aria-label="Delete last result"
+                        >
+                          <span className="icon is-small"><MdUndo /></span>
+                          <span>Undo</span>
+                        </button>
+                        <button
+                          className="button is-small is-light"
+                          onClick={() => { resetStats(); reset(); }}
+                          disabled={timer.state === 'running'}
+                        >
+                          <span className="icon is-small"><MdHistory /></span>
+                          <span>Reset</span>
+                        </button>
+                      </>
                     )}
                   </div>
                 </div>

@@ -1,23 +1,241 @@
 [
-  {"wca_id":"H","group":"edges-only","names":["H Perm"],"algs":["M2 U' (M2 U2 M2) U' M2","M2 U M2 U2 M2 U M2"]},
-  {"wca_id":"Ua","group":"edges-only","names":["Ua Perm"],"algs":["(R U R' U) R' U' (R2 U' R') U R' U R","M2 U M U2 M' U M2","R U' R U R U R U' R' U' R2"]},
-  {"wca_id":"Ub","group":"edges-only","names":["Ub Perm"],"algs":["R' U R' U' (R3 U') R' U (R U R2)","M2 U' M U2 M' U' M2","R2 U R U R' U' R' U' R' U R'"]},
-  {"wca_id":"Z","group":"edges-only","names":["Z Perm"],"algs":["M' U' (M2 U') (M2 U') M' U2 M2","M U M2 U M2 U M U2 M2"]},
-  {"wca_id":"Aa","group":"corners-only","names":["Aa Perm"],"algs":["x (R' U R') D2 (R U' R') D2 R2 x'","l' U R' D2 R U' R' D2 R2 x'","R' F R' B2 R F' R' B2 R2"]},
-  {"wca_id":"Ab","group":"corners-only","names":["Ab Perm"],"algs":["x R2 D2 (R U R') D2 (R U' R) x'","l U' R D2 R' U R D2 R2 x'","R2 B2 R F R' B2 R F' R"]},
-  {"wca_id":"E","group":"corners-only","names":["E Perm"],"algs":["x' (R U' R') D (R U R') D' (R U R') D (R U' R') D' x","z U2 R2 F (R U R' U') (R U R' U') F' R2 U2 z'"]},
-  {"wca_id":"F","group":"adjacent-swap","names":["F Perm"],"algs":["R' U' F' (R U R' U') R' F (R2 U' R') U' (R U R') U R","R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"]},
-  {"wca_id":"Ja","group":"adjacent-swap","names":["Ja Perm"],"algs":["x R2 (F R F' R) U2 (r' U r) U2 x'","R' U L' U2 R U' R' U2 R L U'","L' U' L F L' U' L U L F' L2 U L"]},
-  {"wca_id":"Jb","group":"adjacent-swap","names":["Jb Perm"],"algs":["R U R' F' (R U R' U') R' F (R2 U' R')","(R' U L' U2 R U' R' U2 R L)","B' U F' U2 B U' B' U2 B F"]},
-  {"wca_id":"Ra","group":"adjacent-swap","names":["Ra Perm"],"algs":["(R U' R' U') R U R D (R' U' R D') R' U2 R'","L U2 L' U2 L F' L' U' L U L F L2"]},
-  {"wca_id":"Rb","group":"adjacent-swap","names":["Rb Perm"],"algs":["(R' U2 R U2) R' F (R U R' U') R' F' R2","R' U' R U' R U R U' R' U R U R2 U' R'","R2 F R U R U' R' F' R U2 R' U2 R"]},
-  {"wca_id":"T","group":"adjacent-swap","names":["T Perm"],"algs":["(R U R' U') R' F (R2 U' R') U' (R U R' F')","R U R' U' R' F R2 U' R' U' R U R' F'"]},
-  {"wca_id":"Na","group":"diagonal-swap","names":["Na Perm"],"algs":["(R U R' U) R U R' F' (R U R' U') R' F (R2 U' R') U2 R U' R'","z U R' U R2 D' R U' R' D R2 U' R U' z'"]},
-  {"wca_id":"Nb","group":"diagonal-swap","names":["Nb Perm"],"algs":["(R' U R U') R' (F' U' F) R U (R' U' R U') f R f'","R' U L U' R U L' U' R' U L U' R U L'"]},
-  {"wca_id":"V","group":"diagonal-swap","names":["V Perm"],"algs":["(R' U R' U') R D' R' D R' (U D' R2 U' R2 D R2)","R' U R U' R' f' U' F U R' F R f R U' R'","R' U R' U' B' R' B2 U' B' U B' R B R"]},
-  {"wca_id":"Y","group":"diagonal-swap","names":["Y Perm"],"algs":["F (R U' R' U') R U R' F' (R U R' U') R' F R F'","F (R U' R' U) R U R' F' (R U R' U') R' F R F'"]},
-  {"wca_id":"Ga","group":"g-perms","names":["Ga Perm"],"algs":["R2 (U R' U R') U' R U' R2 (D U') R' U R D'","R U R' U' R' U R U2 R' U' R U' R' U2 R U' R'"]},
-  {"wca_id":"Gb","group":"g-perms","names":["Gb Perm"],"algs":["D R' U' R (U D') R2 U R' U (R U' R U') R2","F' U' F R2 u R' U R U' R u' R2"]},
-  {"wca_id":"Gc","group":"g-perms","names":["Gc Perm"],"algs":["D R2 (U' R U' R) U R' U R2 (D' U) R U' R'","R U R' F2 u' R U' R' U R' u F2"]},
-  {"wca_id":"Gd","group":"g-perms","names":["Gd Perm"],"algs":["R U R' (U' D) R2 U' R U' (R' U R' U) R2 D'","R U' R F2 u R' U R U' R u' F2 R'"]}
+  {
+    "wca_id": "H",
+    "group": "edges-only",
+    "names": [
+      "H Perm"
+    ],
+    "algs": [
+      "M2 U' (M2 U2 M2) U' M2",
+      "M2 U M2 U2 M2 U M2"
+    ]
+  },
+  {
+    "wca_id": "Ua",
+    "group": "edges-only",
+    "names": [
+      "Ua Perm"
+    ],
+    "algs": [
+      "(R U R' U) R' U' (R2 U' R') U R' U R",
+      "M2 U M U2 M' U M2",
+      "R U' R U R U R U' R' U' R2"
+    ]
+  },
+  {
+    "wca_id": "Ub",
+    "group": "edges-only",
+    "names": [
+      "Ub Perm"
+    ],
+    "algs": [
+      "R' U R' U' (R3 U') R' U (R U R2)",
+      "M2 U' M U2 M' U' M2",
+      "R2 U R U R' U' R' U' R' U R'"
+    ]
+  },
+  {
+    "wca_id": "Z",
+    "group": "edges-only",
+    "names": [
+      "Z Perm"
+    ],
+    "algs": [
+      "M' U' (M2 U') (M2 U') M' U2 M2",
+      "M U M2 U M2 U M U2 M2"
+    ]
+  },
+  {
+    "wca_id": "Aa",
+    "group": "corners-only",
+    "names": [
+      "Aa Perm"
+    ],
+    "algs": [
+      "x (R' U R') D2 (R U' R') D2 R2 x'",
+      "l' U R' D2 R U' R' D2 R2 x'",
+      "R' F R' B2 R F' R' B2 R2"
+    ]
+  },
+  {
+    "wca_id": "Ab",
+    "group": "corners-only",
+    "names": [
+      "Ab Perm"
+    ],
+    "algs": [
+      "x R2 D2 (R U R') D2 (R U' R) x'",
+      "l U' R D2 R' U R D2 R2 x'",
+      "R2 B2 R F R' B2 R F' R"
+    ]
+  },
+  {
+    "wca_id": "E",
+    "group": "corners-only",
+    "names": [
+      "E Perm"
+    ],
+    "algs": [
+      "x' (R U' R') D (R U R') D' (R U R') D (R U' R') D' x",
+      "z U2 R2 F (R U R' U') (R U R' U') F' R2 U2 z'"
+    ]
+  },
+  {
+    "wca_id": "F",
+    "group": "adjacent-swap",
+    "names": [
+      "F Perm"
+    ],
+    "algs": [
+      "R' U' F' (R U R' U') R' F (R2 U' R') U' (R U R') U R",
+      "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"
+    ]
+  },
+  {
+    "wca_id": "Ja",
+    "group": "adjacent-swap",
+    "names": [
+      "Ja Perm"
+    ],
+    "algs": [
+      "x R2 (F R F' R) U2 (r' U r) U2 x'",
+      "R' U L' U2 R U' R' U2 R L U'",
+      "L' U' L F L' U' L U L F' L2 U L"
+    ]
+  },
+  {
+    "wca_id": "Jb",
+    "group": "adjacent-swap",
+    "names": [
+      "Jb Perm"
+    ],
+    "algs": [
+      "R U R' F' (R U R' U') R' F (R2 U' R')",
+      "(R' U L' U2 R U' R' U2 R L)",
+      "B' U F' U2 B U' B' U2 B F"
+    ]
+  },
+  {
+    "wca_id": "Ra",
+    "group": "adjacent-swap",
+    "names": [
+      "Ra Perm"
+    ],
+    "algs": [
+      "(R U' R' U') R U R D (R' U' R D') R' U2 R'",
+      "L U2 L' U2 L F' L' U' L U L F L2"
+    ]
+  },
+  {
+    "wca_id": "Rb",
+    "group": "adjacent-swap",
+    "names": [
+      "Rb Perm"
+    ],
+    "algs": [
+      "(R' U2 R U2) R' F (R U R' U') R' F' R2",
+      "R' U' R U' R U R U' R' U R U R2 U' R'",
+      "R2 F R U R U' R' F' R U2 R' U2 R"
+    ]
+  },
+  {
+    "wca_id": "T",
+    "group": "adjacent-swap",
+    "names": [
+      "T Perm"
+    ],
+    "algs": [
+      "(R U R' U') R' F (R2 U' R') U' (R U R' F')",
+      "R U R' U' R' F R2 U' R' U' R U R' F'"
+    ]
+  },
+  {
+    "wca_id": "Na",
+    "group": "diagonal-swap",
+    "names": [
+      "Na Perm"
+    ],
+    "algs": [
+      "(R U R' U) R U R' F' (R U R' U') R' F (R2 U' R') U2 R U' R'",
+      "z U R' U R2 D' R U' R' D R2 U' R U' z'"
+    ]
+  },
+  {
+    "wca_id": "Nb",
+    "group": "diagonal-swap",
+    "names": [
+      "Nb Perm"
+    ],
+    "algs": [
+      "(R' U R U') R' (F' U' F) R U (R' U' R U') f R f'",
+      "R' U L U' R U L' U' R' U L U' R U L'"
+    ]
+  },
+  {
+    "wca_id": "V",
+    "group": "diagonal-swap",
+    "names": [
+      "V Perm"
+    ],
+    "algs": [
+      "(R' U R' U') R D' R' D R' (U D' R2 U' R2 D R2)",
+      "R' U R U' R' f' U' F U R' F R f R U' R'",
+      "R' U R' U' B' R' B2 U' B' U B' R B R"
+    ]
+  },
+  {
+    "wca_id": "Y",
+    "group": "diagonal-swap",
+    "names": [
+      "Y Perm"
+    ],
+    "algs": [
+      "F (R U' R' U') R U R' F' (R U R' U') R' F R F'",
+      "F (R U' R' U) R U R' F' (R U R' U') R' F R F'"
+    ]
+  },
+  {
+    "wca_id": "Ga",
+    "group": "g-perms",
+    "names": [
+      "Ga Perm"
+    ],
+    "algs": [
+      "R2 (U R' U R') U' R U' R2 (D U') R' U R D'",
+      "R U R' U' R' U R U2 R' U' R U' R' U2 R U' R'"
+    ]
+  },
+  {
+    "wca_id": "Gb",
+    "group": "g-perms",
+    "names": [
+      "Gb Perm"
+    ],
+    "algs": [
+      "D R' U' R (U D') R2 U R' U (R U' R U') R2",
+      "F' U' F R2 u R' U R U' R u' R2"
+    ]
+  },
+  {
+    "wca_id": "Gc",
+    "group": "g-perms",
+    "names": [
+      "Gc Perm"
+    ],
+    "algs": [
+      "D R2 (U' R U' R) U R' U R2 (D' U) R U' R'",
+      "R U R' F2 u' R U' R' U R' u F2"
+    ]
+  },
+  {
+    "wca_id": "Gd",
+    "group": "g-perms",
+    "names": [
+      "Gd Perm"
+    ],
+    "algs": [
+      "R U R' (U' D) R2 U' R U' (R' U R' U) R2 D'",
+      "R U' R F2 u R' U R U' R u' F2 R'"
+    ]
+  }
 ]

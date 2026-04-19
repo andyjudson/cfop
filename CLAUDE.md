@@ -15,10 +15,17 @@ Features 001–022 complete. Cubify library series (023–031) in planning.
 
 ## cubify-harness — Ground Truth Reference
 
-**Before writing any cube state, rendering, or animation code, read [`specs/cube-mapping-lessons.md`](specs/cube-mapping-lessons.md).**
-For an explanation of face state and KPattern concepts, see [`specs/cube-concepts.md`](specs/cube-concepts.md).
+**Before writing any cube state, rendering, or animation code, read all five reference docs:**
 
-It documents hard-won facts that took significant debugging to establish:
+| Doc | Purpose |
+|-----|---------|
+| [`specs/cubing-js-architecture.md`](specs/cubing-js-architecture.md) | cubing.js KPuzzle/KPattern data model, orbit slot ordering, move application, sticker formula — read this first |
+| [`specs/cube-physical-rules.md`](specs/cube-physical-rules.md) | Physical cube rules, CFOP conventions (cross/F2L/OLL/PLL orientation), masking philosophy, z2 convention |
+| [`specs/cubing-js-stickering.md`](specs/cubing-js-stickering.md) | TwistyPlayer stickering architecture, IgnoreNonPrimary/PermuteNonPrimary semantics, state-aware masking |
+| [`specs/cube-mapping-lessons.md`](specs/cube-mapping-lessons.md) | Hard-won implementation gotchas from debugging the harness |
+| [`specs/cube-concepts.md`](specs/cube-concepts.md) | Face state and KPattern concepts overview |
+
+Key facts from `cube-mapping-lessons.md`:
 
 - cubing.js KPattern corner/edge slot ordering (§1–2) — the documented order is wrong; verified order is 0=URF
 - Orientation formula: `(s - orientation + 3) % 3` for corners — NOT `(s + orientation) % 3` (§3)
@@ -146,7 +153,7 @@ Standalone Node.js ESM skill for cube image generation. No build step.
 - **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
 
 ## Recent Changes
+- 023-cubify-stickering: Added ES module JavaScript (Node 24 / browser) + Three.js (via CubeRenderer3D), cubing.js (via CubeState) — neither changes
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
 - 021-probability-scoring: `prob` field (e.g. "1/54") and WCA case number surfaced on OLL/PLL cards and in the Visualizer modal
-- 022-cubify-harness: completed — CubeState, CubeRenderer3D, CubeStickering, AlgParser, interactive harness, verify-perms suite
 

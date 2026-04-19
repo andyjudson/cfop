@@ -39,7 +39,7 @@
     "method": "oll",
     "group": "corner",
     "image": "./assets/cfop_bgr/oll_sune.png",
-    "notes": "Hold with an oriented corner front-left and an unoriented corner front-right. Pull the front-right corner out, move the top layer left, push it back, move the top layer left again. Pull the corner out twice as far, move the top layer right twice, push it back in — yellow on top. To set up: if two corners are oriented, place an unoriented corner front-right; if none are oriented, place one front-right.",
+    "notes": "Hold with an oriented corner front-left and an unoriented corner front-right. Pull the front-right corner out, move the top layer left, push it back, move the top layer left again. Pull the corner out twice as far, move the top layer right twice, push it back in — yellow on top. To set up a standard sune/anti-sune case: if two corners are oriented, place an unoriented corner front-left; if none are oriented, place one left-front.",
     "setup": "z2"
   },
   {

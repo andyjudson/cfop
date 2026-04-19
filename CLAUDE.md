@@ -11,11 +11,11 @@ Project context for Claude Code. See [.specify/memory/constitution.md](.specify/
 
 ## Current Status
 
-Features 001–022 complete. Cubify library series (023–031) in planning.
+Features 001–023 complete. 026 (export) complete. Cubify library series (024–031) in progress.
 
 ## cubify-harness — Ground Truth Reference
 
-**Before writing any cube state, rendering, or animation code, read all five reference docs:**
+**Before planning or implementing any cube state, rendering, stickering, or animation code, read all five reference docs:**
 
 | Doc | Purpose |
 |-----|---------|
@@ -153,7 +153,7 @@ Standalone Node.js ESM skill for cube image generation. No build step.
 - **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
 
 ## Recent Changes
-- 023-cubify-stickering: Added ES module JavaScript (Node 24 / browser) + Three.js (via CubeRenderer3D), cubing.js (via CubeState) — neither changes
+- 026-cubify-export: `CubeRenderer2D.js` (Canvas 2D top-down view + SVG for Node.js), `CubeExporter.js` (toPNG routing '2d'→CubeRenderer2D, '3d'→CubeRenderer3D), `demo/export-test.mjs` (sharp PNG validation). Harness Export 2D / Export 3D buttons (288px, transparent background). CubeRenderer3D gains `alpha + preserveDrawingBuffer` and `canvas` constructor option.
+- 023-cubify-stickering: `CubeStickering.fromOrbitStringWithState()` with full char set (-/I/D/O/S/P), `MASK_PRESETS` (15 CFOP presets), harness stickering panel with live switching and dimming. Mask materials baked on mesh and travel with cubelet through moves — never reapplied in animation callbacks.
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
-- 021-probability-scoring: `prob` field (e.g. "1/54") and WCA case number surfaced on OLL/PLL cards and in the Visualizer modal
 

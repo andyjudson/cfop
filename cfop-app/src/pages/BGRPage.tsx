@@ -55,7 +55,7 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
   return (
     <CfopPageLayout
       pageTitle="Beginner Methods"
-      subtitle="Learn to solve last layer with a subset of essential OLL and PLL algorithms and 2-look methods"
+      subtitle="Learn to solve last layer with a subset of essential OLL and PLL algorithms"
       introImageSrc="/cubing.spec/assets/cfop_solved.png"
       introImageAlt="Solved cube overview for CFOP 2-look intro"
       introContent={

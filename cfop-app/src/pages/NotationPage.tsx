@@ -262,7 +262,7 @@ function NotationPage() {
   return (
     <CfopPageLayout
       pageTitle="Notation"
-      subtitle="Quick reference for understanding cube notation - face turns, modifiers, slices, rotations, and triggers"
+      subtitle="Reference for cube notation - face turns, modifiers, slices, rotations, and triggers"
     >
       <>
         {sections.length === 0 ? (

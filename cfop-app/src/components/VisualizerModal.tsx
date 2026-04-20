@@ -158,7 +158,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
           hintFacelets: 'none',
           controlPanel: 'none',
           tempoScale: speed,
-          experimentalSetupAlg: currentAlg.setup ?? 'z2',
+          experimentalSetupAlg: currentAlg.setup ?? '',
           experimentalSetupAnchor: 'end',
           experimentalStickeringMaskOrbits: mask,
           experimentalDragInput: 'auto',

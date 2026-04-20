@@ -34,3 +34,6 @@ playwright-report/
 
 # Environment files
 .env*
+
+# cubify-harness demo output
+cubify-harness/demo/out/

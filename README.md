@@ -1,18 +1,19 @@
 # cfop
 
-CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Intuitive Cross, F2L, OLL, PLL — with algorithm reference grids, an interactive 3D visualiser, a practice timer with real WCA competition data, and a WR evolution chart.
+CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Cross, F2L, OLL, PLL — with algorithm reference grids, an interactive 3D visualiser, a practice timer with real WCA competition data, and a WR evolution chart.
 
 **Live app:** https://andyjudson.github.io/cfop/
 
 ## Features
 
-- Full CFOP navigation (Intuitive, Notation, Beginner 2-Look, F2L, OLL, PLL, About)
+- Full CFOP navigation (Notation, Intuitive, Beginner 2-Look, F2L, OLL, PLL)
+- About page with highlights of cubing history and background context to this project
 - Algorithm reference grids with expandable groups and session-persistent state
 - OLL and PLL probability scores and WCA case numbers on every card
-- 3D algorithm visualiser modal — cubing.js TwistyPlayer with play/pause/rewind, speed control, and move-by-move highlight
-- Practice timer: random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
+- 3D algorithm visualiser modal using cubing.js with play/pause/rewind, speed control, and move-by-move highlight
+- Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Dark mode with localStorage persistence; mobile-responsive (iPhone 16 baseline)
-- WCA world record evolution chart (Recharts) and sortable WR Legends table
+- WCA World Record evolution chart and table
 
 **Directory:** `/cfop-app/` • [README](cfop-app/README.md)
 
@@ -22,12 +23,12 @@ Algorithm sets are stored as JSON in `cfop-app/public/data/`:
 
 | File | Content |
 |------|---------|
-| `algs-cfop-bgr.json` | 2-Look Beginner (BGR) cases |
+| `algs-cfop-bgr.json` | 2-Look Beginner cases |
 | `algs-cfop-f2l.json` | Full F2L — 41 cases |
-| `algs-cfop-oll.json` | Full OLL — 57 cases in 7 groups |
+| `algs-cfop-oll.json` | Full OLL — 57 cases |
 | `algs-cfop-pll.json` | Full PLL — 21 cases |
 
-All entries include `id`, `name`, `notation`, `group`, `method`, `setup` (WCA notation), and optional `mask`, `prob`, `wca_id` fields.
+All entries include `id`, `name`, `notation`, `group`, `method`, `setup`, and optional `mask`, `prob`, `wca_id` fields.
 
 ## Development
 

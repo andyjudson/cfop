@@ -1,39 +1,15 @@
 # CLAUDE.md
 
-Project context for Claude Code. See [.specify/memory/constitution.md](.specify/memory/constitution.md) for principles and [specs/spec.md](specs/spec.md) for the full feature ledger.
+Project context for Claude Code. See `specs/spec.md` for the feature ledger.
 
 ## Project Scope
 
-- **Repo:** `cubing.spec` — a CFOP (Rubik's cube) learning companion
-- **Primary app:** `cfop-app/` — React/TypeScript/Vite, deployed to GitHub Pages
-- **Utility app:** `cubify-app/` — local-only cube image generator (PNG/SVG export)
-- Ignore `cubing.react` and `cubing.static` unless explicitly requested
+- **Repo:** `cfop` — a CFOP (Rubik's cube) learning companion
+- **Primary app:** `cfop-app/` — React/TypeScript/Vite, deployed to GitHub Pages at `andyjudson.github.io/cfop/`
 
 ## Current Status
 
-Features 001–023 complete. 026 (export) complete. Cubify library series (024–031) in progress.
-
-## cubify-harness — Ground Truth Reference
-
-**Before planning or implementing any cube state, rendering, stickering, or animation code, read all five reference docs:**
-
-| Doc | Purpose |
-|-----|---------|
-| [`specs/cubing-js-architecture.md`](specs/cubing-js-architecture.md) | cubing.js KPuzzle/KPattern data model, orbit slot ordering, move application, sticker formula — read this first |
-| [`specs/cube-physical-rules.md`](specs/cube-physical-rules.md) | Physical cube rules, CFOP conventions (cross/F2L/OLL/PLL orientation), masking philosophy, z2 convention |
-| [`specs/cubing-js-stickering.md`](specs/cubing-js-stickering.md) | TwistyPlayer stickering architecture, IgnoreNonPrimary/PermuteNonPrimary semantics, state-aware masking |
-| [`specs/cube-mapping-lessons.md`](specs/cube-mapping-lessons.md) | Hard-won implementation gotchas from debugging the harness |
-| [`specs/cube-concepts.md`](specs/cube-concepts.md) | Face state and KPattern concepts overview |
-
-Key facts from `cube-mapping-lessons.md`:
-
-- cubing.js KPattern corner/edge slot ordering (§1–2) — the documented order is wrong; verified order is 0=URF
-- Orientation formula: `(s - orientation + 3) % 3` for corners — NOT `(s + orientation) % 3` (§3)
-- `stickerIndex` formulas for all 6 faces — U and D are easy to swap (§6)
-- cubing.js `U`/`D` = WCA `U'`/`D'` — animation-only fix, do not translate state (§5)
-- `faceCW` cycle direction trap — `[off,off+6,off+8,off+2]` is CCW, not CW (§9)
-- Animation sequencing — never call `onDone` synchronously from inside the render tick (§7)
-- Physical rendering architecture — bake colours once at `setState()`, never reassign after animation (§8)
+Features 001–021 complete.
 
 ## CSS Standards
 
@@ -77,7 +53,7 @@ React 19, TypeScript, Vite, Bulma CSS, cubing.js, react-router-dom
 - Use shared `AlgorithmCard` component for algorithm displays
 - localStorage uses versioned envelopes with defensive validation
 - iPhone 16 (~393px CSS width) is the primary small-screen baseline for modal sizing
-- All `fetch()` calls use `import.meta.env.BASE_URL + 'data/...'` — never hardcode `/cubing.spec/`
+- All `fetch()` calls use `import.meta.env.BASE_URL + 'data/...'` — never hardcode `/cfop/`
 - Pages use `error` state + `throw error` to propagate fetch failures to `ErrorBoundary`; `WrEvolutionChart` follows the same pattern, wrapped in `ErrorBoundary` in `AboutPage`
 - No loading state placeholders — data renders when ready, empty until then
 
@@ -88,7 +64,7 @@ cd cfop-app
 # Check for existing Vite processes first:
 ps aux | grep -i vite
 npm run dev -- --host 127.0.0.1 --port 5173
-# URL: http://127.0.0.1:5173/cubing.spec/
+# URL: http://127.0.0.1:5173/cfop/
 ```
 
 - Kill existing Vite processes before starting to avoid port conflicts
@@ -130,30 +106,6 @@ TwistyPlayer gates canvas initialisation behind an `IntersectionObserver` — th
 - **`overflow: auto/hidden` on ancestors** can affect intersection reporting — if a player appears blank inside a scrollable container, verify the container has explicit dimensions.
 - **Bulma default `button` (no variant) renders black in dark mode** — always add `is-light` to unstyled buttons so they pick up `--bulma-light-*` overrides from `index.css`.
 
-## Playwright / Web Component Automation
-
-When automating or screenshotting a third-party web component (e.g. TwistyPlayer):
-
-1. **Inspect structure first** — write a small throwaway script that dumps shadow root children, tag names, and bounding rects before attempting any manipulation. The solution is usually obvious once you can see the actual DOM tree.
-2. **Clip to the visualization element, don't hide the chrome** — find the exact element that renders the content (canvas, SVG wrapper, etc.) and use `page.screenshot({ clip: rect })`. Trying to hide controls via API or CSS is fragile.
-3. **Use `page.addInitScript()` for intercepts** — this runs before any page script including bundle load. Injecting intercepts inside the HTML `<script>` tag fires too late.
-4. **`headless: false` required for WebGL on macOS** — headless Chromium blocks WebGL regardless of flags. This is a macOS+Chromium constraint, not a page issue.
-
-See `specs/017-cubify-agent-skill/research.md` (learnings 1–9) for the full record of what was tried and why.
-
-## cubify-scripts (017)
-
-Standalone Node.js ESM skill for cube image generation. No build step.
-
-- **Entry**: `cubify-scripts/cubify.mjs` — run directly with `node`
-- **Skill**: `.claude/commands/cubify.md` — invoked as `/cubify` in Claude Code
-- **Renderer**: `cubify-scripts/lib/renderer.mjs` — Playwright headful Chromium + esbuild IIFE bundle
-- **Requires**: `headless: false` (WebGL blocked in headless Chromium on macOS); `npx playwright install chromium` from `cfop-app/`
-- **Output**: `.claude/tmp/cubify/` within the repo (gitignored)
-- **esbuild bundle**: cached at `/tmp/cubify-twisty-bundle.js`, rebuilt on first run per session
-
 ## Recent Changes
-- 026-cubify-export: `CubeRenderer2D.js` (Canvas 2D top-down view + SVG for Node.js), `CubeExporter.js` (toPNG routing '2d'→CubeRenderer2D, '3d'→CubeRenderer3D), `demo/export-test.mjs` (sharp PNG validation). Harness Export 2D / Export 3D buttons (288px, transparent background). CubeRenderer3D gains `alpha + preserveDrawingBuffer` and `canvas` constructor option.
-- 023-cubify-stickering: `CubeStickering.fromOrbitStringWithState()` with full char set (-/I/D/O/S/P), `MASK_PRESETS` (15 CFOP presets), harness stickering panel with live switching and dimming. Mask materials baked on mesh and travel with cubelet through moves — never reapplied in animation callbacks.
+- 021-visualizer-modal: OLL/PLL algorithm visualizer modal with TwistyPlayer, case carousel, group filter, and move-by-move display
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
-

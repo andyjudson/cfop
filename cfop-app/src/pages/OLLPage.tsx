@@ -53,7 +53,7 @@ function OLLPage() {
     <CfopPageLayout
       pageTitle="OLL Algorithms"
       subtitle="Orientation of Last Layer - 57 cases across 7 groups"
-      introImageSrc="/cubing.spec/assets/cfop_oll.png"
+      introImageSrc="/cfop/assets/cfop_oll.png"
       introImageAlt="OLL stage illustration"
       introContent={
         <p className="mb-0">

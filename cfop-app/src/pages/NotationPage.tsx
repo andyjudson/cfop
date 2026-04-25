@@ -88,7 +88,7 @@ function NotationPage() {
           symbol: 'R',
           label: 'Right Face',
           explanation: 'Turn right face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-R-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-R-cw-arrow.png',
           imageAlt: 'Right face clockwise rotation'
         },
         {
@@ -96,7 +96,7 @@ function NotationPage() {
           symbol: 'U',
           label: 'Up Face',
           explanation: 'Turn top face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-U-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-U-cw-arrow.png',
           imageAlt: 'Up face clockwise rotation'
         },
         {
@@ -104,7 +104,7 @@ function NotationPage() {
           symbol: 'F',
           label: 'Front Face',
           explanation: 'Turn front face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-F-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-F-cw-arrow.png',
           imageAlt: 'Front face clockwise rotation'
         },
         {
@@ -112,7 +112,7 @@ function NotationPage() {
           symbol: 'L',
           label: 'Left Face',
           explanation: 'Turn left face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-L-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-L-cw-arrow.png',
           imageAlt: 'Left face clockwise rotation'
         },
         {
@@ -120,7 +120,7 @@ function NotationPage() {
           symbol: 'D',
           label: 'Down Face',
           explanation: 'Turn bottom face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-D-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-D-cw-arrow.png',
           imageAlt: 'Down face clockwise rotation'
         },
         {
@@ -128,7 +128,7 @@ function NotationPage() {
           symbol: 'B',
           label: 'Back Face',
           explanation: 'Turn back face clockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-B-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-B-cw-arrow.png',
           imageAlt: 'Back face clockwise rotation'
         },
       ]
@@ -143,7 +143,7 @@ function NotationPage() {
           symbol: "R'",
           label: 'Prime (counterclockwise)',
           explanation: 'Turn face counterclockwise 90 degrees',
-          imageSrc: '/cubing.spec/assets/notation/syntax-R-ccw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-R-ccw-arrow.png',
           imageAlt: 'Right face counterclockwise rotation'
         },
         {
@@ -151,7 +151,7 @@ function NotationPage() {
           symbol: 'R2',
           label: 'Double Turn (180°)',
           explanation: 'Turn face 180 degrees (direction doesn\'t matter)',
-          imageSrc: '/cubing.spec/assets/notation/syntax-R-double-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-R-double-arrow.png',
           imageAlt: 'Right face double turn'
         },
         {
@@ -159,7 +159,7 @@ function NotationPage() {
           symbol: 'r',
           label: 'Wide Turn (lowercase)',
           explanation: 'Turn face and middle layer together simultaneously',
-          imageSrc: '/cubing.spec/assets/notation/syntax-R-wide-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-R-wide-arrow.png',
           imageAlt: 'Right face wide turn'
         },
       ]
@@ -174,7 +174,7 @@ function NotationPage() {
           symbol: 'M',
           label: 'Middle Slice',
           explanation: 'Same direction as L face',
-          imageSrc: '/cubing.spec/assets/notation/syntax-M-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-M-cw-arrow.png',
           imageAlt: 'M slice turn'
         },
         {
@@ -182,7 +182,7 @@ function NotationPage() {
           symbol: 'S',
           label: 'Standing Slice',
           explanation: 'Same direction as F face',
-          imageSrc: '/cubing.spec/assets/notation/syntax-S-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-S-cw-arrow.png',
           imageAlt: 'S slice turn'
         },
         {
@@ -190,7 +190,7 @@ function NotationPage() {
           symbol: 'E',
           label: 'Equatorial Slice',
           explanation: 'Same direction as D face',
-          imageSrc: '/cubing.spec/assets/notation/syntax-E-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-E-cw-arrow.png',
           imageAlt: 'E slice turn'
         },
       ]
@@ -205,7 +205,7 @@ function NotationPage() {
           symbol: 'x',
           label: 'Rotate on X axis',
           explanation: 'Same direction as R face',
-          imageSrc: '/cubing.spec/assets/notation/syntax-X-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-X-cw-arrow.png',
           imageAlt: 'x cube rotation'
         },
         {
@@ -213,7 +213,7 @@ function NotationPage() {
           symbol: 'y',
           label: 'Rotate on Y axis',
           explanation: 'Same direction as U face',
-          imageSrc: '/cubing.spec/assets/notation/syntax-Y-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-Y-cw-arrow.png',
           imageAlt: 'y cube rotation'
         },
         {
@@ -221,7 +221,7 @@ function NotationPage() {
           symbol: 'z',
           label: 'Rotate on Z axis',
           explanation: 'Same direction as F face',
-          imageSrc: '/cubing.spec/assets/notation/syntax-Z-cw-arrow.png',
+          imageSrc: '/cfop/assets/notation/syntax-Z-cw-arrow.png',
           imageAlt: 'z cube rotation'
         },
       ]

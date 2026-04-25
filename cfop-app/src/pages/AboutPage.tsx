@@ -61,7 +61,7 @@ export default function AboutPage() {
           I developed this app to reinforce my learning and sharpen my engineering skills. While YouTube videos are invaluable for technique and strategy, learning specific algorithms really comes down to targeted repetition. Existing sites felt cluttered, dated, or overloaded with ads and trackers, so I wanted to create a clean, modern, mobile-friendly space focused purely on learning — hopefully something others will find useful too. The cubing knowledge is drawn from the excellent tutorials by Milan Struyf (<a href="https://www.youtube.com/@CubeHead" target="_blank" rel="noreferrer">CubeHead</a>) and Dylan Wang (<a href="https://www.youtube.com/@JPerm" target="_blank" rel="noreferrer">JPerm</a>). The cubing.js framework by Lucas Garron powers the cube and algorithm visualisations, and I've been experimenting with customising and extending it as a related side project.
         </p>
         <p className="mt-3">
-          This app is open source — you can find the code and assets on <a href="https://github.com/andyjudson/cubing.spec" target="_blank" rel="noreferrer">GitHub</a>, including the algorithm sets defined in JSON with accompanying PNG images. If you spot a bug, have a suggestion, or would like to see a new feature, feel free to open an issue.
+          This app is open source — you can find the code and assets on <a href="https://github.com/andyjudson/cfop" target="_blank" rel="noreferrer">GitHub</a>, including the algorithm sets defined in JSON with accompanying PNG images. If you spot a bug, have a suggestion, or would like to see a new feature, feel free to open an issue.
         </p>
       </section>
 

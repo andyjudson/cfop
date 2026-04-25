@@ -1,8 +1,8 @@
-# cubing.spec Development Guidelines
+# cfop Development Guidelines
 
 ## Scope
 
-- Primary project: `cubing.spec` — a CFOP (Rubik's cube) learning companion
+- Primary project: `cfop` — a CFOP (Rubik's cube) learning companion
 - Current implementation target: `cfop-app/` — React/TypeScript/Vite, deployed to GitHub Pages
 - Utility app: `cubify-app/` — local-only cube image generator (PNG/SVG export)
 - Ignore `cubing.react` and `cubing.static` unless explicitly requested
@@ -43,7 +43,7 @@ Features 001–015 complete. 016 (Playwright E2E) in progress.
 - Use shared `AlgorithmCard` component for algorithm displays
 - localStorage uses versioned envelopes with defensive validation
 - iPhone 16 (~393px CSS width) is the primary small-screen baseline for modal sizing
-- All `fetch()` calls use `import.meta.env.BASE_URL + 'data/...'` — never hardcode `/cubing.spec/`
+- All `fetch()` calls use `import.meta.env.BASE_URL + 'data/...'` — never hardcode `/cfop/`
 - Pages use `error` state + `throw error` to propagate fetch failures to `ErrorBoundary`; `WrEvolutionChart` follows the same pattern, wrapped in `ErrorBoundary` in `AboutPage`
 - No loading state placeholders — data renders when ready, empty until then
 - Dark mode is implemented via `cfop-theme` localStorage key and CSS token overrides — do not rely on OS/browser `prefers-color-scheme`; all theme surfaces must use `--color-*` tokens
@@ -76,7 +76,7 @@ cd cfop-app
 # Check for existing Vite processes first:
 ps aux | grep -i vite
 npm run dev -- --host 127.0.0.1 --port 5173
-# URL: http://127.0.0.1:5173/cubing.spec/
+# URL: http://127.0.0.1:5173/cfop/
 ```
 
 - Kill existing Vite processes before starting to avoid port conflicts

@@ -2,7 +2,7 @@
 
 CFOP learning companion for Rubik's cube speedsolving with full algorithm reference grids, expandable sections, page navigation, interactive visualizations, practice timers, and solve tracking.
 
-**Live app:** https://andyjudson.github.io/cubing.spec/
+**Live app:** https://andyjudson.github.io/cfop/
 
 ## Features
 
@@ -24,7 +24,7 @@ CFOP learning companion for Rubik's cube speedsolving with full algorithm refere
 npm install
 npm run dev
 ```
-Access at: `http://localhost:5173/cubing.spec/`
+Access at: `http://localhost:5173/cfop/`
 
 ### Production Build
 ```bash

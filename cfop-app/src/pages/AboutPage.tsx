@@ -167,8 +167,7 @@ export default function AboutPage() {
             <strong>Practice Timer</strong> — Two modes in one. <em>Standard mode</em> generates random
             scrambles with a space-bar timer and rolling stats (last time, best time, ao5).{' '}
             <em>Champion mode</em> loads the actual scrambles from a real WCA
-            competition final. Complete the set of 5 scrambles and see how your times compare to the event winner
-            and the world record at the time (not necessarily set at that event or by the winner).
+            competition final. Complete the set of 5 scrambles and see how your times compare to the event winner.
             WCA have event data with scrambles back to 2015, so you have access to over 50 international competition finals.
           </li>
           <li>

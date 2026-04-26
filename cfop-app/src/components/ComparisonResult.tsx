@@ -31,12 +31,9 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
     userAverageMs,
     winnerSingleS,
     winnerAverageS,
-    wrSingleAtTimeS,
-    wrAverageAtTimeS,
     beatSingle,
     beatAverage,
     competitionName,
-    competitionYear,
     winnerName,
   } = outcome;
 
@@ -47,10 +44,6 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
     userAverageMs !== null && winnerAverageS !== null
       ? userAverageMs - winnerAverageS * 1000
       : null;
-
-  const wrSingleDeltaMs = wrSingleAtTimeS !== null ? userBestSingleMs - wrSingleAtTimeS * 1000 : null;
-  const wrAvgDeltaMs =
-    wrAverageAtTimeS !== null && userAverageMs !== null ? userAverageMs - wrAverageAtTimeS * 1000 : null;
 
   return (
     <div className="comparison-result">
@@ -91,28 +84,6 @@ export function ComparisonResult({ outcome, onTryAgain, onChangeCompetition, onB
               </td>
             )}
           </tr>
-          {wrSingleAtTimeS !== null && (
-            <tr className="row-wr">
-              <td className="comparison-row-label">WR ({competitionYear})</td>
-              <td>{fmtS(wrSingleAtTimeS)}</td>
-              {winnerAverageS !== null && (
-                <td>{wrAverageAtTimeS !== null ? fmtS(wrAverageAtTimeS) : '—'}</td>
-              )}
-            </tr>
-          )}
-          {wrSingleAtTimeS !== null && (
-            <tr className="row-wr">
-              <td className="comparison-row-label">Delta</td>
-              <td className={wrSingleDeltaMs !== null && wrSingleDeltaMs < 0 ? 'delta-ahead' : ''}>
-                {wrSingleDeltaMs !== null ? fmtDelta(wrSingleDeltaMs) : '—'}
-              </td>
-              {winnerAverageS !== null && (
-                <td className={wrAvgDeltaMs !== null && wrAvgDeltaMs < 0 ? 'delta-ahead' : ''}>
-                  {wrAvgDeltaMs !== null ? fmtDelta(wrAvgDeltaMs) : '—'}
-                </td>
-              )}
-            </tr>
-          )}
         </tbody>
       </table>
 

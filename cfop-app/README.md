@@ -13,7 +13,7 @@ CFOP learning companion for Rubik's cube speedsolving with full algorithm refere
 - **Expandable Sections**: Collapse/expand algorithm groups with session persistence
 - **Interactive Tooltips**: Algorithm notes on hover for 2LK cases (learning context and execution tips)
 - **Solve Visualization Modal**: cubing.js TwistyPlayer for animated algorithm playback (2LK page only)
-- **Practice Timer Modal**: Scramble generation + solve timer with keyboard controls (2LK page only)
+- **Practice Timer Modal**: Scramble generation + solve timer with keyboard controls; champion mode races your times against real WCA event winners (2LK page only)
 - **Stats Persistence**: localStorage-based solve time history across sessions
 - **Custom Scramble Generator**: Local 20-move rule-based generation (no worker dependencies)
 
@@ -57,18 +57,22 @@ npm run preview
 - **Expand/Collapse Controls**: Use "Expand All" / "Collapse All" buttons or click section headers
 - Section state persists within browser tab session (resets on tab close/refresh)
 
-### Solve Visualization (2LK page only)
-- Click any cube image to open solve visualization modal
-- Modal shows algorithm with cubing.js TwistyPlayer
-- Auto-plays on open
-- Close with escape key or click outside
+### Solve Visualization
+- Click the animation icon in the nav bar to open the visualizer modal
+- *Case carousel**: browse all 57 OLL and 21 PLL cases
+- Filter by algorithm set (OLL / PLL) and case group
+- Animated simulation of the moves, with play/pause, rewind, and speed control
+- Current move highlighted in the algorithm display as it plays
+- Draggable 3D cube view with reset-view button
+- Space bar to play/pause; close with Escape or click outside
 
-### Practice Timer (2LK page only)
-- Click "Practice" button to open timer modal
+### Practice Timer
+- Click the practice icon in the nav bar to open timer modal
 - Random 20-move scramble generated on open
 - Space bar to start/stop timer
 - Solve times automatically saved to localStorage
-- View session stats (count, best, average, session average)
+- **Standard mode**: retains session stats (count, best, average, session average)
+- **Champion mode**: use actual 5-set WCA competition scrambles and race your times against the event winner
 
 ## Tech Stack
 

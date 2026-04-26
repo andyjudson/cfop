@@ -34,8 +34,6 @@ function computeOutcome(session: CompetitiveSession): ComparisonOutcome {
     userAverageMs,
     winnerSingleS: competition.winner_single,
     winnerAverageS: competition.winner_average,
-    wrSingleAtTimeS: competition.wr_single_at_time ?? null,
-    wrAverageAtTimeS: competition.wr_average_at_time ?? null,
     beatSingle,
     beatAverage,
     competitionName: competition.competition_name,

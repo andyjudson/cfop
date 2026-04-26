@@ -12,8 +12,8 @@ CFOP learning companion for Rubik's cube speedsolving with full algorithm refere
 - **Algorithm Reference Grids**: Visual reference for all CFOP algorithms organized by case groups
 - **Expandable Sections**: Collapse/expand algorithm groups with session persistence
 - **Interactive Tooltips**: Algorithm notes on hover for 2LK cases (learning context and execution tips)
-- **Solve Visualization Modal**: cubing.js TwistyPlayer for animated algorithm playback (2LK page only)
-- **Practice Timer Modal**: Scramble generation + solve timer with keyboard controls; champion mode races your times against real WCA event winners (2LK page only)
+- **Solve Visualization Modal**: cubing.js TwistyPlayer for animated algorithm playback
+- **Practice Timer Modal**: Scramble generation + solve timer with keyboard controls; champion mode races your times against real WCA event winners
 - **Stats Persistence**: localStorage-based solve time history across sessions
 - **Custom Scramble Generator**: Local 20-move rule-based generation (no worker dependencies)
 
@@ -106,8 +106,8 @@ cfop-app/
 │   │   ├── CfopNavigation.tsx         # Persistent header navigation
 │   │   ├── CfopPageLayout.tsx         # Shared page layout wrapper
 │   │   ├── ErrorBoundary.tsx          # Error display with retry
-│   │   ├── DemoModal.tsx              # Solve visualization modal (2LK only)
-│   │   └── PracticeSessionModal.tsx   # Timer and scramble modal (2LK only)
+│   │   ├── DemoModal.tsx              # Solve visualization modal
+│   │   └── PracticeSessionModal.tsx   # Timer and scramble modal
 │   ├── hooks/
 │   │   ├── useSectionToggle.ts  # Expand/collapse state management
 │   │   └── useStats.ts          # Solve stats management hook

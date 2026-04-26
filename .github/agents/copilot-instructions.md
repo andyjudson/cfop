@@ -2,7 +2,7 @@
 
 ## Scope
 
-- Primary project: `cfop` — a CFOP (Rubik's cube) learning companion
+- Primary project: `cfop` (previously `cubing.spec`) — a CFOP (Rubik's cube) learning companion
 - Current implementation target: `cfop-app/` — React/TypeScript/Vite, deployed to GitHub Pages
 - Utility app: `cubify-app/` — local-only cube image generator (PNG/SVG export)
 - Ignore `cubing.react` and `cubing.static` unless explicitly requested

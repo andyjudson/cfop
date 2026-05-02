@@ -6,6 +6,7 @@ import OLLPage from './pages/OLLPage';
 import PLLPage from './pages/PLLPage';
 import IntuitivePage from './pages/IntuitivePage';
 import NotationPage from './pages/NotationPage';
+import CubifyPage from './pages/CubifyPage';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/f2l" element={<F2LPage />} />
         <Route path="/oll" element={<OLLPage />} />
         <Route path="/pll" element={<PLLPage />} />
+        <Route path="/cubify" element={<CubifyPage />} />
         <Route path="/" element={<Navigate to="/2lk" replace />} />
       </Routes>
     </HashRouter>

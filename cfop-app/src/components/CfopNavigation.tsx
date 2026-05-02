@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MdAnimation, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool, MdDarkMode, MdLightMode } from 'react-icons/md';
+import { MdAnimation, MdTimer, MdInfo, MdPsychology, MdLanguage, MdSchool, MdDarkMode, MdLightMode, Md3dRotation } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import { VisualizerModal } from './VisualizerModal';
 import { PracticeSessionModal } from './PracticeSessionModal';
@@ -17,6 +17,7 @@ const BASE = import.meta.env.BASE_URL;
 
 const navLinksPrimer: NavLink[] = [
   { path: '/about',     label: 'About',     icon: MdInfo },
+  { path: '/cubify',    label: 'Cubify',    icon: Md3dRotation },
   { path: '/notation',  label: 'Notation',  icon: MdLanguage },
   { path: '/intuitive', label: 'Intuitive', icon: MdPsychology },
   { path: '/2lk',       label: 'Beginner',  icon: MdSchool },

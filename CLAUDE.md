@@ -9,7 +9,7 @@ Project context for Claude Code. See `specs/spec.md` for the feature ledger.
 
 ## Current Status
 
-Features 001–021 complete.
+Features 001–021 complete. cubify React wrapper integration (029) complete — `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` live in `src/lib/cubify/`.
 
 ## CSS Standards
 
@@ -83,7 +83,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Runtime**: TypeScript 5.9, React 19, Vite 7
 **UI**: Bulma CSS 1.x, react-icons 5.x
 **Routing**: react-router-dom 7.x (HashRouter)
-**Visualisation**: cubing.js (TwistyPlayer), Recharts 3.x
+**Visualisation**: cubify (CubePlayer/CubeState wrappers), cubing.js (TwistyPlayer — VisualizerModal only), Recharts 3.x
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
 
@@ -106,6 +106,22 @@ TwistyPlayer gates canvas initialisation behind an `IntersectionObserver` — th
 - **`overflow: auto/hidden` on ancestors** can affect intersection reporting — if a player appears blank inside a scrollable container, verify the container has explicit dimensions.
 - **Bulma default `button` (no variant) renders black in dark mode** — always add `is-light` to unstyled buttons so they pick up `--bulma-light-*` overrides from `index.css`.
 
+## cubify Integration (`src/lib/cubify/`)
+
+The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify` → `../../cubify/src/index.ts`). React wrappers:
+
+| Component | Props |
+|-----------|-------|
+| `<CubePlayer>` | `alg`, `setup`, `stickering`, `theme`, `playing`, `speed`, `style`; events `onMove`, `onReset`, `onComplete`; ref `reset()`, `resetCamera()` |
+| `<CubePlayerControls>` | `playing`, `speed`; callbacks `onPlayToggle`, `onReset`, `onCameraReset`, `onSpeedChange` |
+| `<CubeMoveTape>` | `moves`, `stepIndex` — 640px max-width, active/done highlight |
+| `<CubeState>` | `alg`, `setup`, `stickering`, `theme`, `style` — static snapshot, no animation |
+
+- `CubeState.setupFromAlg(alg, rotation?)` computes the inverse setup string from an alg + optional whole-cube rotation prefix
+- Transparent canvas: Three.js `setClearColor(0x000000, 0)` — blends with any page background
+- No IntersectionObserver constraint (unlike TwistyPlayer)
+
 ## Recent Changes
+- 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness (Sune, T Perm, Sexy ×6). Cubify nav entry. Vite alias + tsconfig paths.
 - 021-visualizer-modal: OLL/PLL algorithm visualizer modal with TwistyPlayer, case carousel, group filter, and move-by-move display
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted

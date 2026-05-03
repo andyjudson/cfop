@@ -18,39 +18,60 @@ interface Case {
 
 const CASES: Case[] = [
   {
+    name: 'Line (OLL)',
+    alg: "F R U R' U' F'",
+    rotation: 'z2',
+    defaultMask: 'oll-face-dim',
+    group: '2-Look OLL',
+  },
+  {
+    name: 'Hook (OLL)',
+    alg: "f R U R' U' f'",
+    rotation: 'z2',
+    defaultMask: 'oll-face-dim',
+    group: '2-Look OLL',
+  },
+  {
     name: 'Sune (OLL)',
     alg: "R U R' U R U2 R'",
     rotation: 'z2',
     defaultMask: 'oll-face-dim',
-    group: '2-Look OLL / PLL',
+    group: '2-Look OLL',
   },
   {
     name: 'Anti-Sune (OLL)',
     alg: "R U2 R' U' R U' R'",
     rotation: 'z2',
     defaultMask: 'oll-face-dim',
-    group: '2-Look OLL / PLL',
+    group: '2-Look OLL',
   },
   {
     name: 'T Perm (PLL)',
     alg: "R U R' U' R' F R2 U' R' U' R U R' F'",
     rotation: 'z2',
     defaultMask: 'pll-corn-dim',
-    group: '2-Look OLL / PLL',
+    group: '2-Look PLL',
   },
   {
     name: 'Ua Perm (PLL)',
     alg: "M2 U M U2 M' U M2",
     rotation: 'z2',
     defaultMask: 'pll-edge-dim',
-    group: '2-Look OLL / PLL',
+    group: '2-Look PLL',
   },
   {
     name: 'H Perm (PLL)',
     alg: "M2 U M2 U2 M2 U M2",
     rotation: 'z2',
     defaultMask: 'pll-edge-dim',
-    group: '2-Look OLL / PLL',
+    group: '2-Look PLL',
+  },
+  {
+    name: 'Z Perm (PLL)',
+    alg: "M2 U M2 U M' U2 M2 U2 M'",
+    rotation: 'z2',
+    defaultMask: 'pll-edge-dim',
+    group: '2-Look PLL',
   },
   {
     name: 'Sexy ×6',
@@ -67,6 +88,12 @@ const CASES: Case[] = [
   {
     name: 'Checkerboard',
     alg: "M2 E2 S2",
+    defaultMask: 'full',
+    group: 'Fun',
+  },
+  {
+    name: 'Superflip',
+    alg: "U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2",
     defaultMask: 'full',
     group: 'Fun',
   },

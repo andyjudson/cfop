@@ -237,9 +237,9 @@ export default function CubifyPage() {
           }}>
             <p style={{ marginBottom: 10 }}>
               <strong>cubify</strong> is a 3×3 cube rendering and logic library built on <a href="https://github.com/cubing/cubing.js" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>cubing.js</a> internals,
-              but deliberately decoupled from TwistyPlayer. The goal: a lightweight, inspectable
-              renderer that a developer can drop into any web app without fighting shadow DOM,
-              IntersectionObserver constraints, or baked-in UI chrome.
+              but deliberately decoupled from TwistyPlayer. The goal: a renderer you can drop into
+              any web app without fighting shadow DOM, IntersectionObserver constraints, or baked-in
+              UI chrome — and one where the state is always visible, not buried behind unstable internals.
             </p>
             <p style={{ marginBottom: 10 }}>
               The split is intentional — cubing.js solves the hard problem (KPattern permutation
@@ -248,6 +248,14 @@ export default function CubifyPage() {
               plastic material, gap, bevel, surface finish), a stickering / masking API for CFOP
               case visualisation, a CubePlayer animation engine that emits move-level events, and a
               PNG export pipeline for both 2D and 3D renders — single alg or bulk batch.
+            </p>
+            <p style={{ marginBottom: 10 }}>
+              Inspectable means two things. For a developer building a trainer app:
+              live permutation state via <code>player.state</code>, move-level events (<code>onMove</code>, <code>onComplete</code>),
+              and a plain canvas you can read from devtools without a shadow root in the way.
+              For a developer working on the library: the <a href="https://github.com/andyjudson/cubify/tree/main/cubify-harness" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>interactive harness</a> exposes
+              KPattern slot data, face arrays, corner and edge orientation, and applied move history
+              in real time — the same debug surface used to build and verify the renderer itself.
             </p>
             <p style={{ marginBottom: 10 }}>
               The React wrapper is a thin layer — <code>{'<CubePlayer>'}</code> and <code>{'<CubeState>'}</code> manage

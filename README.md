@@ -11,7 +11,7 @@ CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Cross, F
 - Algorithm reference grids with expandable groups and session-persistent state
 - OLL and PLL probability scores and WCA case numbers on every card
 - 3D algorithm visualiser modal using cubing.js with play/pause/rewind, speed control, and move-by-move highlight
-- Cubify integration harness — animated algorithm player with case selector, mask stickering, theme presets (default/rubiks/gan/speed), move tape
+- Cubify integration harness — animated algorithm player with 2-look OLL/PLL + fun case selector, mask stickering, theme presets (rubiks/speed-dark/speed-light), move tape
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Dark mode with localStorage persistence; mobile-responsive (iPhone 16 baseline)
 - WCA World Record evolution chart and table

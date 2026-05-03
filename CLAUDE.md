@@ -122,6 +122,7 @@ The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify
 - No IntersectionObserver constraint (unlike TwistyPlayer)
 
 ## Recent Changes
-- 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness (Sune, T Perm, Sexy ×6). Cubify nav entry. Vite alias + tsconfig paths.
+- 029-cubify-react (polish): wide move support in `CubeRenderer3D` (f/b/r/l/u/d animate two layers simultaneously); `CubifyPage` harness expanded to full 2-look OLL/PLL + Fun grouped case selector; theme presets settled as `speed-dark` / `speed-light`; collapsible About panel
+- 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness. Cubify nav entry. Vite alias + tsconfig paths.
 - 021-visualizer-modal: OLL/PLL algorithm visualizer modal with TwistyPlayer, case carousel, group filter, and move-by-move display
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted

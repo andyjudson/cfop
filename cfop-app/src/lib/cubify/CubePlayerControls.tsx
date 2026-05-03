@@ -79,7 +79,7 @@ export function CubePlayerControls({
           <button style={BTN} title="Slower" onClick={() => nudgeSpeed(-SPEED_STEP)} disabled={speed <= SPEED_MIN}>
             <MdRemove />
           </button>
-          <span style={{ minWidth: 40, textAlign: 'center', fontSize: '0.85rem', color: '#555', fontVariantNumeric: 'tabular-nums' }}>
+          <span style={{ minWidth: 40, textAlign: 'center', fontSize: '0.85rem', color: 'var(--color-text-primary)', fontVariantNumeric: 'tabular-nums' }}>
             ×{speed.toFixed(2).replace(/\.?0+$/, (m) => m === '.00' ? '.0' : '')}
           </span>
           <button style={BTN} title="Faster" onClick={() => nudgeSpeed(SPEED_STEP)} disabled={speed >= SPEED_MAX}>

@@ -236,10 +236,12 @@ export default function CubifyPage() {
             lineHeight: 1.65, color: 'var(--color-text-secondary)',
           }}>
             <p style={{ marginBottom: 10 }}>
-              <strong>cubify</strong> is a 3×3 cube rendering and logic library built on <a href="https://github.com/cubing/cubing.js" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>cubing.js</a> internals,
-              but deliberately decoupled from TwistyPlayer. The goal: a renderer you can drop into
-              any web app without fighting shadow DOM, IntersectionObserver constraints, or baked-in
-              UI chrome — and one where the state is always visible, not buried behind unstable internals.
+              <strong>cubify</strong> is a 3×3 cube rendering and logic library that delegates permutation
+              state and move application to <a href="https://github.com/cubing/cubing.js" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>cubing.js</a> as ground truth, then owns the rendering
+              layer itself. Where TwistyPlayer is a self-contained component optimised for standalone
+              use, cubify is designed for embedding — a renderer built to be dropped into a custom app
+              with its own UI, theme, and state model, and where the cube state is a first-class value
+              you can read, diff, and react to at any point.
             </p>
             <p style={{ marginBottom: 10 }}>
               The split is intentional — cubing.js solves the hard problem (KPattern permutation

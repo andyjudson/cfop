@@ -252,7 +252,9 @@ export default function CubifyPage() {
               layer: a Three.js 3×3-focused renderer with a clean theme system (face colours,
               plastic material, gap, bevel, surface finish), a stickering / masking API for CFOP
               case visualisation, a CubePlayer animation engine that emits move-level events, and a
-              PNG export pipeline for both 2D and 3D renders — single alg or bulk batch.
+              PNG export pipeline for both 2D and 3D renders — single alg or bulk batch. Where
+              cubing.js scramble generation requires a web worker setup that adds bundler complexity,
+              cubify ships a pure JS <code>CubeScramble</code> — no worker, no Vite config ceremony.
             </p>
             <p style={{ marginBottom: 10 }}>
               Inspectable means two things. For a developer building a trainer app:

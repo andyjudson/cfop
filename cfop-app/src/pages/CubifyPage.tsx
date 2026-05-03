@@ -4,6 +4,8 @@ import { CubePlayer, CubePlayerControls, CubeMoveTape } from '../lib/cubify';
 import type { CubePlayerHandle } from '../lib/cubify';
 import { MASK_PRESETS, THEME_PRESETS, CubeState } from 'cubify';
 import type { ThemePresetName } from 'cubify';
+import { MdInfo } from 'react-icons/md';
+import { FaGithub } from 'react-icons/fa';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 
@@ -227,7 +229,7 @@ export default function CubifyPage() {
             listStyle: 'none', display: 'flex', alignItems: 'center', gap: 6,
             userSelect: 'none',
           }}>
-            <span style={{ fontSize: '0.7rem' }}>▶</span> About cubify
+            <MdInfo style={{ fontSize: '1rem', flexShrink: 0 }} /> About cubify ...
           </summary>
           <div style={{
             marginTop: 12, padding: '16px 20px',
@@ -274,7 +276,8 @@ export default function CubifyPage() {
               renderer design, theme system, and React wrappers developed through spec-driven
               development sessions using <a href="https://github.com/github/spec-kit" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>speckit</a>.
               <br />
-              Source: <a href="https://github.com/andyjudson/cubify" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>github.com/andyjudson/cubify</a>
+              <FaGithub style={{ verticalAlign: 'middle', marginRight: 4 }} />
+              <a href="https://github.com/andyjudson/cubify" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>github.com/andyjudson/cubify</a>
             </p>
           </div>
         </details>

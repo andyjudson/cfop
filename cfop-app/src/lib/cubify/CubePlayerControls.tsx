@@ -25,8 +25,8 @@ export interface CubePlayerControlsProps {
   className?: string;
 }
 
-const SPEED_STEP  = 0.25;
-const SPEED_MIN   = 0.25;
+const SPEED_STEP  = 0.5;
+const SPEED_MIN   = 0.5;
 const SPEED_MAX   = 3;
 
 const BTN: CSSProperties = {

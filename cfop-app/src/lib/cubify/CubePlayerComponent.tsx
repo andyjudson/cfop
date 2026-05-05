@@ -11,6 +11,7 @@ export interface MoveEvent {
 export interface CubePlayerHandle {
   reset: () => void;
   resetCamera: () => void;
+  jumpTo: (n: number) => void;
 }
 
 export interface CubePlayerProps {
@@ -56,6 +57,7 @@ export const CubePlayer = forwardRef<CubePlayerHandle, CubePlayerProps>(function
   useImperativeHandle(ref, () => ({
     reset:       () => playerRef.current?.reset(),
     resetCamera: () => playerRef.current?.renderer.resetCamera(),
+    jumpTo:      (n: number) => playerRef.current?.jumpTo(n),
   }), []);
 
   // Mount / unmount

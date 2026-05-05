@@ -109,7 +109,8 @@ const THEME_OPTIONS = (Object.keys(THEME_PRESETS) as ThemePresetName[])
   .map(key => ({ label: THEME_LABELS[key] ?? key.charAt(0).toUpperCase() + key.slice(1), value: key }));
 
 export default function CubifyPage() {
-  const playerRef = useRef<CubePlayerHandle>(null);
+  const playerRef  = useRef<CubePlayerHandle>(null);
+  const steppingRef = useRef(false);
   const [caseIdx,   setCaseIdx]   = useState(0);
   const [playing,   setPlaying]   = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
@@ -119,11 +120,18 @@ export default function CubifyPage() {
 
   const activeCase = CASES[caseIdx];
 
-  const handleMove     = useCallback(({ index }: { index: number }) => setStepIndex(index), []);
+  const handleMove = useCallback(({ index }: { index: number }) => {
+    setStepIndex(index);
+    if (steppingRef.current) {
+      steppingRef.current = false;
+      setPlaying(false);
+    }
+  }, []);
   const handleComplete = useCallback(() => setPlaying(false), []);
 
   // Called by CubePlayerControls reset button — initiates the reset
   const handleResetButton = useCallback(() => {
+    steppingRef.current = false;
     setPlaying(false);
     setStepIndex(0);
     playerRef.current?.reset();
@@ -135,7 +143,23 @@ export default function CubifyPage() {
     setStepIndex(0);
   }, []);
 
+  const moveCount = activeCase.alg.split(' ').length;
+
+  const handleStepForward = useCallback(() => {
+    if (stepIndex >= moveCount) return;
+    steppingRef.current = true;
+    setPlaying(true);
+  }, [stepIndex, moveCount]);
+
+  const handleStepBack = useCallback(() => {
+    if (stepIndex <= 0) return;
+    const prev = stepIndex - 1;
+    setStepIndex(prev);
+    playerRef.current?.jumpTo(prev);
+  }, [stepIndex]);
+
   const handleCaseChange = (idx: number) => {
+    steppingRef.current = false;
     setPlaying(false);
     setStepIndex(0);
     setCaseIdx(idx);
@@ -212,6 +236,31 @@ export default function CubifyPage() {
           stepIndex={stepIndex}
           style={{ marginTop: 12 }}
         />
+
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 10 }}>
+          {[
+            { label: '← Prev', onClick: handleStepBack,    disabled: stepIndex <= 0 },
+            { label: 'Next →', onClick: handleStepForward, disabled: stepIndex >= moveCount },
+          ].map(({ label, onClick, disabled }) => (
+            <button
+              key={label}
+              type="button"
+              onClick={onClick}
+              disabled={disabled}
+              style={{
+                padding: '5px 14px',
+                borderRadius: 8,
+                border: '1px solid #dbdbdb',
+                background: disabled ? '#f5f5f5' : '#fff',
+                color: disabled ? '#aaa' : '#363636',
+                fontSize: '0.82rem',
+                cursor: disabled ? 'default' : 'pointer',
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
         <CubePlayerControls
           playing={playing}

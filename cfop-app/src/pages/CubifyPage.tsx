@@ -69,13 +69,6 @@ const CASES: Case[] = [
     group: '2-Look PLL',
   },
   {
-    name: 'Z Perm (edges)',
-    alg: "M2 U M2 U M' U2 M2 U2 M'",
-    rotation: 'z2',
-    defaultMask: 'pll-edge-dim',
-    group: '2-Look PLL',
-  },
-  {
     name: 'Sexy ×6',
     alg: "R U R' U' R U R' U' R U R' U' R U R' U' R U R' U' R U R' U'",
     defaultMask: 'full',

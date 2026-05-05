@@ -14,8 +14,8 @@ export function CubeMoveTape({ moves, stepIndex, style, className }: CubeMoveTap
       className={className}
     >
       {moves.map((mv, i) => {
-        const isDone   = i < stepIndex - 1;
-        const isActive = i === stepIndex - 1;
+        const isDone   = i < stepIndex;
+        const isActive = i === stepIndex;
         return (
           <span
             key={i}

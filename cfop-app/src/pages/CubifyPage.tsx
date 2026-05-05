@@ -109,8 +109,9 @@ const THEME_OPTIONS = (Object.keys(THEME_PRESETS) as ThemePresetName[])
   .map(key => ({ label: THEME_LABELS[key] ?? key.charAt(0).toUpperCase() + key.slice(1), value: key }));
 
 export default function CubifyPage() {
-  const playerRef  = useRef<CubePlayerHandle>(null);
-  const steppingRef = useRef(false);
+  const playerRef      = useRef<CubePlayerHandle>(null);
+  const steppingRef    = useRef(false);
+  const pendingPlayRef = useRef(false);
   const [caseIdx,   setCaseIdx]   = useState(0);
   const [playing,   setPlaying]   = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
@@ -131,7 +132,8 @@ export default function CubifyPage() {
 
   // Called by CubePlayerControls reset button — initiates the reset
   const handleResetButton = useCallback(() => {
-    steppingRef.current = false;
+    steppingRef.current   = false;
+    pendingPlayRef.current = false;
     setPlaying(false);
     setStepIndex(0);
     playerRef.current?.reset();
@@ -139,11 +141,28 @@ export default function CubifyPage() {
 
   // Called by CubePlayer onReset event — player already reset, just sync state
   const handlePlayerReset = useCallback(() => {
-    setPlaying(false);
     setStepIndex(0);
+    if (pendingPlayRef.current) {
+      pendingPlayRef.current = false;
+      setTimeout(() => setPlaying(true), 300);
+    } else {
+      setPlaying(false);
+    }
   }, []);
 
   const moveCount = activeCase.alg.split(' ').length;
+
+  const handlePlayToggle = useCallback(() => {
+    if (!playing && stepIndex >= moveCount) {
+      // At end — reset then play after a brief pause so the solved state is visible
+      steppingRef.current    = false;
+      pendingPlayRef.current = true;
+      setStepIndex(0);
+      playerRef.current?.reset();
+    } else {
+      setPlaying(p => !p);
+    }
+  }, [playing, stepIndex, moveCount]);
 
   const handleStepForward = useCallback(() => {
     if (stepIndex >= moveCount) return;
@@ -240,7 +259,7 @@ export default function CubifyPage() {
         <CubePlayerControls
           playing={playing}
           speed={speed}
-          onPlayToggle={() => setPlaying(p => !p)}
+          onPlayToggle={handlePlayToggle}
           onReset={handleResetButton}
           onStepBack={handleStepBack}
           onStepForward={handleStepForward}

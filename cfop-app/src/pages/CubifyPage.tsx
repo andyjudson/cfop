@@ -237,36 +237,15 @@ export default function CubifyPage() {
           style={{ marginTop: 12 }}
         />
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 10 }}>
-          {[
-            { label: '← Prev', onClick: handleStepBack,    disabled: stepIndex <= 0 },
-            { label: 'Next →', onClick: handleStepForward, disabled: stepIndex >= moveCount },
-          ].map(({ label, onClick, disabled }) => (
-            <button
-              key={label}
-              type="button"
-              onClick={onClick}
-              disabled={disabled}
-              style={{
-                padding: '5px 14px',
-                borderRadius: 8,
-                border: '1px solid #dbdbdb',
-                background: disabled ? '#f5f5f5' : '#fff',
-                color: disabled ? '#aaa' : '#363636',
-                fontSize: '0.82rem',
-                cursor: disabled ? 'default' : 'pointer',
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
         <CubePlayerControls
           playing={playing}
           speed={speed}
           onPlayToggle={() => setPlaying(p => !p)}
           onReset={handleResetButton}
+          onStepBack={handleStepBack}
+          onStepForward={handleStepForward}
+          stepBackDisabled={stepIndex <= 0}
+          stepForwardDisabled={stepIndex >= moveCount}
           onCameraReset={() => playerRef.current?.resetCamera()}
           onSpeedChange={setSpeed}
           style={{ marginTop: 12 }}

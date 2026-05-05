@@ -6,6 +6,8 @@ import {
   MdRemove,
   MdAdd,
   MdCenterFocusStrong,
+  MdSkipPrevious,
+  MdSkipNext,
 } from 'react-icons/md';
 
 export interface CubePlayerControlsProps {
@@ -13,6 +15,10 @@ export interface CubePlayerControlsProps {
   speed?: number;
   onPlayToggle: () => void;
   onReset: () => void;
+  onStepBack?: () => void;
+  onStepForward?: () => void;
+  stepBackDisabled?: boolean;
+  stepForwardDisabled?: boolean;
   onCameraReset?: () => void;
   onSpeedChange?: (speed: number) => void;
   style?: CSSProperties;
@@ -50,6 +56,10 @@ export function CubePlayerControls({
   speed = 1,
   onPlayToggle,
   onReset,
+  onStepBack,
+  onStepForward,
+  stepBackDisabled,
+  stepForwardDisabled,
   onCameraReset,
   onSpeedChange,
   style,
@@ -70,9 +80,21 @@ export function CubePlayerControls({
         <MdReplay />
       </button>
 
+      {onStepBack && (
+        <button style={BTN} title="Step back" onClick={onStepBack} disabled={stepBackDisabled}>
+          <MdSkipPrevious />
+        </button>
+      )}
+
       <button style={BTN_ACTIVE} title={playing ? 'Pause' : 'Play'} onClick={onPlayToggle}>
         {playing ? <MdPause /> : <MdPlayArrow />}
       </button>
+
+      {onStepForward && (
+        <button style={BTN} title="Step forward" onClick={onStepForward} disabled={stepForwardDisabled}>
+          <MdSkipNext />
+        </button>
+      )}
 
       {onSpeedChange && (
         <>

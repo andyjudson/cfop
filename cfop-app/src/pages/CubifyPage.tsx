@@ -244,8 +244,8 @@ export default function CubifyPage() {
           onReset={handleResetButton}
           onStepBack={handleStepBack}
           onStepForward={handleStepForward}
-          stepBackDisabled={stepIndex <= 0}
-          stepForwardDisabled={stepIndex >= moveCount}
+          stepBackDisabled={playing || stepIndex <= 0}
+          stepForwardDisabled={playing || stepIndex >= moveCount}
           onCameraReset={() => playerRef.current?.resetCamera()}
           onSpeedChange={setSpeed}
           style={{ marginTop: 12 }}

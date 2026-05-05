@@ -51,6 +51,12 @@ const BTN_ACTIVE: CSSProperties = {
   color: '#fff',
 };
 
+const BTN_DISABLED: CSSProperties = {
+  ...BTN,
+  opacity: 0.35,
+  cursor: 'default',
+};
+
 export function CubePlayerControls({
   playing,
   speed = 1,
@@ -81,7 +87,7 @@ export function CubePlayerControls({
       </button>
 
       {onStepBack && (
-        <button style={BTN} title="Step back" onClick={onStepBack} disabled={stepBackDisabled}>
+        <button style={stepBackDisabled ? BTN_DISABLED : BTN} title="Step back" onClick={onStepBack} disabled={stepBackDisabled}>
           <MdSkipPrevious />
         </button>
       )}
@@ -91,7 +97,7 @@ export function CubePlayerControls({
       </button>
 
       {onStepForward && (
-        <button style={BTN} title="Step forward" onClick={onStepForward} disabled={stepForwardDisabled}>
+        <button style={stepForwardDisabled ? BTN_DISABLED : BTN} title="Step forward" onClick={onStepForward} disabled={stepForwardDisabled}>
           <MdSkipNext />
         </button>
       )}

@@ -48,17 +48,17 @@ A Poetry-managed Python package. All transforms are ported from PySpark to panda
 
 ```
 scripts/wca-refresh/
-  pyproject.toml          # Poetry project: name=wca-refresh, deps: requests, pandas
+  pyproject.toml          # Poetry project: name=wca-refresh, deps: requests, pandas, typer
   poetry.lock
   wca_refresh/
     __init__.py
     download.py           # download_wca_export(), cache freshness check
     transforms.py         # all prepare_*() functions
     export.py             # export_*() functions, diff summary
-    cli.py                # entry point: argument parsing, orchestration, output
+    cli.py                # Typer app: commands, orchestration, Rich output
 ```
 
-**CLI entry point** (registered in `pyproject.toml` as `wca-refresh`):
+**CLI entry point** (registered in `pyproject.toml` as `wca-refresh`, built with [Typer](https://typer.tiangolo.com/)):
 ```bash
 poetry run wca-refresh                  # download if stale, refresh all three files
 poetry run wca-refresh --force          # re-download even if cache is current

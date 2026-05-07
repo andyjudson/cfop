@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
           resolve(__dirname, '../../cubify/packages/cubify/src/index.ts'),
         '@andyjudson/cubify-react':
           resolve(__dirname, '../../cubify/packages/cubify-react/src/index.ts'),
-      } : {},
+      } : undefined,
       dedupe: ['cubing'],
     },
   }

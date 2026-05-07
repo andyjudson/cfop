@@ -1,9 +1,9 @@
 import { useRef, useState, useCallback } from 'react';
 import { CfopPageLayout } from '../components/CfopPageLayout';
-import { CubePlayer, CubePlayerControls, CubeMoveTape } from '../lib/cubify';
-import type { CubePlayerHandle } from '../lib/cubify';
-import { MASK_PRESETS, THEME_PRESETS, CubeState } from 'cubify';
-import type { ThemePresetName } from 'cubify';
+import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
+import type { CubePlayerHandle } from '@andyjudson/cubify-react';
+import { MASK_PRESETS, THEME_PRESETS, CubeState } from '@andyjudson/cubify';
+import type { ThemePresetName } from '@andyjudson/cubify';
 import { MdInfo } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 import 'bulma/css/bulma.min.css';
@@ -294,7 +294,7 @@ export default function CubifyPage() {
               layer: a Three.js 3×3-focused renderer with a clean theme system (face colours,
               plastic material, gap, bevel, surface finish), a stickering / masking API for CFOP
               case visualisation, a CubePlayer animation engine that emits move-level events, and a
-              PNG export pipeline for both 2D and 3D renders — single alg or bulk batch. Where
+              PNG export pipeline for both 2D and 3D renders — single alg or bulk set. Where
               cubing.js scramble generation requires a web worker setup that adds bundler complexity,
               cubify ships a pure JS <code>CubeScramble</code> — no worker, no Vite config ceremony.
             </p>
@@ -309,14 +309,11 @@ export default function CubifyPage() {
             <p style={{ marginBottom: 10 }}>
               The React wrapper is a thin layer — <code>{'<CubePlayer>'}</code> and <code>{'<CubeState>'}</code> manage
               the mount/unmount lifecycle and expose a prop-driven interface, so consumers get
-              declarative control without the imperative boilerplate. The <a href="https://github.com/andyjudson/cfop/tree/main/cfop-app/src/lib/cubify" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>reference implementation</a> lives in this repo.
+              declarative control without the imperative boilerplate. The <a href="https://github.com/andyjudson/cubify/tree/main/packages/cubify-react/src" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>React package</a> lives in the cubify repo.
             </p>
             <p style={{ marginBottom: 0, color: 'var(--color-text-muted)', fontSize: '0.78rem' }}>
-              Built iteratively with <a href="https://claude.ai/code" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>Claude Code</a> — architecture,
-              renderer design, theme system, and React wrappers developed through spec-driven
-              development sessions using <a href="https://github.com/github/spec-kit" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>speckit</a>.
-              <br />
-              <FaGithub style={{ verticalAlign: 'middle', marginRight: 4 }} />
+              Built iteratively with <a href="https://claude.ai/code" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>Claude Code</a> and <a href="https://github.com/github/spec-kit" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>Speckit</a> — architecture, renderer design, theme system, api  and React wrappers.
+              <FaGithub style={{ verticalAlign: 'middle', marginRight: 4, marginLeft: 4 }} />
               <a href="https://github.com/andyjudson/cubify" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>github.com/andyjudson/cubify</a>
             </p>
           </div>

@@ -66,6 +66,8 @@ poetry run wca-refresh --no-download    # use existing cache, skip network
 poetry run wca-refresh --dry-run        # compute but do not write output files
 ```
 
+**Failure safety:** Download writes to a `.tmp` file in `.cache/` then renames on completion — a partial download never corrupts the cache. Each output JSON is written to a temp file then renamed atomically — a transform failure leaves the existing output file intact.
+
 **Output on run:**
 ```
 WCA export date: 2026-05-05
@@ -78,7 +80,7 @@ Refreshing wca-beat-the-champion.json … 147 competitions  (+3 new)
 Done. Files written to cfop-app/public/data/
 ```
 
-**Cache:** `.wca-cache/` at repo root (gitignored). Stores extracted TSV files and `metadata.json`. Skip download if `metadata.json` export date matches latest available.
+**Cache:** `scripts/wca-refresh/.cache/` (gitignored). Stores extracted TSV files and `metadata.json`. Staleness check: HTTP HEAD against the WCA export URL — the redirect filename contains the export timestamp (e.g. `WCA_export_v2_071_20260312T000037Z.tsv.zip`); compare to local `metadata.json` export date and skip download if they match.
 
 ### Skill: `.claude/commands/refresh-wca.md`
 
@@ -141,7 +143,7 @@ NDJSON (one JSON object per line), matching the existing files exactly. The cfop
 
 ## Gitignore
 
-Add `scripts/wca-refresh/.wca-cache/` (or `.wca-cache/` at repo root) to `.gitignore` — the raw TSV export is ~300MB and must not be committed.
+Add `scripts/wca-refresh/.cache/` to `scripts/wca-refresh/.gitignore` — the raw TSV export is ~300MB and must not be committed.
 
 ---
 
@@ -151,10 +153,22 @@ Add `scripts/wca-refresh/.wca-cache/` (or `.wca-cache/` at repo root) to `.gitig
 - [ ] Output files match the schema of the existing NDJSON files (same fields, same types)
 - [ ] WR evolution includes the April 2026 average WR (Xuanyi Geng, Beijing Winter 2026, 3.84s)
 - [ ] `--no-download` flag uses cached TSVs without hitting the network
-- [ ] `.wca-cache/` is gitignored
+- [ ] `scripts/wca-refresh/.cache/` is gitignored
 - [ ] `/refresh-wca` skill runs the full flow and offers to commit
 - [ ] GitHub Action runs on schedule and on manual dispatch; commits updated files if changed
 - [ ] Script prints export date, record counts, and diff summary on completion
+- [ ] A failed download does not corrupt the cache (temp-file + rename pattern)
+- [ ] A failed transform does not overwrite the existing output JSON
+
+---
+
+## Clarifications
+
+### Session 2026-05-07
+
+- Q: Cache directory location — inside package or at repo root? → A: `scripts/wca-refresh/.cache/` (inside the Poetry package directory)
+- Q: Cache staleness check mechanism — HEAD check, age-based, or trust-always? → A: HTTP HEAD against WCA export URL; compare redirect filename timestamp to local metadata.json
+- Q: Failure safety — atomic writes or direct writes? → A: Atomic (temp-file + rename) for both download and each output JSON; failure leaves previous state intact
 
 ---
 

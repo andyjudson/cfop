@@ -56,7 +56,7 @@ npx playwright test
 ## Built With
 
 - **[cubify](https://github.com/andyjudson/cubify)** — clean-room cube rendering library; `<CubePlayer>` / `<CubeState>` React wrappers
-- **[cubing.js](https://github.com/cubing/cubing.js)** — algorithm visualiser modal (TwistyPlayer) and KPattern state model (Lucas Garron)
+- **[cubing.js](https://github.com/cubing/cubing.js)** — KPattern permutation state model and WCA-correct move application (Lucas Garron)
 - **React 19** + **TypeScript 5.9** + **Vite 7**
 - **Bulma CSS** for UI components and responsive layout
 - **Recharts** for the WR evolution chart
@@ -71,4 +71,4 @@ Note: Cubing algorithms are mathematical sequences in the public domain. This pr
 
 ---
 
-**Status**: Active development • Features 001–021 complete • cubify integration (029) complete
+**Status**: Active development • Features 001–021 complete • cubify migration (022) complete

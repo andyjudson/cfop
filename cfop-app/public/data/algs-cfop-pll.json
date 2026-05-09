@@ -14,7 +14,7 @@
   {
     "id": "pll-1-2",
     "name": "Ub Perm",
-    "notation": "R' U R' U' (R3 U') R' U (R U R2)",
+    "notation": "R' U R' U' (R' U') R' U (R U R2)",
     "setup": "z2",
     "line_break": 8,
     "method": "pll",

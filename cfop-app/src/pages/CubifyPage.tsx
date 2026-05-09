@@ -8,6 +8,7 @@ import { MdInfo } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
+import '../cubify.css';
 
 interface Case {
   name: string;
@@ -103,7 +104,6 @@ const THEME_OPTIONS = (Object.keys(THEME_PRESETS) as ThemePresetName[])
 
 export default function CubifyPage() {
   const playerRef      = useRef<CubePlayerHandle>(null);
-  const steppingRef    = useRef(false);
   const pendingPlayRef = useRef(false);
   const [caseIdx,   setCaseIdx]   = useState(0);
   const [playing,   setPlaying]   = useState(false);
@@ -116,16 +116,11 @@ export default function CubifyPage() {
 
   const handleMove = useCallback(({ index }: { index: number }) => {
     setStepIndex(index);
-    if (steppingRef.current) {
-      steppingRef.current = false;
-      setPlaying(false);
-    }
   }, []);
   const handleComplete = useCallback(() => setPlaying(false), []);
 
   // Called by CubePlayerControls reset button — initiates the reset
   const handleResetButton = useCallback(() => {
-    steppingRef.current   = false;
     pendingPlayRef.current = false;
     setPlaying(false);
     setStepIndex(0);
@@ -148,7 +143,6 @@ export default function CubifyPage() {
   const handlePlayToggle = useCallback(() => {
     if (!playing && stepIndex >= moveCount) {
       // At end — reset then play after a brief pause so the solved state is visible
-      steppingRef.current    = false;
       pendingPlayRef.current = true;
       setStepIndex(0);
       playerRef.current?.reset();
@@ -158,20 +152,14 @@ export default function CubifyPage() {
   }, [playing, stepIndex, moveCount]);
 
   const handleStepForward = useCallback(() => {
-    if (stepIndex >= moveCount) return;
-    steppingRef.current = true;
-    setPlaying(true);
-  }, [stepIndex, moveCount]);
+    playerRef.current?.stepForward();
+  }, []);
 
-  const handleStepBack = useCallback(() => {
-    if (stepIndex <= 0) return;
-    const prev = stepIndex - 1;
-    setStepIndex(prev);
-    playerRef.current?.jumpTo(prev);
-  }, [stepIndex]);
+  const handleStepBackward = useCallback(() => {
+    playerRef.current?.stepBackward();
+  }, []);
 
   const handleCaseChange = (idx: number) => {
-    steppingRef.current = false;
     setPlaying(false);
     setStepIndex(0);
     setCaseIdx(idx);
@@ -180,11 +168,11 @@ export default function CubifyPage() {
 
   return (
     <CfopPageLayout pageTitle="Cubify" subtitle="3x3 cube visualization framework optimized for CFOP simulation">
-      <section className="section">
+      <section className="section" style={{ paddingTop: '1rem' }}>
         {/* Selectors */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
-          <div className="select">
-            <select value={caseIdx} onChange={e => handleCaseChange(Number(e.target.value))}>
+        <div className="cubify-select-row">
+          <div className="select" style={{ width: 148 }}>
+            <select style={{ width: '100%' }} value={caseIdx} onChange={e => handleCaseChange(Number(e.target.value))}>
               {Object.entries(
                 CASES.reduce<Record<string, { name: string; idx: number }[]>>((acc, c, i) => {
                   (acc[c.group] ??= []).push({ name: c.name, idx: i });
@@ -197,8 +185,8 @@ export default function CubifyPage() {
               ))}
             </select>
           </div>
-          <div className="select">
-            <select value={mask} onChange={e => setMask(e.target.value)}>
+          <div className="select" style={{ width: 148 }}>
+            <select style={{ width: '100%' }} value={mask} onChange={e => setMask(e.target.value)}>
               {MASK_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
             </select>
           </div>
@@ -208,17 +196,7 @@ export default function CubifyPage() {
                 key={opt.value}
                 type="button"
                 onClick={() => setTheme(opt.value as ThemePresetName)}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: 8,
-                  border: '1px solid',
-                  borderColor: theme === opt.value ? '#00b89c' : '#dbdbdb',
-                  background:  theme === opt.value ? '#00b89c' : '#f5f5f5',
-                  color:       theme === opt.value ? '#fff'    : '#363636',
-                  fontSize: '0.82rem',
-                  fontWeight: theme === opt.value ? 600 : 400,
-                  cursor: 'pointer',
-                }}
+                className={`cubify-theme-btn${theme === opt.value ? ' is-active' : ''}`}
               >
                 {opt.label}
               </button>
@@ -251,17 +229,32 @@ export default function CubifyPage() {
 
         <CubePlayerControls
           playing={playing}
+          stepIndex={stepIndex}
+          moveCount={moveCount}
           speed={speed}
           onPlayToggle={handlePlayToggle}
           onReset={handleResetButton}
-          onStepBack={handleStepBack}
+          onStepBackward={handleStepBackward}
           onStepForward={handleStepForward}
-          stepBackDisabled={playing || stepIndex <= 0}
-          stepForwardDisabled={playing || stepIndex >= moveCount}
           onCameraReset={() => playerRef.current?.resetCamera()}
-          onSpeedChange={setSpeed}
           style={{ marginTop: 12 }}
         />
+
+        <div className="cubify-speed-row">
+          <button
+            className="cubify-speed-btn"
+            onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
+            disabled={speed <= 0.5}
+            title="Slower"
+          >−</button>
+          <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
+          <button
+            className="cubify-speed-btn"
+            onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
+            disabled={speed >= 3}
+            title="Faster"
+          >+</button>
+        </div>
 
         <details style={{ maxWidth: 640, margin: '32px auto 0', fontFamily: 'inherit' }}>
           <summary style={{

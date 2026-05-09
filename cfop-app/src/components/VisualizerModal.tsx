@@ -251,14 +251,27 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 playing={playing}
                 stepIndex={currentStep}
                 moveCount={moves.length}
-                speed={speed}
                 onPlayToggle={handlePlayToggle}
                 onReset={() => { pendingPlayRef.current = false; setPlaying(false); setCurrentStep(0); playerRef.current?.reset(); }}
                 onStepBackward={handleStepBackward}
                 onStepForward={handleStepForward}
                 onCameraReset={() => playerRef.current?.resetCamera()}
-                onSpeedChange={setSpeed}
               />
+              <div className="cubify-speed-row">
+                <button
+                  className="cubify-speed-btn"
+                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
+                  disabled={speed <= 0.5}
+                  title="Slower"
+                >−</button>
+                <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
+                <button
+                  className="cubify-speed-btn"
+                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
+                  disabled={speed >= 3}
+                  title="Faster"
+                >+</button>
+              </div>
             </div>
           </>
         )}

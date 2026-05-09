@@ -1,0 +1,35 @@
+name: Refresh WCA Data
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'   # monthly, 1st of month at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v2
+
+      - name: Install dependencies
+        run: uv sync
+        working-directory: scripts/wca-refresh
+
+      - name: Run wca-refresh
+        run: uv run wca-refresh
+        working-directory: scripts/wca-refresh
+
+      - name: Commit updated data files (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cfop-app/public/data/
+          if ! git diff --quiet --cached; then
+            git commit -m "chore(data): refresh WCA data (export $(date +%Y-%m-%d))"
+            git push
+          fi

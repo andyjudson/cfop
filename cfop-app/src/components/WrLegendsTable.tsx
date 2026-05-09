@@ -55,9 +55,9 @@ export function WrLegendsTable({ legends }: WrLegendsTableProps) {
   }
 
   const sorted = useMemo(() => {
-    const fiveYearsAgo = Date.now() - 5 * 365.25 * 24 * 60 * 60 * 1000;
+    const fiveYearsAgo = Date.now() - 3 * 365.25 * 24 * 60 * 60 * 1000;
     return [...legends].filter(l =>
-      l.total_wr_count > 1 || l.last_wr_date >= fiveYearsAgo
+      l.total_wr_count > 1 || l.last_wr_date >= fiveYearsAgo || l.is_current_single || l.is_current_avg
     ).sort((a, b) => {
       const dir = sortDir === 'asc' ? 1 : -1;
       if (sortKey === 'name') {

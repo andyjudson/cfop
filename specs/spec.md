@@ -599,10 +599,9 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 
 **Feature 020 - WR Legends Panel (Completed)**:
 - Side-by-side panel in About page WCA section: 1/3 legends table, 2/3 evolution chart ✅
-- Table derived from existing wca-wr-evolution.json — no new fetch ✅
 - Sortable by name, WR count, single, average; current record holders highlighted ✅
 - Expand/collapse toggle to go chart-only ✅
-- PySpark summarize_person_wr() aligned to add is_current_single/avg flags ✅
+- Dedicated `wca-wr-legends.json` data file with `is_current_single`/`is_current_avg` flags ✅
 
 **Feature 021 - Probability Scoring (Completed)**:
 - Display `prob` field (e.g. "1/54") on each OLL and PLL case card ✅
@@ -627,4 +626,20 @@ Full adoption of cubify in `cfop-app`: replace TwistyPlayer and all direct cubin
 
 ---
 
-**Status**: Features 001–022 complete
+## Feature 023: wca-data-refresh
+
+### Status: Complete ✅
+
+### Scope
+Replace the manual PySpark notebook workflow with a uv-managed Python CLI (`scripts/wca-refresh/`) that downloads the WCA public export and regenerates three NDJSON files in `cfop-app/public/data/`. Exposed as a `/refresh-wca` Claude Code skill and a monthly GitHub Actions schedule. See [`specs/023-wca-data-refresh/spec.md`](023-wca-data-refresh/spec.md) for full detail.
+
+### Key deliverables
+- `wca-wr-evolution.json` — WR progression history, competition_date in Unix ms
+- `wca-wr-legends.json` — per-person WR summary with current-holder flags
+- `wca-beat-the-champion.json` — finals results + scrambles, includes competition_date/month/day
+- WrLegendsTable filter fixed: current WR holders always shown regardless of WR count
+- Monthly GitHub Actions cron with commit-back on change
+
+---
+
+**Status**: Features 001–023 complete

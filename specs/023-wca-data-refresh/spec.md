@@ -2,7 +2,7 @@
 
 ## Summary
 
-A Poetry-managed Python package that downloads the WCA public export and regenerates the three WCA JSON files consumed by cfop-app, replacing the manual PySpark notebook workflow. Exposed as a `/refresh-wca` Claude Code skill for interactive local use, and wired to a weekly GitHub Actions schedule for automatic updates.
+A uv-managed Python package that downloads the WCA public export and regenerates the three WCA JSON files consumed by cfop-app, replacing the manual PySpark notebook workflow. Exposed as a `/refresh-wca` Claude Code skill for interactive local use.
 
 ---
 
@@ -35,7 +35,7 @@ Key functions to port:
 | `compute_wr_progression(df, type)` | Cumulative min WR over time; collapses ties per day |
 | `prepare_wr_evolution()` | Runs progression for single + average, unions |
 | `prepare_wr_legends(df_wr)` | Per-person aggregation: WR counts, best times, current-holder flags |
-| `prepare_beat_the_champion(year)` | Multi-join: results + competitions + championships + scrambles; WR context at time |
+| `prepare_beat_the_champion(year)` | Multi-join: results + competitions + championships + scrambles; WR context at time. CLI defaults to 2015; `--year` overrides. |
 | `export_*(dest_path)` | Writes NDJSON to dest directory |
 
 ---
@@ -44,12 +44,12 @@ Key functions to port:
 
 ### Package: `scripts/wca-refresh/`
 
-A Poetry-managed Python package. All transforms are ported from PySpark to pandas — no Spark dependency.
+A uv-managed Python package. All transforms are ported from PySpark to pandas — no Spark dependency.
 
 ```
 scripts/wca-refresh/
-  pyproject.toml          # Poetry project: name=wca-refresh, deps: requests, pandas, typer
-  poetry.lock
+  pyproject.toml          # PEP 621 project: name=wca-refresh, deps: requests, pandas, typer
+  uv.lock
   wca_refresh/
     __init__.py
     download.py           # download_wca_export(), cache freshness check
@@ -58,12 +58,13 @@ scripts/wca-refresh/
     cli.py                # Typer app: commands, orchestration, Rich output
 ```
 
-**CLI entry point** (registered in `pyproject.toml` as `wca-refresh`, built with [Typer](https://typer.tiangolo.com/)):
+**CLI entry point** (registered in `pyproject.toml` as `[project.scripts]`, built with [Typer](https://typer.tiangolo.com/)):
 ```bash
-poetry run wca-refresh                  # download if stale, refresh all three files
-poetry run wca-refresh --force          # re-download even if cache is current
-poetry run wca-refresh --no-download    # use existing cache, skip network
-poetry run wca-refresh --dry-run        # compute but do not write output files
+uv run wca-refresh                  # download if stale, refresh all three files
+uv run wca-refresh --force          # re-download even if cache is current
+uv run wca-refresh --no-download    # use existing cache, skip network
+uv run wca-refresh --dry-run        # compute but do not write output files
+uv run wca-refresh --year 2025      # championships from 2025 onwards (default: 2015)
 ```
 
 **Failure safety:** Download writes to a `.tmp` file in `.cache/` then renames on completion — a partial download never corrupts the cache. Each output JSON is written to a temp file then renamed atomically — a transform failure leaves the existing output file intact.
@@ -86,8 +87,8 @@ Done. Files written to cfop-app/public/data/
 
 A Claude Code skill invoked as `/refresh-wca`. Orchestrates the full flow interactively:
 
-1. Checks `poetry` is available and `poetry install` has been run in `scripts/wca-refresh/`
-2. Runs `poetry run wca-refresh` (or `--force` / `--no-download` based on args)
+1. Checks `uv` is available and `uv sync` has been run in `scripts/wca-refresh/`
+2. Runs `uv run wca-refresh` (or `--force` / `--no-download` based on args)
 3. Reports the diff summary from the script output
 4. Offers to commit the updated JSON files with message `chore(data): refresh WCA data (export YYYY-MM-DD)`
 
@@ -100,10 +101,11 @@ Usage:
 
 ### GitHub Action: `.github/workflows/refresh-wca.yml`
 
-- **Schedule:** weekly (`cron: '0 6 * * 1'`) + manual dispatch (`workflow_dispatch`)
-- **Steps:** checkout → python + poetry setup → `poetry install` → `poetry run wca-refresh` → commit + push updated JSON if any file changed
+- **Schedule:** monthly (`cron: '0 6 1 * *'`) + manual dispatch (`workflow_dispatch`)
+- **Steps:** checkout → python + uv setup → `uv sync` → `uv run wca-refresh` → commit + push directly to `main` if any file changed
 - **Commit message:** `chore(data): refresh WCA data (export YYYY-MM-DD)`
 - No secrets needed — WCA export is public, commit uses `GITHUB_TOKEN`
+- Cache is not persisted between runs — each CI run downloads the full export fresh
 
 ---
 
@@ -128,10 +130,10 @@ The beat-the-champion transform is the most complex (4 joins, window rank for fi
 
 ```bash
 cd scripts/wca-refresh
-poetry install
+uv sync
 ```
 
-Then use `/refresh-wca` or `poetry run wca-refresh` from the cfop root.
+Then use `/refresh-wca` or `uv run wca-refresh` from the cfop root.
 
 ---
 
@@ -149,24 +151,30 @@ Add `scripts/wca-refresh/.cache/` to `scripts/wca-refresh/.gitignore` — the ra
 
 ## Acceptance Criteria
 
-- [ ] `poetry run wca-refresh` runs from `scripts/wca-refresh/` with no Spark dependency
+- [ ] `uv run wca-refresh` runs from `scripts/wca-refresh/` with no Spark dependency
 - [ ] Output files match the schema of the existing NDJSON files (same fields, same types)
 - [ ] WR evolution includes the April 2026 average WR (Xuanyi Geng, Beijing Winter 2026, 3.84s)
 - [ ] `--no-download` flag uses cached TSVs without hitting the network
 - [ ] `scripts/wca-refresh/.cache/` is gitignored
 - [ ] `/refresh-wca` skill runs the full flow and offers to commit
-- [ ] GitHub Action runs on schedule and on manual dispatch; commits updated files if changed
+- [ ] GitHub Action runs on monthly schedule and on manual dispatch; commits updated files if changed
 - [ ] Script prints export date, record counts, and diff summary on completion
 - [ ] A failed download does not corrupt the cache (temp-file + rename pattern)
 - [ ] A failed transform does not overwrite the existing output JSON
+- [ ] `--year YYYY` flag is accepted; omitting it defaults to 2015, preserving the full championship history in `wca-beat-the-champion.json`
 
 ---
 
 ## Clarifications
 
+### Session 2026-05-09
+
+- Q: Which year(s) does the CLI pass to `prepare_beat_the_champion`? → A: `--year YYYY` flag, defaults to 2015 to preserve full championship history; `--year` only gates championship competitions (WR competitions are always all-time)
+- Q: Should a GitHub Action schedule the refresh automatically? → A: Yes — monthly schedule (`0 6 1 * *`); weekly cadence unnecessary given WR frequency
+
 ### Session 2026-05-07
 
-- Q: Cache directory location — inside package or at repo root? → A: `scripts/wca-refresh/.cache/` (inside the Poetry package directory)
+- Q: Cache directory location — inside package or at repo root? → A: `scripts/wca-refresh/.cache/` (inside the package directory)
 - Q: Cache staleness check mechanism — HEAD check, age-based, or trust-always? → A: HTTP HEAD against WCA export URL; compare redirect filename timestamp to local metadata.json
 - Q: Failure safety — atomic writes or direct writes? → A: Atomic (temp-file + rename) for both download and each output JSON; failure leaves previous state intact
 
@@ -177,3 +185,4 @@ Add `scripts/wca-refresh/.cache/` to `scripts/wca-refresh/.gitignore` — the ra
 - Porting the Plotly visualisation cells (notebook-only exploration)
 - Any changes to how cfop-app consumes the JSON files
 - Other WCA events (script filters to 3x3x3 only, matching existing data)
+- Weekly scheduled automation (monthly cadence is sufficient given WR frequency)

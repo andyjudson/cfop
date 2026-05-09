@@ -9,7 +9,7 @@ Project context for Claude Code. See `specs/spec.md` for the feature ledger.
 
 ## Current Status
 
-Features 001–021 complete. cubify React wrapper integration (029) complete — `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` live in `src/lib/cubify/`.
+Features 001–023 complete. Feature 022 replaced TwistyPlayer with cubify across the app. Feature 023 added the wca-refresh CLI and refreshed all three WCA data files.
 
 ## CSS Standards
 
@@ -30,7 +30,7 @@ Features 001–021 complete. cubify React wrapper integration (029) complete —
 
 ## Tech Stack (cfop-app)
 
-React 19, TypeScript, Vite, Bulma CSS, cubing.js, react-router-dom
+React 19, TypeScript, Vite, Bulma CSS, cubing.js, cubify, react-router-dom
 
 ## Spec Workflow (Hybrid Model)
 
@@ -83,7 +83,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Runtime**: TypeScript 5.9, React 19, Vite 7
 **UI**: Bulma CSS 1.x, react-icons 5.x
 **Routing**: react-router-dom 7.x (HashRouter)
-**Visualisation**: cubify (CubePlayer/CubeState wrappers), cubing.js (TwistyPlayer — VisualizerModal only), Recharts 3.x
+**Visualisation**: cubify (CubePlayer/CubeState wrappers), cubing.js (VisualizerModal only), Recharts 3.x
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
 
@@ -97,18 +97,9 @@ Andy is not a React/Node specialist — proactively flag and fix ecosystem hygie
 - **CI/CD**: `deploy.yml` only builds and deploys — it does not run tests. Smoke tests are manual pre-merge. If a CI test step is added in future, it needs `npx playwright install chromium` before the test run.
 - **Bundle size**: Vite warns when chunks exceed 500kB. The `cubing.js` 3D chunk (~511kB) and main bundle (~853kB) are known and acceptable for now — don't suppress the warning, but don't treat it as blocking.
 
-## TwistyPlayer In-Browser Usage
-
-TwistyPlayer gates canvas initialisation behind an `IntersectionObserver` — the 3D scene will not render unless `intersectionRect.height > 0` at mount time.
-
-- **Always set explicit `width` and `height` px on the container** before or at the same time as appending the player. Without them the container has zero height, the intersection rect is empty, and the canvas never initialises. Use inline styles or fixed CSS `height` — flex/auto sizing alone is not enough.
-- **Append directly, no delays** — `setTimeout` workarounds and body-append-then-move approaches do not reliably fix the intersection issue. Direct append to a sized container is the correct pattern (`VisualizerModal` is the reference implementation).
-- **`overflow: auto/hidden` on ancestors** can affect intersection reporting — if a player appears blank inside a scrollable container, verify the container has explicit dimensions.
-- **Bulma default `button` (no variant) renders black in dark mode** — always add `is-light` to unstyled buttons so they pick up `--bulma-light-*` overrides from `index.css`.
-
 ## cubify Integration (`src/lib/cubify/`)
 
-The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify` → `../../cubify/src/index.ts`). React wrappers:
+Published as `@andyjudson/cubify` + `@andyjudson/cubify-react` on GitHub Packages. For local dev, `CUBIFY_LOCAL=1` in `cfop-app/.env.local` activates a Vite alias to `../cubify/src/` (live HMR, no build step). React wrappers:
 
 | Component | Props |
 |-----------|-------|
@@ -119,10 +110,37 @@ The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify
 
 - `CubeState.setupFromAlg(alg, rotation?)` computes the inverse setup string from an alg + optional whole-cube rotation prefix
 - Transparent canvas: Three.js `setClearColor(0x000000, 0)` — blends with any page background
-- No IntersectionObserver constraint (unlike TwistyPlayer)
+
+
+## WCA Data Refresh (`scripts/wca-refresh/`)
+
+Python CLI that downloads the WCA public export and regenerates three NDJSON files in `cfop-app/public/data/`. Managed with `uv`.
+
+```bash
+cd scripts/wca-refresh
+uv sync                          # first time
+uv run wca-refresh               # download if stale + regenerate all files
+uv run wca-refresh --no-download # use existing cache (fast)
+uv run wca-refresh --force       # force re-download
+uv run wca-refresh --dry-run     # transforms only, no file writes
+```
+
+**Output files:**
+- `wca-wr-evolution.json` — one record per WR-setting event; `competition_date` in Unix ms
+- `wca-wr-legends.json` — one record per person who has held a WR; `last_wr_date` in Unix ms
+- `wca-beat-the-champion.json` — finals results + scrambles for WR comps and championships; `competition_date` in Unix ms; sorted by `competition_date` descending
+
+**Cache:** `scripts/wca-refresh/.cache/` (gitignored, ~300MB). Staleness detected via HTTP HEAD on the WCA export URL — the redirect `Location` header embeds a timestamp.
+
+**Also available as the `/refresh-wca` Claude Code skill** (`.claude/commands/refresh-wca.md`), and as a monthly GitHub Actions cron (`.github/workflows/refresh-wca.yml`).
 
 ## Recent Changes
-- 029-cubify-react (polish): wide move support in `CubeRenderer3D` (f/b/r/l/u/d animate two layers simultaneously); `CubifyPage` harness expanded to full 2-look OLL/PLL + Fun grouped case selector; theme presets settled as `speed-dark` / `speed-light`; collapsible About panel
-- 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness. Cubify nav entry. Vite alias + tsconfig paths.
-- 021-visualizer-modal: OLL/PLL algorithm visualizer modal with TwistyPlayer, case carousel, group filter, and move-by-move display
-- 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
+- 023-wca-data-refresh: `scripts/wca-refresh/` uv CLI; all three WCA data files refreshed to May 2026 export; beat-the-champion adds `competition_date`, `month`, `day`; WrLegendsTable filter fixed for current WR holders with 1 WR; date units fixed to proper Unix ms
+- 022-cubify-migration: full replacement of TwistyPlayer with cubify; `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`; published as `@andyjudson/cubify` + `@andyjudson/cubify-react`
+- 021-visualizer-modal: OLL/PLL algorithm visualizer modal with cubing.js, case carousel, group filter, and move-by-move display
+- 020-wr-legends-panel: sortable WR legends table alongside evolution chart; current record holders highlighted; separate `wca-wr-legends.json` data file
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->

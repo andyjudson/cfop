@@ -1,0 +1,17 @@
+[project]
+name = "wca-refresh"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32",
+    "pandas>=2.2",
+    "typer>=0.12",
+    "rich>=13",
+]
+
+[project.scripts]
+wca-refresh = "wca_refresh.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -10,7 +10,7 @@ CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Cross, F
 - About page with highlights of cubing history and background context to this project
 - Algorithm reference grids with expandable groups and session-persistent state
 - OLL and PLL probability scores and WCA case numbers on every card
-- 3D algorithm visualiser modal using cubing.js with play/pause/rewind, speed control, and move-by-move highlight
+- 3D algorithm visualiser modal using cubify with play/pause/rewind, speed control, and move-by-move highlight
 - Cubify integration harness — animated algorithm player with 2-look OLL/PLL + fun case selector, mask stickering, theme presets (rubiks/speed-dark/speed-light), move tape
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Dark mode with localStorage persistence; mobile-responsive (iPhone 16 baseline)
@@ -28,6 +28,9 @@ Algorithm sets are stored as JSON in `cfop-app/public/data/`:
 | `algs-cfop-f2l.json` | Full F2L — 41 cases |
 | `algs-cfop-oll.json` | Full OLL — 57 cases |
 | `algs-cfop-pll.json` | Full PLL — 21 cases |
+| `wca-wr-evolution.json` | WR progression history (single + average); refreshed via `scripts/wca-refresh/` |
+| `wca-wr-legends.json` | Per-person WR summary; current holders flagged |
+| `wca-beat-the-champion.json` | Finals results + scrambles for WR events and championships |
 
 All entries include `id`, `name`, `notation`, `group`, `method`, `setup`, and optional `mask`, `prob`, `wca_id` fields.
 
@@ -56,7 +59,7 @@ npx playwright test
 ## Built With
 
 - **[cubify](https://github.com/andyjudson/cubify)** — clean-room cube rendering library; `<CubePlayer>` / `<CubeState>` React wrappers
-- **[cubing.js](https://github.com/cubing/cubing.js)** — KPattern permutation state model and WCA-correct move application (Lucas Garron)
+- **[cubing.js](https://github.com/cubing/cubing.js)** — KPattern permutation state model and WCA standard move application (Lucas Garron & Tom Rokicki)
 - **React 19** + **TypeScript 5.9** + **Vite 7**
 - **Bulma CSS** for UI components and responsive layout
 - **Recharts** for the WR evolution chart
@@ -71,4 +74,4 @@ Note: Cubing algorithms are mathematical sequences in the public domain. This pr
 
 ---
 
-**Status**: Active development • Features 001–021 complete • cubify migration (022) complete
+**Status**: Active development • Features 001–023 complete

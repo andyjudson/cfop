@@ -83,7 +83,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Runtime**: TypeScript 5.9, React 19, Vite 7
 **UI**: Bulma CSS 1.x, react-icons 5.x
 **Routing**: react-router-dom 7.x (HashRouter)
-**Visualisation**: cubify (CubePlayer/CubeState wrappers), cubing.js (TwistyPlayer — VisualizerModal only), Recharts 3.x
+**Visualisation**: cubify (CubePlayer/CubeState wrappers), cubing.js (VisualizerModal only), Recharts 3.x
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
 
@@ -110,7 +110,7 @@ The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify
 
 - `CubeState.setupFromAlg(alg, rotation?)` computes the inverse setup string from an alg + optional whole-cube rotation prefix
 - Transparent canvas: Three.js `setClearColor(0x000000, 0)` — blends with any page background
-- No IntersectionObserver constraint (unlike TwistyPlayer)
+
 
 ## WCA Data Refresh (`scripts/wca-refresh/`)
 
@@ -137,7 +137,7 @@ uv run wca-refresh --dry-run     # transforms only, no file writes
 ## Recent Changes
 - 029-cubify-react (polish): wide move support in `CubeRenderer3D` (f/b/r/l/u/d animate two layers simultaneously); `CubifyPage` harness expanded to full 2-look OLL/PLL + Fun grouped case selector; theme presets settled as `speed-dark` / `speed-light`; collapsible About panel
 - 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness. Cubify nav entry. Vite alias + tsconfig paths.
-- 021-visualizer-modal: OLL/PLL algorithm visualizer modal with TwistyPlayer, case carousel, group filter, and move-by-move display
+- 021-visualizer-modal: OLL/PLL algorithm visualizer modal with cubing.js, case carousel, group filter, and move-by-move display
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
 
 <!-- SPECKIT START -->

@@ -28,6 +28,9 @@ Algorithm sets are stored as JSON in `cfop-app/public/data/`:
 | `algs-cfop-f2l.json` | Full F2L — 41 cases |
 | `algs-cfop-oll.json` | Full OLL — 57 cases |
 | `algs-cfop-pll.json` | Full PLL — 21 cases |
+| `wca-wr-evolution.json` | WR progression history (single + average); refreshed via `scripts/wca-refresh/` |
+| `wca-wr-legends.json` | Per-person WR summary; current holders flagged |
+| `wca-beat-the-champion.json` | Finals results + scrambles for WR events and championships |
 
 All entries include `id`, `name`, `notation`, `group`, `method`, `setup`, and optional `mask`, `prob`, `wca_id` fields.
 
@@ -71,4 +74,4 @@ Note: Cubing algorithms are mathematical sequences in the public domain. This pr
 
 ---
 
-**Status**: Active development • Features 001–021 complete • cubify migration (022) complete
+**Status**: Active development • Features 001–023 complete

@@ -9,7 +9,7 @@ Project context for Claude Code. See `specs/spec.md` for the feature ledger.
 
 ## Current Status
 
-Features 001–021 complete. cubify React wrapper integration (029) complete — `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` live in `src/lib/cubify/`.
+Features 001–023 complete. Feature 022 replaced TwistyPlayer with cubify across the app. Feature 023 added the wca-refresh CLI and refreshed all three WCA data files.
 
 ## CSS Standards
 
@@ -30,7 +30,7 @@ Features 001–021 complete. cubify React wrapper integration (029) complete —
 
 ## Tech Stack (cfop-app)
 
-React 19, TypeScript, Vite, Bulma CSS, cubing.js, react-router-dom
+React 19, TypeScript, Vite, Bulma CSS, cubing.js, cubify, react-router-dom
 
 ## Spec Workflow (Hybrid Model)
 
@@ -99,7 +99,7 @@ Andy is not a React/Node specialist — proactively flag and fix ecosystem hygie
 
 ## cubify Integration (`src/lib/cubify/`)
 
-The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify` → `../../cubify/src/index.ts`). React wrappers:
+Published as `@andyjudson/cubify` + `@andyjudson/cubify-react` on GitHub Packages. For local dev, `CUBIFY_LOCAL=1` in `cfop-app/.env.local` activates a Vite alias to `../cubify/src/` (live HMR, no build step). React wrappers:
 
 | Component | Props |
 |-----------|-------|
@@ -135,10 +135,10 @@ uv run wca-refresh --dry-run     # transforms only, no file writes
 **Also available as the `/refresh-wca` Claude Code skill** (`.claude/commands/refresh-wca.md`), and as a monthly GitHub Actions cron (`.github/workflows/refresh-wca.yml`).
 
 ## Recent Changes
-- 029-cubify-react (polish): wide move support in `CubeRenderer3D` (f/b/r/l/u/d animate two layers simultaneously); `CubifyPage` harness expanded to full 2-look OLL/PLL + Fun grouped case selector; theme presets settled as `speed-dark` / `speed-light`; collapsible About panel
-- 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness. Cubify nav entry. Vite alias + tsconfig paths.
+- 023-wca-data-refresh: `scripts/wca-refresh/` uv CLI; all three WCA data files refreshed to May 2026 export; beat-the-champion adds `competition_date`, `month`, `day`; WrLegendsTable filter fixed for current WR holders with 1 WR; date units fixed to proper Unix ms
+- 022-cubify-migration: full replacement of TwistyPlayer with cubify; `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`; published as `@andyjudson/cubify` + `@andyjudson/cubify-react`
 - 021-visualizer-modal: OLL/PLL algorithm visualizer modal with cubing.js, case carousel, group filter, and move-by-move display
-- 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
+- 020-wr-legends-panel: sortable WR legends table alongside evolution chart; current record holders highlighted; separate `wca-wr-legends.json` data file
 
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,

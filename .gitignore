@@ -37,3 +37,5 @@ playwright-report/
 
 # cubify-harness demo output
 cubify-harness/demo/out/
+.specify/scripts
+.specify/feature.json

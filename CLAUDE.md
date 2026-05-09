@@ -121,8 +121,35 @@ The cubify library (`../cubify/src/`) is aliased into cfop-app via Vite (`cubify
 - Transparent canvas: Three.js `setClearColor(0x000000, 0)` — blends with any page background
 - No IntersectionObserver constraint (unlike TwistyPlayer)
 
+## WCA Data Refresh (`scripts/wca-refresh/`)
+
+Python CLI that downloads the WCA public export and regenerates three NDJSON files in `cfop-app/public/data/`. Managed with `uv`.
+
+```bash
+cd scripts/wca-refresh
+uv sync                          # first time
+uv run wca-refresh               # download if stale + regenerate all files
+uv run wca-refresh --no-download # use existing cache (fast)
+uv run wca-refresh --force       # force re-download
+uv run wca-refresh --dry-run     # transforms only, no file writes
+```
+
+**Output files:**
+- `wca-wr-evolution.json` — one record per WR-setting event; `competition_date` in Unix ms
+- `wca-wr-legends.json` — one record per person who has held a WR; `last_wr_date` in Unix ms
+- `wca-beat-the-champion.json` — finals results + scrambles for WR comps and championships; `competition_date` in Unix ms; sorted by `competition_date` descending
+
+**Cache:** `scripts/wca-refresh/.cache/` (gitignored, ~300MB). Staleness detected via HTTP HEAD on the WCA export URL — the redirect `Location` header embeds a timestamp.
+
+**Also available as the `/refresh-wca` Claude Code skill** (`.claude/commands/refresh-wca.md`), and as a monthly GitHub Actions cron (`.github/workflows/refresh-wca.yml`).
+
 ## Recent Changes
 - 029-cubify-react (polish): wide move support in `CubeRenderer3D` (f/b/r/l/u/d animate two layers simultaneously); `CubifyPage` harness expanded to full 2-look OLL/PLL + Fun grouped case selector; theme presets settled as `speed-dark` / `speed-light`; collapsible About panel
 - 029-cubify-react: `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>` in `src/lib/cubify/`. `CubifyPage` harness. Cubify nav entry. Vite alias + tsconfig paths.
 - 021-visualizer-modal: OLL/PLL algorithm visualizer modal with TwistyPlayer, case carousel, group filter, and move-by-move display
 - 020-wr-legends-panel: sortable legends table alongside WR evolution chart; current record holders highlighted
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->

@@ -35,7 +35,13 @@ playwright-report/
 # Environment files
 .env*
 
-# cubify-harness demo output
-cubify-harness/demo/out/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Speckit
 .specify/scripts
 .specify/feature.json

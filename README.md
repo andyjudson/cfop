@@ -10,7 +10,7 @@ CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Cross, F
 - About page with highlights of cubing history and background context to this project
 - Algorithm reference grids with expandable groups and session-persistent state
 - OLL and PLL probability scores and WCA case numbers on every card
-- 3D algorithm visualiser modal using cubing.js with play/pause/rewind, speed control, and move-by-move highlight
+- 3D algorithm visualiser modal using cubify with play/pause/rewind, speed control, and move-by-move highlight
 - Cubify integration harness — animated algorithm player with 2-look OLL/PLL + fun case selector, mask stickering, theme presets (rubiks/speed-dark/speed-light), move tape
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Dark mode with localStorage persistence; mobile-responsive (iPhone 16 baseline)
@@ -56,7 +56,7 @@ npx playwright test
 ## Built With
 
 - **[cubify](https://github.com/andyjudson/cubify)** — clean-room cube rendering library; `<CubePlayer>` / `<CubeState>` React wrappers
-- **[cubing.js](https://github.com/cubing/cubing.js)** — KPattern permutation state model and WCA-correct move application (Lucas Garron)
+- **[cubing.js](https://github.com/cubing/cubing.js)** — KPattern permutation state model and WCA standard move application (Lucas Garron & Tom Rokicki)
 - **React 19** + **TypeScript 5.9** + **Vite 7**
 - **Bulma CSS** for UI components and responsive layout
 - **Recharts** for the WR evolution chart

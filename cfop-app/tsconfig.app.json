@@ -21,7 +21,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "cubify": ["../../cubify/src/index.ts"]
+      "@andyjudson/cubify": ["../../cubify/packages/cubify/src/index.ts"],
+      "@andyjudson/cubify-react": ["../../cubify/packages/cubify-react/src/index.ts"]
     }
   },
   "include": ["src"]

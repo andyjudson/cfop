@@ -1,9 +1,10 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
-import { Alg, Move } from 'cubing/alg';
-import { TwistyPlayer } from 'cubing/twisty';
-import { MdPlayArrow, MdPause, MdReplay, MdAdd, MdRemove, MdFilterCenterFocus } from 'react-icons/md';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
+import type { CubePlayerHandle } from '@andyjudson/cubify-react';
+import { AlgParser, CubeState } from '@andyjudson/cubify';
 import type { CfopAlgorithm } from './AlgorithmCard';
 import { CaseCarousel } from './CaseCarousel';
+import '../cubify.css';
 import './VisualizerModal.css';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -30,33 +31,10 @@ function getGroups(algorithms: CfopAlgorithm[]): string[] {
   return ['all', ...unique];
 }
 
-
-const getMask = (method?: string, mask?: string): string => {
-  if (method === 'oll') {
-    return mask === 'edge'
-      ? 'EDGES:----OOOO----,CORNERS:----IIII,CENTERS:------'  // cross not yet formed: hide top corners
-      : 'EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------'; // cross formed: show top corners
-  }
-  if (method === 'pll') {
-    return mask === 'corner'
-      ? 'EDGES:----OOOO----,CORNERS:--------,CENTERS:------'  // corner-swap PLL: highlight edges as reference
-      : 'EDGES:------------,CORNERS:--------,CENTERS:------'; // edge-swap PLL: show all stickers
-  }
-  return 'EDGES:------------,CORNERS:--------,CENTERS:------';
-};
-
-const parseAlgorithmMoves = (notation: string): string[] => {
-  try {
-    const alg = Alg.fromString(notation);
-    const parsed: string[] = [];
-    for (const leaf of alg.experimentalLeafMoves()) {
-      if (leaf instanceof Move) parsed.push(leaf.toString());
-    }
-    if (parsed.length > 0) return parsed;
-  } catch {
-    // fallback below
-  }
-  return notation.replace(/[()]/g, ' ').split(/\s+/).filter(Boolean);
+const getMask = (method?: string): string => {
+  if (method === 'oll') return 'oll-face-dim';
+  if (method === 'pll') return 'pll-face-dim';
+  return 'full';
 };
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -69,17 +47,13 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [currentAlg, setCurrentAlg] = useState<CfopAlgorithm | null>(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentMoveIndex, setCurrentMoveIndex] = useState(-1);
-  const SPEED_STEPS = [0.5, 1, 1.5, 2, 3, 4, 6];
-  const [speedIndex, setSpeedIndex] = useState(1); // default ×1
-  const speed = SPEED_STEPS[speedIndex];
-  const [playerError, setPlayerError] = useState<string | null>(null);
+  const [playing,     setPlaying]     = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [speed,       setSpeed]       = useState(1);
+  const playerRef      = useRef<CubePlayerHandle>(null);
+  const pendingPlayRef = useRef(false);
 
-  const twistyRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<TwistyPlayer | null>(null);
-
-  // Load OLL and PLL data on mount, auto-shuffle OLL as default
+  // Load OLL and PLL data on mount
   useEffect(() => {
     Promise.all([fetchSet('OLL'), fetchSet('PLL')])
       .then(([oll, pll]) => {
@@ -104,12 +78,17 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   );
 
   const moves = useMemo(
-    () => (currentAlg ? parseAlgorithmMoves(currentAlg.notation) : []),
+    () => (currentAlg ? AlgParser.parse(currentAlg.notation) : []),
     [currentAlg],
   );
 
   const mask = useMemo(
-    () => getMask(currentAlg?.method?.toLowerCase(), currentAlg?.mask),
+    () => getMask(currentAlg?.method?.toLowerCase()),
+    [currentAlg?.method],
+  );
+
+  const setup = useMemo(
+    () => (currentAlg ? CubeState.setupFromAlg(currentAlg.notation, currentAlg.setup) : ''),
     [currentAlg],
   );
 
@@ -126,101 +105,48 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
     setCurrentAlg(pool[0] ?? null);
   };
 
-  // TwistyPlayer lifecycle — re-init when currentAlg changes
+  // Reset playback state when algorithm changes
   useEffect(() => {
-    if (!twistyRef.current || !currentAlg) return;
+    pendingPlayRef.current = false;
+    setPlaying(false);
+    setCurrentStep(0);
+  }, [currentAlg?.id]);
 
-    let mounted = true;
-    let hasRetried = false;
-    let retryTimer: number | null = null;
-    let player: TwistyPlayer | null = null;
-    let onMoveInfo: ((info: { patternIndex: number }) => void) | null = null;
-    let onTimelineInfo: ((info: { playing: boolean; atStart: boolean }) => void) | null = null;
+  const handleMove = useCallback(({ index }: { index: number }) => {
+    setCurrentStep(index);
+  }, []);
 
-    const cleanupPlayer = () => {
-      if (!player) return;
-      if (onMoveInfo) player.experimentalModel.currentMoveInfo.removeFreshListener(onMoveInfo);
-      if (onTimelineInfo) player.experimentalModel.coarseTimelineInfo.removeFreshListener(onTimelineInfo);
-      if (twistyRef.current?.contains(player)) twistyRef.current.removeChild(player);
-      if (playerRef.current === player) playerRef.current = null;
-      player = null;
-    };
+  const handleComplete = useCallback(() => setPlaying(false), []);
 
-    const initPlayer = () => {
-      if (!mounted || !twistyRef.current) return;
-      try {
-        setPlayerError(null);
-        const nextPlayer = new TwistyPlayer({
-          puzzle: '3x3x3',
-          alg: currentAlg.notation,
-          visualization: 'PG3D',
-          background: 'none',
-          hintFacelets: 'none',
-          controlPanel: 'none',
-          tempoScale: speed,
-          experimentalSetupAlg: currentAlg.setup ?? '',
-          experimentalSetupAnchor: 'end',
-          experimentalStickeringMaskOrbits: mask,
-          experimentalDragInput: 'auto',
-        });
+  // Called by CubePlayer onReset — player already reset, sync state
+  const handlePlayerReset = useCallback(() => {
+    setCurrentStep(0);
+    if (pendingPlayRef.current) {
+      pendingPlayRef.current = false;
+      setTimeout(() => setPlaying(true), 300);
+    } else {
+      setPlaying(false);
+    }
+  }, []);
 
-        twistyRef.current.innerHTML = '';
-        twistyRef.current.appendChild(nextPlayer);
-        playerRef.current = nextPlayer;
-        player = nextPlayer;
-        setCurrentMoveIndex(-1);
-        setIsPlaying(false);
+  const handlePlayToggle = useCallback(() => {
+    if (!playing && currentStep >= moves.length) {
+      // At end — reset then auto-play
+      pendingPlayRef.current = true;
+      setCurrentStep(0);
+      playerRef.current?.reset();
+    } else {
+      setPlaying(p => !p);
+    }
+  }, [playing, currentStep, moves.length]);
 
-        onMoveInfo = (info: { patternIndex: number }) => {
-          setCurrentMoveIndex(Math.min(Math.max(info.patternIndex, -1), moves.length - 1));
-        };
-        onTimelineInfo = (info: { playing: boolean; atStart: boolean }) => {
-          setIsPlaying(info.playing);
-          if (info.atStart) setCurrentMoveIndex(-1);
-        };
+  const handleStepForward = useCallback(() => {
+    playerRef.current?.stepForward();
+  }, []);
 
-        nextPlayer.experimentalModel.currentMoveInfo.addFreshListener(onMoveInfo);
-        nextPlayer.experimentalModel.coarseTimelineInfo.addFreshListener(onTimelineInfo);
-      } catch (error) {
-        cleanupPlayer();
-        if (!hasRetried) {
-          hasRetried = true;
-          retryTimer = window.setTimeout(initPlayer, 150);
-          return;
-        }
-        setPlayerError('Could not load cube visualization. Please close and reopen.');
-        console.error('TwistyPlayer failed to initialize:', error);
-      }
-    };
-
-    initPlayer();
-
-    return () => {
-      mounted = false;
-      if (retryTimer !== null) window.clearTimeout(retryTimer);
-      cleanupPlayer();
-    };
-  }, [currentAlg?.id, currentAlg?.notation, mask]);
-
-  useEffect(() => {
-    if (playerRef.current) playerRef.current.tempoScale = speed;
-  }, [speed]);
-
-  const handlePlay = () => { playerRef.current?.play(); setIsPlaying(true); };
-  const handlePause = () => { playerRef.current?.pause(); setIsPlaying(false); };
-  const handleRewind = () => {
-    playerRef.current?.pause();
-    playerRef.current?.jumpToStart();
-    setCurrentMoveIndex(-1);
-    setIsPlaying(false);
-  };
-
-  const handleResetView = () => {
-    const player = playerRef.current;
-    if (!player) return;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (player.experimentalModel as any).twistySceneModel.orbitCoordinatesRequest.set('auto');
-  };
+  const handleStepBackward = useCallback(() => {
+    playerRef.current?.stepBackward();
+  }, []);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose();
@@ -231,12 +157,12 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
       if (e.key === 'Escape') { onClose(); return; }
       if ((e.code === 'Space' || e.key === ' ') && !e.repeat) {
         e.preventDefault();
-        isPlaying ? handlePause() : handlePlay();
+        handlePlayToggle();
       }
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-  }, [isPlaying, onClose]);
+  }, [onClose, handlePlayToggle]);
 
   return (
     <div className="modal-backdrop" onClick={handleBackdropClick}>
@@ -294,63 +220,45 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
           <p className="has-text-danger has-text-centered mt-3">Algorithm data unavailable.</p>
         )}
 
-        <div className="twisty-container" ref={twistyRef} />
-        {playerError && (
-          <p className="has-text-danger has-text-centered mt-2">{playerError}</p>
-        )}
+        <div className="cube-player-container">
+          {currentAlg && (
+            <CubePlayer
+              ref={playerRef}
+              alg={currentAlg.notation}
+              setup={setup}
+              stickering={mask}
+              theme="speed-dark"
+              playing={playing}
+              speed={speed}
+              onMove={handleMove}
+              onComplete={handleComplete}
+              onReset={handlePlayerReset}
+              style={{ width: '100%', height: '100%' }}
+            />
+          )}
+        </div>
 
         {loadState === 'ready' && (
           <>
-            <div className="controls-panel">
-              <div className="control-buttons">
-                <button className="button is-light" onClick={handleRewind} title="Rewind">
-                  <MdReplay size={24} />
-                </button>
-                {isPlaying ? (
-                  <button className="button is-primary" onClick={handlePause} title="Pause">
-                    <MdPause size={24} />
-                  </button>
-                ) : (
-                  <button className="button is-primary" onClick={handlePlay} title="Play">
-                    <MdPlayArrow size={24} />
-                  </button>
-                )}
-                <button
-                  className="button is-light"
-                  onClick={() => setSpeedIndex(i => Math.max(i - 1, 0))}
-                  disabled={speedIndex === 0}
-                  title="Slow down"
-                >
-                  <MdRemove size={24} />
-                </button>
-                <button
-                  className="button is-light"
-                  onClick={() => setSpeedIndex(i => Math.min(i + 1, SPEED_STEPS.length - 1))}
-                  disabled={speedIndex === SPEED_STEPS.length - 1}
-                  title="Speed up"
-                >
-                  <MdAdd size={24} />
-                </button>
-                <span className="speed-indicator">×{speed.toFixed(1)}</span>
-                <button
-                  className="button is-light"
-                  onClick={handleResetView}
-                  title="Reset view"
-                >
-                  <MdFilterCenterFocus size={24} />
-                </button>
-              </div>
-            </div>
+            <CubeMoveTape
+              moves={moves}
+              stepIndex={currentStep}
+              style={{ marginBottom: 12 }}
+            />
 
-            <div className="algorithm-display">
-              {moves.map((move, index) => (
-                <span
-                  key={index}
-                  className={`move ${index === currentMoveIndex ? 'active' : ''} ${index < currentMoveIndex ? 'completed' : ''}`}
-                >
-                  {move}
-                </span>
-              ))}
+            <div className="controls-panel">
+              <CubePlayerControls
+                playing={playing}
+                stepIndex={currentStep}
+                moveCount={moves.length}
+                speed={speed}
+                onPlayToggle={handlePlayToggle}
+                onReset={() => { pendingPlayRef.current = false; setPlaying(false); setCurrentStep(0); playerRef.current?.reset(); }}
+                onStepBackward={handleStepBackward}
+                onStepForward={handleStepForward}
+                onCameraReset={() => playerRef.current?.resetCamera()}
+                onSpeedChange={setSpeed}
+              />
             </div>
           </>
         )}

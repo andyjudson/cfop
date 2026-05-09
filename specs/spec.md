@@ -617,7 +617,7 @@ Promoted the Algorithm Visualizer and Practice Timer from the Beginner page into
 
 ## Feature 022: cubify-migration
 
-### Status: Planned 📋
+### Status: Complete ✅
 
 ### Scope
 Full adoption of cubify in `cfop-app`: replace TwistyPlayer and all direct cubing.js imports with cubify equivalents. See [`specs/022-cubify-migration/spec.md`](022-cubify-migration/spec.md) for full detail.
@@ -627,4 +627,4 @@ Full adoption of cubify in `cfop-app`: replace TwistyPlayer and all direct cubin
 
 ---
 
-**Status**: Features 001–021 complete • 022 planned
+**Status**: Features 001–022 complete

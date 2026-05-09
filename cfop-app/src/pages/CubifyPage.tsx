@@ -105,10 +105,11 @@ const THEME_OPTIONS = (Object.keys(THEME_PRESETS) as ThemePresetName[])
 export default function CubifyPage() {
   const playerRef      = useRef<CubePlayerHandle>(null);
   const pendingPlayRef = useRef(false);
-  const [caseIdx,   setCaseIdx]   = useState(0);
+  const SUPERFLIP_IDX = CASES.findIndex(c => c.name === 'Superflip');
+  const [caseIdx,   setCaseIdx]   = useState(SUPERFLIP_IDX);
   const [playing,   setPlaying]   = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
-  const [mask,      setMask]      = useState(CASES[0].defaultMask);
+  const [mask,      setMask]      = useState(CASES[SUPERFLIP_IDX].defaultMask);
   const [theme,     setTheme]     = useState<ThemePresetName>('speed-dark');
   const [speed,     setSpeed]     = useState(1);
 

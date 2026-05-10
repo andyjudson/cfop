@@ -57,7 +57,7 @@ const CASES: Case[] = [
   },
   {
     name: 'Ua Perm (edges)',
-    alg: "M2 U M U2 M' U M2",
+    alg: "R2 U' R' U' R U R U R U' R",
     rotation: 'z2',
     defaultMask: 'pll-edge-dim',
     group: '2-Look PLL',
@@ -191,17 +191,10 @@ export default function CubifyPage() {
               {MASK_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
             </select>
           </div>
-          <div style={{ display: 'flex', gap: 4 }}>
-            {THEME_OPTIONS.map(opt => (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => setTheme(opt.value as ThemePresetName)}
-                className={`cubify-theme-btn${theme === opt.value ? ' is-active' : ''}`}
-              >
-                {opt.label}
-              </button>
-            ))}
+          <div className="select" style={{ width: 120 }}>
+            <select style={{ width: '100%' }} value={theme} onChange={e => setTheme(e.target.value as ThemePresetName)}>
+              {THEME_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+            </select>
           </div>
         </div>
 

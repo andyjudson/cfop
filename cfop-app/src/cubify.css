@@ -10,26 +10,6 @@
   align-items: center;
 }
 
-/* Theme preset toggle button */
-.cubify-theme-btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid #dbdbdb;
-  background: #f5f5f5;
-  color: #363636;
-  font-size: 0.82rem;
-  font-weight: 400;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
-}
-
-.cubify-theme-btn.is-active {
-  border-color: #00b89c;
-  background: #00b89c;
-  color: #fff;
-  font-weight: 600;
-}
-
 /* Speed control row (− ×N.N +) */
 .cubify-speed-row {
   display: flex;

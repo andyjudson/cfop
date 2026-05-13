@@ -64,8 +64,8 @@ const CASES: Case[] = [
   },
   {
     name: 'H Perm (edges)',
-    alg: "M2 U M2 U2 M2 U M2",
-    rotation: 'z2',
+    alg: "M2 U' M2 U2 M2 U' M2",
+    rotation: 'z2 y2',
     defaultMask: 'pll-edge-dim',
     group: '2-Look PLL',
   },

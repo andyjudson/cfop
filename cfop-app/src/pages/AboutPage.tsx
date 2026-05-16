@@ -89,20 +89,28 @@ export default function AboutPage() {
             their correct places. 21 cases total, or 6 cases using 2-look method.
           </li>
         </ul>
-        <p>
+        <p className="mt-3">
+          A typical CFOP solve uses around 50–60 moves — Cross around 6–8, F2L around 6–10 per slot, OLL 8–12, and PLL 8–12. 
+          That's three times God's Number (20 moves), yet top competitors solve in under 5 seconds today.
+          The reason is that CFOP is optimized for <em>recognition speed</em>, not move count — each stage uses familiar, memorized sequences
+          that the hands can execute on autopilot while the eyes are already planning the next stage. At competition level,
+          the cross is fully planned during the 15-second inspection window, and a 5-second solve at around 15 turns per second
+          is almost entirely muscle memory running pre-planned sequences, not live thinking.
+        </p>
+        <p className="mt-3">
           There are different levels at which you can learn CFOP, suited to different stages of your journey:
         </p>
         <ul className="about-list mt-3">
           <li>
             <strong>Intuitive Cross + F2L</strong> — Learn to solve the first two layers without
-            memorising algorithms, using pattern recognition and logical thinking.
+            memorizing algorithms, using pattern recognition and logical thinking, and try to minimize re-grips and cube rotations.
           </li>
           <li>
             <strong>2-Look CFOP</strong> — The recommended starting point for the last layer. Uses 2-Look OLL and PLL with only 9-12
-            algorithms. Achievable in 1-2 minutes per solve, with the probability of repetition.
+            algorithms. Achievable in 1-2 minutes per solve, with the probability of repetition. This is the level I'm at and content with — I can see the pieces moving and understand the logic behind each step, while having a manageable number of algorithms to learn.
           </li>
           <li>
-            <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn PLL cases, then OLL cases, and lastly algorithmic F2L cases for maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery. I'm never going to reach this level, but it's fun to watch the pros!
+            <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn PLL cases, then OLL cases, and lastly algorithmic F2L cases for maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery, combined with advanced techniques like look-ahead and finger tricks. I'm never going to reach this level, but it's fascinating to watch the pros!
           </li>
         </ul>
       </section>

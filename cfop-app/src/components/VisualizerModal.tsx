@@ -236,6 +236,21 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
               style={{ width: '100%', height: '100%' }}
             />
           )}
+          <div className="cubify-speed-row cubify-speed-overlay">
+            <button
+              className="cubify-speed-btn"
+              onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
+              disabled={speed <= 0.5}
+              title="Slower"
+            >−</button>
+            <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
+            <button
+              className="cubify-speed-btn"
+              onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
+              disabled={speed >= 3}
+              title="Faster"
+            >+</button>
+          </div>
         </div>
 
         {loadState === 'ready' && (
@@ -257,21 +272,6 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 onStepForward={handleStepForward}
                 onCameraReset={() => playerRef.current?.resetCamera()}
               />
-              <div className="cubify-speed-row">
-                <button
-                  className="cubify-speed-btn"
-                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
-                  disabled={speed <= 0.5}
-                  title="Slower"
-                >−</button>
-                <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
-                <button
-                  className="cubify-speed-btn"
-                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
-                  disabled={speed >= 3}
-                  title="Faster"
-                >+</button>
-              </div>
             </div>
           </>
         )}

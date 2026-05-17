@@ -73,7 +73,7 @@
   margin-top: 0;
 }
 
-.cube-player-container > div {
+.cube-player-container > div:not(.cubify-speed-overlay) {
   width: 100%;
   height: 100%;
 }

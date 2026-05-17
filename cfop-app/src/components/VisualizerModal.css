@@ -65,29 +65,7 @@
   border-radius: 8px;
 }
 
-.cubify-speed-overlay {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
-  margin-top: 0;
-}
-
-.cubify-speed-overlay .cubify-speed-btn {
-  width: 28px;
-  height: 28px;
-  font-size: 0.85rem;
-  border-radius: 6px;
-  opacity: 0.75;
-}
-
-.cubify-speed-overlay .cubify-speed-label {
-  min-width: 32px;
-  font-size: 0.75rem;
-  opacity: 0.75;
-}
-
-.cube-player-container > div:not(.cubify-speed-overlay) {
+.cube-player-container > div {
   width: 100%;
   height: 100%;
 }
@@ -95,6 +73,11 @@
 /* ── Playback controls ───────────────────────────────────────────────────────── */
 
 .controls-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
   margin: 0 0 0.5rem 0;
   padding: 0;
 }

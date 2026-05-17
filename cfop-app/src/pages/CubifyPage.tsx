@@ -1,11 +1,12 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
-import { MASK_PRESETS, THEME_PRESETS, CubeState } from '@andyjudson/cubify';
+import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser, CubeSolver } from '@andyjudson/cubify';
 import type { ThemePresetName } from '@andyjudson/cubify';
-import { MdInfo } from 'react-icons/md';
+import { MdInfo, MdShuffle, MdPsychology, MdRemove, MdAdd } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
+import { warmUp, nextScramble } from '../utils/scrambleCache';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 import '../cubify.css';
@@ -13,11 +14,12 @@ import '../cubify.css';
 interface Case {
   name: string;
   alg: string;
-  rotation?: string;   // e.g. 'z2' — setup is computed as rotation + inverse(alg)
+  rotation?: string;
   defaultMask: string;
   group: string;
 }
 
+type CubifyMode = 'case' | 'scramble' | 'solve';
 
 const CASES: Case[] = [
   {
@@ -49,21 +51,21 @@ const CASES: Case[] = [
     group: '2-Look OLL',
   },
   {
-    name: 'T Perm (corners)',
+    name: 'T-Perm (corners)',
     alg: "R U R' U' R' F R2 U' R' U' R U R' F'",
     rotation: 'z2',
     defaultMask: 'pll-corn-dim',
     group: '2-Look PLL',
   },
   {
-    name: 'Ua Perm (edges)',
+    name: 'Ua-Perm (edges)',
     alg: "R2 U' R' U' R U R U R U' R",
     rotation: 'z2',
     defaultMask: 'pll-edge-dim',
     group: '2-Look PLL',
   },
   {
-    name: 'H Perm (edges)',
+    name: 'H-Perm (edges)',
     alg: "M2 U' M2 U2 M2 U' M2",
     rotation: 'z2 y2',
     defaultMask: 'pll-edge-dim',
@@ -105,45 +107,102 @@ const THEME_OPTIONS = (Object.keys(THEME_PRESETS) as ThemePresetName[])
 export default function CubifyPage() {
   const playerRef      = useRef<CubePlayerHandle>(null);
   const pendingPlayRef = useRef(false);
+  const modeRef        = useRef<CubifyMode>('case');
+  const solverRef      = useRef<CubeSolver | null>(null);
+
   const SUPERFLIP_IDX = CASES.findIndex(c => c.name === 'Superflip');
-  const [caseIdx,   setCaseIdx]   = useState(SUPERFLIP_IDX);
+  const [caseIdx,       setCaseIdx]       = useState(SUPERFLIP_IDX);
+  const [mode,          setMode]          = useState<CubifyMode>('case');
+  const [scrambleAlg,   setScrambleAlg]   = useState<string | null>(null);
+  const [solveAlg,      setSolveAlg]      = useState<string | null>(null);
+  const [scrambleDone,  setScrambleDone]  = useState(false);
+  const [isScrambling,  setIsScrambling]  = useState(false);
+  const [isSolving,     setIsSolving]     = useState(false);
+  const [thinking, setThinking] = useState(false);
+
   const [playing,   setPlaying]   = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const [mask,      setMask]      = useState(CASES[SUPERFLIP_IDX].defaultMask);
   const [theme,     setTheme]     = useState<ThemePresetName>('speed-dark');
   const [speed,     setSpeed]     = useState(1);
 
+  useEffect(() => {
+    warmUp();
+    const solver = new CubeSolver();
+    solverRef.current = solver;
+    return () => { solver.dispose(); };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.cursor = (isScrambling || isSolving) ? 'wait' : '';
+    return () => { document.body.style.cursor = ''; };
+  }, [isScrambling, isSolving]);
+
   const activeCase = CASES[caseIdx];
 
-  const handleMove = useCallback(({ index }: { index: number }) => {
-    setStepIndex(index);
-  }, []);
-  const handleComplete = useCallback(() => setPlaying(false), []);
+  // Derive active alg, setup, mask, and moves from current mode
+  const activeAlg = mode === 'case'
+    ? activeCase.alg
+    : mode === 'scramble'
+      ? (scrambleAlg ?? '')
+      : (solveAlg ?? '');
 
-  // Called by CubePlayerControls reset button — initiates the reset
-  const handleResetButton = useCallback(() => {
-    pendingPlayRef.current = false;
+  const activeSetup = mode === 'case'
+    ? CubeState.setupFromAlg(activeCase.alg, activeCase.rotation)
+    : mode === 'scramble'
+      ? ''
+      : (scrambleAlg ?? '');
+
+  const activeMask = mode === 'case' ? mask : 'full';
+  modeRef.current = mode;
+
+  const moves = activeAlg ? AlgParser.parse(activeAlg) : [];
+  const moveCount = moves.length;
+
+  const statusMessage =
+    (isScrambling || (mode === 'scramble' && (playing || thinking))) ? 'Scrambling… using WCA random-state method' :
+    (isSolving    || (mode === 'solve'    && (playing || thinking))) ? 'Solving… using Kociemba 2-phase method' :
+    null;
+
+  const autoPlay = useCallback(() => {
+    pendingPlayRef.current = true;
+    setThinking(true);
     setPlaying(false);
     setStepIndex(0);
     playerRef.current?.reset();
   }, []);
 
-  // Called by CubePlayer onReset event — player already reset, just sync state
+  const handleMove = useCallback(({ index }: { index: number }) => {
+    setStepIndex(index);
+  }, []);
+
+  // Stable identity — reads mode via ref to avoid stale closure
+  const handleComplete = useCallback(() => {
+    setPlaying(false);
+    if (modeRef.current === 'scramble') setScrambleDone(true);
+  }, []);
+
+  const handleResetButton = useCallback(() => {
+    pendingPlayRef.current = false;
+    setPlaying(false);
+    setStepIndex(0);
+    if (modeRef.current === 'scramble') setScrambleDone(false);
+    playerRef.current?.reset();
+  }, []);
+
   const handlePlayerReset = useCallback(() => {
     setStepIndex(0);
     if (pendingPlayRef.current) {
       pendingPlayRef.current = false;
-      setTimeout(() => setPlaying(true), 300);
+      setTimeout(() => { setPlaying(true); setThinking(false); }, 300);
     } else {
+      setThinking(false);
       setPlaying(false);
     }
   }, []);
 
-  const moveCount = activeCase.alg.split(' ').length;
-
   const handlePlayToggle = useCallback(() => {
     if (!playing && stepIndex >= moveCount) {
-      // At end — reset then play after a brief pause so the solved state is visible
       pendingPlayRef.current = true;
       setStepIndex(0);
       playerRef.current?.reset();
@@ -152,20 +211,58 @@ export default function CubifyPage() {
     }
   }, [playing, stepIndex, moveCount]);
 
-  const handleStepForward = useCallback(() => {
-    playerRef.current?.stepForward();
-  }, []);
-
-  const handleStepBackward = useCallback(() => {
-    playerRef.current?.stepBackward();
-  }, []);
+  const handleStepForward  = useCallback(() => { playerRef.current?.stepForward(); }, []);
+  const handleStepBackward = useCallback(() => { playerRef.current?.stepBackward(); }, []);
 
   const handleCaseChange = (idx: number) => {
+    setMode('case');
+    setScrambleAlg(null);
+    setSolveAlg(null);
     setPlaying(false);
     setStepIndex(0);
     setCaseIdx(idx);
     setMask(CASES[idx].defaultMask);
   };
+
+  const handleScramble = useCallback(async () => {
+    if (isScrambling) return;
+    setIsScrambling(true);
+    setIsSolving(false);
+    setScrambleDone(false);
+    setSolveAlg(null);
+    try {
+      const alg = await nextScramble();
+      setScrambleAlg(alg);
+      setSolveAlg(null);
+      setMode('scramble');
+      autoPlay();
+    } finally {
+      setIsScrambling(false);
+    }
+  }, [isScrambling, autoPlay]);
+
+  const handleSolve = useCallback(async () => {
+    if (!scrambleDone || !scrambleAlg || isSolving) return;
+    const solver = solverRef.current;
+    console.info('[handleSolve] solver:', solver, 'available:', solver?.available);
+    if (!solver?.available) { console.error('[handleSolve] solver not available'); return; }
+    setIsSolving(true);
+    try {
+      const state = await CubeState.fromAlg(scrambleAlg);
+      console.info('[handleSolve] state ready, calling solver…');
+      const result = await solver.solve(state);
+      console.info('[handleSolve] solve result:', result.alg, `(${result.elapsedMs}ms)`);
+      const alg = result.alg;
+      setSolveAlg(alg);
+      setMode('solve');
+      setScrambleDone(false);
+      autoPlay();
+    } catch (err) {
+      console.error('[solve] failed:', err);
+    } finally {
+      setIsSolving(false);
+    }
+  }, [scrambleDone, scrambleAlg, isSolving, autoPlay]);
 
   return (
     <CfopPageLayout pageTitle="Cubify" subtitle="3x3 cube visualization framework optimized for CFOP simulation">
@@ -181,19 +278,19 @@ export default function CubifyPage() {
                 }, {})
               ).map(([group, items]) => (
                 <optgroup key={group} label={group}>
-                  {items.map(({ name, idx }) => <option key={idx} value={idx}>{name}</option>)}
+                  {items.map(({ name, idx }) => <option key={idx} value={idx}>{name.toLowerCase()}</option>)}
                 </optgroup>
               ))}
             </select>
           </div>
           <div className="select" style={{ width: 148 }}>
-            <select style={{ width: '100%' }} value={mask} onChange={e => setMask(e.target.value)}>
+            <select style={{ width: '100%' }} value={mode !== 'case' ? 'full' : mask} onChange={e => setMask(e.target.value)}>
               {MASK_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
             </select>
           </div>
           <div className="select" style={{ width: 120 }}>
             <select style={{ width: '100%' }} value={theme} onChange={e => setTheme(e.target.value as ThemePresetName)}>
-              {THEME_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+              {THEME_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label.toLowerCase()}</option>)}
             </select>
           </div>
         </div>
@@ -202,9 +299,9 @@ export default function CubifyPage() {
         <div style={{ width: 320, height: 320, margin: '0 auto' }}>
           <CubePlayer
             ref={playerRef}
-            alg={activeCase.alg}
-            setup={CubeState.setupFromAlg(activeCase.alg, activeCase.rotation)}
-            stickering={mask || undefined}
+            alg={activeAlg}
+            setup={activeSetup}
+            stickering={activeMask || undefined}
             theme={theme}
             playing={playing}
             speed={speed}
@@ -216,39 +313,67 @@ export default function CubifyPage() {
         </div>
 
         <CubeMoveTape
-          moves={activeCase.alg.split(' ')}
+          moves={moves}
           stepIndex={stepIndex}
           style={{ marginTop: 12 }}
         />
 
-        <CubePlayerControls
-          playing={playing}
-          stepIndex={stepIndex}
-          moveCount={moveCount}
-          speed={speed}
-          onPlayToggle={handlePlayToggle}
-          onReset={handleResetButton}
-          onStepBackward={handleStepBackward}
-          onStepForward={handleStepForward}
-          onCameraReset={() => playerRef.current?.resetCamera()}
-          style={{ marginTop: 12 }}
-        />
-
-        <div className="cubify-speed-row">
-          <button
-            className="cubify-speed-btn"
-            onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
-            disabled={speed <= 0.5}
-            title="Slower"
-          >−</button>
-          <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
-          <button
-            className="cubify-speed-btn"
-            onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
-            disabled={speed >= 3}
-            title="Faster"
-          >+</button>
+        <div className="cubify-controls-row">
+          <CubePlayerControls
+            playing={playing}
+            stepIndex={stepIndex}
+            moveCount={moveCount}
+            size="sm"
+            onPlayToggle={handlePlayToggle}
+            onReset={handleResetButton}
+            onStepBackward={handleStepBackward}
+            onStepForward={handleStepForward}
+            onCameraReset={() => playerRef.current?.resetCamera()}
+          />
+          <div className="cubify-controls-secondary">
+            <div style={{ width: 1, height: 28, background: '#dbdbdb', flexShrink: 0 }} />
+            <button className="cubify-speed-btn" onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)} disabled={speed <= 0.5} title="Slower"><MdRemove /></button>
+            <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
+            <button className="cubify-speed-btn" onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)} disabled={speed >= 3} title="Faster"><MdAdd /></button>
+            <div style={{ width: 1, height: 28, background: '#dbdbdb', flexShrink: 0 }} />
+            <button
+              style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 38, height: 38, borderRadius: 8, flexShrink: 0,
+                border: '1px solid #dbdbdb', background: '#f5f5f5',
+                cursor: (isScrambling || isSolving || (playing && mode !== 'case')) ? 'default' : 'pointer',
+                color: '#363636', fontSize: 18,
+                opacity: (isScrambling || isSolving || (playing && mode !== 'case')) ? 0.35 : 1,
+              }}
+              onClick={handleScramble}
+              disabled={isScrambling || isSolving || (playing && mode !== 'case')}
+              title="Scramble (WCA random-state)"
+            >
+              <MdShuffle />
+            </button>
+            <button
+              style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 38, height: 38, borderRadius: 8, flexShrink: 0,
+                border: '1px solid #dbdbdb', background: '#f5f5f5',
+                cursor: (mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing) ? 'default' : 'pointer',
+                color: '#363636', fontSize: 18,
+                opacity: (mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing) ? 0.35 : 1,
+              }}
+              onClick={handleSolve}
+              disabled={mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing}
+              title="Solve (Kociemba 2-phase)"
+            >
+              <MdPsychology />
+            </button>
+          </div>
         </div>
+
+        {statusMessage && (
+          <div className="notification is-info is-light" style={{ padding: '0.5rem 1rem', marginTop: 10, textAlign: 'center', fontSize: '0.85rem', maxWidth: 640, margin: '10px auto 0' }}>
+            {statusMessage}
+          </div>
+        )}
 
         <details style={{ maxWidth: 640, margin: '32px auto 0', fontFamily: 'inherit' }}>
           <summary style={{
@@ -281,9 +406,18 @@ export default function CubifyPage() {
               layer: a Three.js 3×3-focused renderer with a clean theme system (face colours,
               plastic material, gap, bevel, surface finish), a stickering / masking API for CFOP
               case visualisation, a CubePlayer animation engine that emits move-level events, and a
-              PNG export pipeline for both 2D and 3D renders — single alg or bulk set. Where
-              cubing.js scramble generation requires a web worker setup that adds bundler complexity,
-              cubify ships a pure JS <code>CubeScramble</code> — no worker, no Vite config ceremony.
+              PNG export pipeline for both 2D and 3D renders — single alg or bulk set.
+            </p>
+            <p style={{ marginBottom: 10 }}>
+              The <strong>Scramble</strong> button (<MdShuffle style={{ verticalAlign: 'middle' }} />) generates a
+              random-state scramble via <code>CubeScramble</code>, which uses the{' '}
+              <a href="https://github.com/cubing/twips" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>twips</a>{' '}
+              WASM scrambler — a random-state generator using the same approach as WCA competitions. Scrambles are pre-generated in the background so the first one is ready
+              immediately; the cache refills after each use so wait time stays near zero.
+              The <strong>Solve</strong> button (<MdPsychology style={{ verticalAlign: 'middle' }} />) solves the
+              scrambled cube via <code>CubeSolver</code>, which uses the same{' '}
+              <a href="https://github.com/cubing/twips" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>twips</a>{' '}
+              WASM worker — a Kociemba two-phase solver that finds near-optimal solutions without blocking the UI.
             </p>
             <p style={{ marginBottom: 10 }}>
               Inspectable means two things. For a developer building a trainer app:

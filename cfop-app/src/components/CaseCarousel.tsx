@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import type { CfopAlgorithm } from './AlgorithmCard';
 import './CaseCarousel.css';
 
@@ -36,24 +36,29 @@ export function CaseCarousel({ algorithms, activeId, onSelect }: CaseCarouselPro
 
   return (
     <div className="case-carousel">
-      {algorithms.map((alg) => {
+      {algorithms.map((alg, i) => {
         const isActive = alg.id === activeId;
+        const showSeparator = i > 0 && alg.group && alg.group !== algorithms[i - 1].group;
         return (
-          <button
-            key={alg.id}
-            ref={isActive ? activeRef : null}
-            className={`case-carousel__item${isActive ? ' case-carousel__item--active' : ''}`}
-            onClick={() => onSelect(alg)}
-            aria-label={alg.name}
-            aria-pressed={isActive}
-          >
-            <img
-              src={alg.image}
-              alt={alg.name}
-              loading="lazy"
-              draggable={false}
-            />
-          </button>
+          <Fragment key={alg.id}>
+            {showSeparator && (
+              <div className="case-carousel-separator" />
+            )}
+            <button
+              ref={isActive ? activeRef : null}
+              className={`case-carousel-item${isActive ? ' case-carousel-item-active' : ''}`}
+              onClick={() => onSelect(alg)}
+              aria-label={alg.name}
+              aria-pressed={isActive}
+            >
+              <img
+                src={alg.image}
+                alt={alg.name}
+                loading="lazy"
+                draggable={false}
+              />
+            </button>
+          </Fragment>
         );
       })}
     </div>

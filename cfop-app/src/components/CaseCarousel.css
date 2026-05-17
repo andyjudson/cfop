@@ -1,6 +1,7 @@
 .case-carousel {
   display: flex;
   flex-direction: row;
+  justify-content: safe center;
   gap: 6px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -25,7 +26,7 @@
   border-radius: var(--radius-full);
 }
 
-.case-carousel__item {
+.case-carousel-item {
   flex: 0 0 64px;
   width: 64px;
   height: 64px;
@@ -41,23 +42,23 @@
   overflow: hidden;
 }
 
-.case-carousel__item:hover {
+.case-carousel-item:hover {
   border-color: var(--color-border-medium);
   background: var(--color-bg-muted);
   transform: translateY(-1px);
 }
 
-.case-carousel__item--active {
+.case-carousel-item-active {
   border-color: var(--color-accent-primary);
   background: var(--color-bg-emphasis);
   box-shadow: 0 0 0 2px var(--color-accent-primary);
 }
 
-.case-carousel__item--active:hover {
+.case-carousel-item-active:hover {
   border-color: var(--color-accent-primary);
 }
 
-.case-carousel__item img {
+.case-carousel-item img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -65,8 +66,16 @@
   pointer-events: none;
 }
 
+.case-carousel-separator {
+  flex: 0 0 1px;
+  width: 1px;
+  align-self: stretch;
+  background: var(--color-border-medium);
+  margin: 4px 2px;
+}
+
 @media (max-width: 480px) {
-  .case-carousel__item {
+  .case-carousel-item {
     flex: 0 0 52px;
     width: 52px;
     height: 52px;

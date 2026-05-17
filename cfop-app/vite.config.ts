@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, searchForWorkspaceRoot } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -24,5 +24,19 @@ export default defineConfig(({ mode }) => {
       } : undefined,
       dedupe: ['cubing'],
     },
+    // Allow Vite to serve cubify's node_modules in local dev — the twips WASM
+    // worker resolves chunk paths relative to its source location in cubify/packages/...
+    // searchForWorkspaceRoot restores Vite's default auto-detected root (setting
+    // fs.allow explicitly disables auto-detection, so we must add it back explicitly).
+    ...(CUBIFY_LOCAL ? {
+      server: {
+        fs: {
+          allow: [
+            searchForWorkspaceRoot(process.cwd()),
+            resolve(__dirname, '../../cubify'),
+          ],
+        },
+      },
+    } : {}),
   }
 })

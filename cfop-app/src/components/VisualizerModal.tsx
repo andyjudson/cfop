@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { MdAdd, MdRemove } from 'react-icons/md';
 import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
 import { AlgParser, CubeState } from '@andyjudson/cubify';
@@ -274,21 +275,6 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
               style={{ width: '100%', height: '100%' }}
             />
           )}
-          <div className="cubify-speed-row cubify-speed-overlay">
-            <button
-              className="cubify-speed-btn"
-              onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
-              disabled={speed <= 0.5}
-              title="Slower"
-            >−</button>
-            <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
-            <button
-              className="cubify-speed-btn"
-              onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
-              disabled={speed >= 3}
-              title="Faster"
-            >+</button>
-          </div>
         </div>
 
         {loadState === 'ready' && (
@@ -304,12 +290,29 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 playing={playing}
                 stepIndex={currentStep}
                 moveCount={moves.length}
+                size="sm"
                 onPlayToggle={handlePlayToggle}
                 onReset={() => { pendingPlayRef.current = false; setPlaying(false); setCurrentStep(0); playerRef.current?.reset(); }}
                 onStepBackward={handleStepBackward}
                 onStepForward={handleStepForward}
                 onCameraReset={() => playerRef.current?.resetCamera()}
               />
+              <div className="cubify-controls-secondary">
+                <div style={{ width: 1, height: 28, background: '#dbdbdb', flexShrink: 0 }} />
+                <button
+                  className="cubify-speed-btn"
+                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
+                  disabled={speed <= 0.5}
+                  title="Slower"
+                ><MdRemove /></button>
+                <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
+                <button
+                  className="cubify-speed-btn"
+                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
+                  disabled={speed >= 3}
+                  title="Faster"
+                ><MdAdd /></button>
+              </div>
             </div>
           </>
         )}

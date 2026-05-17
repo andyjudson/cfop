@@ -10,6 +10,7 @@ import './VisualizerModal.css';
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type LoadState = 'loading' | 'ready' | 'error';
+type AlgSet = 'OLL' | 'PLL' | '2LK';
 
 interface VisualizerModalProps {
   onClose: () => void;
@@ -17,18 +18,35 @@ interface VisualizerModalProps {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-async function fetchSet(set: 'OLL' | 'PLL'): Promise<CfopAlgorithm[]> {
-  const file = set === 'OLL' ? 'algs-cfop-oll.json' : 'algs-cfop-pll.json';
-  const res = await fetch(import.meta.env.BASE_URL + 'data/' + file);
+const ESSENTIAL_IDS = ['oll_cross_line', 'oll_cross_hook', 'oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
+const GROUP_ORDER    = ['Essential', 'OLL cases', 'PLL cases'];
+
+const SET_FILES: Record<AlgSet, string> = {
+  OLL: 'algs-cfop-oll.json',
+  PLL: 'algs-cfop-pll.json',
+  '2LK': 'algs-cfop-bgr.json',
+};
+
+async function fetchSet(set: AlgSet): Promise<CfopAlgorithm[]> {
+  const res = await fetch(import.meta.env.BASE_URL + 'data/' + SET_FILES[set]);
   if (!res.ok) throw new Error(`Failed to load ${set} data`);
   const text = await res.text();
   if (text.trimStart().startsWith('<')) throw new Error(`${set} data file not found`);
   return JSON.parse(text) as CfopAlgorithm[];
 }
 
+function addBgrGroups(algs: CfopAlgorithm[]): CfopAlgorithm[] {
+  return algs.map(a => ({
+    ...a,
+    group: a.method === 'oll' ? 'OLL cases' : 'PLL cases',
+  }));
+}
+
 function getGroups(algorithms: CfopAlgorithm[]): string[] {
-  const unique = [...new Set(algorithms.map(a => a.group ?? ''))].filter(Boolean).sort();
-  return ['all', ...unique];
+  const unique = [...new Set(algorithms.map(a => a.group ?? ''))].filter(Boolean);
+  const known  = GROUP_ORDER.filter(g => unique.includes(g));
+  const rest   = unique.filter(g => !GROUP_ORDER.includes(g)).sort();
+  return ['all', ...known, ...rest];
 }
 
 const getMask = (method?: string): string => {
@@ -42,9 +60,14 @@ const getMask = (method?: string): string => {
 export function VisualizerModal({ onClose }: VisualizerModalProps) {
   const [ollData, setOllData] = useState<CfopAlgorithm[]>([]);
   const [pllData, setPllData] = useState<CfopAlgorithm[]>([]);
+  const [bgrData, setBgrData] = useState<CfopAlgorithm[]>([]);
   const [loadState, setLoadState] = useState<LoadState>('loading');
-  const [selectedSet, setSelectedSet] = useState<'OLL' | 'PLL'>('PLL');
-  const [selectedGroup, setSelectedGroup] = useState<string>('all');
+  const [selectedSet, setSelectedSet] = useState<AlgSet>(
+    () => (localStorage.getItem('cfop-viz-set') as AlgSet | null) ?? 'PLL'
+  );
+  const [selectedGroup, setSelectedGroup] = useState<string>(
+    () => localStorage.getItem('cfop-viz-group') ?? 'all'
+  );
   const [currentAlg, setCurrentAlg] = useState<CfopAlgorithm | null>(null);
 
   const [playing,     setPlaying]     = useState(false);
@@ -55,27 +78,41 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
 
   // Load OLL and PLL data on mount
   useEffect(() => {
-    Promise.all([fetchSet('OLL'), fetchSet('PLL')])
-      .then(([oll, pll]) => {
+    Promise.all([fetchSet('OLL'), fetchSet('PLL'), fetchSet('2LK')])
+      .then(([oll, pll, bgr]) => {
+        const bgrTagged = addBgrGroups(bgr);
         setOllData(oll);
         setPllData(pll);
+        setBgrData(bgrTagged);
         setLoadState('ready');
-        setCurrentAlg(pll[0] ?? null);
+        const restoredSet   = (localStorage.getItem('cfop-viz-set') as AlgSet | null) ?? 'PLL';
+        const restoredGroup = localStorage.getItem('cfop-viz-group') ?? 'all';
+        const data = restoredSet === 'OLL' ? oll : restoredSet === 'PLL' ? pll : bgrTagged;
+        const pool = restoredGroup === 'all'       ? data
+                   : restoredGroup === 'Essential' ? data.filter(a => ESSENTIAL_IDS.includes(a.id))
+                   :                                 data.filter(a => a.group === restoredGroup);
+        setCurrentAlg((pool.length ? pool : data)[0] ?? null);
       })
       .catch(() => setLoadState('error'));
   }, []);
 
-  const activeData = useMemo(
-    () => (selectedSet === 'OLL' ? ollData : pllData),
-    [selectedSet, ollData, pllData],
-  );
+  const activeData = useMemo(() => {
+    if (selectedSet === 'OLL') return ollData;
+    if (selectedSet === 'PLL') return pllData;
+    return bgrData;
+  }, [selectedSet, ollData, pllData, bgrData]);
 
-  const availableGroups = useMemo(() => getGroups(activeData), [activeData]);
+  const availableGroups = useMemo(() => {
+    const groups = getGroups(activeData);
+    if (selectedSet === '2LK') return [groups[0], 'Essential', ...groups.slice(1)];
+    return groups;
+  }, [activeData, selectedSet]);
 
-  const shufflePool = useMemo(
-    () => selectedGroup === 'all' ? activeData : activeData.filter(a => a.group === selectedGroup),
-    [activeData, selectedGroup],
-  );
+  const shufflePool = useMemo(() => {
+    if (selectedGroup === 'all') return activeData;
+    if (selectedGroup === 'Essential') return activeData.filter(a => ESSENTIAL_IDS.includes(a.id));
+    return activeData.filter(a => a.group === selectedGroup);
+  }, [activeData, selectedGroup]);
 
   const moves = useMemo(
     () => (currentAlg ? AlgParser.parse(currentAlg.notation) : []),
@@ -92,16 +129,21 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
     [currentAlg],
   );
 
-  const handleSetChange = (set: 'OLL' | 'PLL') => {
+  const handleSetChange = (set: AlgSet) => {
     setSelectedSet(set);
     setSelectedGroup('all');
-    const data = set === 'OLL' ? ollData : pllData;
+    localStorage.setItem('cfop-viz-set', set);
+    localStorage.setItem('cfop-viz-group', 'all');
+    const data = set === 'OLL' ? ollData : set === 'PLL' ? pllData : bgrData;
     setCurrentAlg(data[0] ?? null);
   };
 
   const handleGroupChange = (group: string) => {
     setSelectedGroup(group);
-    const pool = group === 'all' ? activeData : activeData.filter(a => a.group === group);
+    localStorage.setItem('cfop-viz-group', group);
+    const pool = group === 'all'       ? activeData
+               : group === 'Essential' ? activeData.filter(a => ESSENTIAL_IDS.includes(a.id))
+               :                         activeData.filter(a => a.group === group);
     setCurrentAlg(pool[0] ?? null);
   };
 
@@ -188,9 +230,10 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
               <div className="select">
                 <select
                   value={selectedSet}
-                  onChange={e => handleSetChange(e.target.value as 'OLL' | 'PLL')}
+                  onChange={e => handleSetChange(e.target.value as AlgSet)}
                   aria-label="Algorithm set"
                 >
+                  <option value="2LK">2-Look (16)</option>
                   <option value="OLL">OLL (57)</option>
                   <option value="PLL">PLL (21)</option>
                 </select>

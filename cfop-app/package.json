@@ -15,8 +15,8 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@andyjudson/cubify": "^1.3.2",
-    "@andyjudson/cubify-react": "^1.3.2",
+    "@andyjudson/cubify": "^1.3.3",
+    "@andyjudson/cubify-react": "^1.3.3",
     "bulma": "^1.0.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

@@ -298,7 +298,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 onCameraReset={() => playerRef.current?.resetCamera()}
               />
               <div className="cubify-controls-secondary">
-                <div style={{ width: 1, height: 28, background: '#dbdbdb', flexShrink: 0 }} />
+                <div className="cubify-controls-separator" />
                 <button
                   className="cubify-speed-btn"
                   onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}

@@ -331,11 +331,11 @@ export default function CubifyPage() {
             onCameraReset={() => playerRef.current?.resetCamera()}
           />
           <div className="cubify-controls-secondary">
-            <div style={{ width: 1, height: 28, background: '#dbdbdb', flexShrink: 0 }} />
+            <div className="cubify-controls-separator" />
             <button className="cubify-speed-btn" onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)} disabled={speed <= 0.5} title="Slower"><MdRemove /></button>
             <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
             <button className="cubify-speed-btn" onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)} disabled={speed >= 3} title="Faster"><MdAdd /></button>
-            <div style={{ width: 1, height: 28, background: '#dbdbdb', flexShrink: 0 }} />
+            <div className="cubify-controls-separator" />
             <button
               style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',

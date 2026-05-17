@@ -213,6 +213,34 @@
   }
 }
 
+@media (max-width: 600px) {
+  .modal-backdrop {
+    align-items: stretch;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    border: none;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .cube-player-container {
+    height: clamp(260px, 40dvh, 340px);
+    max-height: none;
+  }
+
+  .controls-panel .cubify-controls-separator {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
   .visualizer-selector-row {
     flex-wrap: wrap;

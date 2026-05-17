@@ -10,13 +10,12 @@ CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Cross, F
 - About page with highlights of cubing history and background context to this project
 - Algorithm reference grids with expandable groups and session-persistent state
 - OLL and PLL probability scores and WCA case numbers on every card
-- 3D algorithm visualiser modal using cubify with play/pause/rewind, speed control, and move-by-move highlight
-- Cubify integration harness — animated algorithm player with 2-look OLL/PLL + fun case selector, mask stickering, theme presets (rubiks/speed-dark/speed-light), move tape
+- 3D algorithm visualiser modal using cubify, set/group filter (2-Look, full OLL, full PLL), play/pause/rewind, speed control, move-by-move highlight; full-screen on mobile
+- Cubify integration harness — animated algorithm player with case selector, mask stickering, theme presets; WCA random-state scramble generator and Kociemba 2-phase solver (both via twips WASM worker)
+- Practice timer full-screen on mobile
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Dark mode with localStorage persistence; mobile-responsive (iPhone 16 baseline)
 - WCA World Record evolution chart and table
-
-**Directory:** `/cfop-app/` • [README](cfop-app/README.md)
 
 ## Algorithm Data
 
@@ -44,6 +43,16 @@ npm run dev -- --host 127.0.0.1 --port 5173
 ```
 
 Production build: `npm run build` → `dist/`
+
+### Local cubify development
+
+`CUBIFY_LOCAL=1` in `cfop-app/.env.local` aliases `@andyjudson/cubify` and `@andyjudson/cubify-react` to the local TypeScript sources — no build step or publish needed, changes are picked up via HMR:
+
+```bash
+echo "CUBIFY_LOCAL=1" >> cfop-app/.env.local
+```
+
+CI and fresh clones never have `.env.local` and always install from GitHub Packages.
 
 ## Testing
 

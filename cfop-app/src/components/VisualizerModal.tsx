@@ -18,8 +18,8 @@ interface VisualizerModalProps {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-const ESSENTIAL_IDS = ['oll_cross_line', 'oll_cross_hook', 'oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
-const GROUP_ORDER    = ['Essential', 'OLL cases', 'PLL cases'];
+const ESSENTIAL_IDS   = ['oll_cross_line', 'oll_cross_hook', 'oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
+const BGR_GROUPS_ALL  = ['all', 'Essential', 'Step 1 · OLL edges', 'Step 2 · OLL corners', 'Step 3 · PLL corners', 'Step 4 · PLL edges'];
 
 const SET_FILES: Record<AlgSet, string> = {
   OLL: 'algs-cfop-oll.json',
@@ -38,15 +38,15 @@ async function fetchSet(set: AlgSet): Promise<CfopAlgorithm[]> {
 function addBgrGroups(algs: CfopAlgorithm[]): CfopAlgorithm[] {
   return algs.map(a => ({
     ...a,
-    group: a.method === 'oll' ? 'OLL cases' : 'PLL cases',
+    group: a.method === 'oll'
+      ? (a.group === 'edge' ? 'Step 1 · OLL edges' : 'Step 2 · OLL corners')
+      : (a.group === 'edge' ? 'Step 4 · PLL edges' : 'Step 3 · PLL corners'),
   }));
 }
 
 function getGroups(algorithms: CfopAlgorithm[]): string[] {
-  const unique = [...new Set(algorithms.map(a => a.group ?? ''))].filter(Boolean);
-  const known  = GROUP_ORDER.filter(g => unique.includes(g));
-  const rest   = unique.filter(g => !GROUP_ORDER.includes(g)).sort();
-  return ['all', ...known, ...rest];
+  const unique = [...new Set(algorithms.map(a => a.group ?? ''))].filter(Boolean).sort();
+  return ['all', ...unique];
 }
 
 const getMask = (method?: string): string => {
@@ -85,13 +85,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
         setPllData(pll);
         setBgrData(bgrTagged);
         setLoadState('ready');
-        const restoredSet   = (localStorage.getItem('cfop-viz-set') as AlgSet | null) ?? 'PLL';
-        const restoredGroup = localStorage.getItem('cfop-viz-group') ?? 'all';
-        const data = restoredSet === 'OLL' ? oll : restoredSet === 'PLL' ? pll : bgrTagged;
-        const pool = restoredGroup === 'all'       ? data
-                   : restoredGroup === 'Essential' ? data.filter(a => ESSENTIAL_IDS.includes(a.id))
-                   :                                 data.filter(a => a.group === restoredGroup);
-        setCurrentAlg((pool.length ? pool : data)[0] ?? null);
+        // currentAlg will be set reactively by the shufflePool effect once state settles
       })
       .catch(() => setLoadState('error'));
   }, []);
@@ -103,13 +97,12 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   }, [selectedSet, ollData, pllData, bgrData]);
 
   const availableGroups = useMemo(() => {
-    const groups = getGroups(activeData);
-    if (selectedSet === '2LK') return [groups[0], 'Essential', ...groups.slice(1)];
-    return groups;
+    if (selectedSet === '2LK') return BGR_GROUPS_ALL;
+    return getGroups(activeData);
   }, [activeData, selectedSet]);
 
   const shufflePool = useMemo(() => {
-    if (selectedGroup === 'all') return activeData;
+    if (selectedGroup === 'all')       return activeData;
     if (selectedGroup === 'Essential') return activeData.filter(a => ESSENTIAL_IDS.includes(a.id));
     return activeData.filter(a => a.group === selectedGroup);
   }, [activeData, selectedGroup]);
@@ -134,18 +127,20 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
     setSelectedGroup('all');
     localStorage.setItem('cfop-viz-set', set);
     localStorage.setItem('cfop-viz-group', 'all');
-    const data = set === 'OLL' ? ollData : set === 'PLL' ? pllData : bgrData;
-    setCurrentAlg(data[0] ?? null);
   };
 
   const handleGroupChange = (group: string) => {
     setSelectedGroup(group);
     localStorage.setItem('cfop-viz-group', group);
-    const pool = group === 'all'       ? activeData
-               : group === 'Essential' ? activeData.filter(a => ESSENTIAL_IDS.includes(a.id))
-               :                         activeData.filter(a => a.group === group);
-    setCurrentAlg(pool[0] ?? null);
   };
+
+  // Sync currentAlg to first in shufflePool whenever pool changes or alg drops out of it
+  useEffect(() => {
+    if (shufflePool.length === 0) return;
+    if (!shufflePool.find(a => a.id === currentAlg?.id)) {
+      setCurrentAlg(shufflePool[0]);
+    }
+  }, [shufflePool]);
 
   // Reset playback state when algorithm changes
   useEffect(() => {
@@ -233,9 +228,9 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                   onChange={e => handleSetChange(e.target.value as AlgSet)}
                   aria-label="Algorithm set"
                 >
-                  <option value="2LK">2-Look (16)</option>
-                  <option value="OLL">OLL (57)</option>
-                  <option value="PLL">PLL (21)</option>
+                  <option value="2LK">2-Look OLL + PLL</option>
+                  <option value="OLL">1-Look OLL</option>
+                  <option value="PLL">1-Look PLL</option>
                 </select>
               </div>
               <div className="select">

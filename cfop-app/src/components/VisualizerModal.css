@@ -28,6 +28,9 @@
   width: 580px;
   max-height: 92vh;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
   box-shadow: var(--shadow-modal);
   animation: slideUp 0.3s ease-out;
 }
@@ -53,7 +56,9 @@
 
 .cube-player-container {
   width: 100%;
-  height: 280px;
+  flex: 1 1 auto;
+  min-height: 160px;
+  max-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,7 +202,7 @@
   }
 
   .cube-player-container {
-    height: 220px;
+    max-height: 220px;
   }
 
   .controls-panel {

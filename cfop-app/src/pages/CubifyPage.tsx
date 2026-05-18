@@ -393,20 +393,20 @@ export default function CubifyPage() {
               <strong>Cubify</strong> is a 3×3 cube rendering and logic library that delegates permutation
               state and move application to <a href="https://github.com/cubing/cubing.js" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>cubing.js</a> as ground truth, then owns the rendering
               layer itself. Where TwistyPlayer is a self-contained component optimised for standalone
-              use, cubify is designed for embedding — a renderer built to sit inside a custom app
-              with its own UI and design language. That means two things: cube state is a first-class
-              value you can read, diff, and react to at any point; and the visual layer is fully
-              decoupled — face colours, plastic, gap, bevel, and surface finish are all driven by a
-              typed theme object that integrates with your own CSS custom properties, so the cube
-              looks like it belongs in your app rather than being dropped in from somewhere else.
+              use, cubify is designed for embedding — built to sit inside a custom app with its own
+              UI and design language. Cube state is a first-class value you can read, diff, and react
+              to at any point. The rendering layer is fully decoupled: a Three.js renderer with a
+              typed theme system (face colours, plastic material, gap, bevel, surface finish), a
+              stickering / masking API for CFOP case visualisation, a <code>CubePlayer</code> animation engine
+              that emits move-level events, and a PNG export pipeline for both 2D and 3D renders.
             </p>
             <p style={{ marginBottom: 10 }}>
-              The split is intentional — cubing.js solves the hard problem (KPattern permutation
-              state, WCA-correct move application, puzzle definitions) and cubify owns the rendering
-              layer: a Three.js 3×3-focused renderer with a clean theme system (face colours,
-              plastic material, gap, bevel, surface finish), a stickering / masking API for CFOP
-              case visualisation, a CubePlayer animation engine that emits move-level events, and a
-              PNG export pipeline for both 2D and 3D renders — single alg or bulk set.
+              Inspectable means two things. For a developer building a trainer app:
+              live permutation state via <code>player.state</code>, move-level events (<code>onMove</code>, <code>onComplete</code>),
+              and a plain canvas you can read from devtools without a shadow root in the way.
+              For a developer working on the library: the <a href="https://github.com/andyjudson/cubify/tree/main/cubify-harness" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>interactive harness</a> exposes
+              KPattern slot data, face arrays, corner and edge orientation, and applied move history
+              in real time — the same debug surface used to build and verify the renderer itself.
             </p>
             <p style={{ marginBottom: 10 }}>
               The <strong>Scramble</strong> button (<MdShuffle style={{ verticalAlign: 'middle' }} />) generates a
@@ -420,15 +420,7 @@ export default function CubifyPage() {
               WASM worker — a Kociemba two-phase solver that finds near-optimal solutions without blocking the UI.
             </p>
             <p style={{ marginBottom: 10 }}>
-              Inspectable means two things. For a developer building a trainer app:
-              live permutation state via <code>player.state</code>, move-level events (<code>onMove</code>, <code>onComplete</code>),
-              and a plain canvas you can read from devtools without a shadow root in the way.
-              For a developer working on the library: the <a href="https://github.com/andyjudson/cubify/tree/main/cubify-harness" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>interactive harness</a> exposes
-              KPattern slot data, face arrays, corner and edge orientation, and applied move history
-              in real time — the same debug surface used to build and verify the renderer itself.
-            </p>
-            <p style={{ marginBottom: 10 }}>
-              The React wrapper is a thin layer — <code>{'<CubePlayer>'}</code> and <code>{'<CubeState>'}</code> manage
+              The React wrapper is a thin layer — <code>{'<CubePlayer>'}</code>, <code>{'<CubePlayerControls>'}</code>, and <code>{'<CubeState>'}</code> manage
               the mount/unmount lifecycle and expose a prop-driven interface, so consumers get
               declarative control without the imperative boilerplate. The <a href="https://github.com/andyjudson/cubify/tree/main/packages/cubify-react/src" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>React package</a> lives in the cubify repo.
             </p>

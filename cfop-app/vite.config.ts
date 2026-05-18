@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
         '@andyjudson/cubify-react':
           resolve(__dirname, '../../cubify/packages/cubify-react/src/index.ts'),
       } : undefined,
-      dedupe: ['cubing'],
+      dedupe: ['cubing', 'react', 'react-dom'],
     },
     // Allow Vite to serve cubify's node_modules in local dev — the twips WASM
     // worker resolves chunk paths relative to its source location in cubify/packages/...

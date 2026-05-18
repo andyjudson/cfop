@@ -217,7 +217,7 @@ export default function AboutPage() {
       <section className="section about-section">
         <h2 className="title is-4 section-title">World Cube Association</h2>
         <p className="mt-3">
-          The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 5-3 seconds range for single solves and 4-5 seconds for averages - 🤯 just incredible!! CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency, the skill of its practitioners, and the shifts in cube engineering.
+          The <a href="https://www.worldcubeassociation.org/" target="_blank" rel="noreferrer">World Cube Association (WCA)</a> was established in 2004 to govern official competitions across hundreds of events, tracking times from the casual minute-plus range all the way to recent <a href="https://www.worldcubeassociation.org/results/records?event_id=333&show=mixed+history" target="_blank" rel="noreferrer">world records</a> in the 3-5 seconds range for single and average solves - 🤯 just incredible!! CFOP is the method used by the vast majority of top competitors, so these records are a testament to the method's efficiency, the skill of its practitioners, and the shifts in cube engineering.
         </p>
         <h4 className="title is-5 wca-subheading">WR Legends</h4>
         <ErrorBoundary><WrLegendsTable legends={legends} /></ErrorBoundary>

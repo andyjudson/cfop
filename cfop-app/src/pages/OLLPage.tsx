@@ -58,7 +58,8 @@ function OLLPage() {
       introContent={
         <p className="mb-0">
           <strong>OLL</strong> (Orientation of Last Layer) - The goal of the third step is to make the top face
-          a single color. There are 57 total cases, or 10 when using 2-look method.
+          a single color. There are 57 total cases, or 10 when using 2-look method.{' '}
+          Recognition comes down to edge orientation first — if all four are correct, you only need to identify corner orientation.
         </p>
       }
     >

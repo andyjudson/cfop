@@ -58,7 +58,8 @@ function PLLPage() {
       introContent={
         <p className="mb-0">
           <strong>PLL</strong> (Permutation of Last Layer) - The goal of the fourth step is to solve the cube by
-          repositioning last-layer pieces. There are 21 total cases, or 6 when using 2-look method.
+          repositioning last-layer pieces. There are 21 total cases, or 6 when using 2-look method.{' '}
+          Headlights — two matching corners on the same face — appear in most cases and are the fastest recognition anchor.
         </p>
       }
     >

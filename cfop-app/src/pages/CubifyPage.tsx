@@ -269,7 +269,7 @@ export default function CubifyPage() {
       <section className="section" style={{ paddingTop: '1rem' }}>
         {/* Selectors */}
         <div className="cubify-select-row">
-          <div className="select" style={{ width: 148 }}>
+          <div className="select" style={{ width: 120 }}>
             <select style={{ width: '100%' }} value={caseIdx} onChange={e => handleCaseChange(Number(e.target.value))}>
               {Object.entries(
                 CASES.reduce<Record<string, { name: string; idx: number }[]>>((acc, c, i) => {
@@ -283,7 +283,7 @@ export default function CubifyPage() {
               ))}
             </select>
           </div>
-          <div className="select" style={{ width: 148 }}>
+          <div className="select" style={{ width: 120 }}>
             <select style={{ width: '100%' }} value={mode !== 'case' ? 'full' : mask} onChange={e => setMask(e.target.value)}>
               {MASK_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
             </select>
@@ -296,7 +296,7 @@ export default function CubifyPage() {
         </div>
 
         {/* Cube */}
-        <div style={{ width: 320, height: 320, margin: '0 auto' }}>
+        <div style={{ width: 290, height: 290, margin: '0 auto' }}>
           <CubePlayer
             ref={playerRef}
             alg={activeAlg}

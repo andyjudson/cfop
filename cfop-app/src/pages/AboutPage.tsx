@@ -106,11 +106,11 @@ export default function AboutPage() {
             memorizing algorithms, using pattern recognition and logical thinking, and try to minimize re-grips and cube rotations.
           </li>
           <li>
-            <strong>2-Look CFOP</strong> — The recommended starting point for the last layer. Uses 2-Look OLL and PLL with only 9-12
+            <strong>2-Look OLL + PLL</strong> — The recommended starting point for the last layer. Uses 2-Look OLL and PLL with only 9-12
             algorithms. Achievable in 1-2 minutes per solve, with the probability of repetition. This is the level I'm at and content with — I can see the pieces moving and understand the logic behind each step, while having a manageable number of algorithms to learn.
           </li>
           <li>
-            <strong>1-Look CFOP</strong> — If you have mastered muscle memory, learn PLL cases, then OLL cases, and lastly algorithmic F2L cases for maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery, combined with advanced techniques like look-ahead and finger tricks. I'm never going to reach this level, but it's fascinating to watch the pros!
+            <strong>1-Look OLL + PLL</strong> — If you have mastered muscle memory, learn PLL cases, then OLL cases, and lastly algorithmic F2L cases for maximum efficiency. Achieving consistent sub-30-second solves typically requires this level of mastery, combined with advanced techniques like look-ahead and finger tricks. I'm never going to reach this level, but it's fascinating to watch the pros!
           </li>
         </ul>
       </section>

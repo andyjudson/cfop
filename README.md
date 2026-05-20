@@ -1,25 +1,23 @@
-# cfop
+# CFOP learning app
 
-CFOP (Rubik's cube) learning companion. Covers the full CFOP method — Cross, F2L, OLL, PLL — with algorithm reference grids, an interactive 3D visualiser, a practice timer with real WCA competition data, and a WR evolution chart.
+Rubik's cube CFOP method learning companion, covers - Cross, F2L, OLL, PLL — with algorithm reference grids, an interactive 3D visualiser, a practice timer with real WCA competition data, and a WR evolution chart.
 
 **Live app:** https://andyjudson.github.io/cfop/
 
 ## Features
 
-- Full CFOP navigation (Notation, Intuitive, Beginner 2-Look, F2L, OLL, PLL)
 - About page with highlights of cubing history and background context to this project
-- Algorithm reference grids with expandable groups and session-persistent state
-- OLL and PLL probability scores and WCA case numbers on every card
-- 3D algorithm visualiser modal using cubify, set/group filter (2-Look, full OLL, full PLL), play/pause/rewind, speed control, move-by-move highlight; full-screen on mobile
-- Cubify integration harness — animated algorithm player with case selector, mask stickering, theme presets; WCA random-state scramble generator and Kociemba 2-phase solver (both via twips WASM worker)
-- Practice timer full-screen on mobile
+- Full CFOP method and algorithm reference sheets (Notation, Intuitive, Beginner 2-Look, F2L, OLL, PLL)
+- 3D algorithm visualiser modal using cubify, set/group filter (2-Look, full OLL, full PLL) with local persistence, play/pause/rewind, speed control, move-by-move highlight
+- OLL and PLL probability scores and WCA case numbers
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
-- Dark mode with localStorage persistence; mobile-responsive (iPhone 16 baseline)
-- WCA World Record evolution chart and table
+- Light/Dark mode with local persistence; mobile-responsive (iPhone 16 baseline)
+- Cubify integration harness — demostrator for algorithm simulation library with case selector, mask stickering, theme presets; WCA random-state scramble generator and Kociemba 2-phase solver (both via twips WASM worker)
+- WCA World Record evolution chart and legends table
 
-## Algorithm Data
+## Json Data
 
-Algorithm sets are stored as JSON in `cfop-app/public/data/`:
+Algorithm sets and WCA event data are stored as JSON in `cfop-app/public/data/`:
 
 | File | Content |
 |------|---------|
@@ -31,7 +29,7 @@ Algorithm sets are stored as JSON in `cfop-app/public/data/`:
 | `wca-wr-legends.json` | Per-person WR summary; current holders flagged |
 | `wca-beat-the-champion.json` | Finals results + scrambles for WR events and championships |
 
-All entries include `id`, `name`, `notation`, `group`, `method`, `setup`, and optional `mask`, `prob`, `wca_id` fields.
+Algorithm data model include `id`, `name`, `notation`, `group`, `method`, `setup`, and optional `mask`, `prob`, `wca_id` fields.
 
 ## Development
 
@@ -79,7 +77,7 @@ npx playwright test
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-Note: Cubing algorithms are mathematical sequences in the public domain. This project uses [cubing.js](https://github.com/cubing/cubing.js) (MPL-2.0) for visualization.
+Note: Cubing algorithms are mathematical sequences in the public domain.
 
 ---
 

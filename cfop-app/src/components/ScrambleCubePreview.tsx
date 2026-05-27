@@ -1,5 +1,5 @@
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
-import { CubeState } from '@andyjudson/cubify-react';
+import { CubeStateComponent } from '@andyjudson/cubify-react';
 import './ScrambleCubePreview.css';
 
 interface ScrambleCubePreviewProps {
@@ -20,7 +20,7 @@ export function ScrambleCubePreview({ scramble, expanded, onToggleExpand }: Scra
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggleExpand(); } }}
     >
       <div className={`scramble-cube-canvas${expanded ? ' scramble-cube-canvas--expanded' : ''}`}>
-        <CubeState alg={scramble} theme="speed-dark" style={{ width: '100%', height: '100%' }} />
+        <CubeStateComponent alg={scramble} theme="speed-dark" style={{ width: '100%', height: '100%' }} />
       </div>
       <span className="scramble-cube-hint">
         {expanded ? <MdFullscreenExit size={14} /> : <MdFullscreen size={14} />}

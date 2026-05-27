@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { MdAdd, MdRemove } from 'react-icons/md';
-import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
+import { CubePlayerComponent, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
 import { AlgParser, CubeState } from '@andyjudson/cubify';
 import type { CfopAlgorithm } from './AlgorithmCard';
@@ -261,7 +261,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
 
         <div className="cube-player-container">
           {currentAlg && (
-            <CubePlayer
+            <CubePlayerComponent
               ref={playerRef}
               alg={currentAlg.notation}
               setup={setup}

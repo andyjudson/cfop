@@ -1,9 +1,9 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
-import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser, CubeSolver } from '@andyjudson/cubify';
-import type { ThemePresetName } from '@andyjudson/cubify';
+import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser, CfopSolver } from '@andyjudson/cubify';
+import type { ThemePresetName, SolveStage } from '@andyjudson/cubify';
 import { MdInfo, MdShuffle, MdPsychology, MdRemove, MdAdd } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 import { warmUp, nextScramble } from '../utils/scrambleCache';
@@ -108,17 +108,21 @@ export default function CubifyPage() {
   const playerRef      = useRef<CubePlayerHandle>(null);
   const pendingPlayRef = useRef(false);
   const modeRef        = useRef<CubifyMode>('case');
-  const solverRef      = useRef<CubeSolver | null>(null);
+  const cfopSolverRef  = useRef<CfopSolver | null>(null);
+  const cfopStagesRef  = useRef<SolveStage[]>([]);
+  const cfopStageIdxRef = useRef<number>(0);
+  const cfopSetupRef   = useRef<string>('');
 
   const SUPERFLIP_IDX = CASES.findIndex(c => c.name === 'Superflip');
   const [caseIdx,       setCaseIdx]       = useState(SUPERFLIP_IDX);
   const [mode,          setMode]          = useState<CubifyMode>('case');
-  const [scrambleAlg,   setScrambleAlg]   = useState<string | null>(null);
-  const [solveAlg,      setSolveAlg]      = useState<string | null>(null);
-  const [scrambleDone,  setScrambleDone]  = useState(false);
+  const [scrambleAlg,    setScrambleAlg]    = useState<string | null>(null);
+  const [cfopStages,     setCfopStages]     = useState<SolveStage[] | null>(null);
+  const [cfopStageIndex, setCfopStageIndex] = useState(0);
+  const [cfopSetup,      setCfopSetup]      = useState('');
+  const [scrambleDone,   setScrambleDone]   = useState(false);
   const [isScrambling,  setIsScrambling]  = useState(false);
   const [isSolving,     setIsSolving]     = useState(false);
-  const [thinking, setThinking] = useState(false);
 
   const [playing,   setPlaying]   = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
@@ -128,8 +132,8 @@ export default function CubifyPage() {
 
   useEffect(() => {
     warmUp();
-    const solver = new CubeSolver();
-    solverRef.current = solver;
+    const solver = new CfopSolver();
+    cfopSolverRef.current = solver;
     return () => { solver.dispose(); };
   }, []);
 
@@ -140,33 +144,54 @@ export default function CubifyPage() {
 
   const activeCase = CASES[caseIdx];
 
-  // Derive active alg, setup, mask, and moves from current mode
+  // Derive active alg, setup, mask from current mode
+  const cfopStage = cfopStages?.[cfopStageIndex];
   const activeAlg = mode === 'case'
     ? activeCase.alg
     : mode === 'scramble'
       ? (scrambleAlg ?? '')
-      : (solveAlg ?? '');
+      : (cfopStage?.alg ?? '');
 
   const activeSetup = mode === 'case'
     ? CubeState.setupFromAlg(activeCase.alg, activeCase.rotation)
     : mode === 'scramble'
       ? ''
-      : (scrambleAlg ?? '');
+      : cfopSetup;
 
-  const activeMask = mode === 'case' ? mask : 'full';
+  const activeMask = mode === 'case'
+    ? mask
+    : mode === 'solve'
+      ? (cfopStage?.mask ?? 'full')
+      : 'full';
+
   modeRef.current = mode;
 
   const moves = activeAlg ? AlgParser.parse(activeAlg) : [];
   const moveCount = moves.length;
 
-  const statusMessage =
-    (isScrambling || (mode === 'scramble' && (playing || thinking))) ? 'Scrambling… using WCA random-state method' :
-    (isSolving    || (mode === 'solve'    && (playing || thinking))) ? 'Solving… using Kociemba 2-phase method' :
+  const sep = <span style={{ color: 'var(--color-text-muted)', margin: '0 6px' }}>·</span>;
+  const statusMessage: ReactNode =
+    isScrambling ? 'Scrambling… using WCA random-state method' :
+    isSolving    ? 'Solving… CFOP method' :
+    (mode === 'solve' && cfopStages && !cfopStage)
+      ? `Solved! ${cfopStages.reduce((n, s) => n + s.moves, 0)} moves` :
+    (mode === 'solve' && cfopStage)
+      ? (
+          <>
+            <span style={{ fontWeight: 600 }}>
+              {cfopStage.label.toUpperCase().replace(/-/g, ' ')}
+            </span>
+            {cfopStage.caseName && <>
+              {sep}
+              <span>{cfopStage.caseName}</span>
+            </>}
+            {cfopStage.alg && <>{sep}<span style={{ fontFamily: 'inherit' }}>{cfopStage.alg}</span></>}
+          </>
+        ) :
     null;
 
   const autoPlay = useCallback(() => {
     pendingPlayRef.current = true;
-    setThinking(true);
     setPlaying(false);
     setStepIndex(0);
     playerRef.current?.reset();
@@ -176,10 +201,24 @@ export default function CubifyPage() {
     setStepIndex(index);
   }, []);
 
-  // Stable identity — reads mode via ref to avoid stale closure
+  // Stable identity — reads mode/cfop state via refs to avoid stale closures
   const handleComplete = useCallback(() => {
     setPlaying(false);
-    if (modeRef.current === 'scramble') setScrambleDone(true);
+    if (modeRef.current === 'scramble') {
+      setScrambleDone(true);
+    } else if (modeRef.current === 'solve') {
+      const stages = cfopStagesRef.current;
+      const idx    = cfopStageIdxRef.current;
+      const setup  = cfopSetupRef.current;
+      const completed = stages[idx];
+      const newSetup  = completed?.alg ? [setup, completed.alg].filter(Boolean).join(' ') : setup;
+      let nextIdx = idx + 1;
+      while (nextIdx < stages.length && !stages[nextIdx].alg) nextIdx++;
+      cfopSetupRef.current    = newSetup;
+      cfopStageIdxRef.current = nextIdx;
+      setCfopSetup(newSetup);
+      setCfopStageIndex(nextIdx);
+    }
   }, []);
 
   const handleResetButton = useCallback(() => {
@@ -194,14 +233,15 @@ export default function CubifyPage() {
     setStepIndex(0);
     if (pendingPlayRef.current) {
       pendingPlayRef.current = false;
-      setTimeout(() => { setPlaying(true); setThinking(false); }, 300);
+      setTimeout(() => { setPlaying(true); }, 300);
     } else {
-      setThinking(false);
       setPlaying(false);
     }
   }, []);
 
   const handlePlayToggle = useCallback(() => {
+    // Guard: no stage to play when CFOP solve is complete
+    if (modeRef.current === 'solve' && !cfopStagesRef.current[cfopStageIdxRef.current]?.alg) return;
     if (!playing && stepIndex >= moveCount) {
       pendingPlayRef.current = true;
       setStepIndex(0);
@@ -214,10 +254,19 @@ export default function CubifyPage() {
   const handleStepForward  = useCallback(() => { playerRef.current?.stepForward(); }, []);
   const handleStepBackward = useCallback(() => { playerRef.current?.stepBackward(); }, []);
 
+  const clearCfopState = () => {
+    cfopStagesRef.current   = [];
+    cfopStageIdxRef.current = 0;
+    cfopSetupRef.current    = '';
+    setCfopStages(null);
+    setCfopStageIndex(0);
+    setCfopSetup('');
+  };
+
   const handleCaseChange = (idx: number) => {
     setMode('case');
     setScrambleAlg(null);
-    setSolveAlg(null);
+    clearCfopState();
     setPlaying(false);
     setStepIndex(0);
     setCaseIdx(idx);
@@ -229,11 +278,10 @@ export default function CubifyPage() {
     setIsScrambling(true);
     setIsSolving(false);
     setScrambleDone(false);
-    setSolveAlg(null);
+    clearCfopState();
     try {
       const alg = await nextScramble();
       setScrambleAlg(alg);
-      setSolveAlg(null);
       setMode('scramble');
       autoPlay();
     } finally {
@@ -243,26 +291,28 @@ export default function CubifyPage() {
 
   const handleSolve = useCallback(async () => {
     if (!scrambleDone || !scrambleAlg || isSolving) return;
-    const solver = solverRef.current;
-    console.info('[handleSolve] solver:', solver, 'available:', solver?.available);
-    if (!solver?.available) { console.error('[handleSolve] solver not available'); return; }
+    const solver = cfopSolverRef.current;
+    if (!solver?.available) return;
     setIsSolving(true);
     try {
-      const state = await CubeState.fromAlg(scrambleAlg);
-      console.info('[handleSolve] state ready, calling solver…');
-      const result = await solver.solve(state);
-      console.info('[handleSolve] solve result:', result.alg, `(${result.elapsedMs}ms)`);
-      const alg = result.alg;
-      setSolveAlg(alg);
+      const state    = await CubeState.fromAlg(scrambleAlg);
+      const solution = await solver.solve(state);
+      const initialSetup = [scrambleAlg, solution.setupAlg].filter(Boolean).join(' ');
+      cfopStagesRef.current   = solution.stages;
+      cfopStageIdxRef.current = 0;
+      cfopSetupRef.current    = initialSetup;
+      setCfopStages(solution.stages);
+      setCfopStageIndex(0);
+      setCfopSetup(initialSetup);
       setMode('solve');
       setScrambleDone(false);
-      autoPlay();
+      setPlaying(false);
     } catch (err) {
-      console.error('[solve] failed:', err);
+      console.error('[cfop solve] failed:', err);
     } finally {
       setIsSolving(false);
     }
-  }, [scrambleDone, scrambleAlg, isSolving, autoPlay]);
+  }, [scrambleDone, scrambleAlg, isSolving]);
 
   return (
     <CfopPageLayout pageTitle="Cubify" subtitle="3x3 cube visualization framework optimized for CFOP simulation">
@@ -362,7 +412,7 @@ export default function CubifyPage() {
               }}
               onClick={handleSolve}
               disabled={mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing}
-              title="Solve (Kociemba 2-phase)"
+              title="Solve (CFOP method)"
             >
               <MdPsychology />
             </button>
@@ -414,10 +464,11 @@ export default function CubifyPage() {
               <a href="https://github.com/cubing/twips" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>twips</a>{' '}
               WASM scrambler — a random-state generator using the same approach as WCA competitions. Scrambles are pre-generated in the background so the first one is ready
               immediately; the cache refills after each use so wait time stays near zero.
-              The <strong>Solve</strong> button (<MdPsychology style={{ verticalAlign: 'middle' }} />) solves the
-              scrambled cube via <code>CubeSolver</code>, which uses the same{' '}
-              <a href="https://github.com/cubing/twips" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>twips</a>{' '}
-              WASM worker — a Kociemba two-phase solver that finds near-optimal solutions without blocking the UI.
+              The <strong>Solve</strong> button (<MdPsychology style={{ verticalAlign: 'middle' }} />) runs the
+              scrambled cube through <code>CfopSolver</code> — a stage-annotated CFOP solver that breaks the
+              solution into 7 stages (cross, four F2L pairs, OLL, PLL), each with its own alg, mask, and
+              case name. Stages play back one at a time so you can follow the solve step by step. The solver
+              runs in a web worker and does not block the UI.
             </p>
             <p style={{ marginBottom: 10 }}>
               The React wrapper is a thin layer — <code>{'<CubePlayer>'}</code>, <code>{'<CubePlayerControls>'}</code>, and <code>{'<CubeState>'}</code> manage

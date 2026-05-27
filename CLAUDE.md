@@ -142,4 +142,5 @@ uv run wca-refresh --dry-run     # transforms only, no file writes
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan
+at specs/024-cfop-solver-integration/plan.md
 <!-- SPECKIT END -->

@@ -12,7 +12,7 @@ Rubik's cube CFOP method learning companion, covers - Cross, F2L, OLL, PLL — w
 - OLL and PLL probability scores and WCA case numbers
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Light/Dark mode with local persistence; mobile-responsive (iPhone 16 baseline)
-- Cubify integration harness — demostrator for algorithm simulation library with case selector, mask stickering, theme presets; WCA random-state scramble generator and Kociemba 2-phase solver (both via twips WASM worker)
+- Cubify integration harness — demonstrator for the cubify algorithm simulation library; case selector, mask stickering, theme presets; WCA random-state scramble generator; CFOP stage-annotated solver (cross → F2L×4 → OLL → PLL) with per-stage playback, dynamic masking, and case identification
 - WCA World Record evolution chart and legends table
 
 ## Json Data
@@ -81,4 +81,4 @@ Note: Cubing algorithms are mathematical sequences in the public domain.
 
 ---
 
-**Status**: Active development • Features 001–023 complete
+**Status**: Active development • Features 001–024 complete

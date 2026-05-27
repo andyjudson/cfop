@@ -15,7 +15,7 @@
 
 **Purpose**: Import wiring — prerequisite for all phases.
 
-- [ ] T001 Add `CfopSolver` and `SolveStage` imports from `@andyjudson/cubify`; remove `CubeSolver` import in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T001 Add `CfopSolver` and `SolveStage` imports from `@andyjudson/cubify`; remove `CubeSolver` import in `cfop-app/src/pages/CubifyPage.tsx`
 
 ---
 
@@ -25,9 +25,9 @@
 
 **⚠️ CRITICAL**: All user story work depends on this phase.
 
-- [ ] T002 Replace `solverRef: useRef<CubeSolver>` with `cfopSolverRef: useRef<CfopSolver>` and update the `useEffect` init to `new CfopSolver()` with `solver.dispose()` cleanup in `cfop-app/src/pages/CubifyPage.tsx`
-- [ ] T003 Add `cfopStages: SolveStage[] | null`, `cfopStageIndex: number`, `cfopSetup: string` state (initialised to `null`, `0`, `''`); add ref mirrors `cfopStagesRef`, `cfopStageIdxRef`, `cfopSetupRef` (each initialised to match state) in `cfop-app/src/pages/CubifyPage.tsx`
-- [ ] T004 Remove `solveAlg` state; update `activeAlg` / `activeSetup` / `activeMask` derived values with solve-mode branches per plan.md; in `handleCaseChange` and `handleScramble` replace `setSolveAlg(null)` with clears of `cfopStages`, `cfopStageIndex`, `cfopSetup` and their ref mirrors in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T002 Replace `solverRef: useRef<CubeSolver>` with `cfopSolverRef: useRef<CfopSolver>` and update the `useEffect` init to `new CfopSolver()` with `solver.dispose()` cleanup in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T003 Add `cfopStages: SolveStage[] | null`, `cfopStageIndex: number`, `cfopSetup: string` state (initialised to `null`, `0`, `''`); add ref mirrors `cfopStagesRef`, `cfopStageIdxRef`, `cfopSetupRef` (each initialised to match state) in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T004 Remove `solveAlg` state; update `activeAlg` / `activeSetup` / `activeMask` derived values with solve-mode branches per plan.md; in `handleCaseChange` and `handleScramble` replace `setSolveAlg(null)` with clears of `cfopStages`, `cfopStageIndex`, `cfopSetup` and their ref mirrors in `cfop-app/src/pages/CubifyPage.tsx`
 
 **Checkpoint**: App compiles with no TypeScript errors. Scramble/case mode unaffected.
 
@@ -39,9 +39,9 @@
 
 **Independent Test**: Scramble → Solve → step through all 7 stages via play button → cube visually solved after final stage.
 
-- [ ] T005 [US1] Replace `handleSolve` with CFOP version: guard on `scrambleDone && scrambleAlg && !isSolving && cfopSolverRef.current`; call `CubeState.fromAlg(scrambleAlg)` then `cfopSolverRef.current.solve(state)`; set `initialSetup = [scrambleAlg, solution.setupAlg].join(' ')`; update all three refs immediately then call `setCfopStages / setCfopStageIndex(0) / setCfopSetup`; call `setMode('solve')`, `setScrambleDone(false)`, `setPlaying(false)` — do NOT call `autoPlay()` in `cfop-app/src/pages/CubifyPage.tsx`
-- [ ] T006 [US1] Add solve-mode branch to `handleComplete`: read stages/idx/setup from refs; compute `newSetup` (append completed stage alg if non-empty); scan forward for `nextIdx` skipping empty-alg stages; update all three refs immediately then call `setCfopSetup(newSetup)` and `setCfopStageIndex(nextIdx)` — `setPlaying(false)` is already set in the existing code path in `cfop-app/src/pages/CubifyPage.tsx`
-- [ ] T007 [US1] Add completed-solve guard to `handlePlayToggle`: early return when `modeRef.current === 'solve'` and `!cfopStagesRef.current[cfopStageIdxRef.current]?.alg` in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T005 [US1] Replace `handleSolve` with CFOP version: guard on `scrambleDone && scrambleAlg && !isSolving && cfopSolverRef.current`; call `CubeState.fromAlg(scrambleAlg)` then `cfopSolverRef.current.solve(state)`; set `initialSetup = [scrambleAlg, solution.setupAlg].join(' ')`; update all three refs immediately then call `setCfopStages / setCfopStageIndex(0) / setCfopSetup`; call `setMode('solve')`, `setScrambleDone(false)`, `setPlaying(false)` — do NOT call `autoPlay()` in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T006 [US1] Add solve-mode branch to `handleComplete`: read stages/idx/setup from refs; compute `newSetup` (append completed stage alg if non-empty); scan forward for `nextIdx` skipping empty-alg stages; update all three refs immediately then call `setCfopSetup(newSetup)` and `setCfopStageIndex(nextIdx)` — `setPlaying(false)` is already set in the existing code path in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T007 [US1] Add completed-solve guard to `handlePlayToggle`: early return when `modeRef.current === 'solve'` and `!cfopStagesRef.current[cfopStageIdxRef.current]?.alg` in `cfop-app/src/pages/CubifyPage.tsx`
 
 **Checkpoint**: Full 7-stage CFOP solve works end-to-end. Cube reaches solved state. Empty stages are skipped. Scramble button resets correctly.
 
@@ -53,8 +53,8 @@
 
 **Independent Test**: Step through a solve and verify info panel text matches each stage label + alg; OLL/PLL stages show case name; panel shows "press play to simulate stage" when paused.
 
-- [ ] T008 [US2] Replace the solve-mode branch in `statusMessage` with CFOP stage status derivation: compute `cfopStage = cfopStages?.[cfopStageIndex]`; show `"Solved! N moves"` when `cfopStage` is undefined (all done); otherwise inline `buildStageStatus` — humanise label (`f2l-fr` → `f2l fr`), append `— CaseName #WcaId` if present, append alg, append `— press play to simulate stage` when `!playing` in `cfop-app/src/pages/CubifyPage.tsx`
-- [ ] T009 [US2] Update solve button `title` attribute to `"Solve (CFOP method)"` in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T008 [US2] Replace the solve-mode branch in `statusMessage` with CFOP stage status derivation: compute `cfopStage = cfopStages?.[cfopStageIndex]`; show `"Solved! N moves"` when `cfopStage` is undefined (all done); otherwise inline `buildStageStatus` — humanise label (`f2l-fr` → `f2l fr`), append `— CaseName #WcaId` if present, append alg, append `— press play to simulate stage` when `!playing` in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T009 [US2] Update solve button `title` attribute to `"Solve (CFOP method)"` in `cfop-app/src/pages/CubifyPage.tsx`
 
 **Checkpoint**: Info panel updates correctly at every stage transition; OLL/PLL case names visible; "Solved!" shows after final stage.
 
@@ -66,7 +66,7 @@
 
 **Independent Test**: Start a CFOP solve; verify each control in turn — speed change mid-animation, step backward within a stage, reset returns to stage start.
 
-- [ ] T010 [US3] Verify `handleResetButton`, `handleStepForward`, `handleStepBackward`, and speed buttons work correctly in CFOP solve mode via manual browser test using quickstart.md Scenario 4 and 5 — no code changes expected; document any regressions found in `specs/024-cfop-solver-integration/quickstart.md`
+- [x] T010 [US3] Verify `handleResetButton`, `handleStepForward`, `handleStepBackward`, and speed buttons work correctly in CFOP solve mode via manual browser test using quickstart.md Scenario 4 and 5 — no code changes expected; document any regressions found in `specs/024-cfop-solver-integration/quickstart.md`
 
 **Checkpoint**: All three controls behave as specified in US3 acceptance scenarios.
 
@@ -74,8 +74,8 @@
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T011 Update the Solve button description paragraph in the About `<details>` section to describe `CfopSolver` and the 7-stage CFOP method, replacing the Kociemba description in `cfop-app/src/pages/CubifyPage.tsx`
-- [ ] T012 Run all 6 quickstart.md scenarios manually in the browser (`cfop-app/` dev server) and confirm each passes; record any failures in `specs/024-cfop-solver-integration/quickstart.md`
+- [x] T011 Update the Solve button description paragraph in the About `<details>` section to describe `CfopSolver` and the 7-stage CFOP method, replacing the Kociemba description in `cfop-app/src/pages/CubifyPage.tsx`
+- [x] T012 Run all 6 quickstart.md scenarios manually in the browser (`cfop-app/` dev server) and confirm each passes; record any failures in `specs/024-cfop-solver-integration/quickstart.md`
 
 ---
 

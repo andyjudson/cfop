@@ -83,7 +83,7 @@ npm run dev -- --host 127.0.0.1 --port 5173
 **Runtime**: TypeScript 5.9, React 19, Vite 7
 **UI**: Bulma CSS 1.x, react-icons 5.x
 **Routing**: react-router-dom 7.x (HashRouter)
-**Visualisation**: cubify (`CubePlayer`/`CubeState`/`CubeMoveTape`/`CubePlayerControls`), Recharts 3.x
+**Visualisation**: cubify (`CubePlayerComponent`/`CubeStateComponent`/`CubeMoveTape`/`CubePlayerControls`), Recharts 3.x
 **Testing**: @playwright/test (dev-only)
 **Persistence**: localStorage (`cfop-theme` for dark mode; versioned envelopes for user prefs)
 
@@ -103,10 +103,10 @@ Published as `@andyjudson/cubify` + `@andyjudson/cubify-react` on GitHub Package
 
 | Component | Props |
 |-----------|-------|
-| `<CubePlayer>` | `alg`, `setup`, `stickering`, `theme`, `playing`, `speed`, `style`; events `onMove`, `onReset`, `onComplete`; ref `reset()`, `resetCamera()` |
+| `<CubePlayerComponent>` | `alg`, `setup`, `stickering`, `theme`, `playing`, `speed`, `style`; events `onMove`, `onReset`, `onComplete`; ref `reset()`, `resetCamera()` |
 | `<CubePlayerControls>` | `playing`, `stepIndex`, `moveCount`, `size` (`'md'`\|`'sm'`); callbacks `onPlayToggle`, `onReset`, `onStepBackward`, `onStepForward`, `onCameraReset`; no `onSpeedChange` — speed is consumer-owned |
 | `<CubeMoveTape>` | `moves`, `stepIndex` — responsive row sizes (12/row desktop, 9/row mobile); active/done highlight |
-| `<CubeState>` | `alg`, `setup`, `stickering`, `theme`, `style` — static snapshot, no animation |
+| `<CubeStateComponent>` | `alg`, `setup`, `stickering`, `theme`, `style` — static snapshot, no animation |
 
 - `CubeState.setupFromAlg(alg, rotation?)` computes the inverse setup string from an alg + optional whole-cube rotation prefix
 - Transparent canvas: Three.js `setClearColor(0x000000, 0)` — blends with any page background

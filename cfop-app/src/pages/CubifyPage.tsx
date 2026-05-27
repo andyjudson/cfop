@@ -1,8 +1,8 @@
 import { useRef, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { CfopPageLayout } from '../components/CfopPageLayout';
-import { CubePlayer, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
+import { CubePlayerComponent, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
-import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser, CfopSolver } from '@andyjudson/cubify';
+import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser, CubeSolverCfop } from '@andyjudson/cubify';
 import type { ThemePresetName, SolveStage } from '@andyjudson/cubify';
 import { MdInfo, MdShuffle, MdPsychology, MdRemove, MdAdd } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
@@ -108,7 +108,7 @@ export default function CubifyPage() {
   const playerRef      = useRef<CubePlayerHandle>(null);
   const pendingPlayRef = useRef(false);
   const modeRef        = useRef<CubifyMode>('case');
-  const cfopSolverRef  = useRef<CfopSolver | null>(null);
+  const cfopSolverRef  = useRef<CubeSolverCfop | null>(null);
   const cfopStagesRef  = useRef<SolveStage[]>([]);
   const cfopStageIdxRef = useRef<number>(0);
   const cfopSetupRef   = useRef<string>('');
@@ -132,7 +132,7 @@ export default function CubifyPage() {
 
   useEffect(() => {
     warmUp();
-    const solver = new CfopSolver();
+    const solver = new CubeSolverCfop();
     cfopSolverRef.current = solver;
     return () => { solver.dispose(); };
   }, []);
@@ -347,7 +347,7 @@ export default function CubifyPage() {
 
         {/* Cube */}
         <div style={{ width: 290, height: 290, margin: '0 auto' }}>
-          <CubePlayer
+          <CubePlayerComponent
             ref={playerRef}
             alg={activeAlg}
             setup={activeSetup}
@@ -465,13 +465,13 @@ export default function CubifyPage() {
               WASM scrambler — a random-state generator using the same approach as WCA competitions. Scrambles are pre-generated in the background so the first one is ready
               immediately; the cache refills after each use so wait time stays near zero.
               The <strong>Solve</strong> button (<MdPsychology style={{ verticalAlign: 'middle' }} />) runs the
-              scrambled cube through <code>CfopSolver</code> — a stage-annotated CFOP solver that breaks the
+              scrambled cube through <code>CubeSolverCfop</code> — a stage-annotated CFOP solver that breaks the
               solution into 7 stages (cross, four F2L pairs, OLL, PLL), each with its own alg, mask, and
               case name. Stages play back one at a time so you can follow the solve step by step. The solver
               runs in a web worker and does not block the UI.
             </p>
             <p style={{ marginBottom: 10 }}>
-              The React wrapper is a thin layer — <code>{'<CubePlayer>'}</code>, <code>{'<CubePlayerControls>'}</code>, and <code>{'<CubeState>'}</code> manage
+              The React wrapper is a thin layer — <code>{'<CubePlayerComponent>'}</code>, <code>{'<CubePlayerControls>'}</code>, and <code>{'<CubeStateComponent>'}</code> manage
               the mount/unmount lifecycle and expose a prop-driven interface, so consumers get
               declarative control without the imperative boilerplate. The <a href="https://github.com/andyjudson/cubify/tree/main/packages/cubify-react/src" target="_blank" rel="noreferrer" style={{ color: '#00b89c' }}>React package</a> lives in the cubify repo.
             </p>

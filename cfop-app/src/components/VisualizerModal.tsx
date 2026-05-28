@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { SPEED_MIN, SPEED_MAX, SPEED_STEP, nudgeSpeed } from '../utils/speed';
 import { MdAdd, MdRemove } from 'react-icons/md';
 import { CubePlayerComponent, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
@@ -301,15 +302,15 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
                 <div className="cubify-controls-separator" />
                 <button
                   className="cubify-speed-btn"
-                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)}
-                  disabled={speed <= 0.5}
+                  onClick={() => setSpeed(s => nudgeSpeed(s, -SPEED_STEP))}
+                  disabled={speed <= SPEED_MIN}
                   title="Slower"
                 ><MdRemove /></button>
                 <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
                 <button
                   className="cubify-speed-btn"
-                  onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)}
-                  disabled={speed >= 3}
+                  onClick={() => setSpeed(s => nudgeSpeed(s, SPEED_STEP))}
+                  disabled={speed >= SPEED_MAX}
                   title="Faster"
                 ><MdAdd /></button>
               </div>

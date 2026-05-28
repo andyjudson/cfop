@@ -7,6 +7,7 @@ import type { ThemePresetName, SolveStage } from '@andyjudson/cubify';
 import { MdInfo, MdShuffle, MdPsychology, MdRemove, MdAdd } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 import { warmUp, nextScramble } from '../utils/scrambleCache';
+import { SPEED_MIN, SPEED_MAX, SPEED_STEP, nudgeSpeed } from '../utils/speed';
 import 'bulma/css/bulma.min.css';
 import '../App.css';
 import '../cubify.css';
@@ -382,9 +383,9 @@ export default function CubifyPage() {
           />
           <div className="cubify-controls-secondary">
             <div className="cubify-controls-separator" />
-            <button className="cubify-speed-btn" onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s - 0.5)) / 0.5) * 0.5)} disabled={speed <= 0.5} title="Slower"><MdRemove /></button>
+            <button className="cubify-speed-btn" onClick={() => setSpeed(s => nudgeSpeed(s, -SPEED_STEP))} disabled={speed <= SPEED_MIN} title="Slower"><MdRemove /></button>
             <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
-            <button className="cubify-speed-btn" onClick={() => setSpeed(s => Math.round(Math.min(3, Math.max(0.5, s + 0.5)) / 0.5) * 0.5)} disabled={speed >= 3} title="Faster"><MdAdd /></button>
+            <button className="cubify-speed-btn" onClick={() => setSpeed(s => nudgeSpeed(s, SPEED_STEP))} disabled={speed >= SPEED_MAX} title="Faster"><MdAdd /></button>
             <div className="cubify-controls-separator" />
             <button
               style={{

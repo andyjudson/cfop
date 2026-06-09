@@ -123,10 +123,12 @@ export default function CubifyPage() {
   const [mask,      setMask]      = useState(CASES[SUPERFLIP_IDX].defaultMask);
   const [theme,     setTheme]     = useState<ThemePresetName>('speed-dark');
   const [speed,     setSpeed]     = useState(1);
+  const [beginner,  setBeginner]  = useState(false);
 
   const cfopSolve = useCfopSolve({
     scrambleDone,
     scrambleAlg,
+    beginner,
     onSolveStart: () => {
       setMode('solve');
       setScrambleDone(false);
@@ -171,7 +173,7 @@ export default function CubifyPage() {
   const sep = <span style={{ color: 'var(--color-text-muted)', margin: '0 6px' }}>·</span>;
   const statusMessage: ReactNode =
     isScrambling ? 'Scrambling… using WCA random-state method' :
-    cfopSolve.isSolving ? 'Solving… CFOP method' :
+    cfopSolve.isSolving ? `Solving… CFOP ${beginner ? 'beginner' : 'advanced'} mode` :
     (mode === 'solve' && cfopSolve.cfopStages && !cfopStage)
       ? `Solved! ${cfopSolve.cfopStages.reduce((n, s) => n + s.moves, 0)} moves` :
     (mode === 'solve' && cfopStage)
@@ -340,6 +342,33 @@ export default function CubifyPage() {
             <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
             <button className="cubify-speed-btn" onClick={() => setSpeed(s => nudgeSpeed(s, SPEED_STEP))} disabled={speed >= SPEED_MAX} title="Faster"><MdAdd /></button>
             <div className="cubify-controls-separator" />
+            {/* Beginner / Advanced solve mode toggle */}
+            <div style={{
+              display: 'inline-flex', borderRadius: 8, overflow: 'hidden',
+              border: '1px solid #dbdbdb', flexShrink: 0,
+              opacity: (cfopSolve.isSolving || mode === 'solve') ? 0.4 : 1,
+            }}>
+              {(['Advanced', 'Beginner'] as const).map(label => {
+                const isActive = label === 'Beginner' ? beginner : !beginner;
+                return (
+                  <button
+                    key={label}
+                    onClick={() => setBeginner(label === 'Beginner')}
+                    disabled={cfopSolve.isSolving || mode === 'solve'}
+                    title={label === 'Beginner' ? 'Beginner mode: intuitive F2L, 2-look OLL/PLL (9 stages)' : 'Advanced mode: optimal F2L, 1-look OLL/PLL (7 stages)'}
+                    style={{
+                      padding: '0 10px', height: 38, border: 'none', cursor: 'pointer',
+                      fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.02em',
+                      background: isActive ? '#363636' : '#f5f5f5',
+                      color: isActive ? '#fff' : '#888',
+                      transition: 'background 0.15s, color 0.15s',
+                    }}
+                  >
+                    {label.toUpperCase()}
+                  </button>
+                );
+              })}
+            </div>
             <button
               style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',

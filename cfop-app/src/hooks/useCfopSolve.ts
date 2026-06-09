@@ -5,10 +5,11 @@ import type { SolveStage } from '@andyjudson/cubify';
 interface Options {
   scrambleDone: boolean;
   scrambleAlg: string | null;
+  beginner: boolean;
   onSolveStart: () => void;
 }
 
-export function useCfopSolve({ scrambleDone, scrambleAlg, onSolveStart }: Options) {
+export function useCfopSolve({ scrambleDone, scrambleAlg, beginner, onSolveStart }: Options) {
   const solverRef       = useRef<CubeSolverCfop | null>(null);
   const stagesRef       = useRef<SolveStage[]>([]);
   const stageIdxRef     = useRef<number>(0);
@@ -43,7 +44,7 @@ export function useCfopSolve({ scrambleDone, scrambleAlg, onSolveStart }: Option
     setIsSolving(true);
     try {
       const state    = await CubeState.fromAlg(scrambleAlg);
-      const solution = await solver.solve(state);
+      const solution = await solver.solve(state, { beginner });
       const initialSetup = [scrambleAlg, solution.setupAlg].filter(Boolean).join(' ');
       stagesRef.current   = solution.stages;
       stageIdxRef.current = 0;
@@ -57,7 +58,7 @@ export function useCfopSolve({ scrambleDone, scrambleAlg, onSolveStart }: Option
     } finally {
       setIsSolving(false);
     }
-  }, [scrambleDone, scrambleAlg, isSolving]);
+  }, [scrambleDone, scrambleAlg, beginner, isSolving]);
 
   const onStageComplete = useCallback(() => {
     const stages = stagesRef.current;

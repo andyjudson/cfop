@@ -171,8 +171,13 @@ export default function CubifyPage() {
   const moveCount = moves.length;
 
   const sep = <span style={{ color: 'var(--color-text-muted)', margin: '0 6px' }}>·</span>;
+  const scrambleMoveCount = scrambleAlg ? scrambleAlg.trim().split(/\s+/).length : 0;
+  const scrambleInfoMessage: ReactNode = scrambleAlg
+    ? <>WCA random-state scramble · generated using twips · {scrambleMoveCount} moves · 4.3 × 10<sup>19</sup> possibilities</>
+    : 'Scrambling…';
+
   const statusMessage: ReactNode =
-    isScrambling ? 'Scrambling… using WCA random-state method' :
+    (isScrambling || mode === 'scramble') ? scrambleInfoMessage :
     cfopSolve.isSolving ? `Solving… CFOP ${beginner ? 'beginner' : 'advanced'} mode` :
     (mode === 'solve' && cfopSolve.cfopStages && !cfopStage)
       ? `Solved! ${cfopSolve.cfopStages.reduce((n, s) => n + s.moves, 0)} moves` :

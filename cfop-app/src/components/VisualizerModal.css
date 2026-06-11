@@ -52,22 +52,91 @@
 
 /* ── Cube player ─────────────────────────────────────────────────────────────── */
 
+.cube-player-wrapper {
+  position: relative;
+  height: 280px;
+  margin-bottom: 1rem;
+  background: var(--gradient-section-light);
+  border: 1px solid var(--color-border-medium);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 .cube-player-container {
   position: relative;
   width: 100%;
-  height: 280px;
-  flex-shrink: 0;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
-  background: var(--gradient-section-light);
-  border-radius: 8px;
+  transition: transform 0.25s ease;
+}
+
+.cube-player-wrapper.notes-open .cube-player-container {
+  transform: translateX(-100px);
 }
 
 .cube-player-container > div {
   width: 100%;
   height: 100%;
+}
+
+/* ── Notes drawer ────────────────────────────────────────────────────────────── */
+
+.notes-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  overflow: hidden;
+  transform: translateX(200px);
+  transition: transform 0.25s ease;
+  background: var(--color-bg-subtle);
+  border-left: 1px solid var(--color-border-medium);
+  z-index: 5;
+}
+
+.notes-drawer.open {
+  transform: translateX(0);
+}
+
+.notes-drawer-text {
+  width: 200px;
+  padding: 14px 14px 14px 16px;
+  margin: 0;
+  font-size: 0.73rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  overflow-y: auto;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.notes-help-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-medium);
+  background: var(--color-bg-base);
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+  padding: 0;
+}
+
+.notes-help-btn:hover,
+.notes-help-btn.active {
+  opacity: 1;
 }
 
 /* ── Playback controls ───────────────────────────────────────────────────────── */
@@ -204,8 +273,13 @@
     font-size: 1.1rem;
   }
 
-  .cube-player-container {
+  .cube-player-wrapper {
     max-height: 220px;
+  }
+
+  .notes-help-btn,
+  .notes-drawer {
+    display: none;
   }
 
   .controls-panel {
@@ -214,9 +288,8 @@
 }
 
 @media (max-width: 600px) {
-  .cube-player-container {
+  .cube-player-wrapper {
     height: clamp(220px, 38dvh, 300px);
-    max-height: none;
   }
 
   .controls-panel .cubify-controls-separator {

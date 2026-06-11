@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { SPEED_MIN, SPEED_MAX, SPEED_STEP, nudgeSpeed } from '../utils/speed';
-import { MdAdd, MdRemove } from 'react-icons/md';
+import { MdAdd, MdRemove, MdHelpOutline } from 'react-icons/md';
 import { CubePlayerComponent, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
 import { AlgParser, CubeState } from '@andyjudson/cubify';
@@ -21,7 +21,7 @@ interface VisualizerModalProps {
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 const ESSENTIAL_IDS   = ['oll_cross_line', 'oll_cross_hook', 'oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
-const BGR_GROUPS_ALL  = ['all', 'Essential', 'Step 1 · OLL edges', 'Step 2 · OLL corners', 'Step 3 · PLL corners', 'Step 4 · PLL edges'];
+const BGR_GROUPS_ALL  = ['All cases', 'Minimum cases', 'OLL cases', 'PLL cases'];
 
 const SET_FILES: Record<AlgSet, string> = {
   OLL: 'cfop-oll.json',
@@ -41,8 +41,8 @@ function addBgrGroups(algs: CfopAlgorithm[]): CfopAlgorithm[] {
   return algs.map(a => ({
     ...a,
     group: a.method === 'oll'
-      ? (a.group === 'edge' ? 'Step 1 · OLL edges' : 'Step 2 · OLL corners')
-      : (a.group === 'edge' ? 'Step 4 · PLL edges' : 'Step 3 · PLL corners'),
+      ? (a.group === 'edge' ? 'OLL edges' : 'OLL corners')
+      : (a.group === 'edge' ? 'PLL edges' : 'PLL corners'),
   }));
 }
 
@@ -75,6 +75,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   const [playing,     setPlaying]     = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [speed,       setSpeed]       = useState(1);
+  const [notesOpen,   setNotesOpen]   = useState(false);
   const playerRef      = useRef<CubePlayerHandle>(null);
   const pendingPlayRef = useRef(false);
 
@@ -104,8 +105,10 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
   }, [activeData, selectedSet]);
 
   const shufflePool = useMemo(() => {
-    if (selectedGroup === 'all')       return activeData;
-    if (selectedGroup === 'Essential') return activeData.filter(a => ESSENTIAL_IDS.includes(a.id));
+    if (selectedGroup === 'all' || selectedGroup === 'All cases') return activeData;
+    if (selectedGroup === 'Minimum cases') return activeData.filter(a => ESSENTIAL_IDS.includes(a.id));
+    if (selectedGroup === 'OLL cases')     return activeData.filter(a => a.method === 'oll');
+    if (selectedGroup === 'PLL cases')     return activeData.filter(a => a.method === 'pll');
     return activeData.filter(a => a.group === selectedGroup);
   }, [activeData, selectedGroup]);
 
@@ -126,9 +129,10 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
 
   const handleSetChange = (set: AlgSet) => {
     setSelectedSet(set);
-    setSelectedGroup('all');
+    const defaultGroup = set === '2LK' ? 'All cases' : 'all';
+    setSelectedGroup(defaultGroup);
     localStorage.setItem('cfop-viz-set', set);
-    localStorage.setItem('cfop-viz-group', 'all');
+    localStorage.setItem('cfop-viz-group', defaultGroup);
   };
 
   const handleGroupChange = (group: string) => {
@@ -149,6 +153,7 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
     pendingPlayRef.current = false;
     setPlaying(false);
     setCurrentStep(0);
+    if (!currentAlg?.notes) setNotesOpen(false);
   }, [currentAlg?.id]);
 
   const handleMove = useCallback(({ index }: { index: number }) => {
@@ -260,22 +265,39 @@ export function VisualizerModal({ onClose }: VisualizerModalProps) {
           <p className="has-text-danger has-text-centered mt-3">Algorithm data unavailable.</p>
         )}
 
-        <div className="cube-player-container">
-          {currentAlg && (
-            <CubePlayerComponent
-              ref={playerRef}
-              alg={currentAlg.notation}
-              setup={setup}
-              stickering={mask}
-              theme="speed-dark"
-              playing={playing}
-              speed={speed}
-              onMove={handleMove}
-              onComplete={handleComplete}
-              onReset={handlePlayerReset}
-              style={{ width: '100%', height: '100%' }}
-            />
+        <div className={`cube-player-wrapper${notesOpen && currentAlg?.notes ? ' notes-open' : ''}`}>
+          {currentAlg?.notes && (
+            <button
+              className={`notes-help-btn${notesOpen ? ' active' : ''}`}
+              onClick={() => setNotesOpen(o => !o)}
+              title={notesOpen ? 'Hide notes' : 'Show notes'}
+              aria-label="Case notes"
+            >
+              <MdHelpOutline />
+            </button>
           )}
+          <div className="cube-player-container">
+            {currentAlg && (
+              <CubePlayerComponent
+                ref={playerRef}
+                alg={currentAlg.notation}
+                setup={setup}
+                stickering={mask}
+                theme="speed-dark"
+                playing={playing}
+                speed={speed}
+                onMove={handleMove}
+                onComplete={handleComplete}
+                onReset={handlePlayerReset}
+                style={{ width: '100%', height: '100%' }}
+              />
+            )}
+          </div>
+          <div className={`notes-drawer${notesOpen && currentAlg?.notes ? ' open' : ''}`}>
+            {currentAlg?.notes && (
+              <p className="notes-drawer-text">{currentAlg.notes}</p>
+            )}
+          </div>
         </div>
 
         {loadState === 'ready' && (

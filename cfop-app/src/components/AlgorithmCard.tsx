@@ -7,6 +7,7 @@ export interface CfopAlgorithm {
   id: string;
   name: string;
   notation: string;
+  notation_alternative?: string;
   line_break?: number | number[];
   image: string;
   notes?: string;

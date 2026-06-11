@@ -18,7 +18,7 @@ function OLLPage() {
   useEffect(() => {
     const loadAlgorithms = async () => {
       try {
-        const response = await fetch(import.meta.env.BASE_URL + 'data/algs-cfop-oll.json');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/cfop-oll.json');
         if (!response.ok) {
           throw new Error(`Failed to load OLL algorithms: ${response.statusText}`);
         }

@@ -24,9 +24,9 @@ const ESSENTIAL_IDS   = ['oll_cross_line', 'oll_cross_hook', 'oll_sune', 'oll_an
 const BGR_GROUPS_ALL  = ['all', 'Essential', 'Step 1 · OLL edges', 'Step 2 · OLL corners', 'Step 3 · PLL corners', 'Step 4 · PLL edges'];
 
 const SET_FILES: Record<AlgSet, string> = {
-  OLL: 'algs-cfop-oll.json',
-  PLL: 'algs-cfop-pll.json',
-  '2LK': 'algs-cfop-bgr.json',
+  OLL: 'cfop-oll.json',
+  PLL: 'cfop-pll.json',
+  '2LK': 'cfop-bgr.json',
 };
 
 async function fetchSet(set: AlgSet): Promise<CfopAlgorithm[]> {

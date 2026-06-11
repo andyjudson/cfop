@@ -18,7 +18,7 @@ function F2LPage() {
   useEffect(() => {
     const loadAlgorithms = async () => {
       try {
-        const response = await fetch(import.meta.env.BASE_URL + 'data/algs-cfop-f2l.json');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/cfop-f2l.json');
         if (!response.ok) {
           throw new Error(`Failed to load F2L algorithms: ${response.statusText}`);
         }

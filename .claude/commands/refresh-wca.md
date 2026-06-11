@@ -1,3 +1,7 @@
+---
+description: Download the WCA public export (if stale) and regenerate the three NDJSON data files in cfop-app/public/data/.
+---
+
 # /refresh-wca — Refresh WCA data
 
 Downloads the WCA public export (if stale) and regenerates the three NDJSON files in `cfop-app/public/data/`.

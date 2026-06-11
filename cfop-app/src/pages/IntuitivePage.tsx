@@ -198,55 +198,49 @@ export default function IntuitivePage() {
         <h3 className="title is-5 intuitive-step-title">Step 1: Easy Inserts</h3>
         <ul className="intuitive-list">
           <li>
-            First, solve cases where pairs are in the upper layer.
+            Always work on pairs that are already <strong>in the top layer and disconnected</strong> first — these are the easiest to insert.
           </li>
           <li>
-            If <strong>matching colours face up</strong>, hold the cube so the matched side is on the working side, push pair
-            aside, open slot, insert, then close slot.
+            <strong>Right pair</strong>: the corner's side colours match to the <em>right</em> of its target slot — hold the pair to the right and use <code>U R U&#x2019; R&#x2019;</code>. <strong>Left pair</strong>: colours match to the <em>left</em> — hold to the left and use <code>U&#x2019; L&#x2019; U L</code>.
           </li>
           <li>
-            If <strong>different colours face up</strong>, hold so white faces the matching side, set up the pair, insert, then
-            realign the cross.
-          </li>      
+            <strong>Right insert</strong> (disconnected): white faces to the right side of the slot — hold right and use <code>R U R&#x2019;</code>. <strong>Left insert</strong>: white faces to the left — hold left and use <code>L&#x2019; U&#x2019; L</code>.
+          </li>
         </ul>
         <CaseCards cases={step1Cases} columnsClass="column is-one-quarter-desktop is-half-tablet" />
 
         <h3 className="title is-5 intuitive-step-title">Step 2: Setup Pairs</h3>
         <ul className="intuitive-list">
           <li>
-            Second, find cases where edge-corner pairs are not in the upper layer and disconnected.
+            When pieces are not both in the top layer, use these extractions to get them there:
           </li>
           <li>
-           When opening the slot, place the corner over the target slot, 
-           then turn the upper layer 90&#176; in the direction which keeps the white visible on the side.
+            <strong>Edge in middle + corner in top layer</strong>: hold the edge on the right side and do <code>R U R&#x2019;</code> — this lifts the edge out and brings both pieces to the top layer.
           </li>
           <li>
-            Where you have easy inserts patterns, solve these as before, 
-            otherwise you'll need to use a setup insert pattern, which we cover next.
-          </li>        
+            <strong>Corner in bottom + edge in top layer</strong>: hold the edge to the left and do <code>R U R&#x2019;</code> — this extracts the corner up.
+          </li>
+          <li>
+            <strong>Pair stuck in slot (connected)</strong>: use <code>R U&#x2019; R&#x2019;</code> — this brings both to the top layer <em>disconnected</em>. Do not use <code>R U R&#x2019;</code> here as it leaves them connected.
+          </li>
+          <li>
+            <strong>Pair connected in top layer</strong>: hold the corner above an unsolved slot and do <code>R U2 R&#x2019;</code> — this keeps both pieces in the top layer but disconnects them.
+          </li>
         </ul>
         <CaseCards cases={step2Cases} columnsClass="column is-one-quarter-desktop is-half-tablet" />
 
         <h3 className="title is-5 intuitive-step-title">Step 3: Setup Inserts</h3>
         <ul className="intuitive-list">
           <li>
-            Third, setup edge-corner pairs in the upper layer so that oriented and connected, ready for insert.
+            Once both pieces are in the top layer and disconnected, set up an easy insert by hiding the corner, repositioning the edge, then restoring the corner.
           </li>
           <li>
-            If <strong>white is on the side and colours match</strong>, safely move the <strong>edge next</strong> to its corner
-             - move the corner over the target slot, then turn the upper layer 90&#176; 
-           in the direction which keeps the white visible on the side, then hide the corner in the slot, 
-           so you can safely turn the upper layer to bring the edge into connected position ready for insert.
+            <strong>White on the side</strong>: place the corner above its target slot and turn the top layer once so white is still visible on the side.
+            Then look at the two top-facing colours — if they <strong>match</strong>, bring the edge <em>next to</em> the corner;
+            if they <strong>differ</strong>, bring the edge <em>across from</em> the corner. Hide the corner in the slot, move the edge, restore the corner — you now have a connected pair.
           </li>
           <li>
-            If <strong>white is on the side and colours do not match</strong>, safely move the <strong>edge across</strong> from its corner
-             - move the corner over the target slot, then turn the upper layer 90&#176; 
-           in the direction which keeps the white visible on the side, then hide the corner in the slot, 
-           so you can safely turn the upper layer to bring the edge into connected position ready for insert.
-          </li>
-          <li>
-            If <strong>white is up</strong>, move the <strong>edge over</strong> its centre - with the colour matched on the side, rotate the edge safely into the back slot, then position the corner over the
-            edge to form the pair, then rotate the edge corner pair back up ready for insert.
+            <strong>White facing up</strong>: align the edge to its matching centre, hide the edge into the back slot, then position the corner above that edge, restore the edge — you now have a connected pair ready to insert.
           </li>
         </ul>
         <CaseCards cases={step3Cases} columnsClass="column is-one-third-desktop is-half-tablet" />

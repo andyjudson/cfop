@@ -38,6 +38,7 @@ export function useCfopSolve({ scrambleDone, scrambleAlg, beginner, onSolveStart
   }, []);
 
   const handleSolve = useCallback(async () => {
+    console.log('[cfop] handleSolve called', { scrambleDone, scrambleAlg, isSolving, available: solverRef.current?.available });
     if (!scrambleDone || !scrambleAlg || isSolving) return;
     const solver = solverRef.current;
     if (!solver?.available) return;
@@ -53,8 +54,13 @@ export function useCfopSolve({ scrambleDone, scrambleAlg, beginner, onSolveStart
       setCfopStageIndex(0);
       setCfopSetup(initialSetup);
       onSolveStartRef.current();
+      console.log(`[cfop ${beginner ? '2-look' : '1-look'}] scramble: ${scrambleAlg}`);
+      for (const s of solution.stages) {
+        const label = s.caseName ? `${s.label} (${s.caseName})` : s.label;
+        console.log(`  ${label.padEnd(30)} ${s.alg || '(skip)'}`);
+      }
     } catch (err) {
-      console.error('[cfop solve] failed:', err);
+      console.error('[cfop solve] failed:', err, { scramble: scrambleAlg, beginner });
     } finally {
       setIsSolving(false);
     }

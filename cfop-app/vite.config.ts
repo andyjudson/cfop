@@ -15,6 +15,11 @@ export default defineConfig(({ mode }) => {
     worker: {
       format: 'es',
     },
+    // cubify ships web workers (cfop.worker, twips.worker); Vite's dep optimizer
+    // can't pre-bundle worker entry points, so exclude the whole package.
+    optimizeDeps: {
+      exclude: ['@andyjudson/cubify'],
+    },
     resolve: {
       alias: CUBIFY_LOCAL ? {
         '@andyjudson/cubify':

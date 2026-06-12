@@ -126,7 +126,7 @@ const F2L_STEP3_CASES: ExampleCase[] = [
 
 function sanitizeMoveHint(moveHint?: string): string | undefined {
   if (!moveHint) return undefined;
-  return moveHint.includes('...') ? undefined : moveHint;
+  return moveHint;
 }
 
 function useMoveHintSafeCases(cases: ExampleCase[]) {
@@ -230,9 +230,14 @@ export default function IntuitivePage() {
         <CaseCards cases={step2Cases} columnsClass="column is-one-quarter-desktop is-half-tablet" />
 
         <h3 className="title is-5 intuitive-step-title">Step 3: Setup Inserts</h3>
+        <p className="intuitive-note">
+          Unlike steps 1 and 2, there is no fixed case list here — every pair position produces a different
+          setup sequence. The goal is to understand the three orientations below and apply the logic to
+          whatever position you are looking at.
+        </p>
         <ul className="intuitive-list">
           <li>
-            Once both pieces are in the top layer and disconnected, set up an easy insert by hiding the corner, repositioning the edge, then restoring the corner.
+            Once <strong>both pieces are in the top layer and disconnected</strong>, set up an easy insert by hiding the corner, repositioning the edge, then restoring the corner.
           </li>
           <li>
             <strong>White on the side</strong>: place the corner above its target slot and turn the top layer once so white is still visible on the side.

@@ -2,10 +2,10 @@ import { useRef, useState, useCallback, useEffect, useMemo, type ReactNode } fro
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { CubePlayerComponent, CubePlayerControls, CubeMoveTape } from '@andyjudson/cubify-react';
 import type { CubePlayerHandle } from '@andyjudson/cubify-react';
-import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser } from '@andyjudson/cubify';
+import { MASK_PRESETS, THEME_PRESETS, CubeState, AlgParser, CubeSolverKociemba } from '@andyjudson/cubify';
 import type { ThemePresetName } from '@andyjudson/cubify';
 import { useCfopSolve } from '../hooks/useCfopSolve';
-import { MdInfo, MdShuffle, MdPsychology, MdRemove, MdAdd } from 'react-icons/md';
+import { MdInfo, MdShuffle, MdPsychology, MdRemove, MdAdd, MdTune } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 import { warmUp, nextScramble } from '../utils/scrambleCache';
 import { SPEED_MIN, SPEED_MAX, SPEED_STEP, nudgeSpeed } from '../utils/speed';
@@ -21,7 +21,8 @@ interface Case {
   group: string;
 }
 
-type CubifyMode = 'case' | 'scramble' | 'solve';
+type CubifyMode  = 'case' | 'scramble' | 'solve';
+type SolveMode   = 'beginner' | 'advanced' | 'optimal';
 
 const CASES: Case[] = [
   {
@@ -118,17 +119,24 @@ export default function CubifyPage() {
   const [scrambleDone, setScrambleDone] = useState(false);
   const [isScrambling, setIsScrambling] = useState(false);
 
-  const [playing,   setPlaying]   = useState(false);
-  const [stepIndex, setStepIndex] = useState(0);
-  const [mask,      setMask]      = useState(CASES[SUPERFLIP_IDX].defaultMask);
-  const [theme,     setTheme]     = useState<ThemePresetName>('speed-dark');
-  const [speed,     setSpeed]     = useState(1);
-  const [beginner,  setBeginner]  = useState(false);
+  const [playing,      setPlaying]      = useState(false);
+  const [stepIndex,    setStepIndex]    = useState(0);
+  const [mask,         setMask]         = useState(CASES[SUPERFLIP_IDX].defaultMask);
+  const [theme,        setTheme]        = useState<ThemePresetName>('speed-dark');
+  const [speed,        setSpeed]        = useState(1);
+  const [solveMode,    setSolveMode]    = useState<SolveMode>('beginner');
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const settingsRef    = useRef<HTMLDivElement>(null);
+
+  // Kociemba solver (Optimal mode)
+  const kociembaRef         = useRef<CubeSolverKociemba | null>(null);
+  const [kociembaAlg,       setKociembaAlg]       = useState<string | null>(null);
+  const [isKociembaSolving, setIsKociembaSolving] = useState(false);
 
   const cfopSolve = useCfopSolve({
     scrambleDone,
     scrambleAlg,
-    beginner,
+    beginner: solveMode === 'beginner',
     onSolveStart: () => {
       setMode('solve');
       setScrambleDone(false);
@@ -139,30 +147,58 @@ export default function CubifyPage() {
   useEffect(() => { warmUp(); }, []);
 
   useEffect(() => {
-    document.body.style.cursor = (isScrambling || cfopSolve.isSolving) ? 'wait' : '';
+    const solver = new CubeSolverKociemba();
+    kociembaRef.current = solver;
+    return () => { solver.dispose(); };
+  }, []);
+
+  // Auto-scramble on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { handleScramble(); }, []);
+
+  // Close settings popover on outside click
+  useEffect(() => {
+    if (!settingsOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (!settingsRef.current?.contains(e.target as Node)) setSettingsOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [settingsOpen]);
+
+  const isSolving = cfopSolve.isSolving || isKociembaSolving;
+
+  useEffect(() => {
+    document.body.style.cursor = (isScrambling || isSolving) ? 'wait' : '';
     return () => { document.body.style.cursor = ''; };
-  }, [isScrambling, cfopSolve.isSolving]);
+  }, [isScrambling, isSolving]);
 
   const activeCase = CASES[caseIdx];
 
   // Derive active alg, setup, mask from current mode
   const { cfopStage } = cfopSolve;
+  const isOptimal = solveMode === 'optimal';
+
   const activeAlg = mode === 'case'
     ? activeCase.alg
     : mode === 'scramble'
       ? (scrambleAlg ?? '')
-      : (cfopStage?.alg ?? '');
+      : isOptimal
+        ? (kociembaAlg ?? '')
+        : (cfopStage?.alg ?? '');
 
   const activeSetup = mode === 'case'
     ? CubeState.setupFromAlg(activeCase.alg, activeCase.rotation)
     : mode === 'scramble'
       ? ''
-      : cfopSolve.cfopSetup;
+      : isOptimal
+        ? (scrambleAlg ?? '')
+        : cfopSolve.cfopSetup;
 
   const activeMask = mode === 'case'
     ? mask
     : mode === 'solve'
-      ? (cfopStage?.mask ?? 'full')
+      ? (isOptimal ? 'full' : (cfopStage?.mask ?? 'full'))
       : 'full';
 
   modeRef.current = mode;
@@ -178,10 +214,13 @@ export default function CubifyPage() {
 
   const statusMessage: ReactNode =
     (isScrambling || mode === 'scramble') ? scrambleInfoMessage :
-    cfopSolve.isSolving ? `Solving… CFOP ${beginner ? 'beginner' : 'advanced'} mode` :
-    (mode === 'solve' && cfopSolve.cfopStages && !cfopStage)
+    isKociembaSolving ? 'Solving… optimal' :
+    cfopSolve.isSolving ? `Solving… CFOP ${solveMode} mode` :
+    (mode === 'solve' && isOptimal && kociembaAlg)
+      ? `Solved! ${kociembaAlg ? AlgParser.parse(kociembaAlg).length : 0} moves · optimal` :
+    (mode === 'solve' && !isOptimal && cfopSolve.cfopStages && !cfopStage)
       ? `Solved! ${cfopSolve.cfopStages.reduce((n, s) => n + s.moves, 0)} moves` :
-    (mode === 'solve' && cfopStage)
+    (mode === 'solve' && !isOptimal && cfopStage)
       ? (
           <>
             <span style={{ fontWeight: 600 }}>
@@ -208,11 +247,14 @@ export default function CubifyPage() {
   }, []);
 
   // Stable identity — reads mode via ref to avoid stale closures; cfop stage progression delegated to hook
+  const solveModeRef = useRef<SolveMode>('beginner');
+  solveModeRef.current = solveMode;
+
   const handleComplete = useCallback(() => {
     setPlaying(false);
     if (modeRef.current === 'scramble') {
       setScrambleDone(true);
-    } else if (modeRef.current === 'solve') {
+    } else if (modeRef.current === 'solve' && solveModeRef.current !== 'optimal') {
       cfopSolve.onStageComplete();
     }
   }, [cfopSolve.onStageComplete]);
@@ -235,9 +277,29 @@ export default function CubifyPage() {
     }
   }, []);
 
+  const handleOptimalSolve = useCallback(async () => {
+    if (!scrambleDone || !scrambleAlg || isKociembaSolving) return;
+    const solver = kociembaRef.current;
+    if (!solver?.available) return;
+    setIsKociembaSolving(true);
+    setMode('solve');
+    setScrambleDone(false);
+    setPlaying(false);
+    try {
+      const state  = await CubeState.fromAlg(scrambleAlg);
+      const result = await solver.solve(state);
+      setKociembaAlg(result.alg);
+      autoPlay();
+    } catch (err) {
+      console.error('[kociemba] failed:', err);
+    } finally {
+      setIsKociembaSolving(false);
+    }
+  }, [scrambleDone, scrambleAlg, isKociembaSolving, autoPlay]);
+
   const handlePlayToggle = useCallback(() => {
-    // Guard: no stage to play when CFOP solve is complete
-    if (modeRef.current === 'solve' && !cfopSolve.canPlayCurrentStage()) return;
+    // Guard: no stage to play when CFOP solve is complete (not applicable to optimal)
+    if (modeRef.current === 'solve' && !isOptimal && !cfopSolve.canPlayCurrentStage()) return;
     if (!playing && stepIndex >= moveCount) {
       pendingPlayRef.current = true;
       setStepIndex(0);
@@ -253,6 +315,7 @@ export default function CubifyPage() {
   const handleCaseChange = (idx: number) => {
     setMode('case');
     setScrambleAlg(null);
+    setKociembaAlg(null);
     cfopSolve.reset();
     setPlaying(false);
     setStepIndex(0);
@@ -264,6 +327,7 @@ export default function CubifyPage() {
     if (isScrambling) return;
     setIsScrambling(true);
     setScrambleDone(false);
+    setKociembaAlg(null);
     cfopSolve.reset();
     try {
       const alg = await nextScramble();
@@ -277,35 +341,7 @@ export default function CubifyPage() {
 
   return (
     <CfopPageLayout pageTitle="Cubify" subtitle="3x3 cube visualization framework optimized for CFOP simulation">
-      <section className="section" style={{ paddingTop: '1rem' }}>
-        {/* Selectors */}
-        <div className="cubify-select-row">
-          <div className="select" style={{ width: 120 }}>
-            <select style={{ width: '100%' }} value={caseIdx} onChange={e => handleCaseChange(Number(e.target.value))}>
-              {Object.entries(
-                CASES.reduce<Record<string, { name: string; idx: number }[]>>((acc, c, i) => {
-                  (acc[c.group] ??= []).push({ name: c.name, idx: i });
-                  return acc;
-                }, {})
-              ).map(([group, items]) => (
-                <optgroup key={group} label={group}>
-                  {items.map(({ name, idx }) => <option key={idx} value={idx}>{name.toLowerCase()}</option>)}
-                </optgroup>
-              ))}
-            </select>
-          </div>
-          <div className="select" style={{ width: 120 }}>
-            <select style={{ width: '100%' }} value={mode !== 'case' ? 'full' : mask} onChange={e => setMask(e.target.value)}>
-              {MASK_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
-            </select>
-          </div>
-          <div className="select" style={{ width: 120 }}>
-            <select style={{ width: '100%' }} value={theme} onChange={e => setTheme(e.target.value as ThemePresetName)}>
-              {THEME_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label.toLowerCase()}</option>)}
-            </select>
-          </div>
-        </div>
-
+      <section className="section" style={{ paddingTop: 0 }}>
         {/* Cube */}
         <div style={{ width: 290, height: 290, margin: '0 auto' }}>
           <CubePlayerComponent
@@ -330,61 +366,91 @@ export default function CubifyPage() {
         />
 
         <div className="cubify-controls-row">
-          <CubePlayerControls
-            playing={playing}
-            stepIndex={stepIndex}
-            moveCount={moveCount}
-            size="sm"
-            onPlayToggle={handlePlayToggle}
-            onReset={handleResetButton}
-            onStepBackward={handleStepBackward}
-            onStepForward={handleStepForward}
-            onCameraReset={() => playerRef.current?.resetCamera()}
-          />
+          <div className="cubify-controls-primary">
+            <CubePlayerControls
+              playing={playing}
+              stepIndex={stepIndex}
+              moveCount={moveCount}
+              size="sm"
+              onPlayToggle={handlePlayToggle}
+              onReset={handleResetButton}
+              onStepBackward={handleStepBackward}
+              onStepForward={handleStepForward}
+              onCameraReset={() => playerRef.current?.resetCamera()}
+            />
+            <div className="cubify-settings-wrapper" ref={settingsRef}>
+              <button
+                className="cubify-speed-btn"
+                onClick={() => setSettingsOpen(o => !o)}
+                disabled={isSolving || isScrambling}
+                title="Settings"
+              >
+                <MdTune />
+              </button>
+              {settingsOpen && (
+                <div className="cubify-settings-popover">
+                  <div className="cubify-settings-row">
+                    <span className="cubify-settings-label">Case</span>
+                    <div className="select is-small" style={{ flex: 1 }}>
+                      <select style={{ width: '100%' }} value={caseIdx} onChange={e => { handleCaseChange(Number(e.target.value)); setSettingsOpen(false); }}>
+                        {Object.entries(
+                          CASES.reduce<Record<string, { name: string; idx: number }[]>>((acc, c, i) => {
+                            (acc[c.group] ??= []).push({ name: c.name, idx: i });
+                            return acc;
+                          }, {})
+                        ).map(([group, items]) => (
+                          <optgroup key={group} label={group}>
+                            {items.map(({ name, idx }) => <option key={idx} value={idx}>{name.toLowerCase()}</option>)}
+                          </optgroup>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="cubify-settings-row">
+                    <span className="cubify-settings-label">Mask</span>
+                    <div className="select is-small" style={{ flex: 1 }}>
+                      <select style={{ width: '100%' }} value={mode !== 'case' ? 'full' : mask} onChange={e => setMask(e.target.value)}>
+                        {MASK_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="cubify-settings-row">
+                    <span className="cubify-settings-label">Theme</span>
+                    <div className="select is-small" style={{ flex: 1 }}>
+                      <select style={{ width: '100%' }} value={theme} onChange={e => setTheme(e.target.value as ThemePresetName)}>
+                        {THEME_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label.toLowerCase()}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="cubify-settings-row">
+                    <span className="cubify-settings-label">Solver</span>
+                    <div className="select is-small" style={{ flex: 1 }}>
+                      <select style={{ width: '100%' }} value={solveMode} onChange={e => setSolveMode(e.target.value as SolveMode)}>
+                        <option value="beginner">beginner</option>
+                        <option value="advanced">advanced</option>
+                        <option value="optimal">optimal</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
           <div className="cubify-controls-secondary">
-            <div className="cubify-controls-separator" />
             <button className="cubify-speed-btn" onClick={() => setSpeed(s => nudgeSpeed(s, -SPEED_STEP))} disabled={speed <= SPEED_MIN} title="Slower"><MdRemove /></button>
             <span className="cubify-speed-label">×{speed.toFixed(1)}</span>
             <button className="cubify-speed-btn" onClick={() => setSpeed(s => nudgeSpeed(s, SPEED_STEP))} disabled={speed >= SPEED_MAX} title="Faster"><MdAdd /></button>
-            <div className="cubify-controls-separator" />
-            {/* Beginner / Advanced solve mode toggle */}
-            <div style={{
-              display: 'inline-flex', borderRadius: 8, overflow: 'hidden',
-              border: '1px solid #dbdbdb', flexShrink: 0,
-              opacity: (cfopSolve.isSolving || mode === 'solve') ? 0.4 : 1,
-            }}>
-              {(['Advanced', 'Beginner'] as const).map(label => {
-                const isActive = label === 'Beginner' ? beginner : !beginner;
-                return (
-                  <button
-                    key={label}
-                    onClick={() => setBeginner(label === 'Beginner')}
-                    disabled={cfopSolve.isSolving || mode === 'solve'}
-                    title={label === 'Beginner' ? 'Beginner mode: intuitive F2L, 2-look OLL/PLL (9 stages)' : 'Advanced mode: optimal F2L, 1-look OLL/PLL (7 stages)'}
-                    style={{
-                      padding: '0 10px', height: 38, border: 'none', cursor: 'pointer',
-                      fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.02em',
-                      background: isActive ? '#363636' : '#f5f5f5',
-                      color: isActive ? '#fff' : '#888',
-                      transition: 'background 0.15s, color 0.15s',
-                    }}
-                  >
-                    {label.toUpperCase()}
-                  </button>
-                );
-              })}
-            </div>
             <button
               style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                 width: 38, height: 38, borderRadius: 8, flexShrink: 0,
                 border: '1px solid #dbdbdb', background: '#f5f5f5',
-                cursor: (isScrambling || cfopSolve.isSolving || (playing && mode !== 'case')) ? 'default' : 'pointer',
+                cursor: (isScrambling || isSolving || (playing && mode !== 'case')) ? 'default' : 'pointer',
                 color: '#363636', fontSize: 18,
-                opacity: (isScrambling || cfopSolve.isSolving || (playing && mode !== 'case')) ? 0.35 : 1,
+                opacity: (isScrambling || isSolving || (playing && mode !== 'case')) ? 0.35 : 1,
               }}
               onClick={handleScramble}
-              disabled={isScrambling || cfopSolve.isSolving || (playing && mode !== 'case')}
+              disabled={isScrambling || isSolving || (playing && mode !== 'case')}
               title="Scramble (WCA random-state)"
             >
               <MdShuffle />
@@ -394,13 +460,13 @@ export default function CubifyPage() {
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                 width: 38, height: 38, borderRadius: 8, flexShrink: 0,
                 border: '1px solid #dbdbdb', background: '#f5f5f5',
-                cursor: (mode !== 'scramble' || !scrambleDone || cfopSolve.isSolving || isScrambling || playing) ? 'default' : 'pointer',
+                cursor: (mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing) ? 'default' : 'pointer',
                 color: '#363636', fontSize: 18,
-                opacity: (mode !== 'scramble' || !scrambleDone || cfopSolve.isSolving || isScrambling || playing) ? 0.35 : 1,
+                opacity: (mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing) ? 0.35 : 1,
               }}
-              onClick={cfopSolve.handleSolve}
-              disabled={mode !== 'scramble' || !scrambleDone || cfopSolve.isSolving || isScrambling || playing}
-              title="Solve (CFOP method)"
+              onClick={isOptimal ? handleOptimalSolve : cfopSolve.handleSolve}
+              disabled={mode !== 'scramble' || !scrambleDone || isSolving || isScrambling || playing}
+              title={`Solve (${solveMode})`}
             >
               <MdPsychology />
             </button>

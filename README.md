@@ -8,11 +8,11 @@ Rubik's cube CFOP method learning companion, covers - Cross, F2L, OLL, PLL — w
 
 - About page with highlights of cubing history and background context to this project
 - Full CFOP method and algorithm reference sheets (Notation, Intuitive, Beginner 2-Look, F2L, OLL, PLL)
-- 3D algorithm visualiser modal using cubify, set/group filter (2-Look, full OLL, full PLL) with local persistence, play/pause/rewind, speed control, move-by-move highlight
+- 3D algorithm visualiser modal using cubify — set/group filter (All cases · Minimum cases · OLL cases · PLL cases) with local persistence; notes drawer for case tips; play/pause/rewind, speed control, move-by-move highlight
 - OLL and PLL probability scores and WCA case numbers
 - Practice mode with random scrambles + space-bar timer with rolling stats; Champion mode loads real WCA competition finals
 - Light/Dark mode with local persistence; mobile-responsive (iPhone 16 baseline)
-- Cubify integration harness — demonstrator for the cubify algorithm simulation library; case selector, mask stickering, theme presets; WCA random-state scramble generator; CFOP stage-annotated solver (cross → F2L×4 → OLL → PLL) with per-stage playback, dynamic masking, and case identification
+- Cubify integration harness — demonstrator for the cubify library; auto-scramble on load; settings popover (case/mask/theme/solver); beginner, advanced, and optimal (Kociemba) solve modes; CFOP stage-annotated solver (cross → F2L×4 → OLL → PLL) with per-stage playback, dynamic masking, and case identification
 - WCA World Record evolution chart and legends table
 
 ## Json Data
@@ -21,10 +21,10 @@ Algorithm sets and WCA event data are stored as JSON in `cfop-app/public/data/`:
 
 | File | Content |
 |------|---------|
-| `algs-cfop-bgr.json` | 2-Look Beginner cases |
-| `algs-cfop-f2l.json` | Full F2L — 41 cases |
-| `algs-cfop-oll.json` | Full OLL — 57 cases |
-| `algs-cfop-pll.json` | Full PLL — 21 cases |
+| `cfop-bgr.json` | 2-Look Beginner cases |
+| `cfop-f2l.json` | Full F2L — 41 cases |
+| `cfop-oll.json` | Full OLL — 57 cases |
+| `cfop-pll.json` | Full PLL — 21 cases |
 | `wca-wr-evolution.json` | WR progression history (single + average); refreshed via `scripts/wca-refresh/` |
 | `wca-wr-legends.json` | Per-person WR summary; current holders flagged |
 | `wca-beat-the-champion.json` | Finals results + scrambles for WR events and championships |
@@ -65,7 +65,7 @@ npx playwright test
 
 ## Built With
 
-- **[cubify](https://github.com/andyjudson/cubify)** — clean-room cube rendering library; `<CubePlayer>` / `<CubeState>` React wrappers
+- **[cubify](https://github.com/andyjudson/cubify)** — clean-room cube rendering library; `<CubePlayerComponent>` / `<CubeStateComponent>` React wrappers
 - **[cubing.js](https://github.com/cubing/cubing.js)** — KPattern permutation state model and WCA standard move application (Lucas Garron & Tom Rokicki)
 - **React 19** + **TypeScript 5.9** + **Vite 7**
 - **Bulma CSS** for UI components and responsive layout

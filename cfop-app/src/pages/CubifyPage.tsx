@@ -26,6 +26,12 @@ type SolveMode   = 'beginner' | 'advanced' | 'optimal';
 
 const CASES: Case[] = [
   {
+    name: 'Solved',
+    alg: '',
+    defaultMask: 'full',
+    group: 'Basics',
+  },
+  {
     name: 'Line (edges)',
     alg: "F R U R' U' F'",
     rotation: 'z2',
@@ -112,8 +118,7 @@ export default function CubifyPage() {
   const pendingPlayRef = useRef(false);
   const modeRef        = useRef<CubifyMode>('case');
 
-  const SUPERFLIP_IDX = CASES.findIndex(c => c.name === 'Superflip');
-  const [caseIdx,      setCaseIdx]    = useState(SUPERFLIP_IDX);
+  const [caseIdx,      setCaseIdx]    = useState(0);
   const [mode,         setMode]       = useState<CubifyMode>('case');
   const [scrambleAlg,  setScrambleAlg]  = useState<string | null>(null);
   const [scrambleDone, setScrambleDone] = useState(false);
@@ -121,7 +126,7 @@ export default function CubifyPage() {
 
   const [playing,      setPlaying]      = useState(false);
   const [stepIndex,    setStepIndex]    = useState(0);
-  const [mask,         setMask]         = useState(CASES[SUPERFLIP_IDX].defaultMask);
+  const [mask,         setMask]         = useState(CASES[0].defaultMask);
   const [theme,        setTheme]        = useState<ThemePresetName>('speed-dark');
   const [speed,        setSpeed]        = useState(1);
   const [solveMode,    setSolveMode]    = useState<SolveMode>('beginner');

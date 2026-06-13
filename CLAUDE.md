@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Project context for Claude Code. See `specs/spec.md` for the feature ledger.
+Project context for Claude Code. `specs/<NNN>-<name>/` holds per-feature lifecycle artifacts.
 
 ## Project Scope
 
@@ -32,12 +32,10 @@ Features 001–023 complete. Feature 022 replaced TwistyPlayer with cubify acros
 
 React 19, TypeScript, Vite, Bulma CSS, cubing.js, cubify, react-router-dom
 
-## Spec Workflow (Hybrid Model)
+## Spec Workflow
 
-- `spec.md` = high-level narrative and canonical feature sequence ledger (source of truth for numbering)
-- `specs/<NNN>-<kebab-name>/` = per-feature lifecycle artifacts:
-  - `spec.md`, `checklists/requirements.md`, `implementation-summary.md`
-- Next feature number must follow the sequence in `spec.md`
+- `specs/<NNN>-<kebab-name>/` = per-feature lifecycle artifacts: `spec.md`, `checklists/requirements.md`, `implementation-summary.md`
+- Feature numbering is sequential; the next number follows the highest existing `specs/<NNN>` directory (the numbering source of truth)
 - Keep implementation summaries inside `specs/<feature-id>/`, not repo root
 - Use lowercase kebab-case filenames (e.g. `implementation-summary.md`)
 
@@ -133,12 +131,6 @@ uv run wca-refresh --dry-run     # transforms only, no file writes
 **Cache:** `scripts/wca-refresh/.cache/` (gitignored, ~300MB). Staleness detected via HTTP HEAD on the WCA export URL — the redirect `Location` header embeds a timestamp.
 
 **Also available as the `/refresh-wca` Claude Code skill** (`.claude/commands/refresh-wca.md`), and as a monthly GitHub Actions cron (`.github/workflows/refresh-wca.yml`).
-
-## Recent Changes
-- refactor-architecture (complete): upgraded to `@andyjudson/cubify` v1.3.11 (`CubeSolverCfop` renamed from `CfopSolver`, `CubeSolverKociemba` from `CubeSolver`, `CubeSolverInterface<T>` added). `CubifyPage` — CFOP solver state extracted to `useCfopSolve` hook (`src/hooks/useCfopSolve.ts`); `AlgParser.parse` wrapped in `useMemo`; speed clamping extracted to `src/utils/speed.ts`.
-- post-022 enhancements (ongoing): `VisualizerModal` — case carousel (`CaseCarousel`) with group separators, 2-Look/full OLL/full PLL set switching, full-screen on mobile. `CubifyPage` — WCA random-state scramble (`CubeScramble.wca()`) + Kociemba solve (`CubeSolver`) with pre-warmed scramble cache (`scrambleCache.ts`); secondary controls row (speed, scramble, solve) with `.cubify-controls-secondary`/`.cubify-controls-separator` classes; separators hidden on mobile. Both modals full-screen at ≤600px. Published as v1.3.7.
-- 023-wca-data-refresh: `scripts/wca-refresh/` uv CLI; all three WCA data files refreshed to May 2026 export; beat-the-champion adds `competition_date`, `month`, `day`; WrLegendsTable filter fixed for current WR holders with 1 WR; date units fixed to proper Unix ms
-- 022-cubify-migration: full replacement of TwistyPlayer with cubify; `<CubePlayer>`, `<CubeState>`, `<CubeMoveTape>`, `<CubePlayerControls>`; published as `@andyjudson/cubify` + `@andyjudson/cubify-react`
 
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,

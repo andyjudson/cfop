@@ -3,12 +3,14 @@ import 'bulma/css/bulma.min.css';
 import '../App.css';
 import { CfopPageLayout } from '../components/CfopPageLayout';
 import { AlgorithmCard, AlgorithmNotesSheet, type CfopAlgorithm } from '../components/AlgorithmCard';
+import { BGR_ARROWS } from '../data/bgrArrows';
 
 const essentialIds = ['oll_cross_line','oll_cross_hook','oll_sune', 'oll_antisune', 'pll_t', 'pll_ua', 'pll_h'];
 
 function BGRPage() {
   const [algorithms, setAlgorithms] = useState<CfopAlgorithm[]>([]);
   const [notesAlg, setNotesAlg] = useState<CfopAlgorithm | null>(null);
+  const [showArrows, setShowArrows] = useState(false);
 
   useEffect(() => {
     const loadAlgorithms = async () => {
@@ -45,6 +47,7 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
                 variant="standard"
                 isEssential={essentialIds.includes(alg.id)}
                 onShowNotes={setNotesAlg}
+                arrows={BGR_ARROWS[alg.id]}
               />
           </div>
         ))}
@@ -72,12 +75,24 @@ const renderAlgorithmSection = (title: string, description: string, algs: CfopAl
         </>
       }
     >
-      <main>
-        {renderAlgorithmSection("OLL Edge Cases", "Step 1: orientate edge cubelets to create the yellow cross.", ollEdges)}        
-        {renderAlgorithmSection("OLL Corner Cases", "Step 2: orientate corner cubelets to solve the yellow face.", ollCorners)}
-        {renderAlgorithmSection("PLL Corner Cases", "Step 3: permute corner cubelets to match the side faces.", pllCorners)}
-        {renderAlgorithmSection("PLL Edge Cases", "Step 4: permute edge cubelets to solve the cube!!", pllEdges)}
-      </main>
+      <div className="buttons is-centered mb-5">
+        <button
+          className={`button is-small${showArrows ? ' is-warning' : ' is-light'}`}
+          onClick={() => setShowArrows(v => !v)}
+          aria-pressed={showArrows}
+          type="button"
+        >
+          {showArrows ? 'Hide arrows' : 'Show arrows'}
+        </button>
+      </div>
+      <div className={showArrows ? 'bgr-show-arrows' : ''}>
+        <main>
+          {renderAlgorithmSection("OLL Edge Cases", "Step 1: orientate edge cubelets to create the yellow cross.", ollEdges)}
+          {renderAlgorithmSection("OLL Corner Cases", "Step 2: orientate corner cubelets to solve the yellow face.", ollCorners)}
+          {renderAlgorithmSection("PLL Corner Cases", "Step 3: permute corner cubelets to match the side faces.", pllCorners)}
+          {renderAlgorithmSection("PLL Edge Cases", "Step 4: permute edge cubelets to solve the cube!!", pllEdges)}
+        </main>
+      </div>
 
       <AlgorithmNotesSheet algorithm={notesAlg} onClose={() => setNotesAlg(null)} />
     </CfopPageLayout>

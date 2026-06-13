@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { MdStars } from 'react-icons/md';
 import 'bulma/css/bulma.min.css';
 import './AlgorithmCard.css';
+import { ArrowOverlay } from './ArrowOverlay';
+import type { Arrow } from '../data/bgrArrows';
 
 export interface CfopAlgorithm {
   id: string;
@@ -32,13 +34,15 @@ interface AlgorithmCardProps {
   variant?: 'standard' | 'compact';
   isEssential?: boolean;
   onShowNotes?: (algorithm: CfopAlgorithm) => void;
+  arrows?: Arrow[];
 }
 
 export function AlgorithmCard({
   algorithm,
   variant = 'standard',
   isEssential = false,
-  onShowNotes
+  onShowNotes,
+  arrows
 }: AlgorithmCardProps) {
   const cardClassName = variant === 'compact'
     ? 'card algo-card algo-card-compact'
@@ -59,6 +63,7 @@ export function AlgorithmCard({
             onClick={() => algorithm.notes && onShowNotes?.(algorithm)}
             style={{ cursor: algorithm.notes && onShowNotes ? 'pointer' : 'default' }}
           />
+          {arrows && arrows.length > 0 && <ArrowOverlay arrows={arrows} />}
         </div>
         <h3 className="title is-5 mt-3">{algorithm.name}</h3>
         <div className="content">

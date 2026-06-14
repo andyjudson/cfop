@@ -54,6 +54,19 @@ function flip(cx: number, cy: number, side: 'B' | 'F' | 'L' | 'R'): Arrow {
   };
 }
 
+// Trim an arc's endpoints inward (toward its control point, so the start/end
+// tangents — and thus the arrowhead/tail directions — are preserved). Used on
+// the 3-edge-cycle perms so the three arcs read as distinct arrows with a clear
+// gap at each vertex, rather than one fully connected closed loop.
+function gap({ from, to, cp }: Arrow, g = 0.16): Arrow {
+  const c = cp ?? [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2];
+  return {
+    from: [from[0] + (c[0] - from[0]) * g, from[1] + (c[1] - from[1]) * g],
+    to:   [to[0] + (c[0] - to[0]) * g,     to[1] + (c[1] - to[1]) * g],
+    cp,
+  };
+}
+
 export const BGR_ARROWS: Partial<Record<string, Arrow[]>> = {
 
   // ── OLL EDGES ───────────────────────────────────────────────────────────────
@@ -139,16 +152,16 @@ export const BGR_ARROWS: Partial<Record<string, Arrow[]>> = {
 
   // Ua-perm: 3-edge cycle UB → UL → UR (counterclockwise; UF stays). Matches note.
   pll_ua: [
-    { from: [144, 75.5],  to: [75.5, 144],  cp: [90, 90]   }, // UB → UL
-    { from: [75.5, 144],  to: [212.5, 144], cp: [144, 208] }, // UL → UR (around front)
-    { from: [212.5, 144], to: [144, 75.5],  cp: [198, 90]  }, // UR → UB
+    gap({ from: [144, 75.5],  to: [75.5, 144],  cp: [90, 90]   }), // UB → UL
+    gap({ from: [75.5, 144],  to: [212.5, 144], cp: [144, 190] }), // UL → UR (around front)
+    gap({ from: [212.5, 144], to: [144, 75.5],  cp: [198, 90]  }), // UR → UB
   ],
 
   // Ub-perm: 3-edge cycle UB → UR → UL (clockwise; UF stays). Matches note.
   pll_ub: [
-    { from: [144, 75.5],  to: [212.5, 144], cp: [198, 90]  }, // UB → UR
-    { from: [212.5, 144], to: [75.5, 144],  cp: [144, 208] }, // UR → UL (around front)
-    { from: [75.5, 144],  to: [144, 75.5],  cp: [90, 90]   }, // UL → UB
+    gap({ from: [144, 75.5],  to: [212.5, 144], cp: [198, 90]  }), // UB → UR
+    gap({ from: [212.5, 144], to: [75.5, 144],  cp: [144, 190] }), // UR → UL (around front)
+    gap({ from: [75.5, 144],  to: [144, 75.5],  cp: [90, 90]   }), // UL → UB
   ],
 
   // H-perm: opposite-pair swaps UB ↔ UF and UL ↔ UR — two double-headed straight

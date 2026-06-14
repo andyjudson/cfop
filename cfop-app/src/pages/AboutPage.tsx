@@ -211,7 +211,7 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
-        <p>JPerm has a similar <a href="https://www.youtube.com/playlist?list=PL9hWd-6428175082F" target="_blank" rel="noreferrer">learning CFOP YouTube playlist</a> that is also worth exploring.
+        <p>JPerm has a similar <a href="https://www.youtube.com/playlist?list=PLI24ciRbl8BUHEeOBaLXY4GpaVXSULYp4" target="_blank" rel="noreferrer">learning CFOP YouTube playlist</a> that is also worth exploring.
         </p>
       </section>
 

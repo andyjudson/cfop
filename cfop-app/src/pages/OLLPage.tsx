@@ -43,7 +43,7 @@ function OLLPage() {
   }, {} as GroupedAlgorithms);
 
   const groupIds = Object.keys(groupedAlgorithms);
-  const { sectionState, toggleSection, expandAll, collapseAll } = useSectionToggle('oll', groupIds);
+  const { sectionState, toggleSection, expandAll, collapseAll, allExpanded } = useSectionToggle('oll', groupIds);
 
   if (error) {
     throw error;
@@ -64,6 +64,7 @@ function OLLPage() {
       }
     >
       <ExpandCollapseControls
+        allExpanded={allExpanded}
         onExpandAll={expandAll}
         onCollapseAll={collapseAll}
       />

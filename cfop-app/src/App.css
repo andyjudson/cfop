@@ -320,6 +320,13 @@
   margin: 0 !important;
 }
 
+/* BGR sections are always expanded; trim the default .section padding so the
+   content sits close to the toggle button, matching the OLL/PLL/F2L pages. */
+.bgr-algorithm-section {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .section-header {
     cursor: pointer;
     padding: 1rem 1.25rem;

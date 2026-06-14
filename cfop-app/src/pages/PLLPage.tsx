@@ -43,7 +43,7 @@ function PLLPage() {
   }, {} as GroupedAlgorithms);
 
   const groupIds = Object.keys(groupedAlgorithms);
-  const { sectionState, toggleSection, expandAll, collapseAll } = useSectionToggle('pll', groupIds);
+  const { sectionState, toggleSection, expandAll, collapseAll, allExpanded } = useSectionToggle('pll', groupIds);
 
   if (error) {
     throw error;
@@ -64,6 +64,7 @@ function PLLPage() {
       }
     >
       <ExpandCollapseControls
+        allExpanded={allExpanded}
         onExpandAll={expandAll}
         onCollapseAll={collapseAll}
       />

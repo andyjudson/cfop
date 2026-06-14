@@ -36,7 +36,7 @@ function BGRPage() {
     .join(', ');
 
 const renderAlgorithmSection = (title: string, description: string, algs: CfopAlgorithm[]) => (
-    <section className="section">
+    <section className="section bgr-algorithm-section">
       <h2 className="title is-4 section-title">{title}</h2>
       <p className="mt-0 mb-4 ml-4 section-description">{description}</p>
       <div className="columns is-multiline">

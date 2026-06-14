@@ -50,10 +50,15 @@ export function useSectionToggle(pageKey: string, groupIds: string[], defaultExp
     setSectionState(groupIds.reduce((acc, id) => ({ ...acc, [id]: false }), {}));
   }, [groupIds]);
 
+  // True when every section is currently expanded — drives the single
+  // label-toggling control (Expand All ⇄ Collapse All).
+  const allExpanded = groupIds.length > 0 && groupIds.every(id => sectionState[id]);
+
   return {
     sectionState,
     toggleSection,
     expandAll,
     collapseAll,
+    allExpanded,
   };
 }

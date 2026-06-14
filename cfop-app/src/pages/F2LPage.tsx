@@ -43,7 +43,7 @@ function F2LPage() {
   }, {} as GroupedAlgorithms);
 
   const groupIds = Object.keys(groupedAlgorithms);
-  const { sectionState, toggleSection, expandAll, collapseAll } = useSectionToggle('f2l', groupIds);
+  const { sectionState, toggleSection, expandAll, collapseAll, allExpanded } = useSectionToggle('f2l', groupIds);
 
   if (error) {
     throw error;
@@ -65,6 +65,7 @@ function F2LPage() {
       }
     >
       <ExpandCollapseControls
+        allExpanded={allExpanded}
         onExpandAll={expandAll}
         onCollapseAll={collapseAll}
       />

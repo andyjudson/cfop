@@ -186,10 +186,9 @@ export default function AboutPage() {
       </section>
 
       <section className="section about-section">
-        <h2 className="title is-4 section-title">Video Resources</h2>
+        <h2 className="title is-4 section-title">Recommended Resources</h2>
         <p>
-          The below tutorials from CubeHead are great resources alongside what's in this app. They cover intuitive methods, 2-look and 1-look OLL/PLL, and lots of practical tips for improving your solves. His explanation of intuitive F2L was a bit of a game changer for me — it's one of those things that just clicks, and makes the rest of CFOP much easier to build on. If you're learning, they're well worth checking out.</p>
-        <p className="mt-3">He's also launched his own cubing app, <a href="https://www.cube.academy" target="_blank" rel="noreferrer">Cube Academy</a>. With a background in software and design, it's a clean, content-rich platform. From what he's been sharing, the roadmap looks interesting too — timers, stats tracking, and structured learning.
+          CubeHead has the below YouTube tutorials. covering intuitive methods, 2-look and 1-look OLL/PLL, and lots of practical tips for improving your solves. His explanation of intuitive F2L was a bit of a game changer for me — it's one of those things that just clicks, and makes the rest of CFOP much easier to build on. He has also launched his own cubing web app, <a href="https://www.cube.academy" target="_blank" rel="noreferrer">Cube Academy</a> and from what he's been sharing lately, the roadmap looks interesting too — timers, stats tracking, and structured learning.
         </p>
         <div className="columns mt-3">
           <div className="column">
@@ -212,6 +211,8 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
+        <p>JPerm has a similar <a href="https://www.youtube.com/playlist?list=PL9hWd-6428175082F" target="_blank" rel="noreferrer">learning CFOP YouTube playlist</a> that is also worth exploring.
+        </p>
       </section>
 
       <section className="section about-section">

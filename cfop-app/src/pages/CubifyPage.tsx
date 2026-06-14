@@ -317,6 +317,19 @@ export default function CubifyPage() {
   const handleStepForward  = useCallback(() => { playerRef.current?.stepForward(); }, []);
   const handleStepBackward = useCallback(() => { playerRef.current?.stepBackward(); }, []);
 
+  // Spacebar toggles play/pause (ignored while typing in a form field).
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code !== 'Space' && e.key !== ' ') return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      e.preventDefault();
+      handlePlayToggle();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [handlePlayToggle]);
+
   const handleCaseChange = (idx: number) => {
     setMode('case');
     setScrambleAlg(null);

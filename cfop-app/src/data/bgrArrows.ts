@@ -167,8 +167,8 @@ export const BGR_ARROWS: Partial<Record<string, Arrow[]>> = {
   // H-perm: opposite-pair swaps UB ↔ UF and UL ↔ UR — two double-headed straight
   // arrows forming a clean plus, instead of four overlapping arcs.
   pll_h: [
-    { from: [144, 96], to: [144, 192], both: true }, // UB ↔ UF (vertical)
-    { from: [96, 144], to: [192, 144], both: true }, // UL ↔ UR (horizontal)
+    { from: [144, 80], to: [144, 208], both: true }, // UB ↔ UF (vertical)
+    { from: [80, 144], to: [208, 144], both: true }, // UL ↔ UR (horizontal)
   ],
 
   // Z-perm: two adjacent edge pairs swap across the main diagonal —

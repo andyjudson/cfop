@@ -52,8 +52,8 @@ function getGroups(algorithms: CfopAlgorithm[]): string[] {
 }
 
 const getMask = (method?: string): string => {
-  if (method === 'oll') return 'oll-face-dim';
-  if (method === 'pll') return 'pll-face-dim';
+  //if (method === 'oll') return 'oll-face-dim';
+  //if (method === 'pll') return 'pll-face-dim';
   return 'full';
 };
 

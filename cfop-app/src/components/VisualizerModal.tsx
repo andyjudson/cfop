@@ -51,9 +51,9 @@ function getGroups(algorithms: CfopAlgorithm[]): string[] {
   return ['all', ...unique];
 }
 
-const getMask = (method?: string): string => {
-  //if (method === 'oll') return 'oll-face-dim';
-  //if (method === 'pll') return 'pll-face-dim';
+const getMask = (_method?: string): string => {
+  //if (_method === 'oll') return 'oll-face-dim';
+  //if (_method === 'pll') return 'pll-face-dim';
   return 'full';
 };
 
